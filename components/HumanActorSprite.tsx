@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import type { ActorPose, AnimationState, Expression } from "@/types/script";
 import type { CostumeVariant } from "@/types/script";
 import { SKIN_PALETTES, getHairColor } from "@/lib/costumes";
-import { BelleMereSvg, SoeurGrandeSvg, SoeurPetiteSvg, RoiSvg, TresJeuneFilleSvg } from "./costumes/CharacterSvgs";
+import { BelleMereSvg, SoeurGrandeSvg, SoeurPetiteSvg, RoiSvg, TresJeuneFilleSvg, FeeSvg, PereSvg, TresJeunePrinceSvg, GardeSvg, MereSvg, YangChengyueSvg, XueErSvg, WangChaojeSvg } from "./costumes/CharacterSvgs";
 import { TigerSvg, RabbitSvg, PandaSvg } from "./costumes/AnimalSvgs";
 
 // Module-level cache: once a URL 404s, remember it across component remounts.
@@ -102,11 +102,20 @@ function CostumeRenderer({
 
   let svgNode: React.ReactNode;
   switch (actorId) {
-    case "belle_mere":       svgNode = <BelleMereSvg {...svgProps} pose={pose} />; break;
-    case "soeur_grande":     svgNode = <SoeurGrandeSvg {...svgProps} pose={pose} />; break;
-    case "soeur_petite":     svgNode = <SoeurPetiteSvg {...svgProps} pose={pose} />; break;
-    case "roi":              svgNode = <RoiSvg {...svgProps} pose={pose} />; break;
-    case "tres_jeune_fille": svgNode = <TresJeuneFilleSvg {...svgProps} pose={pose} />; break;
+    case "belle_mere":        svgNode = <BelleMereSvg {...svgProps} pose={pose} />; break;
+    case "soeur_grande":      svgNode = <SoeurGrandeSvg {...svgProps} pose={pose} />; break;
+    case "soeur_petite":      svgNode = <SoeurPetiteSvg {...svgProps} pose={pose} />; break;
+    case "roi":               svgNode = <RoiSvg {...svgProps} pose={pose} />; break;
+    case "tres_jeune_fille":  svgNode = <TresJeuneFilleSvg {...svgProps} pose={pose} />; break;
+    case "fee":               svgNode = <FeeSvg {...svgProps} pose={pose} />; break;
+    case "pere":              svgNode = <PereSvg {...svgProps} pose={pose} />; break;
+    case "tres_jeune_prince": svgNode = <TresJeunePrinceSvg {...svgProps} pose={pose} />; break;
+    case "garde_1":
+    case "garde_2":           svgNode = <GardeSvg {...svgProps} pose={pose} />; break;
+    case "mere":              svgNode = <MereSvg {...svgProps} pose={pose} />; break;
+    case "yang_chengyue":     svgNode = <YangChengyueSvg {...svgProps} pose={pose} />; break;
+    case "xue_er":            svgNode = <XueErSvg {...svgProps} pose={pose} />; break;
+    case "wang_chaojie":      svgNode = <WangChaojeSvg {...svgProps} pose={pose} />; break;
     default:
       // Fallback: generic silhouette in actor color
       svgNode = <SilhouetteSvg color={actorColor} isSpeaking={isSpeaking} pose={pose} />;

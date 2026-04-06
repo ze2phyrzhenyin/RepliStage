@@ -420,6 +420,538 @@ export function RoiSvg({ skin, hair, pose = "stand" }: { skin: string; hair: str
   );
 }
 
+// ── Fée (Fairy Godmother) ────────────────────────────────────
+export function FeeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Wings — drawn first so body appears on top */}
+      <path d="M60 118 Q18 88 8 132 Q16 162 52 158 Q58 148 60 118" fill="#c8e8f8" opacity="0.52" stroke="#a0c8e8" strokeWidth="1" />
+      <path d="M100 118 Q142 88 152 132 Q144 162 108 158 Q102 148 100 118" fill="#c8e8f8" opacity="0.52" stroke="#a0c8e8" strokeWidth="1" />
+      {/* Wing shimmer */}
+      <path d="M56 126 Q36 110 22 128" stroke="#e0f0ff" strokeWidth="1.5" fill="none" opacity="0.6" />
+      <path d="M104 126 Q124 110 138 128" stroke="#e0f0ff" strokeWidth="1.5" fill="none" opacity="0.6" />
+      {/* Star tiara */}
+      <path d="M72 28 L75 18 L80 24 L85 18 L88 28 L82 26 L80 34 L78 26 Z" fill="#e8d040" stroke="#c0a020" strokeWidth="0.8" />
+      <circle cx="80" cy="19" r="2.5" fill="#fff8c0" />
+      <path d="M63 34 L65 28 L69 32 L65 36 Z" fill="#e8d040" opacity="0.8" />
+      <path d="M97 34 L95 28 L91 32 L95 36 Z" fill="#e8d040" opacity="0.8" />
+      {/* Hair — flowing waves */}
+      <ellipse cx="80" cy="50" rx="26" ry="18" fill={hair} />
+      <path d="M54 54 Q38 84 42 132" stroke={hair} strokeWidth="18" fill="none" strokeLinecap="round" />
+      <path d="M106 54 Q122 84 118 132" stroke={hair} strokeWidth="18" fill="none" strokeLinecap="round" />
+      <path d="M46 84 Q34 108 42 126" stroke={hair} strokeWidth="8" fill="none" strokeLinecap="round" opacity="0.65" />
+      {/* Head */}
+      <ellipse cx="80" cy="72" rx="24" ry="26" fill={skin} />
+      {/* Eyes — gentle, luminous */}
+      <ellipse cx="70" cy="67" rx="4.5" ry="4" fill="#fff" />
+      <ellipse cx="90" cy="67" rx="4.5" ry="4" fill="#fff" />
+      <circle cx="70" cy="67" r="2.5" fill="#2a1a10" />
+      <circle cx="90" cy="67" r="2.5" fill="#2a1a10" />
+      <circle cx="71" cy="66" r="1" fill="#fff" />
+      <circle cx="91" cy="66" r="1" fill="#fff" />
+      <path d="M65 61 Q70 58 75 61" stroke={hair} strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <path d="M85 61 Q90 58 95 61" stroke={hair} strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <ellipse cx="80" cy="78" rx="3" ry="2.5" fill={skin} stroke="rgba(0,0,0,0.1)" strokeWidth="0.8" />
+      <path d="M74 86 Q80 91 86 86" stroke="#c07880" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Neck */}
+      <rect x="73" y="97" width="14" height="13" rx="6" fill={skin} />
+      {/* Star sparkle necklace */}
+      <path d="M67 107 L70 101 L73 107 L67 107" fill="#e8d040" opacity="0.85" />
+      <path d="M78 105 L80 99 L82 105 L78 105" fill="#e8d040" opacity="0.75" />
+      <path d="M87 107 L90 101 L93 107 L87 107" fill="#e8d040" opacity="0.85" />
+      {/* Bodice — silver-lavender */}
+      <path d="M50 110 L110 110 L108 168 L52 168 Z" fill="#b0a8d0" />
+      <rect x="74" y="110" width="12" height="58" fill="#c0b8e0" />
+      <path d="M78 132 L80 126 L82 132 L78 132" fill="#e8d040" opacity="0.8" />
+      {/* Flowing skirt — wide, layered */}
+      <path d="M48 168 Q20 194 14 286 L146 286 Q140 194 112 168 Z" fill="#b0a8d0" />
+      <path d="M42 190 Q80 206 118 190 Q110 216 80 224 Q50 216 42 190" fill="#c0b8e0" opacity="0.65" />
+      <path d="M28 234 Q80 250 132 234 Q124 262 80 270 Q36 262 28 234" fill="#a898c8" opacity="0.6" />
+      {/* Sparkles on skirt */}
+      <circle cx="38" cy="216" r="2" fill="#e8d040" opacity="0.65" />
+      <circle cx="122" cy="206" r="2" fill="#e8d040" opacity="0.65" />
+      <circle cx="58" cy="256" r="1.5" fill="#e8d040" opacity="0.55" />
+      <circle cx="112" cy="250" r="1.5" fill="#e8d040" opacity="0.55" />
+      <circle cx="80" cy="240" r="1.5" fill="#e8d040" opacity="0.5" />
+      {/* Left arm — down at side */}
+      <path d="M50 124 Q30 156 28 186" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="28" cy="190" rx="8" ry="7" fill={skin} />
+      {/* Right arm — raised, holding wand */}
+      <path d="M110 124 Q132 102 134 78" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="134" cy="74" rx="7" ry="8" fill={skin} />
+      {/* Wand */}
+      <line x1="132" y1="72" x2="152" y2="26" stroke="#c0a828" strokeWidth="3" strokeLinecap="round" />
+      <path d="M149 14 L152 6 L155 14 L149 14" fill="#ffe840" />
+      <path d="M146 10 L158 10" stroke="#ffe840" strokeWidth="1.8" />
+      <path d="M150 8 L152 2 L154 8" fill="#ffe840" opacity="0.7" />
+      <circle cx="146" cy="36" r="2" fill="#ffe840" opacity="0.75" />
+      <circle cx="154" cy="44" r="1.5" fill="#ffe840" opacity="0.6" />
+      <circle cx="142" cy="26" r="1.5" fill="#ffe840" opacity="0.6" />
+      <ellipse cx="80" cy="295" rx="42" ry="5" fill="rgba(0,0,0,0.14)" />
+    </svg>
+  );
+}
+
+// ── Père (Father) ─────────────────────────────────────────────
+export function PereSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Hair — short, thinning on top */}
+      <ellipse cx="80" cy="38" rx="26" ry="16" fill={hair} />
+      <ellipse cx="56" cy="52" rx="9" ry="15" fill={hair} />
+      <ellipse cx="104" cy="52" rx="9" ry="15" fill={hair} />
+      {/* Head — middle-aged */}
+      <ellipse cx="80" cy="68" rx="24" ry="28" fill={skin} />
+      {/* Eyes — sad, a little tired */}
+      <ellipse cx="70" cy="62" rx="4.5" ry="4" fill="#fff" />
+      <ellipse cx="90" cy="62" rx="4.5" ry="4" fill="#fff" />
+      <circle cx="70" cy="63" r="2.5" fill="#2a1a10" />
+      <circle cx="90" cy="63" r="2.5" fill="#2a1a10" />
+      {/* Slightly downturned brows */}
+      <path d="M64 56 Q70 54 76 57" stroke={hair} strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M84 57 Q90 54 96 56" stroke={hair} strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Under-eye lines */}
+      <path d="M66 66 Q70 68 74 66" stroke="rgba(0,0,0,0.08)" strokeWidth="1.2" fill="none" />
+      <path d="M86 66 Q90 68 94 66" stroke="rgba(0,0,0,0.08)" strokeWidth="1.2" fill="none" />
+      <path d="M77 72 Q80 78 83 72" stroke={skin} strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Mouth — slight frown */}
+      <path d="M73 84 Q80 82 87 84" stroke="#906060" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Stubble shadow */}
+      <ellipse cx="80" cy="89" rx="17" ry="7" fill={hair} opacity="0.18" />
+      {/* Neck */}
+      <rect x="73" y="95" width="14" height="13" rx="6" fill={skin} />
+      {/* White shirt collar */}
+      <path d="M66 106 L80 116 L94 106 L94 110 L80 120 L66 110 Z" fill="#f0ece8" />
+      {/* Dark overcoat */}
+      <path d="M46 108 L114 108 L112 262 L48 262 Z" fill="#2a3040" />
+      <path d="M66 108 L80 134" stroke="#3a4050" strokeWidth="2" fill="none" />
+      <path d="M94 108 L80 134" stroke="#3a4050" strokeWidth="2" fill="none" />
+      {/* Center seam */}
+      <line x1="80" y1="134" x2="80" y2="262" stroke="#202832" strokeWidth="10" />
+      {/* Buttons */}
+      {[0,1,2].map(i => (
+        <circle key={i} cx="80" cy={148 + i * 28} r="3.5" fill="#3a4858" stroke="#1a2030" strokeWidth="1" />
+      ))}
+      {/* Arms */}
+      <path d="M46 122 Q26 158 24 194" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <path d="M114 122 Q134 158 136 194" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="24" cy="197" rx="8" ry="7" fill={skin} />
+      <ellipse cx="136" cy="197" rx="8" ry="7" fill={skin} />
+      {/* Trousers */}
+      <rect x="52" y="260" width="22" height="36" rx="8" fill="#202832" />
+      <rect x="86" y="260" width="22" height="36" rx="8" fill="#202832" />
+      {/* Shoes */}
+      <rect x="50" y="286" width="26" height="12" rx="5" fill="#181410" />
+      <rect x="84" y="286" width="26" height="12" rx="5" fill="#181410" />
+      <ellipse cx="80" cy="295" rx="40" ry="5" fill="rgba(0,0,0,0.18)" />
+    </svg>
+  );
+}
+
+// ── Très Jeune Prince (Young Prince) ─────────────────────────
+export function TresJeunePrinceSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Small crown */}
+      <path d="M62 36 L62 22 L72 30 L80 14 L88 30 L98 22 L98 36 Z" fill="#d4a020" stroke="#a07810" strokeWidth="1.2" />
+      <circle cx="80" cy="17" r="4" fill="#e03040" />
+      <circle cx="66" cy="24" r="2.5" fill="#2060d0" />
+      <circle cx="94" cy="24" r="2.5" fill="#2060d0" />
+      <rect x="60" y="34" width="40" height="5" rx="2" fill="#c89018" />
+      {/* Hair — young, wavy */}
+      <ellipse cx="80" cy="52" rx="24" ry="14" fill={hair} />
+      <ellipse cx="58" cy="62" rx="8" ry="14" fill={hair} />
+      <ellipse cx="102" cy="62" rx="8" ry="14" fill={hair} />
+      {/* Loose strands on forehead */}
+      <path d="M68 46 Q72 40 76 46" stroke={hair} strokeWidth="3" fill="none" strokeLinecap="round" />
+      <path d="M74 44 Q78 38 82 44" stroke={hair} strokeWidth="3" fill="none" strokeLinecap="round" />
+      {/* Head — young, smooth */}
+      <ellipse cx="80" cy="74" rx="24" ry="26" fill={skin} />
+      {/* Eyes — confident, bright */}
+      <ellipse cx="70" cy="69" rx="4.5" ry="4" fill="#fff" />
+      <ellipse cx="90" cy="69" rx="4.5" ry="4" fill="#fff" />
+      <circle cx="70" cy="69" r="2.5" fill="#1a2040" />
+      <circle cx="90" cy="69" r="2.5" fill="#1a2040" />
+      <circle cx="71" cy="68" r="1" fill="#fff" />
+      <circle cx="91" cy="68" r="1" fill="#fff" />
+      <path d="M65 63 Q70 60 75 63" stroke={hair} strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M85 63 Q90 60 95 63" stroke={hair} strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M77 78 Q80 84 83 78" stroke={skin} strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Charming smile */}
+      <path d="M73 88 Q80 93 87 88" stroke="#b06870" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Neck */}
+      <rect x="73" y="99" width="14" height="12" rx="6" fill={skin} />
+      {/* White cravat */}
+      <path d="M67 110 L80 120 L93 110 L93 114 L80 124 L67 114 Z" fill="#f8f4ee" />
+      {/* Royal blue military jacket */}
+      <path d="M46 112 L114 112 L112 262 L48 262 Z" fill="#2044a0" />
+      <path d="M57 112 L80 134" stroke="#c89028" strokeWidth="1.8" fill="none" />
+      <path d="M103 112 L80 134" stroke="#c89028" strokeWidth="1.8" fill="none" />
+      <line x1="80" y1="134" x2="80" y2="262" stroke="#1a3488" strokeWidth="9" />
+      {/* Gold epaulettes */}
+      <path d="M38 114 Q46 104 54 114 Q54 128 46 132 Q38 128 38 114" fill="#c89020" />
+      <path d="M122 114 Q114 104 106 114 Q106 128 114 132 Q122 128 122 114" fill="#c89020" />
+      {/* Buttons */}
+      {[0,1,2,3].map(i => (
+        <circle key={i} cx="80" cy={138 + i * 26} r="4" fill="#d4a820" stroke="#a07810" strokeWidth="1" />
+      ))}
+      {/* Red sash with gold edge */}
+      <path d="M114 112 L66 202" stroke="#c83040" strokeWidth="8" strokeLinecap="round" opacity="0.85" />
+      <path d="M114 112 L66 202" stroke="#f0d040" strokeWidth="2.5" strokeLinecap="round" opacity="0.45" />
+      {/* Medal */}
+      <circle cx="67" cy="200" r="9" fill="#d4a820" stroke="#a07810" strokeWidth="1.5" />
+      <circle cx="67" cy="200" r="4.5" fill="#e03040" />
+      {/* Arms */}
+      <path d="M46 126 Q24 162 22 196" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <path d="M114 126 Q136 162 138 196" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="22" cy="199" rx="8" ry="7" fill={skin} />
+      <ellipse cx="138" cy="199" rx="8" ry="7" fill={skin} />
+      {/* White trousers */}
+      <rect x="52" y="260" width="22" height="36" rx="8" fill="#f0ece8" />
+      <rect x="86" y="260" width="22" height="36" rx="8" fill="#f0ece8" />
+      {/* Black boots */}
+      <rect x="50" y="286" width="26" height="12" rx="5" fill="#1a1008" />
+      <rect x="84" y="286" width="26" height="12" rx="5" fill="#1a1008" />
+      <ellipse cx="80" cy="295" rx="42" ry="5" fill="rgba(0,0,0,0.18)" />
+    </svg>
+  );
+}
+
+// ── Garde (Royal Guard) — shared by garde_1 and garde_2 ──────
+export function GardeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Shako hat body */}
+      <rect x="52" y="18" width="56" height="34" rx="3" fill="#1a2030" />
+      <rect x="50" y="50" width="60" height="7" rx="2" fill="#2a3040" />
+      {/* Hat brim */}
+      <rect x="46" y="54" width="68" height="6" rx="2" fill="#1a2030" />
+      {/* Hat badge */}
+      <path d="M76 30 L80 22 L84 30 L80 34 Z" fill="#c89020" />
+      <circle cx="80" cy="28" r="3" fill="#d4a020" />
+      <rect x="56" y="50" width="48" height="2.5" fill="#c89020" opacity="0.55" />
+      {/* Plume */}
+      <path d="M80 18 Q86 4 82 -4 Q77 4 80 18" fill="#e03040" opacity="0.88" />
+      <path d="M80 18 Q92 6 96 -2 Q88 6 80 18" fill="#c02030" opacity="0.7" />
+      {/* Hair below hat */}
+      <ellipse cx="56" cy="66" rx="6" ry="10" fill={hair} />
+      <ellipse cx="104" cy="66" rx="6" ry="10" fill={hair} />
+      {/* Head */}
+      <ellipse cx="80" cy="74" rx="22" ry="24" fill={skin} />
+      {/* Eyes — straight ahead, focused */}
+      <ellipse cx="70" cy="69" rx="4" ry="3.5" fill="#fff" />
+      <ellipse cx="90" cy="69" rx="4" ry="3.5" fill="#fff" />
+      <circle cx="70" cy="69" r="2.2" fill="#1a2040" />
+      <circle cx="90" cy="69" r="2.2" fill="#1a2040" />
+      <path d="M65 64 Q70 61 75 64" stroke={hair} strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M85 64 Q90 61 95 64" stroke={hair} strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M77 78 Q80 83 83 78" stroke={skin} strokeWidth="1.8" fill="none" />
+      {/* Neutral mouth */}
+      <path d="M74 88 Q80 89 86 88" stroke="#906060" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      {/* Neck */}
+      <rect x="73" y="97" width="14" height="10" rx="5" fill={skin} />
+      {/* Stiff high collar */}
+      <rect x="68" y="106" width="24" height="8" rx="2" fill="#1a2030" />
+      {/* Uniform — dark navy */}
+      <path d="M46 110 L114 110 L112 258 L48 258 Z" fill="#2a3448" />
+      {/* Diagonal sash */}
+      <path d="M56 110 L78 186" stroke="#c89020" strokeWidth="6" strokeLinecap="round" opacity="0.88" />
+      {/* Center buttons */}
+      {[0,1,2,3].map(i => (
+        <circle key={i} cx="80" cy={120 + i * 26} r="3.5" fill="#c89020" stroke="#a07010" strokeWidth="0.8" />
+      ))}
+      {/* Waist belt */}
+      <rect x="44" y="196" width="72" height="10" rx="3" fill="#c89020" />
+      <rect x="76" y="196" width="8" height="10" rx="2" fill="#a07010" />
+      {/* Epaulettes */}
+      <path d="M34 112 Q42 104 50 112 Q50 124 42 128 Q34 124 34 112" fill="#c89020" />
+      <path d="M126 112 Q118 104 110 112 Q110 124 118 128 Q126 124 126 112" fill="#c89020" />
+      {/* Arms at sides — rigid, at attention */}
+      <path d="M46 124 Q38 172 38 222" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <path d="M114 124 Q122 172 122 222" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="38" cy="225" rx="8" ry="7" fill={skin} />
+      <ellipse cx="122" cy="225" rx="8" ry="7" fill={skin} />
+      {/* Trousers with gold stripe */}
+      <rect x="50" y="256" width="22" height="40" rx="6" fill="#1a2030" />
+      <rect x="84" y="256" width="22" height="40" rx="6" fill="#1a2030" />
+      <line x1="61" y1="256" x2="61" y2="296" stroke="#c89020" strokeWidth="2" />
+      <line x1="95" y1="256" x2="95" y2="296" stroke="#c89020" strokeWidth="2" />
+      {/* Boots */}
+      <rect x="48" y="284" width="26" height="13" rx="5" fill="#181410" />
+      <rect x="82" y="284" width="26" height="13" rx="5" fill="#181410" />
+      <ellipse cx="80" cy="295" rx="42" ry="5" fill="rgba(0,0,0,0.18)" />
+    </svg>
+  );
+}
+
+// ── Mère (Dying Mother) ───────────────────────────────────────
+export function MereSvg({ skin, hair, pose = "sit" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+  if (pose === "stand") {
+    return (
+      <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+        {/* Hair — loose, falling at sides */}
+        <path d="M56 58 Q38 104 40 174" stroke={hair} strokeWidth="14" fill="none" strokeLinecap="round" />
+        <path d="M104 58 Q122 104 120 174" stroke={hair} strokeWidth="14" fill="none" strokeLinecap="round" />
+        <ellipse cx="80" cy="46" rx="26" ry="18" fill={hair} />
+        {/* Head — pale, frail */}
+        <ellipse cx="80" cy="68" rx="22" ry="26" fill={skin} />
+        {/* Half-closed eyes */}
+        <path d="M65 63 Q70 60 75 63" stroke="#2a1a10" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M85 63 Q90 60 95 63" stroke="#2a1a10" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M65 65 Q70 63 75 65" stroke="rgba(140,90,90,0.28)" strokeWidth="1.5" fill="none" />
+        <path d="M85 65 Q90 63 95 65" stroke="rgba(140,90,90,0.28)" strokeWidth="1.5" fill="none" />
+        <ellipse cx="70" cy="67" rx="5" ry="2" fill="rgba(100,60,80,0.14)" />
+        <ellipse cx="90" cy="67" rx="5" ry="2" fill="rgba(100,60,80,0.14)" />
+        <path d="M63 58 Q70 55 77 58" stroke={hair} strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.65" />
+        <path d="M83 58 Q90 55 97 58" stroke={hair} strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.65" />
+        <ellipse cx="80" cy="76" rx="3" ry="2.5" fill={skin} stroke="rgba(0,0,0,0.08)" strokeWidth="0.8" />
+        <path d="M74 84 Q80 86 86 84" stroke="#a07878" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        {/* Neck */}
+        <rect x="73" y="93" width="14" height="11" rx="6" fill={skin} />
+        {/* White nightgown — loose, flowing */}
+        <path d="M50 104 L110 104 L112 268 L48 268 Z" fill="#f0ece8" />
+        <path d="M70 104 Q68 186 66 268" stroke="#e0dcd8" strokeWidth="1.8" fill="none" />
+        <path d="M90 104 Q92 186 94 268" stroke="#e0dcd8" strokeWidth="1.8" fill="none" />
+        <path d="M54 154 Q80 164 106 154" stroke="#e0dcd8" strokeWidth="1.5" fill="none" />
+        {/* Arms — weakly at sides */}
+        <path d="M50 116 Q46 150 50 174" stroke={skin} strokeWidth="12" fill="none" strokeLinecap="round" />
+        <path d="M110 116 Q114 150 110 174" stroke={skin} strokeWidth="12" fill="none" strokeLinecap="round" />
+        <ellipse cx="50" cy="177" rx="8" ry="6" fill={skin} />
+        <ellipse cx="110" cy="177" rx="8" ry="6" fill={skin} />
+        {/* Feet */}
+        <ellipse cx="62" cy="271" rx="12" ry="6" fill="#e8e4e0" />
+        <ellipse cx="98" cy="271" rx="12" ry="6" fill="#e8e4e0" />
+        <ellipse cx="80" cy="295" rx="38" ry="5" fill="rgba(0,0,0,0.11)" />
+      </svg>
+    );
+  }
+
+  // Sit — reclining on deathbed (default)
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Bed/pillow */}
+      <path d="M18 172 Q80 160 142 172 L146 248 Q80 256 14 248 Z" fill="#e8e4e0" />
+      <ellipse cx="80" cy="172" rx="64" ry="14" fill="#f4f0ec" />
+      {/* Hair spread on pillow */}
+      <path d="M36 132 Q22 152 24 172" stroke={hair} strokeWidth="10" fill="none" strokeLinecap="round" />
+      <path d="M44 126 Q28 146 26 168" stroke={hair} strokeWidth="8" fill="none" strokeLinecap="round" opacity="0.65" />
+      <path d="M124 132 Q138 152 136 172" stroke={hair} strokeWidth="10" fill="none" strokeLinecap="round" />
+      <ellipse cx="80" cy="122" rx="30" ry="14" fill={hair} />
+      {/* Head — propped up, ethereal */}
+      <ellipse cx="80" cy="120" rx="24" ry="24" fill={skin} />
+      {/* Half-closed eyes */}
+      <path d="M66 115 Q70 112 74 115" stroke="#2a1a10" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <path d="M86 115 Q90 112 94 115" stroke="#2a1a10" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <path d="M66 117 Q70 115 74 117" stroke="rgba(140,90,90,0.28)" strokeWidth="1.5" fill="none" />
+      <path d="M86 117 Q90 115 94 117" stroke="rgba(140,90,90,0.28)" strokeWidth="1.5" fill="none" />
+      <ellipse cx="70" cy="119" rx="5" ry="2.5" fill="rgba(100,60,80,0.16)" />
+      <ellipse cx="90" cy="119" rx="5" ry="2.5" fill="rgba(100,60,80,0.16)" />
+      <path d="M63 110 Q70 107 77 110" stroke={hair} strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.6" />
+      <path d="M83 110 Q90 107 97 110" stroke={hair} strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.6" />
+      <ellipse cx="80" cy="126" rx="3" ry="2.5" fill={skin} stroke="rgba(0,0,0,0.07)" strokeWidth="0.8" />
+      <path d="M74 135 Q80 137 86 135" stroke="#a07878" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      {/* Neck */}
+      <rect x="73" y="143" width="14" height="10" rx="5" fill={skin} />
+      {/* Sheet / nightgown */}
+      <path d="M20 154 Q80 144 140 154 L146 256 Q80 264 14 256 Z" fill="#f0ece8" />
+      <path d="M28 162 Q80 154 132 162" stroke="#e0dcd8" strokeWidth="1.5" fill="none" />
+      <path d="M24 182 Q80 174 136 182" stroke="#e0dcd8" strokeWidth="1.5" fill="none" />
+      <path d="M20 202 Q80 196 140 202" stroke="#e0dcd8" strokeWidth="1.5" fill="none" />
+      {/* Arms resting at sides on the bed */}
+      <path d="M36 157 Q30 184 32 224" stroke={skin} strokeWidth="11" fill="none" strokeLinecap="round" />
+      <path d="M124 157 Q130 184 128 224" stroke={skin} strokeWidth="11" fill="none" strokeLinecap="round" />
+      <ellipse cx="32" cy="227" rx="7" ry="6" fill={skin} />
+      <ellipse cx="128" cy="227" rx="7" ry="6" fill={skin} />
+      {/* Feet outline under sheet */}
+      <ellipse cx="64" cy="258" rx="16" ry="8" fill="#e8e4e0" opacity="0.7" />
+      <ellipse cx="96" cy="258" rx="16" ry="8" fill="#e8e4e0" opacity="0.7" />
+    </svg>
+  );
+}
+
+// ── Yang Chengyue 杨成岳 ───────────────────────────────────────
+export function YangChengyueSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Hair — short, neat */}
+      <ellipse cx="80" cy="36" rx="24" ry="14" fill={hair} />
+      <ellipse cx="58" cy="48" rx="7" ry="12" fill={hair} />
+      <ellipse cx="102" cy="48" rx="7" ry="12" fill={hair} />
+      {/* Head — square-jawed, dignified */}
+      <ellipse cx="80" cy="66" rx="24" ry="28" fill={skin} />
+      {/* Eyes — intelligent, calm */}
+      <ellipse cx="70" cy="60" rx="4.5" ry="4" fill="#fff" />
+      <ellipse cx="90" cy="60" rx="4.5" ry="4" fill="#fff" />
+      <circle cx="70" cy="60" r="2.5" fill="#1a1a1a" />
+      <circle cx="90" cy="60" r="2.5" fill="#1a1a1a" />
+      <path d="M65 55 Q70 52 75 55" stroke={hair} strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <path d="M85 55 Q90 52 95 55" stroke={hair} strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      {/* Nose */}
+      <ellipse cx="80" cy="70" rx="4" ry="3" fill={skin} stroke="rgba(0,0,0,0.12)" strokeWidth="0.8" />
+      {/* Composed mouth */}
+      <path d="M73 80 Q80 84 87 80" stroke="#906060" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Light mustache */}
+      <path d="M72 77 Q76 80 80 77 Q84 80 88 77" fill={hair} opacity="0.45" />
+      {/* Neck */}
+      <rect x="73" y="93" width="14" height="12" rx="6" fill={skin} />
+      {/* Mandarin collar */}
+      <rect x="72" y="104" width="16" height="8" rx="3" fill="#1a2838" />
+      <path d="M64 110 L80 118 L96 110" stroke="#2a3848" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      {/* Dark navy changshan */}
+      <path d="M44 110 L116 110 L116 270 L44 270 Z" fill="#1a2838" />
+      <line x1="80" y1="110" x2="80" y2="270" stroke="#243244" strokeWidth="2" />
+      {/* Right-side diagonal closure */}
+      <path d="M80 110 L62 138" stroke="#243244" strokeWidth="1.5" fill="none" />
+      {/* Frog buttons */}
+      <circle cx="71" cy="122" r="3" fill="#2a3848" stroke="#3a4858" strokeWidth="1" />
+      <circle cx="71" cy="138" r="3" fill="#2a3848" stroke="#3a4858" strokeWidth="1" />
+      {/* Side slits */}
+      <path d="M44 224 L44 270" stroke="#243244" strokeWidth="3" />
+      <path d="M116 224 L116 270" stroke="#243244" strokeWidth="3" />
+      {/* Cuffs */}
+      <rect x="44" y="244" width="16" height="5" rx="2" fill="#243244" />
+      <rect x="100" y="244" width="16" height="5" rx="2" fill="#243244" />
+      {/* Arms — dignified posture */}
+      <path d="M44 124 Q26 160 24 196" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <path d="M116 124 Q134 160 136 196" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="24" cy="199" rx="8" ry="7" fill={skin} />
+      <ellipse cx="136" cy="199" rx="8" ry="7" fill={skin} />
+      {/* Shoes */}
+      <ellipse cx="60" cy="274" rx="18" ry="7" fill="#181410" />
+      <ellipse cx="100" cy="274" rx="18" ry="7" fill="#181410" />
+      <ellipse cx="80" cy="295" rx="42" ry="5" fill="rgba(0,0,0,0.18)" />
+    </svg>
+  );
+}
+
+// ── Xue Er 雪儿 ───────────────────────────────────────────────
+export function XueErSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Elegant hair bun */}
+      <ellipse cx="80" cy="24" rx="16" ry="12" fill={hair} />
+      <ellipse cx="80" cy="18" rx="10" ry="8" fill={hair} />
+      {/* Jade hairpin */}
+      <line x1="68" y1="20" x2="94" y2="15" stroke="#4a9870" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="94" cy="15" r="3.5" fill="#3a8860" stroke="#2a6840" strokeWidth="0.8" />
+      {/* Side hair */}
+      <ellipse cx="58" cy="54" rx="9" ry="18" fill={hair} />
+      <ellipse cx="102" cy="54" rx="9" ry="18" fill={hair} />
+      {/* Temple wisps */}
+      <path d="M58 42 Q50 52 52 62" stroke={hair} strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.8" />
+      <path d="M102 42 Q110 52 108 62" stroke={hair} strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.8" />
+      {/* Head — youthful, oval */}
+      <ellipse cx="80" cy="68" rx="22" ry="26" fill={skin} />
+      {/* Eyes — gentle, bright */}
+      <ellipse cx="70" cy="63" rx="5" ry="4" fill="#fff" />
+      <ellipse cx="90" cy="63" rx="5" ry="4" fill="#fff" />
+      <circle cx="70" cy="63" r="2.5" fill="#1a1010" />
+      <circle cx="90" cy="63" r="2.5" fill="#1a1010" />
+      <circle cx="71" cy="62" r="1" fill="#fff" />
+      <circle cx="91" cy="62" r="1" fill="#fff" />
+      <path d="M65 57 Q70 54 75 57" stroke={hair} strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      <path d="M85 57 Q90 54 95 57" stroke={hair} strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      <ellipse cx="80" cy="72" rx="3" ry="2.5" fill={skin} stroke="rgba(0,0,0,0.08)" strokeWidth="0.8" />
+      {/* Gentle smile */}
+      <path d="M74 81 Q80 86 86 81" stroke="#c08070" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Neck */}
+      <rect x="73" y="93" width="14" height="12" rx="6" fill={skin} />
+      {/* Qipao mandarin collar */}
+      <rect x="72" y="104" width="16" height="9" rx="4" fill="#8ab8c8" />
+      <path d="M64 112 L80 120 L96 112" stroke="#7aa8b8" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      {/* Qipao body — soft teal */}
+      <path d="M50 112 L110 112 L110 222 L50 222 Z" fill="#8ab8c8" />
+      {/* Diagonal closure */}
+      <path d="M80 112 L60 140" stroke="#7aa8b8" strokeWidth="1.8" fill="none" />
+      {/* Frog buttons */}
+      <circle cx="70" cy="122" r="2.5" fill="#5a8898" />
+      <circle cx="70" cy="136" r="2.5" fill="#5a8898" />
+      {/* Floral embroidery */}
+      <circle cx="96" cy="162" r="6" fill="#6aa8b8" opacity="0.45" />
+      <path d="M96 156 Q100 160 96 164 Q92 160 96 156" fill="#a8d8e8" opacity="0.6" />
+      <circle cx="96" cy="162" r="2" fill="#4a8898" opacity="0.65" />
+      {/* Side slits */}
+      <path d="M50 192 L50 222" stroke="#7aa8b8" strokeWidth="3" />
+      <path d="M110 192 L110 222" stroke="#7aa8b8" strokeWidth="3" />
+      {/* Skirt below — slight flare */}
+      <path d="M48 222 Q28 234 24 284 L136 284 Q132 234 112 222 Z" fill="#8ab8c8" />
+      <path d="M26 276 Q80 286 134 276" stroke="#7aa8b8" strokeWidth="1.8" fill="none" />
+      {/* Arms */}
+      <path d="M50 124 Q28 158 26 194" stroke={skin} strokeWidth="12" fill="none" strokeLinecap="round" />
+      <path d="M110 124 Q132 158 134 194" stroke={skin} strokeWidth="12" fill="none" strokeLinecap="round" />
+      <ellipse cx="26" cy="197" rx="7" ry="6" fill={skin} />
+      <ellipse cx="134" cy="197" rx="7" ry="6" fill={skin} />
+      {/* Shoes */}
+      <ellipse cx="58" cy="287" rx="16" ry="6" fill="#2a1a10" />
+      <ellipse cx="102" cy="287" rx="16" ry="6" fill="#2a1a10" />
+      <ellipse cx="80" cy="295" rx="38" ry="5" fill="rgba(0,0,0,0.15)" />
+    </svg>
+  );
+}
+
+// ── Wang Chaojie 王超杰 ────────────────────────────────────────
+export function WangChaojeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* White/silver hair — thinning, combed back */}
+      <ellipse cx="80" cy="36" rx="24" ry="14" fill={hair} opacity="0.92" />
+      <ellipse cx="58" cy="48" rx="7" ry="13" fill={hair} opacity="0.85" />
+      <ellipse cx="102" cy="48" rx="7" ry="13" fill={hair} opacity="0.85" />
+      <ellipse cx="80" cy="30" rx="18" ry="8" fill={hair} opacity="0.55" />
+      {/* Head — older, fuller face */}
+      <ellipse cx="80" cy="66" rx="24" ry="28" fill={skin} />
+      {/* Age lines */}
+      <path d="M64 74 Q66 72 68 74" stroke="rgba(0,0,0,0.09)" strokeWidth="1.2" fill="none" />
+      <path d="M92 74 Q94 72 96 74" stroke="rgba(0,0,0,0.09)" strokeWidth="1.2" fill="none" />
+      <path d="M75 86 Q80 88 85 86" stroke="rgba(0,0,0,0.07)" strokeWidth="1" fill="none" />
+      {/* Eyes — aged, slightly drooping lids */}
+      <ellipse cx="70" cy="60" rx="4.5" ry="3.5" fill="#fff" />
+      <ellipse cx="90" cy="60" rx="4.5" ry="3.5" fill="#fff" />
+      <circle cx="70" cy="60" r="2.2" fill="#1a1a1a" />
+      <circle cx="90" cy="60" r="2.2" fill="#1a1a1a" />
+      <path d="M65 58 Q70 56 75 58" stroke={hair} strokeWidth="2.2" fill="none" strokeLinecap="round" />
+      <path d="M85 58 Q90 56 95 58" stroke={hair} strokeWidth="2.2" fill="none" strokeLinecap="round" />
+      {/* Crow's feet */}
+      <path d="M76 60 Q78 64 76 67" stroke="rgba(0,0,0,0.09)" strokeWidth="1" fill="none" />
+      <path d="M84 60 Q82 64 84 67" stroke="rgba(0,0,0,0.09)" strokeWidth="1" fill="none" />
+      {/* Nose — broader */}
+      <ellipse cx="80" cy="72" rx="4.5" ry="3.5" fill={skin} stroke="rgba(0,0,0,0.12)" strokeWidth="0.8" />
+      {/* Dignified slight smile */}
+      <path d="M72 82 Q80 86 88 82" stroke="#806060" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Jowl shadow */}
+      <ellipse cx="80" cy="92" rx="14" ry="5" fill="rgba(0,0,0,0.05)" />
+      {/* Neck */}
+      <rect x="73" y="93" width="14" height="11" rx="5" fill={skin} />
+      {/* Light beige changshan collar */}
+      <rect x="72" y="103" width="16" height="8" rx="3" fill="#c8b898" />
+      <path d="M64 110 L80 118 L96 110" stroke="#b8a888" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      {/* Light grey-beige changshan — slightly worn */}
+      <path d="M42 110 L118 110 L120 270 L40 270 Z" fill="#c8c0b0" />
+      <line x1="80" y1="110" x2="80" y2="270" stroke="#b8b0a0" strokeWidth="2" />
+      <path d="M80 110 L62 138" stroke="#b8b0a0" strokeWidth="1.5" fill="none" />
+      <circle cx="71" cy="122" r="2.8" fill="#a8a090" stroke="#989080" strokeWidth="0.8" />
+      <circle cx="71" cy="138" r="2.8" fill="#a8a090" stroke="#989080" strokeWidth="0.8" />
+      <rect x="40" y="244" width="16" height="5" rx="2" fill="#b8b0a0" />
+      <rect x="104" y="244" width="16" height="5" rx="2" fill="#b8b0a0" />
+      {/* Left arm — down holding briefcase */}
+      <path d="M42 124 Q24 158 22 192" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="22" cy="196" rx="8" ry="7" fill={skin} />
+      {/* Right arm — down at side, slight lean */}
+      <path d="M118 124 Q138 152 140 184" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="140" cy="188" rx="8" ry="7" fill={skin} />
+      {/* Briefcase */}
+      <rect x="10" y="196" width="26" height="18" rx="4" fill="#5a4030" stroke="#3a2818" strokeWidth="1.5" />
+      <rect x="10" y="200" width="26" height="2.5" rx="1" fill="#3a2818" />
+      <path d="M16 196 Q23 189 30 196" stroke="#3a2818" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <rect x="21" y="202" width="6" height="4" rx="1" fill="#8a6848" />
+      {/* Feet — slightly asymmetric (stroke) */}
+      <ellipse cx="60" cy="274" rx="18" ry="7" fill="#2a1a10" />
+      <ellipse cx="102" cy="276" rx="18" ry="7" fill="#2a1a10" />
+      <ellipse cx="80" cy="295" rx="42" ry="5" fill="rgba(0,0,0,0.18)" />
+    </svg>
+  );
+}
+
 // ── Très Jeune Fille (Cinderella) ────────────────────────────
 export function TresJeuneFilleSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
   if (pose === "sit") {

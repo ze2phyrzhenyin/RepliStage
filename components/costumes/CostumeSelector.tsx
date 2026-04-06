@@ -6,7 +6,7 @@ import { getAnimalLabel, getSkinToneLabel } from "@/lib/i18n";
 import type { Actor, CostumeVariant, SkinTone, AnimalType } from "@/types/script";
 import { SKIN_PALETTES, getHairColor } from "@/lib/costumes";
 import { useCostumes } from "./CostumeContext";
-import { BelleMereSvg, SoeurGrandeSvg, SoeurPetiteSvg, RoiSvg, TresJeuneFilleSvg } from "./CharacterSvgs";
+import { BelleMereSvg, SoeurGrandeSvg, SoeurPetiteSvg, RoiSvg, TresJeuneFilleSvg, FeeSvg, PereSvg, TresJeunePrinceSvg, GardeSvg, MereSvg, YangChengyueSvg, XueErSvg, WangChaojeSvg } from "./CharacterSvgs";
 import { TigerSvg, RabbitSvg, PandaSvg } from "./AnimalSvgs";
 import { SilhouetteSvg } from "@/components/HumanActorSprite";
 
@@ -19,13 +19,21 @@ function CharacterPreview({ actorId, skinTone }: { actorId: string; skinTone: Sk
   const props = { skin, hair };
 
   switch (actorId) {
-    case "belle_mere":     return <BelleMereSvg {...props} />;
-    case "soeur_grande":   return <SoeurGrandeSvg {...props} />;
-    case "soeur_petite":   return <SoeurPetiteSvg {...props} />;
-    case "roi":            return <RoiSvg {...props} />;
-    case "tres_jeune_fille": return <TresJeuneFilleSvg {...props} />;
+    case "belle_mere":        return <BelleMereSvg {...props} />;
+    case "soeur_grande":      return <SoeurGrandeSvg {...props} />;
+    case "soeur_petite":      return <SoeurPetiteSvg {...props} />;
+    case "roi":               return <RoiSvg {...props} />;
+    case "tres_jeune_fille":  return <TresJeuneFilleSvg {...props} />;
+    case "fee":               return <FeeSvg {...props} />;
+    case "pere":              return <PereSvg {...props} />;
+    case "tres_jeune_prince": return <TresJeunePrinceSvg {...props} />;
+    case "garde_1":
+    case "garde_2":           return <GardeSvg {...props} />;
+    case "mere":              return <MereSvg {...props} />;
+    case "yang_chengyue":     return <YangChengyueSvg {...props} />;
+    case "xue_er":            return <XueErSvg {...props} />;
+    case "wang_chaojie":      return <WangChaojeSvg {...props} />;
     default: {
-      // Generic silhouette in actor color
       return null;
     }
   }
