@@ -5,9 +5,9 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useLocale } from "@/components/locale/LocaleContext";
 import { usePlayData } from "@/components/play/PlayContext";
-import type { Play, ScriptDefinition, ScriptEvent, Actor, StageConfig, PathPoint, StagePropKind } from "@/types/script";
+import type { Play, ScriptDefinition, ScriptEvent, Actor, StageConfig, PathPoint, StageProp, StagePropKind } from "@/types/script";
 import { deriveStageState } from "@/lib/player";
-import { createDefaultStageProp, getStageProp, removeStageProp, syncStageLegacyFields, upsertStageProp } from "@/lib/stage-props";
+import { createDefaultStageProp, getStageProps, removeStageProp, syncStageLegacyFields, upsertStageProp } from "@/lib/stage-props";
 import SceneList from "@/components/director/SceneList";
 import EventEditor from "@/components/director/EventEditor";
 import ActorManager from "@/components/director/ActorManager";
@@ -110,8 +110,7 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
   }, []);
 
   const scene = play.scenes.find((item) => item.id === activeSceneId) ?? play.scenes[0];
-  const sceneDoor = getStageProp(scene.stage, "door");
-  const sceneChair = getStageProp(scene.stage, "chair");
+  const sceneProps = getStageProps(scene.stage);
   const stageState = deriveStageState(scene, currentEventIndex, scene.events);
 
   function updateScene(id: string, updater: (scene: ScriptDefinition) => ScriptDefinition) {
@@ -211,21 +210,25 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
     updateScene(scene.id, (current) => ({ ...current, stage: syncStageLegacyFields({ ...current.stage, ...updates }) }));
   }
 
-  function updateStageProp(kind: StagePropKind, x: number, y: number) {
+  function updateStageProp(propId: string, x: number, y: number) {
     updateScene(scene.id, (current) => ({
       ...current,
-      stage: upsertStageProp(current.stage, { id: kind, kind, x, y }),
+      stage: upsertStageProp(current.stage, {
+        ...(getStageProps(current.stage).find((prop) => prop.id === propId) as StageProp),
+        x,
+        y,
+      }),
     }));
   }
 
-  function handlePropDrop(prop: StagePropKind, x: number, y: number) {
-    updateStageProp(prop, x, y);
+  function handlePropDrop(propId: string, x: number, y: number) {
+    updateStageProp(propId, x, y);
   }
 
-  function handleRemoveProp(kind: StagePropKind) {
+  function handleRemoveProp(propId: string) {
     updateScene(scene.id, (current) => ({
       ...current,
-      stage: removeStageProp(current.stage, kind),
+      stage: removeStageProp(current.stage, propId),
     }));
   }
 
@@ -738,47 +741,55 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
             >
               <div className="w-full flex items-center justify-between gap-3">
                 <span className="uppercase tracking-[0.22em] text-white/22">{t("director.stageProps")}</span>
-                {!sceneChair && (
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handleAddProp("door")}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[10px] text-white/55 transition hover:bg-white/[0.08] hover:text-white/80"
+                  >
+                    + {t("stage.door")}
+                  </button>
                   <button
                     type="button"
                     onClick={() => handleAddProp("chair")}
                     className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[10px] text-white/55 transition hover:bg-white/[0.08] hover:text-white/80"
                   >
-                    {t("director.addChair")}
+                    + {t("stage.chair")}
                   </button>
-                )}
+                </div>
               </div>
 
-              {[sceneDoor, sceneChair].filter(Boolean).map((prop) => (
-                <div key={prop!.kind} className="w-full rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2.5">
+              {sceneProps.map((prop) => (
+                <div key={prop.id} className="w-full rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2.5">
                   <div className="mb-2 flex items-center justify-between">
-                    <span className="text-[11px] text-white/62">{prop!.kind === "door" ? t("stage.door") : t("stage.chair")}</span>
-                    {prop!.kind !== "door" && (
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveProp(prop!.kind)}
-                        className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
-                      >
-                        {t("director.removeProp")}
-                      </button>
-                    )}
+                    <div className="flex flex-col">
+                      <span className="text-[11px] text-white/62">{prop.kind === "door" ? t("stage.door") : t("stage.chair")}</span>
+                      <span className="text-[10px] text-white/28">{prop.id}</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveProp(prop.id)}
+                      className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
+                    >
+                      {t("director.removeProp")}
+                    </button>
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <label className="flex items-center gap-1">
-                      <span>{t(prop!.kind === "door" ? "director.doorX" : "director.chairX")}</span>
+                      <span>{t(prop.kind === "door" ? "director.doorX" : "director.chairX")}</span>
                       <input
                         type="number"
-                        value={prop!.x}
-                        onChange={(e) => updateStageProp(prop!.kind, +e.target.value, prop!.y)}
+                        value={prop.x}
+                        onChange={(e) => updateStageProp(prop.id, +e.target.value, prop.y)}
                         className="w-16 bg-white/5 rounded px-1.5 py-0.5 text-white/60 outline-none"
                       />
                     </label>
                     <label className="flex items-center gap-1">
-                      <span>{t(prop!.kind === "door" ? "director.doorY" : "director.chairY")}</span>
+                      <span>{t(prop.kind === "door" ? "director.doorY" : "director.chairY")}</span>
                       <input
                         type="number"
-                        value={prop!.y}
-                        onChange={(e) => updateStageProp(prop!.kind, prop!.x, +e.target.value)}
+                        value={prop.y}
+                        onChange={(e) => updateStageProp(prop.id, prop.x, +e.target.value)}
                         className="w-16 bg-white/5 rounded px-1.5 py-0.5 text-white/60 outline-none"
                       />
                     </label>

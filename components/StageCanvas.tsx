@@ -5,9 +5,9 @@ import { motion } from "motion/react";
 import { useLocale } from "@/components/locale/LocaleContext";
 import { HumanActorSprite } from "@/components/HumanActorSprite";
 import { getActorById, DerivedStageState } from "@/lib/player";
-import { getStageProp } from "@/lib/stage-props";
+import { getStageProps } from "@/lib/stage-props";
 import { useCostumes } from "@/components/costumes/CostumeContext";
-import type { Actor, StageConfig, ScriptEvent, PathPoint, StagePropKind } from "@/types/script";
+import type { Actor, StageConfig, ScriptEvent, PathPoint, StageProp } from "@/types/script";
 
 // Sprite base dims
 const SPRITE_W = 56;
@@ -20,7 +20,8 @@ const DOOR_FRAME_W = 126;
 const DOOR_FLOOR_RATIO = 0.38;
 
 type PropDragState = {
-  prop: StagePropKind;
+  propId: string;
+  kind: StageProp["kind"];
   stageX: number;
   stageY: number;
 };
@@ -34,7 +35,7 @@ type StageCanvasProps = {
   selectedActorId?: string | null;
   onActorDrop?: (actorId: string, stageX: number, stageY: number) => void;
   stageConfig: StageConfig;
-  onPropDrop?: (prop: StagePropKind, stageX: number, stageY: number) => void;
+  onPropDrop?: (propId: string, stageX: number, stageY: number) => void;
   /** When set, stage enters path-drawing mode for this actor */
   drawingPathFor?: string | null;
   onPathDrawn?: (path: PathPoint[]) => void;
@@ -270,26 +271,36 @@ function ChairBack({
   );
 }
 
+function ChairFront({
+  scale, chairX, chairY, stageH,
+}: {
+  scale: number;
+  chairX: number;
+  chairY: number;
+  stageH: number;
+}) {
+  const { left, bottom, w, h } = chairPosition(scale, chairX, chairY, stageH);
+  return (
+    <div style={{ position: "absolute", left, bottom, width: w, height: h, pointerEvents: "none" }}>
+      <svg viewBox="0 0 88 138" width={w} height={h} style={{ display: "block" }}>
+        <rect x="17" y="77" width="54" height="6" rx="3" fill="rgba(255,255,255,0.08)" />
+        <rect x="10" y="66" width="14" height="6" rx="3" fill="#2a1608" />
+        <rect x="64" y="66" width="14" height="6" rx="3" fill="#2a1608" />
+      </svg>
+    </div>
+  );
+}
+
 // ── Stage background ─────────────────────────────────────────
 function TheatricalBackground({
   scale, canvasWidth, canvasHeight, spotX, spotY,
-  doorX, doorY, chairX, chairY, showChair, stageH, editMode,
-  onChairDragStart, onDoorDragStart,
 }: {
   scale: number;
   canvasWidth: number;
   canvasHeight: number;
   spotX: number | null;
   spotY: number | null;
-  doorX: number;
-  doorY: number;
-  chairX?: number;
-  chairY?: number;
-  showChair: boolean;
   stageH: number;
-  editMode?: boolean;
-  onChairDragStart?: (e: React.MouseEvent) => void;
-  onDoorDragStart?: (e: React.MouseEvent) => void;
 }) {
   const floorTop = canvasHeight * 0.38;
 
@@ -329,13 +340,6 @@ function TheatricalBackground({
             "linear-gradient(to right, transparent, rgba(190,110,55,0.14) 20%, rgba(190,110,55,0.14) 80%, transparent)",
         }}
       />
-
-      {/* ── Props ── */}
-      <DoorProp scale={scale} doorX={doorX} doorY={doorY} stageH={stageH} editMode={editMode} onStartDrag={onDoorDragStart} />
-      {showChair && typeof chairX === "number" && typeof chairY === "number" && (
-        <ChairBack scale={scale} chairX={chairX} chairY={chairY} stageH={stageH} editMode={editMode} onStartDrag={onChairDragStart} />
-      )}
-
       {/* Dynamic spotlight */}
       {spotX !== null && spotY !== null && (
         <div
@@ -422,13 +426,16 @@ export function StageCanvas({
 
   const stageW = stageConfig.width;
   const stageH = stageConfig.height;
-  const door = getStageProp(stageConfig, "door");
-  const chair = getStageProp(stageConfig, "chair");
-  const doorX = propDrag?.prop === "door" ? propDrag.stageX : (door?.x ?? 160);
-  const doorY = propDrag?.prop === "door" ? propDrag.stageY : (door?.y ?? 98);
-  const hasChair = Boolean(chair);
-  const chairX = propDrag?.prop === "chair" ? propDrag.stageX : chair?.x;
-  const chairY = propDrag?.prop === "chair" ? propDrag.stageY : chair?.y;
+  const stageProps = useMemo(
+    () => getStageProps(stageConfig).map((prop) => (
+      propDrag?.propId === prop.id
+        ? { ...prop, x: propDrag.stageX, y: propDrag.stageY }
+        : prop
+    )),
+    [propDrag, stageConfig],
+  );
+  const doorProps = stageProps.filter((prop) => prop.kind === "door");
+  const chairProps = stageProps.filter((prop) => prop.kind === "chair");
 
   useEffect(() => {
     function measure() {
@@ -516,17 +523,17 @@ export function StageCanvas({
       setDragState(null);
     }
     if (propDrag) {
-      onPropDrop?.(propDrag.prop, pos.x, pos.y);
+      onPropDrop?.(propDrag.propId, pos.x, pos.y);
       setPropDrag(null);
     }
   }
 
-  function startPropDrag(prop: StagePropKind) {
+  function startPropDrag(prop: StageProp) {
     return (e: React.MouseEvent) => {
       e.stopPropagation();
       e.preventDefault();
       const pos = toStageCoords(e.clientX, e.clientY);
-      setPropDrag({ prop, stageX: pos.x, stageY: pos.y });
+      setPropDrag({ propId: prop.id, kind: prop.kind, stageX: pos.x, stageY: pos.y });
     };
   }
 
@@ -554,15 +561,31 @@ export function StageCanvas({
           stageH={stageH}
           spotX={editMode ? null : (spotPos?.x ?? null)}
           spotY={editMode ? null : (spotPos?.y ?? null)}
-          doorX={doorX}
-          doorY={doorY}
-          chairX={chairX}
-          chairY={chairY}
-          showChair={hasChair}
-          editMode={editMode}
-          onChairDragStart={editMode && hasChair ? startPropDrag("chair") : undefined}
-          onDoorDragStart={editMode ? startPropDrag("door") : undefined}
         />
+
+        {doorProps.map((prop) => (
+          <DoorProp
+            key={prop.id}
+            scale={scale}
+            doorX={prop.x}
+            doorY={prop.y}
+            stageH={stageH}
+            editMode={editMode}
+            onStartDrag={editMode ? startPropDrag(prop) : undefined}
+          />
+        ))}
+
+        {chairProps.map((prop) => (
+          <ChairBack
+            key={prop.id}
+            scale={scale}
+            chairX={prop.x}
+            chairY={prop.y}
+            stageH={stageH}
+            editMode={editMode}
+            onStartDrag={editMode ? startPropDrag(prop) : undefined}
+          />
+        ))}
 
         {/* Edit mode: grid overlay */}
         {editMode && (
@@ -770,6 +793,16 @@ export function StageCanvas({
           );
         })}
 
+        {chairProps.map((prop) => (
+          <ChairFront
+            key={`${prop.id}-front`}
+            scale={scale}
+            chairX={prop.x}
+            chairY={prop.y}
+            stageH={stageH}
+          />
+        ))}
+
         {/* Path drawing mode banner */}
         {drawingPathFor && (
           <div
@@ -807,7 +840,7 @@ export function StageCanvas({
               bottom: (stageH - propDrag.stageY) * scale + 12,
             }}
           >
-            {propDrag.prop === "chair" ? t("stage.chair") : t("stage.door")} ({propDrag.stageX}, {propDrag.stageY})
+            {propDrag.kind === "chair" ? t("stage.chair") : t("stage.door")} ({propDrag.stageX}, {propDrag.stageY})
           </div>
         )}
       </div>

@@ -14,7 +14,7 @@ type NormalizeStagePropOptions = {
 };
 
 export function normalizeStageProps(stage: StageConfig, options: NormalizeStagePropOptions = {}): StageProp[] {
-  const { includeDefaults = true } = options;
+  const { includeDefaults = false } = options;
   if (Array.isArray(stage.props) && stage.props.length > 0) {
     return stage.props.map(cloneStageProp);
   }
@@ -39,14 +39,22 @@ export function normalizeStageProps(stage: StageConfig, options: NormalizeStageP
   }
 
   if (props.length === 0 && includeDefaults) {
-    props.push(cloneStageProp(DEFAULT_STAGE_PROPS.door));
+    props.push({
+      ...cloneStageProp(DEFAULT_STAGE_PROPS.door),
+      id: createStagePropId("door"),
+    });
   }
 
   return props;
 }
 
+export function getStageProps(stage: StageConfig, kind?: StagePropKind): StageProp[] {
+  const props = normalizeStageProps(stage);
+  return kind ? props.filter((prop) => prop.kind === kind) : props;
+}
+
 export function getStageProp(stage: StageConfig, kind: StagePropKind): StageProp | null {
-  return normalizeStageProps(stage).find((prop) => prop.kind === kind) ?? null;
+  return getStageProps(stage, kind)[0] ?? null;
 }
 
 export function hasStageProp(stage: StageConfig, kind: StagePropKind): boolean {
@@ -55,31 +63,40 @@ export function hasStageProp(stage: StageConfig, kind: StagePropKind): boolean {
 
 export function upsertStageProp(stage: StageConfig, nextProp: StageProp): StageConfig {
   const props = normalizeStageProps(stage);
-  const nextProps = props.some((prop) => prop.kind === nextProp.kind)
-    ? props.map((prop) => (prop.kind === nextProp.kind ? cloneStageProp(nextProp) : prop))
+  const nextProps = props.some((prop) => prop.id === nextProp.id)
+    ? props.map((prop) => (prop.id === nextProp.id ? cloneStageProp(nextProp) : prop))
     : [...props, cloneStageProp(nextProp)];
 
   return syncStageLegacyFields({ ...stage, props: nextProps });
 }
 
-export function removeStageProp(stage: StageConfig, kind: StagePropKind): StageConfig {
-  const nextProps = normalizeStageProps(stage).filter((prop) => prop.kind !== kind);
+export function removeStageProp(stage: StageConfig, propId: string): StageConfig {
+  const nextProps = normalizeStageProps(stage).filter((prop) => prop.id !== propId);
   return syncStageLegacyFields({ ...stage, props: nextProps });
 }
 
+function createStagePropId(kind: StagePropKind): string {
+  return `${kind}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
 export function createDefaultStageProp(kind: StagePropKind): StageProp {
-  return cloneStageProp(DEFAULT_STAGE_PROPS[kind]);
+  return {
+    ...cloneStageProp(DEFAULT_STAGE_PROPS[kind]),
+    id: createStagePropId(kind),
+  };
 }
 
 export function syncStageLegacyFields(stage: StageConfig): StageConfig {
-  const props = Array.isArray(stage.props) ? stage.props.map(cloneStageProp) : normalizeStageProps(stage);
-  const door = props.find((prop) => prop.kind === "door") ?? DEFAULT_STAGE_PROPS.door;
+  const props = Array.isArray(stage.props)
+    ? stage.props.map(cloneStageProp)
+    : normalizeStageProps(stage);
+  const door = props.find((prop) => prop.kind === "door") ?? null;
   const chair = props.find((prop) => prop.kind === "chair") ?? null;
 
   return {
     ...stage,
-    doorX: door.x,
-    doorY: door.y,
+    doorX: door?.x,
+    doorY: door?.y,
     chairX: chair?.x,
     chairY: chair?.y,
     props,

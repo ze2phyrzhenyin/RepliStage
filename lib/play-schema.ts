@@ -2,7 +2,6 @@ import { z } from "zod";
 import type { Locale } from "@/lib/i18n";
 import { translate } from "@/lib/i18n";
 import type { Play } from "@/types/script";
-import { hasStageProp } from "@/lib/stage-props";
 
 export const pathPointSchema = z.object({
   x: z.number(),
@@ -77,36 +76,28 @@ export const playSchema = z.object({
 
   play.scenes.forEach((scene, sceneIndex) => {
     if (playSceneIds.has(scene.id)) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["scenes", sceneIndex, "id"],
-          message: translate("zh", "error.sceneDuplicate", { id: scene.id }),
-        });
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["scenes", sceneIndex, "id"],
+        message: translate("zh", "error.sceneDuplicate", { id: scene.id }),
+      });
     }
     playSceneIds.add(scene.id);
 
     const actorIds = new Set<string>();
     const eventIds = new Set<string>();
-    const propKinds = new Set<string>();
+    const propIds = new Set<string>();
 
     scene.stage.props?.forEach((prop, propIndex) => {
-      if (propKinds.has(prop.kind)) {
+      if (propIds.has(prop.id)) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          path: ["scenes", sceneIndex, "stage", "props", propIndex, "kind"],
-          message: translate("zh", "error.propDuplicate", { kind: prop.kind }),
+          path: ["scenes", sceneIndex, "stage", "props", propIndex, "id"],
+          message: `场次 "${scene.title || scene.id}" 中道具 ID "${prop.id}" 重复`,
         });
       }
-      propKinds.add(prop.kind);
+      propIds.add(prop.id);
     });
-
-    if (!hasStageProp(scene.stage, "door")) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ["scenes", sceneIndex, "stage"],
-        message: translate("zh", "error.doorRequired"),
-      });
-    }
 
     scene.actors.forEach((actor, actorIndex) => {
       if (actorIds.has(actor.id)) {

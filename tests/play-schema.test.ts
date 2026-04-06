@@ -137,10 +137,10 @@ describe("play-schema", () => {
       { id: "door-b", kind: "door", x: 220, y: 98 },
     ];
 
-    expect(() => parsePlay(play)).toThrow(/道具类型/);
+    expect(parsePlay(play)).toEqual(play);
   });
 
-  it("rejects scenes without an explicit door prop", () => {
+  it("allows scenes without an explicit door prop", () => {
     const play = makeValidPlay();
     play.scenes[0].stage = {
       width: 920,
@@ -148,6 +148,16 @@ describe("play-schema", () => {
       props: [{ id: "chair", kind: "chair", x: 460, y: 348 }],
     };
 
-    expect(() => parsePlay(play)).toThrow(/门道具/);
+    expect(parsePlay(play)).toEqual(play);
+  });
+
+  it("rejects duplicate prop ids in a scene", () => {
+    const play = makeValidPlay();
+    play.scenes[0].stage.props = [
+      { id: "prop-1", kind: "door", x: 160, y: 98 },
+      { id: "prop-1", kind: "chair", x: 460, y: 348 },
+    ];
+
+    expect(() => parsePlay(play)).toThrow(/道具 ID/);
   });
 });
