@@ -791,6 +791,757 @@
           "duration": 0.8
         }
       ]
+    },
+    {
+      "id": "scene-12-devant-palais",
+      "title": "SCÈNE 12",
+      "subtitle": "Quelques instants plus tard, devant le palais.",
+      "setting": "宫殿外的空地灯火未熄，宫门在上方偏右。国王与很年轻的王子在门前低声交谈，继母穿着夸张而现代的衣服站在几步之外；两名卫兵守在一旁。随后，很年轻的女孩来到宫外，与王子完成真正意义上的第一次对话。",
+      "stage": {
+        "width": 920,
+        "height": 520,
+        "doorX": 652,
+        "doorY": 96
+      },
+      "actors": [
+        {
+          "id": "belle_mere",
+          "name": "继母",
+          "color": "#f08c78",
+          "shortLabel": "BM"
+        },
+        {
+          "id": "roi",
+          "name": "国王",
+          "color": "#7ea6ff",
+          "shortLabel": "ROI"
+        },
+        {
+          "id": "garde_1",
+          "name": "卫兵一",
+          "color": "#95a0b8",
+          "shortLabel": "G1"
+        },
+        {
+          "id": "garde_2",
+          "name": "卫兵二",
+          "color": "#7b879f",
+          "shortLabel": "G2"
+        },
+        {
+          "id": "tres_jeune_prince",
+          "name": "很年轻的王子",
+          "color": "#dce7ff",
+          "shortLabel": "TJP"
+        },
+        {
+          "id": "tres_jeune_fille",
+          "name": "很年轻的女孩",
+          "color": "#f3e2c7",
+          "shortLabel": "TJF"
+        }
+      ],
+      "events": [
+        {
+          "id": "s12e1",
+          "type": "blackout_start",
+          "duration": 1.2
+        },
+        {
+          "id": "s12e2",
+          "type": "action",
+          "duration": 3.2,
+          "text": "旁白：片刻之后，宫殿前的第二场夜会比第一场更离奇。国王迫不及待要让儿子再见到那位令他心神动摇的人，而继母则误以为自己就是那个人。"
+        },
+        {
+          "id": "s12e3",
+          "type": "blackout_end",
+          "duration": 0.6
+        },
+        {
+          "id": "s12e4",
+          "type": "enter",
+          "actorId": "roi",
+          "duration": 1,
+          "x": 286,
+          "y": 212,
+          "fromSide": "left"
+        },
+        {
+          "id": "s12e5",
+          "type": "enter",
+          "actorId": "tres_jeune_prince",
+          "duration": 1,
+          "x": 380,
+          "y": 236,
+          "fromSide": "left"
+        },
+        {
+          "id": "s12e6",
+          "type": "enter",
+          "actorId": "belle_mere",
+          "duration": 1,
+          "x": 610,
+          "y": 248,
+          "fromSide": "right"
+        },
+        {
+          "id": "s12e7",
+          "type": "enter",
+          "actorId": "garde_1",
+          "duration": 0.9,
+          "x": 698,
+          "y": 214,
+          "fromSide": "right"
+        },
+        {
+          "id": "s12e8",
+          "type": "enter",
+          "actorId": "garde_2",
+          "duration": 0.9,
+          "x": 754,
+          "y": 228,
+          "fromSide": "right"
+        },
+        {
+          "id": "s12e9",
+          "type": "action",
+          "duration": 1.8,
+          "text": "国王在儿子耳边低声鼓励，又远远指向几步之外的继母。继母衣着奇诡前卫，显然把今夜当成命运的回响。"
+        },
+        {
+          "id": "s12e10",
+          "type": "move_path",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.6,
+          "path": [
+            { "x": 430, "y": 240 },
+            { "x": 500, "y": 244 },
+            { "x": 552, "y": 246 }
+          ]
+        },
+        {
+          "id": "s12e11",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.8,
+          "text": "Bonsoir."
+        },
+        {
+          "id": "s12e12",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.8,
+          "text": "Bonsoir."
+        },
+        {
+          "id": "s12e13",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 8.4,
+          "text": "Voilà… Je suis venue, je suis revenue, je suis là… Je suis au courant de tout… Ne me demandez pas comment je sais… Je sais et c'est tout."
+        },
+        {
+          "id": "s12e14",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.4,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "s12e15",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 8.8,
+          "text": "Je suis venue pour vous dire que vous n'étiez pas seul à éprouver ce que vous éprouvez. Tout d'abord je n'ai pas bien pris la mesure de ce qui s'est passé entre nous lors de notre toute première rencontre."
+        },
+        {
+          "id": "s12e16",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.4,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "s12e17",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 10.2,
+          "text": "Non… Tout ça est arrivé si vite… Jamais je n'aurais pu imaginer revivre un jour une histoire comme celle-là… Aussi beau qu'un conte… ou un rêve… non… On se connaît si peu… Vous ne dites rien ?"
+        },
+        {
+          "id": "s12e18",
+          "type": "pause",
+          "duration": 1
+        },
+        {
+          "id": "s12e19",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 9.4,
+          "text": "Mais non ! Non non, ne dites rien… Je n'ai pas besoin que vous me parliez. Il me suffit de savoir ce que je sais. À vrai dire, tout ça me fait très peur à moi aussi."
+        },
+        {
+          "id": "s12e20",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.4,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "s12e21",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 9.6,
+          "text": "J'y ai beaucoup réfléchi vous savez mais je n'arrive pas à renoncer… J'ai envie de vivre pleinement ce qui nous arrive… Je ne sais pas ce que vous en pensez, vous ?"
+        },
+        {
+          "id": "s12e22",
+          "type": "action",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.4,
+          "text": "王子像被钉在原地，神情越来越惊惧，嘴唇动了几次却插不上话。"
+        },
+        {
+          "id": "s12e23",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 9.8,
+          "text": "Non non non, ne dites rien, vous avez raison… Pas tout de suite… Mon amour… Vous paraissez si fragile… Et je me sens si fragile moi aussi… quand je suis près de vous… Vous tremblez on dirait…"
+        },
+        {
+          "id": "s12e24",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 10.6,
+          "text": "Je sais que bientôt nous serons confrontés à de gigantesques difficultés. Je vous demande : Peut-être devrions-nous garder secrets nos sentiments pour quelque temps encore ? Qu'en pensez-vous ?"
+        },
+        {
+          "id": "s12e25",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 10.8,
+          "text": "Si vous saviez mon amour, comme je me sens différente des autres femmes, comme je m'ennuie avec les autres hommes… Quand je vous vois si jeune et si fragile, je me sens si proche de vous… Vous tremblez de plus en plus."
+        },
+        {
+          "id": "s12e26",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s12e27",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.4,
+          "text": "Vous me faites peur."
+        },
+        {
+          "id": "s12e28",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 3,
+          "text": "Comment ça je vous fais peur ?"
+        },
+        {
+          "id": "s12e29",
+          "type": "action",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.4,
+          "text": "王子立刻抬手向父亲求救。国王快步靠近，卫兵也随之绷紧身体。"
+        },
+        {
+          "id": "s12e30",
+          "type": "move",
+          "actorId": "roi",
+          "duration": 1,
+          "x": 444,
+          "y": 220
+        },
+        {
+          "id": "s12e31",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 7.2,
+          "text": "Qu'est-ce qui se passe mon chéri ? Est-ce que la dame t'a expliqué qu'elle connaissait cette jeune personne de l'autre fois ? Est-ce qu'elle va bientôt venir ? Elle est là ?"
+        },
+        {
+          "id": "s12e32",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 4.4,
+          "text": "Papa, cette femme me dit des choses bizarres, elle me fait peur."
+        },
+        {
+          "id": "s12e33",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 4.8,
+          "text": "Ah bon ? Elle veut simplement te présenter une personne que tu as déjà rencontrée."
+        },
+        {
+          "id": "s12e34",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.8,
+          "text": "J'ai plus envie de parler avec elle."
+        },
+        {
+          "id": "s12e35",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 2.4,
+          "text": "Mais qu'est-ce qui se passe ?"
+        },
+        {
+          "id": "s12e36",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 8.4,
+          "text": "Je crois Majesté que votre fils a peur de vous avouer certaines choses nous concernant… Majesté, cette personne dont votre fils vous parlait l'autre jour, c'est moi !"
+        },
+        {
+          "id": "s12e37",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 1.6,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "s12e38",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.2,
+          "text": "Oui."
+        },
+        {
+          "id": "s12e39",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.2,
+          "text": "Mais non !"
+        },
+        {
+          "id": "s12e40",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 5.6,
+          "text": "Enfin madame, il n'a jamais été question pour moi que ce soit vous."
+        },
+        {
+          "id": "s12e41",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 6.8,
+          "text": "Hé bien si ! C'est moi ! Je sais que ça pourra vous sembler un peu fou ! Mais c'est la vérité."
+        },
+        {
+          "id": "s12e42",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.6,
+          "text": "Tu vois, elle est complètement folle."
+        },
+        {
+          "id": "s12e43",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 8.4,
+          "text": "Mais si, c'est moi ! Enfin, dites-le-lui que c'est moi qui vous suis rentrée dedans."
+        },
+        {
+          "id": "s12e44",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 4,
+          "text": "Vous m'êtes peut-être rentrée dedans mais c'est pas vous quand même."
+        },
+        {
+          "id": "s12e45",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 7,
+          "text": "Enfin madame, n'insistez pas, vous êtes grossière ou bien complètement irresponsable. Je vous demande de partir d'ici immédiatement."
+        },
+        {
+          "id": "s12e46",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 2,
+          "text": "继母像脚下地面突然塌陷一般环顾四周，完全不明白局势为何顷刻逆转。"
+        },
+        {
+          "id": "s12e47",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 6,
+          "text": "Mais qu'est-ce qui se passe ? Mais c'est moi qui vous suis rentrée dedans, je ne suis pas folle quand même, je le sais bien."
+        },
+        {
+          "id": "s12e48",
+          "type": "action",
+          "duration": 2.8,
+          "text": "国王朝卫兵示意。卫兵上前，继母惊叫着挣脱，朝宫门方向乱跑，引起宴会宾客一阵哄笑。混乱中，她掉下一只鞋。"
+        },
+        {
+          "id": "s12e49",
+          "type": "move_path",
+          "actorId": "belle_mere",
+          "duration": 1.8,
+          "path": [
+            { "x": 670, "y": 238 },
+            { "x": 726, "y": 204 },
+            { "x": 792, "y": 170 }
+          ]
+        },
+        {
+          "id": "s12e50",
+          "type": "exit",
+          "actorId": "belle_mere",
+          "duration": 0.8,
+          "toSide": "right"
+        },
+        {
+          "id": "s12e51",
+          "type": "action",
+          "actorId": "garde_1",
+          "duration": 1.4,
+          "text": "一名卫兵弯腰捡起那只鞋，另一名卫兵仍警惕地盯着宫门方向。"
+        },
+        {
+          "id": "s12e52",
+          "type": "move",
+          "actorId": "garde_1",
+          "duration": 0.9,
+          "x": 708,
+          "y": 190
+        },
+        {
+          "id": "s12e53",
+          "type": "action",
+          "duration": 1.6,
+          "text": "国王陪着受惊的王子回到宫门内，宫殿前暂时只剩下夜色与散落的滑稽余波。"
+        },
+        {
+          "id": "s12e54",
+          "type": "exit",
+          "actorId": "roi",
+          "duration": 0.9,
+          "toSide": "top"
+        },
+        {
+          "id": "s12e55",
+          "type": "exit",
+          "actorId": "tres_jeune_prince",
+          "duration": 0.9,
+          "toSide": "top"
+        },
+        {
+          "id": "s12e56",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s12e57",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 228,
+          "y": 320,
+          "fromSide": "left"
+        },
+        {
+          "id": "s12e58",
+          "type": "enter",
+          "actorId": "tres_jeune_prince",
+          "duration": 1,
+          "x": 498,
+          "y": 236,
+          "fromSide": "top"
+        },
+        {
+          "id": "s12e59",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 4.8,
+          "text": "Bon moi je m'en vais… Je rentre, j'en ai marre."
+        },
+        {
+          "id": "s12e60",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.4,
+          "text": "Ça va pas, vous partez ?"
+        },
+        {
+          "id": "s12e61",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 5.6,
+          "text": "Ouais je comprends rien à ce qui se passe ici. En fait, je suis assez pressé ce soir, j'ai un rendez-vous téléphonique vers minuit."
+        },
+        {
+          "id": "s12e62",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 5.6,
+          "text": "Ah bon ! C'est encore ta mère ? T'as pas réussi à la joindre la dernière fois ?"
+        },
+        {
+          "id": "s12e63",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 8.6,
+          "text": "Euh non. En fait, on s'est toujours ratés ! Depuis qu'elle est partie, on n'est jamais arrivés à se parler au téléphone. Ça commence à bien faire, j'en ai marre ! Ça fait bientôt dix ans !"
+        },
+        {
+          "id": "s12e64",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 10.2,
+          "text": "Dix ans ? C'est un peu long des grèves qui durent dix ans ! Tu trouves pas qu'il y a comme un problème avec cette histoire ?"
+        },
+        {
+          "id": "s12e65",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 3.2,
+          "text": "Je vois pas ce que tu veux dire !?"
+        },
+        {
+          "id": "s12e66",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 10.8,
+          "text": "Je crois que des fois dans la vie, on se raconte des histoires dans sa tête, on sait très bien que ce sont des histoires, mais on se les raconte quand même."
+        },
+        {
+          "id": "s12e67",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 4.2,
+          "text": "Je crois pas que je me raconte des histoires."
+        },
+        {
+          "id": "s12e68",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 9.2,
+          "text": "Ben si puisque tu te racontes que ta mère qui a jamais pu t'appeler depuis dix ans va t'appeler ce soir."
+        },
+        {
+          "id": "s12e69",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 7.2,
+          "text": "Pourquoi ce serait pas vrai ? Ma mère me fait dire qu'elle va me téléphoner alors j'ai pas de raison de croire qu'elle va pas le faire."
+        },
+        {
+          "id": "s12e70",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 11,
+          "text": "Pardon, mais non. Ta mère pour la vingt-cinq millième fois, elle va pas te téléphoner… et demain non plus… et dans une semaine non plus."
+        },
+        {
+          "id": "s12e71",
+          "type": "pause",
+          "duration": 1
+        },
+        {
+          "id": "s12e72",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 11.4,
+          "text": "Parce que ta mère, son cœur il bat plus… depuis dix ans… depuis dix ans elle est morte ta mère… En fait, ta mère est morte… Voilà…"
+        },
+        {
+          "id": "s12e73",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 4.8,
+          "text": "Hé ben dis donc, c'est pas très aimable de me dire une chose pareille !"
+        },
+        {
+          "id": "s12e74",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 11.2,
+          "text": "Ce n'est pas une question d'amabilité. Ma mère aussi est morte. Elle ne reviendra pas. Comme la tienne. Et rien ne pourra y changer."
+        },
+        {
+          "id": "s12e75",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 4.4,
+          "text": "J'ai pas envie de te croire."
+        },
+        {
+          "id": "s12e76",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 9.8,
+          "text": "Hé bien, tu devrais parce que c'est la vérité, c'est même ton père qui l'a dit… Je l'ai entendu… Il dit qu'il a fait ça pour pas que t'aies mal et que tu souffres."
+        },
+        {
+          "id": "s12e77",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 3.4,
+          "text": "T'as entendu mon père dire ça ?"
+        },
+        {
+          "id": "s12e78",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 7.4,
+          "text": "Ouais… Voilà… Ta mère est morte… Comme ça maintenant tu sais… Et tu vas pouvoir passer à autre chose… Et puis ce soir, par exemple, rester avec moi…"
+        },
+        {
+          "id": "s12e79",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 4.4,
+          "text": "Ouais c'est vrai. Je me disais que c'était drôle qu'elle arrive pas à rentrer en dix ans quand même."
+        },
+        {
+          "id": "s12e80",
+          "type": "action",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.6,
+          "text": "王子终于明白了那则被维持十年的谎言。他哭了起来，女孩走近，把他抱在怀里。"
+        },
+        {
+          "id": "s12e81",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.8,
+          "text": "Merci."
+        },
+        {
+          "id": "s12e82",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 5.8,
+          "text": "De rien… Bon, c'est moi qui vais rentrer peut-être… Il est tard mais on pourra se revoir si tu veux."
+        },
+        {
+          "id": "s12e83",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 6.2,
+          "text": "Oui j'aimerais bien te donner quelque chose pour te remercier mais je sais pas quoi."
+        },
+        {
+          "id": "s12e84",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 5.2,
+          "text": "Tu sais, ça m'aide de te parler je crois."
+        },
+        {
+          "id": "s12e85",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 8.4,
+          "text": "Je peux peut-être te donner une de mes chaussures, tu m'as dit qu'elles te plaisaient l'autre fois."
+        },
+        {
+          "id": "s12e86",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 6.2,
+          "text": "Bon t'as qu'à me donner une de tes chaussures en souvenir. C'est bien t'as raison."
+        },
+        {
+          "id": "s12e87",
+          "type": "action",
+          "duration": 1.8,
+          "text": "王子脱下一只鞋递给女孩。女孩像接住某种迟来的证词，小心把它捧在手里。"
+        },
+        {
+          "id": "s12e88",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 5.8,
+          "text": "Alors voilà, ça fera un souvenir, c'est mieux que rien, j'ai rien d'autre à te donner pour le moment."
+        },
+        {
+          "id": "s12e89",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 3.4,
+          "text": "Bon ben, merci."
+        },
+        {
+          "id": "s12e90",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.8,
+          "text": "Au revoir."
+        },
+        {
+          "id": "s12e91",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.8,
+          "text": "Au revoir."
+        },
+        {
+          "id": "s12e92",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.4,
+          "text": "Tu t'appelles comment ?"
+        },
+        {
+          "id": "s12e93",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 5,
+          "text": "En ce moment on m'appelle “Cendrier”."
+        },
+        {
+          "id": "s12e94",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 2,
+          "text": "Cendrillon ?"
+        },
+        {
+          "id": "s12e95",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 5.8,
+          "text": "Non pas “Cendrillon” ! Mais si t'as raison, c'est plus joli, appelle-moi Cendrillon… ou Sandra."
+        },
+        {
+          "id": "s12e96",
+          "type": "move",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.1,
+          "x": 236,
+          "y": 292
+        },
+        {
+          "id": "s12e97",
+          "type": "exit",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.9,
+          "toSide": "left"
+        },
+        {
+          "id": "s12e98",
+          "type": "action",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.4,
+          "text": "很年轻的王子站在宫殿前，目送她离开，像第一次真正看见通往未来的路。"
+        },
+        {
+          "id": "s12e99",
+          "type": "scene_end",
+          "duration": 0.8
+        }
+      ]
     }
   ]
 }
