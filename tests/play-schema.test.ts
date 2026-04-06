@@ -115,4 +115,39 @@ describe("play-schema", () => {
       expect(formatPlayImportError(error).join("\n")).toContain('场次 ID "scene-1" 重复');
     }
   });
+
+  it("parses stage props without legacy door fields", () => {
+    const play = makeValidPlay();
+    play.scenes[0].stage = {
+      width: 920,
+      height: 520,
+      props: [
+        { id: "door", kind: "door", x: 180, y: 110 },
+        { id: "chair", kind: "chair", x: 470, y: 350 },
+      ],
+    };
+
+    expect(parsePlay(play)).toEqual(play);
+  });
+
+  it("rejects duplicate prop kinds in a scene", () => {
+    const play = makeValidPlay();
+    play.scenes[0].stage.props = [
+      { id: "door-a", kind: "door", x: 160, y: 98 },
+      { id: "door-b", kind: "door", x: 220, y: 98 },
+    ];
+
+    expect(() => parsePlay(play)).toThrow(/道具类型/);
+  });
+
+  it("rejects scenes without an explicit door prop", () => {
+    const play = makeValidPlay();
+    play.scenes[0].stage = {
+      width: 920,
+      height: 520,
+      props: [{ id: "chair", kind: "chair", x: 460, y: 348 }],
+    };
+
+    expect(() => parsePlay(play)).toThrow(/门道具/);
+  });
 });

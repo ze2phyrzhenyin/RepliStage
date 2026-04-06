@@ -2,6 +2,7 @@ import { z } from "zod";
 import type { Locale } from "@/lib/i18n";
 import { translate } from "@/lib/i18n";
 import type { Play } from "@/types/script";
+import { hasStageProp } from "@/lib/stage-props";
 
 export const pathPointSchema = z.object({
   x: z.number(),
@@ -15,13 +16,21 @@ export const actorSchema = z.object({
   shortLabel: z.string().min(1),
 });
 
+export const stagePropSchema = z.object({
+  id: z.string().min(1),
+  kind: z.enum(["door", "chair"]),
+  x: z.number(),
+  y: z.number(),
+});
+
 export const stageConfigSchema = z.object({
   width: z.number().positive(),
   height: z.number().positive(),
-  doorX: z.number(),
-  doorY: z.number(),
+  doorX: z.number().optional(),
+  doorY: z.number().optional(),
   chairX: z.number().optional(),
   chairY: z.number().optional(),
+  props: z.array(stagePropSchema).optional(),
 });
 
 export const scriptEventSchema = z.object({
@@ -78,6 +87,26 @@ export const playSchema = z.object({
 
     const actorIds = new Set<string>();
     const eventIds = new Set<string>();
+    const propKinds = new Set<string>();
+
+    scene.stage.props?.forEach((prop, propIndex) => {
+      if (propKinds.has(prop.kind)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["scenes", sceneIndex, "stage", "props", propIndex, "kind"],
+          message: translate("zh", "error.propDuplicate", { kind: prop.kind }),
+        });
+      }
+      propKinds.add(prop.kind);
+    });
+
+    if (!hasStageProp(scene.stage, "door")) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["scenes", sceneIndex, "stage"],
+        message: translate("zh", "error.doorRequired"),
+      });
+    }
 
     scene.actors.forEach((actor, actorIndex) => {
       if (actorIds.has(actor.id)) {

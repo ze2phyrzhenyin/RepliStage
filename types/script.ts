@@ -30,15 +30,25 @@ export type Actor = {
   shortLabel: string;
 };
 
+export type StagePropKind = "door" | "chair";
+
+export type StageProp = {
+  id: string;
+  kind: StagePropKind;
+  x: number;
+  y: number;
+};
+
 export type StageConfig = {
   width: number;
   height: number;
-  doorX: number;
-  doorY: number;
+  doorX?: number;
+  doorY?: number;
   /** Chair center X in stage units (default 460) */
   chairX?: number;
   /** Chair floor Y in stage units (default 348) */
   chairY?: number;
+  props?: StageProp[];
 };
 
 export type StageActorState = {

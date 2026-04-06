@@ -129,4 +129,22 @@ describe("player", () => {
     const standing = deriveStageState(scene, 2, scene.events);
     expect(standing.actors.belle_mere.pose).toBe("stand");
   });
+
+  it("uses door prop positions when legacy door fields are absent", () => {
+    const scene = makeScene([
+      { id: "e1", type: "enter", actorId: "girl", x: 320, y: 260, fromSide: "top", duration: 1 },
+      { id: "e2", type: "exit", actorId: "girl", toSide: "top", duration: 1 },
+    ]);
+    scene.stage = {
+      width: 920,
+      height: 520,
+      props: [{ id: "door", kind: "door", x: 210, y: 120 }],
+    };
+
+    const entered = deriveStageState(scene, 0, scene.events);
+    expect(entered.actors.girl.visible).toBe(true);
+
+    const exited = deriveStageState(scene, 1, scene.events);
+    expect(exited.actors.girl.y).toBe(142);
+  });
 });

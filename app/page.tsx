@@ -13,12 +13,22 @@ function HomePageContent() {
   const searchParams = useSearchParams();
   const selectedSceneId = searchParams.get("scene");
   const scene = play.scenes.find((item) => item.id === selectedSceneId) ?? play.scenes[0];
+  const totalActorCount = play.scenes.reduce((sum, item) => sum + item.actors.length, 0);
+  const totalEventCount = play.scenes.reduce((sum, item) => sum + item.events.length, 0);
   const sourceLabel =
     playSource.type === "sample"
       ? t("home.playSourceSample")
       : playSource.type === "imported"
         ? t("home.playSourceImported")
         : t("home.playSourceEdited");
+
+  function handleLoadSample(sampleId: string) {
+    const shouldConfirm = playSource.type !== "sample";
+    if (shouldConfirm && typeof window !== "undefined" && !window.confirm(t("home.loadSampleConfirm"))) {
+      return;
+    }
+    loadSamplePlay(sampleId);
+  }
 
   return (
     <main className="page-shell min-h-screen flex flex-col items-center justify-center px-5 py-16 sm:px-6">
@@ -67,7 +77,7 @@ function HomePageContent() {
               <p className="mt-2 text-sm text-white/42">{sourceLabel}</p>
               <div className="mt-4 flex flex-wrap gap-2 text-xs text-white/40">
                 <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.sceneCount", { count: play.scenes.length })}</span>
-                <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.meta", { actors: scene.actors.length, events: scene.events.length })}</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.totalMeta", { actors: totalActorCount, events: totalEventCount })}</span>
               </div>
               <Link
                 href="/director"
@@ -89,7 +99,7 @@ function HomePageContent() {
                   return (
                     <button
                       key={sample.id}
-                      onClick={() => loadSamplePlay(sample.id)}
+                      onClick={() => handleLoadSample(sample.id)}
                       className="w-full rounded-2xl border px-4 py-3 text-left transition"
                       style={{
                         borderColor: active ? "rgba(241,194,125,0.24)" : "rgba(255,255,255,0.08)",
@@ -136,6 +146,19 @@ function HomePageContent() {
             </div>
           )}
 
+          <div className="glass-panel rounded-[26px] px-5 py-5 text-left">
+            <p className="page-kicker mb-3">{t("home.currentScene")}</p>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h2 className="text-lg font-medium text-white/82">{scene.title}</h2>
+                <p className="mt-1 text-sm text-white/38">{scene.subtitle}</p>
+              </div>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/42">
+                {t("home.currentSceneMeta", { actors: scene.actors.length, events: scene.events.length })}
+              </span>
+            </div>
+          </div>
+
           <div className="flex flex-wrap justify-center gap-2 pt-2">
             {scene.actors.map((actor) => (
               <Link
@@ -162,17 +185,8 @@ function HomePageContent() {
             <CostumeBar actors={scene.actors} />
           </div>
 
-          <div className="pt-2 border-t border-white/[0.06]">
-            <Link
-              href="/director"
-              className="inline-flex items-center gap-2 text-xs text-white/34 hover:text-[#f1c27d] transition"
-            >
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2" />
-                <path d="M4 6h4M6 4v4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-              </svg>
-              {t("home.director")}
-            </Link>
+          <div className="pt-2 border-t border-white/[0.06] text-center text-xs text-white/28">
+            {t("home.director")}
           </div>
         </div>
       </div>

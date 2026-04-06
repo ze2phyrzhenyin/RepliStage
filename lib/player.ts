@@ -7,6 +7,7 @@ import {
   ScriptEvent,
   StageActorState,
 } from "@/types/script";
+import { getStageProp } from "@/lib/stage-props";
 
 export type DerivedStageState = {
   actors: Record<string, StageActorState>;
@@ -172,6 +173,7 @@ export function getInitialActorMap(scene: ScriptDefinition) {
 
 function entryPosition(scene: ScriptDefinition, side: ScriptEvent["fromSide"], actorId: string) {
   const fallback = getInitialPosition(scene, actorId);
+  const door = getStageProp(scene.stage, "door");
 
   switch (side) {
     case "left":
@@ -179,20 +181,22 @@ function entryPosition(scene: ScriptDefinition, side: ScriptEvent["fromSide"], a
     case "right":
       return { x: scene.stage.width + 90, y: fallback.y, facing: "left" as const };
     case "top":
-      return { x: fallback.x === scene.stage.doorX ? scene.stage.doorX : fallback.x, y: -80, facing: "front" as const };
+      return { x: fallback.x === door?.x ? door.x : fallback.x, y: -80, facing: "front" as const };
     default:
       return { x: fallback.x, y: scene.stage.height + 60, facing: "front" as const };
   }
 }
 
 function exitPosition(scene: ScriptDefinition, side: ScriptEvent["toSide"], current: StageActorState) {
+  const door = getStageProp(scene.stage, "door");
+
   switch (side) {
     case "left":
       return { ...current, x: -90, facing: "left" as const };
     case "right":
       return { ...current, x: scene.stage.width + 90, facing: "right" as const };
     case "top":
-      return { ...current, y: scene.stage.doorY + 22, facing: "front" as const };
+      return { ...current, y: (door?.y ?? 98) + 22, facing: "front" as const };
     default:
       return { ...current, y: scene.stage.height + 60, facing: "front" as const };
   }

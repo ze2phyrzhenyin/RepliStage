@@ -211,7 +211,7 @@ export function CostumeTrigger({ actor }: { actor: Actor }) {
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute top-full mt-2 z-[95]" style={{ left: 0 }}>
+          <div className="absolute right-0 top-full mt-2 z-[95] sm:left-0 sm:right-auto" style={{ maxWidth: "min(320px, calc(100vw - 2rem))" }}>
             <CostumeSelector actor={actor} onClose={() => setOpen(false)} />
           </div>
         </>

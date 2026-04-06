@@ -5,8 +5,9 @@ import { motion } from "motion/react";
 import { useLocale } from "@/components/locale/LocaleContext";
 import { HumanActorSprite } from "@/components/HumanActorSprite";
 import { getActorById, DerivedStageState } from "@/lib/player";
+import { getStageProp } from "@/lib/stage-props";
 import { useCostumes } from "@/components/costumes/CostumeContext";
-import type { Actor, StageConfig, ScriptEvent, PathPoint } from "@/types/script";
+import type { Actor, StageConfig, ScriptEvent, PathPoint, StagePropKind } from "@/types/script";
 
 // Sprite base dims
 const SPRITE_W = 56;
@@ -19,7 +20,7 @@ const DOOR_FRAME_W = 126;
 const DOOR_FLOOR_RATIO = 0.38;
 
 type PropDragState = {
-  prop: "chair" | "door";
+  prop: StagePropKind;
   stageX: number;
   stageY: number;
 };
@@ -33,7 +34,7 @@ type StageCanvasProps = {
   selectedActorId?: string | null;
   onActorDrop?: (actorId: string, stageX: number, stageY: number) => void;
   stageConfig: StageConfig;
-  onPropDrop?: (prop: "chair" | "door", stageX: number, stageY: number) => void;
+  onPropDrop?: (prop: StagePropKind, stageX: number, stageY: number) => void;
   /** When set, stage enters path-drawing mode for this actor */
   drawingPathFor?: string | null;
   onPathDrawn?: (path: PathPoint[]) => void;
@@ -69,7 +70,7 @@ function DoorProp({
         cursor: editMode ? "grab" : undefined,
         width: w,
         height: h,
-        pointerEvents: "none",
+        pointerEvents: editMode ? "auto" : "none",
       }}
     >
       <svg
@@ -421,16 +422,13 @@ export function StageCanvas({
 
   const stageW = stageConfig.width;
   const stageH = stageConfig.height;
-  const doorX = stageConfig.doorX;
-  const doorY = stageConfig.doorY;
-  const hasChair = typeof stageConfig.chairX === "number" && typeof stageConfig.chairY === "number";
-  const chairX = hasChair
-    ? (propDrag?.prop === "chair" ? propDrag.stageX : stageConfig.chairX)
-    : undefined;
-  const chairY = hasChair
-    ? (propDrag?.prop === "chair" ? propDrag.stageY : stageConfig.chairY)
-    : undefined;
-  const displayDoorX = propDrag?.prop === "door" ? propDrag.stageX : doorX;
+  const door = getStageProp(stageConfig, "door");
+  const chair = getStageProp(stageConfig, "chair");
+  const doorX = propDrag?.prop === "door" ? propDrag.stageX : (door?.x ?? 160);
+  const doorY = propDrag?.prop === "door" ? propDrag.stageY : (door?.y ?? 98);
+  const hasChair = Boolean(chair);
+  const chairX = propDrag?.prop === "chair" ? propDrag.stageX : chair?.x;
+  const chairY = propDrag?.prop === "chair" ? propDrag.stageY : chair?.y;
 
   useEffect(() => {
     function measure() {
@@ -523,7 +521,7 @@ export function StageCanvas({
     }
   }
 
-  function startPropDrag(prop: "chair" | "door") {
+  function startPropDrag(prop: StagePropKind) {
     return (e: React.MouseEvent) => {
       e.stopPropagation();
       e.preventDefault();
@@ -556,7 +554,7 @@ export function StageCanvas({
           stageH={stageH}
           spotX={editMode ? null : (spotPos?.x ?? null)}
           spotY={editMode ? null : (spotPos?.y ?? null)}
-          doorX={displayDoorX}
+          doorX={doorX}
           doorY={doorY}
           chairX={chairX}
           chairY={chairY}
