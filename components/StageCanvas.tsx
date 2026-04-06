@@ -272,7 +272,7 @@ function ChairBack({
 // ── Stage background ─────────────────────────────────────────
 function TheatricalBackground({
   scale, canvasWidth, canvasHeight, spotX, spotY,
-  doorX, doorY, chairX, chairY, stageH, editMode,
+  doorX, doorY, chairX, chairY, showChair, stageH, editMode,
   onChairDragStart, onDoorDragStart,
 }: {
   scale: number;
@@ -282,8 +282,9 @@ function TheatricalBackground({
   spotY: number | null;
   doorX: number;
   doorY: number;
-  chairX: number;
-  chairY: number;
+  chairX?: number;
+  chairY?: number;
+  showChair: boolean;
   stageH: number;
   editMode?: boolean;
   onChairDragStart?: (e: React.MouseEvent) => void;
@@ -330,7 +331,9 @@ function TheatricalBackground({
 
       {/* ── Props ── */}
       <DoorProp scale={scale} doorX={doorX} doorY={doorY} stageH={stageH} editMode={editMode} onStartDrag={onDoorDragStart} />
-      <ChairBack scale={scale} chairX={chairX} chairY={chairY} stageH={stageH} editMode={editMode} onStartDrag={onChairDragStart} />
+      {showChair && typeof chairX === "number" && typeof chairY === "number" && (
+        <ChairBack scale={scale} chairX={chairX} chairY={chairY} stageH={stageH} editMode={editMode} onStartDrag={onChairDragStart} />
+      )}
 
       {/* Dynamic spotlight */}
       {spotX !== null && spotY !== null && (
@@ -420,10 +423,13 @@ export function StageCanvas({
   const stageH = stageConfig.height;
   const doorX = stageConfig.doorX;
   const doorY = stageConfig.doorY;
-  const defaultChairX = stageConfig.chairX ?? 460;
-  const defaultChairY = stageConfig.chairY ?? 348;
-  const chairX = propDrag?.prop === "chair" ? propDrag.stageX : defaultChairX;
-  const chairY = propDrag?.prop === "chair" ? propDrag.stageY : defaultChairY;
+  const hasChair = typeof stageConfig.chairX === "number" && typeof stageConfig.chairY === "number";
+  const chairX = hasChair
+    ? (propDrag?.prop === "chair" ? propDrag.stageX : stageConfig.chairX)
+    : undefined;
+  const chairY = hasChair
+    ? (propDrag?.prop === "chair" ? propDrag.stageY : stageConfig.chairY)
+    : undefined;
   const displayDoorX = propDrag?.prop === "door" ? propDrag.stageX : doorX;
 
   useEffect(() => {
@@ -554,8 +560,9 @@ export function StageCanvas({
           doorY={doorY}
           chairX={chairX}
           chairY={chairY}
+          showChair={hasChair}
           editMode={editMode}
-          onChairDragStart={editMode ? startPropDrag("chair") : undefined}
+          onChairDragStart={editMode && hasChair ? startPropDrag("chair") : undefined}
           onDoorDragStart={editMode ? startPropDrag("door") : undefined}
         />
 

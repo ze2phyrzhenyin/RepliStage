@@ -113,6 +113,7 @@ export default function DirectorClient() {
   }, []);
 
   const scene = play.scenes.find((item) => item.id === activeSceneId) ?? play.scenes[0];
+  const sceneHasChair = typeof scene.stage.chairX === "number" && typeof scene.stage.chairY === "number";
   const stageState = deriveStageState(scene, currentEventIndex, scene.events);
 
   function updateScene(id: string, updater: (scene: ScriptDefinition) => ScriptDefinition) {
@@ -773,8 +774,12 @@ export default function DirectorClient() {
               {[
                 { label: t("director.doorX"), key: "doorX" as const },
                 { label: t("director.doorY"), key: "doorY" as const },
-                { label: t("director.chairX"), key: "chairX" as const },
-                { label: t("director.chairY"), key: "chairY" as const },
+                ...(sceneHasChair
+                  ? [
+                      { label: t("director.chairX"), key: "chairX" as const },
+                      { label: t("director.chairY"), key: "chairY" as const },
+                    ]
+                  : []),
               ].map(({ label, key }) => (
                 <label key={key} className="flex items-center gap-1">
                   <span>{label}</span>

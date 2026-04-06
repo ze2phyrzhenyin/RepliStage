@@ -187,7 +187,7 @@ export function CostumeTrigger({ actor }: { actor: Actor }) {
     : null;
 
   return (
-    <div className="relative">
+    <div className={`relative ${open ? "z-[90]" : "z-0"}`}>
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition hover:bg-white/10"
@@ -211,7 +211,7 @@ export function CostumeTrigger({ actor }: { actor: Actor }) {
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute top-full mt-2 z-50" style={{ left: 0 }}>
+          <div className="absolute top-full mt-2 z-[95]" style={{ left: 0 }}>
             <CostumeSelector actor={actor} onClose={() => setOpen(false)} />
           </div>
         </>

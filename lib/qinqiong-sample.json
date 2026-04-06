@@ -6,14 +6,12 @@
       "id": "scene-1-yiyuanzhai",
       "title": "第一场",
       "subtitle": "艺园斋午后，来客登门",
-      "setting": "艺园斋前厅陈设古雅，中央是会客椅，左上方是店门，右侧通往里间。杨成岳整理古玩，雪儿在一旁帮忙，王超杰随后带着手提箱登门。",
+      "setting": "艺园斋前厅陈设古雅，左上方是店门，右侧通往里间。杨成岳整理古玩，雪儿在一旁帮忙，王超杰随后带着手提箱登门。",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 154,
-        "doorY": 98,
-        "chairX": 452,
-        "chairY": 338
+        "doorY": 98
       },
       "actors": [
         {
@@ -65,9 +63,9 @@
         { "id": "s1e27", "type": "line", "actorId": "xue_er", "duration": 3.2, "text": "先生今日前来所为何事？" },
         { "id": "s1e28", "type": "action", "actorId": "wang_chaojie", "duration": 1.4, "text": "王超杰轻拍手提箱，神色带着几分踌躇。" },
         { "id": "s1e29", "type": "line", "actorId": "wang_chaojie", "duration": 4.8, "text": "我有一件雍正年间的盘子，想找老板看看。" },
-        { "id": "s1e30", "type": "action", "actorId": "yang_chengyue", "duration": 1.4, "text": "杨成岳抬手让座，请王超杰在椅旁坐下。" },
+        { "id": "s1e30", "type": "action", "actorId": "yang_chengyue", "duration": 1.4, "text": "杨成岳抬手示意王超杰到柜台前细看盘子。" },
         { "id": "s1e31", "type": "move_path", "actorId": "wang_chaojie", "duration": 1.6, "path": [ { "x": 310, "y": 250 }, { "x": 378, "y": 276 }, { "x": 430, "y": 300 } ] },
-        { "id": "s1e32", "type": "line", "actorId": "yang_chengyue", "duration": 4.4, "text": "先生，快请坐，还没有请教先生尊姓大名。" },
+        { "id": "s1e32", "type": "line", "actorId": "yang_chengyue", "duration": 4.4, "text": "先生，请近前来，还没有请教先生尊姓大名。" },
         { "id": "s1e33", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "我是北京王超杰。" },
         { "id": "s1e34", "type": "line", "actorId": "xue_er", "duration": 4.8, "text": "原来您就是王超杰先生，家父对您的唱功可是赞不绝口呢。" },
         { "id": "s1e35", "type": "line", "actorId": "yang_chengyue", "duration": 8.2, "text": "王老板，幸会了，早就耳闻这北方铁嗓王超杰，专攻老生，成名已久，未曾有机会结识，没有想到今天竟然有机会见到真人，幸会幸会。" },
@@ -79,7 +77,7 @@
         { "id": "s1e41", "type": "line", "actorId": "yang_chengyue", "duration": 6.8, "text": "王先生真乃性情中人，这俗世万千，谁又能料到生死。不知王先生今天来此有何贵干？" },
         { "id": "s1e42", "type": "line", "actorId": "wang_chaojie", "duration": 6.4, "text": "此来真有一件事情相烦，王某有几件古瓷，想让杨先生鉴赏，不知杨先生有无兴致。" },
         { "id": "s1e43", "type": "line", "actorId": "yang_chengyue", "duration": 4, "text": "王先生手前方便否，可否让我一睹为快？" },
-        { "id": "s1e44", "type": "action", "actorId": "wang_chaojie", "duration": 1.8, "text": "王超杰把手提箱放在椅旁，小心打开，捧出一只粉彩大盘。" },
+        { "id": "s1e44", "type": "action", "actorId": "wang_chaojie", "duration": 1.8, "text": "王超杰把手提箱放在柜台边，小心打开，捧出一只粉彩大盘。" },
         { "id": "s1e45", "type": "line", "actorId": "wang_chaojie", "duration": 10.4, "text": "说来惭愧，超杰平生最爱收藏官窑彩瓷，凡遇喜爱，不惜重金，必据为己有。这前些年与韩老板相交，从他这儿也收了不少，这雍正官窑粉彩过枝碧桃大盘正是其中之一。" },
         { "id": "s1e46", "type": "action", "actorId": "yang_chengyue", "duration": 1.4, "text": "杨成岳伸手欲取盘看底，王超杰却抬手拦下。" },
         { "id": "s1e47", "type": "line", "actorId": "wang_chaojie", "duration": 5.2, "text": "杨老板莫急，超杰想要考考你，如果不看底，先生能否掌眼？" },
@@ -107,9 +105,7 @@
         "width": 920,
         "height": 520,
         "doorX": 154,
-        "doorY": 98,
-        "chairX": 452,
-        "chairY": 338
+        "doorY": 98
       },
       "actors": [
         {

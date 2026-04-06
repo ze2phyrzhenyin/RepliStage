@@ -78,12 +78,12 @@ function SelectRolePageContent() {
             </Link>
           </div>
 
-          <div className="glass-panel mt-8 rounded-[26px] px-6 py-5">
+          <div className="glass-panel relative z-20 mt-8 rounded-[26px] px-6 py-5">
             <p className="page-kicker mb-4">{t("role.costumes")}</p>
             <CostumeBar actors={scene.actors} />
           </div>
 
-          <div className="glass-panel mt-4 rounded-[26px] px-6 py-5">
+          <div className="glass-panel relative z-10 mt-4 rounded-[26px] px-6 py-5">
             <p className="page-kicker mb-3">{t("role.setting")}</p>
             <p className="text-sm text-white/50 leading-7">{scene.setting}</p>
           </div>
