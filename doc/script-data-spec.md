@@ -1,8 +1,8 @@
-# 剧本数据模型
+# 剧本数据规范
 
-## 1. 顶层结构
+## 1. 顶层模型
 
-项目当前使用 `Play` 表示整部剧目。
+项目当前以 `Play` 表示整部剧。
 
 ```ts
 type Play = {
@@ -12,11 +12,12 @@ type Play = {
 };
 ```
 
-默认数据文件是 `lib/default-script.json`。
+当前内置示例剧本来自：
 
-## 2. 场次结构
+- `lib/default-script.json`
+- `lib/qinqiong-sample.json`
 
-每个场次使用 `ScriptDefinition`：
+## 2. 场次模型
 
 ```ts
 type ScriptDefinition = {
@@ -30,24 +31,24 @@ type ScriptDefinition = {
 };
 ```
 
-字段含义：
+字段说明：
 
 - `id`
   场次唯一标识
 - `title`
   场次标题
 - `subtitle`
-  副标题
+  场次副标题
 - `setting`
   场景说明
 - `actors`
-  本场参与角色
+  当前场次参与角色
 - `stage`
-  舞台尺寸和道具配置
+  舞台与道具配置
 - `events`
   线性事件序列
 
-## 3. 角色结构
+## 3. 角色模型
 
 ```ts
 type Actor = {
@@ -60,33 +61,44 @@ type Actor = {
 
 建议：
 
-- `id` 使用稳定英文或拼音标识
-- `shortLabel` 尽量控制在 2 到 4 个字符
-- `color` 用于 UI 高亮和身份识别
+- `id` 用稳定英文或拼音
+- `shortLabel` 控制在 2 到 4 个字符
+- `color` 用于界面识别和高亮
 
-## 4. 舞台结构
+## 4. 舞台模型
 
 ```ts
 type StageConfig = {
   width: number;
   height: number;
-  doorX: number;
-  doorY: number;
+  doorX?: number;
+  doorY?: number;
   chairX?: number;
   chairY?: number;
+  props?: StageProp[];
+};
+```
+
+### 当前真实推荐写法
+
+```ts
+type StagePropKind = "door" | "chair";
+
+type StageProp = {
+  id: string;
+  kind: StagePropKind;
+  x: number;
+  y: number;
 };
 ```
 
 说明：
 
-- 坐标是舞台坐标，不是屏幕像素
-- `width` / `height` 用于整体缩放
-- `doorX` / `doorY` 是门位置
-- `chairX` / `chairY` 是椅子位置
+- `props` 是当前推荐的统一道具模型
+- `doorX/doorY/chairX/chairY` 仅为兼容旧数据保留
+- 场次至少应显式配置一个 `door`
 
-## 5. 事件结构
-
-所有事件共用一套结构：
+## 5. 事件模型
 
 ```ts
 type ScriptEvent = {
@@ -118,12 +130,11 @@ type ScriptEvent = {
 
 ### `blackout_start`
 
-- 打开黑幕
-- 不要求 `actorId`
+- 开黑幕
 
 ### `blackout_end`
 
-- 关闭黑幕
+- 关黑幕
 
 ### `enter`
 
@@ -132,25 +143,23 @@ type ScriptEvent = {
 
 ### `move`
 
-- 角色走位到某个坐标
+- 角色走到目标点
 - 常用字段：`actorId`、`x`、`y`
 
 ### `move_path`
 
-- 角色按路径走位
+- 角色按路径移动
 - 常用字段：`actorId`、`path`
 
 ### `line`
 
-- 角色说出台词
+- 台词
 - 常用字段：`actorId`、`text`
-- 可选 `pose` 覆盖自动姿态判断
 
 ### `action`
 
-- 角色动作或舞台说明
-- 可有 `actorId`
-- 可有 `text`
+- 动作或说明
+- 可带 `actorId`
 
 ### `exit`
 
@@ -159,7 +168,7 @@ type ScriptEvent = {
 
 ### `pause`
 
-- 用于节奏停顿
+- 节奏停顿
 
 ### `scene_end`
 
@@ -167,7 +176,7 @@ type ScriptEvent = {
 
 ## 7. 运行时派生状态
 
-播放器不会直接渲染原始事件，而是先生成 `StageActorState`：
+播放器不会直接渲染原始事件，而是派生出 `StageActorState`：
 
 ```ts
 type StageActorState = {
@@ -176,7 +185,6 @@ type StageActorState = {
   y: number;
   visible: boolean;
   facing: "left" | "right" | "front";
-  exiting?: boolean;
   expression: Expression;
   animationState: AnimationState;
   opacity: number;
@@ -186,27 +194,40 @@ type StageActorState = {
 };
 ```
 
-## 8. 数据编辑建议
+## 8. 当前工作剧本来源
 
-### 推荐做法
+运行时并不是只有“默认剧本”一个概念，而是：
 
-- 优先用导演模式修改
-- 大批量改动时直接编辑 JSON
-- 每次修改后至少手工回放一遍关键场次
+```ts
+type PlaySource =
+  | { type: "sample"; sampleId: string }
+  | { type: "imported" }
+  | { type: "edited" };
+```
 
-### 避免的问题
+这让界面能分辨：
 
-- `actorId` 填写不存在的角色
-- `move_path` 没有路径点
-- `duration` 为 0 或负数
-- 删除 `blackout_start`、`blackout_end`、`scene_end` 等结构性事件
+- 当前来自哪个内置示例
+- 当前是否由 JSON 导入
+- 当前是否已被本地编辑
 
-## 9. 当前默认剧目说明
+## 9. 导入校验重点
 
-`lib/default-script.json` 当前包含：
+当前校验除了结构，还会检查：
 
-- 1 部剧目：`Cendrillon`
-- 多个场次
-- `lib/demo-script.ts` 额外导出了第一场次别名 `demoScript`
+- 场次 id 是否重复
+- 角色 id 是否重复
+- 事件 id 是否重复
+- 道具 kind 是否重复
+- `actorId` 是否存在
+- `move_path` 是否为空
+- `line` 是否有文本
+- `enter` / `move` 是否有坐标
+- 是否缺少 `scene_end`
+- 是否缺少门道具
 
-这个别名主要用于兼容旧代码；当前首页、选角页、排练页和导演模式都已经基于 `Play.scenes` 读取当前场次。
+## 10. 编辑建议
+
+- 大批量改动可直接编辑 JSON
+- 小范围改动优先用导演模式
+- 新增场次后务必手动过一遍 setup、选角、排练、导演流程

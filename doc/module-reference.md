@@ -1,245 +1,268 @@
 # 代码模块索引
 
-本文档按文件逐一说明仓库中的主要代码文件职责，便于接手维护。
+本文档按目录和关键文件说明当前仓库结构，重点强调“哪些文件真正控制当前产品行为”。
 
 ## 1. 根目录与配置
 
 ### `package.json`
 
-- 定义项目名 `stagecue`
-- 提供 `dev`、`build`、`start`、`lint` 脚本
-- 声明 Next.js、React、Tailwind、Motion 等依赖
+- 定义 `dev`、`build`、`start`、`test`
+- 依赖 Next.js、React、Tailwind、Motion、Vitest
 
 ### `next.config.ts`
 
-- 开启 `reactStrictMode`
-- 配置 `outputFileTracingRoot`
-- 将 `canvas` alias 为 `false`，规避服务端打包依赖问题
+- Next.js 配置
+- 将 `canvas` alias 为 `false`
 
 ### `tsconfig.json`
 
 - TypeScript 严格模式
-- 使用 Next.js 推荐配置
-- 配置 `@/*` 路径别名
-
-### `tailwind.config.ts`
-
-- 扫描 `app/`、`components/`、`lib/`
-- 扩展舞台主题色、阴影和背景渐变
-
-### `postcss.config.js`
-
-- 注入 `tailwindcss` 与 `autoprefixer`
+- `@/*` 路径别名
 
 ### `start.sh`
 
-- 检查 `node_modules`
-- 自动安装依赖
-- 寻找可用端口
-- 打开浏览器并启动开发服务器
+- 本地开发辅助脚本
+- 自动装依赖、找端口、开浏览器
 
 ## 2. 路由与页面
 
 ### `app/layout.tsx`
 
 - 根布局
-- 注入全局样式
-- 包裹 `PlayProvider` 与 `CostumeProvider`
+- 挂载 Play、Costume、Locale 相关 provider
 
 ### `app/page.tsx`
 
 - 首页
-- 展示剧目标题、演员快捷入口、造型入口
-- 从 `PlayProvider` 读取当前剧本
-- 显示场次切换与导演模式入口
+- 当前只做模式选择
 
-### `app/about/page.tsx`
+### `app/rehearsal/setup/page.tsx`
 
-- 玩法简介页
+- 排练 setup 页入口
+
+### `app/director/setup/page.tsx`
+
+- 导演 setup 页入口
 
 ### `app/select-role/page.tsx`
 
 - 角色选择页
-- 渲染演员卡片、旁观者入口、造型栏和场景说明
 
 ### `app/rehearsal/page.tsx`
 
 - 排练页入口
-- 将角色参数和场次参数传给 `RehearsalClient`
 
 ### `app/director/page.tsx`
 
-- 导演页面入口
+- 导演页入口
 
-### `app/director/DirectorClient.tsx`
+### `app/about/page.tsx`
 
-- 完整导演工作台主控
-- 负责场次、事件、演员、保存、撤销/重做
+- 简版说明页
 
-### `app/globals.css`
+## 3. setup 与流程控制
 
-- 全局样式
-- 暗色基础主题
-- 面板、滚动条、悬浮效果工具类
+### `components/setup/ModeSetupScreen.tsx`
 
-## 3. 核心组件
+- setup 核心组件
+- 管理示例剧本 / 导入 JSON 来源选择
+- 管理场次选择
+- 控制从 setup 到下一步的跳转
+
+## 4. 排练端核心
 
 ### `components/RehearsalClient.tsx`
 
 - 排练主控组件
-- 管理播放、模式切换、本地编排、按场次草稿持久化、快捷键、revealed 台词状态
-
-### `components/StageCanvas.tsx`
-
-- 舞台可视化核心
-- 负责背景、演员、道具、拖拽、路径绘制和路径动画
-
-### `components/ScriptPanel.tsx`
-
-- 台本事件列表
-- 根据事件类型显示不同样式
-- 当前事件自动滚动到可见区域
+- 管理播放、模式切换、当前事件索引、编排草稿
 
 ### `components/PlaybackControls.tsx`
 
-- 播放器控制栏
-- 含进度条、播放控制、速度、自动播放、全部台词开关
+- 播放控制条
+
+### `components/ScriptPanel.tsx`
+
+- 事件列表台本
 
 ### `components/DirectorPanel.tsx`
 
-- 排练页中的轻量编排面板
-- 面向当前场次事件进行编辑
-- 复用共享事件表单与插入逻辑
+- 排练页轻量编排面板
 
 ### `components/RoleCard.tsx`
 
-- 角色选择卡片
+- 选角页角色卡片
 
-### `components/HumanActorSprite.tsx`
+## 5. 导演端核心
 
-- 演员精灵渲染入口
-- 统一封装剪影、角色 SVG、动物造型和图片回退逻辑
+### `app/director/DirectorClient.tsx`
 
-### `components/SpeechBubble.tsx`
-
-- 底部台词/动作气泡
-- 本人台词可点击显示或隐藏
-
-### `components/BlackoutOverlay.tsx`
-
-- 黑幕淡入淡出遮罩
-
-## 4. 导演子模块
+- 导演工作台主控
+- 管理当前场次、编辑状态、保存、导入导出、撤销重做
 
 ### `components/director/SceneList.tsx`
 
-- 多场次列表
-- 支持新增、复制、删除、切换
+- 场次列表
 
 ### `components/director/EventEditor.tsx`
 
-- 导演模式事件编辑器
-- 支持详细表单编辑、插入新事件、拖拽排序
+- 事件编辑面板
 
 ### `components/director/ActorManager.tsx`
 
-- 导演模式演员管理器
-- 支持增删改演员、切换颜色和简称
+- 演员管理面板
 
-## 5. 造型系统
+## 6. 共享编辑内核
+
+### `lib/event-editor-core.ts`
+
+- 默认事件工厂
+- 删除规则
+- 走位类型切换
+- 摘要逻辑
+
+### `components/editor/SharedEventForm.tsx`
+
+- 共享事件表单
+
+### `components/editor/SharedInsertBar.tsx`
+
+- 共享插入栏
+
+## 7. 播放与舞台
+
+### `lib/player.ts`
+
+- 播放器核心
+- 从事件序列推导舞台状态
+
+### `components/StageCanvas.tsx`
+
+- 舞台渲染
+- 角色、道具、拖拽、路径绘制
+
+### `components/HumanActorSprite.tsx`
+
+- 角色精灵渲染入口
+
+### `components/SpeechBubble.tsx`
+
+- 当前台词 / 动作气泡
+
+### `components/BlackoutOverlay.tsx`
+
+- 黑幕层
+
+## 8. 剧本与状态
+
+### `types/script.ts`
+
+- 核心领域类型
+- 包含 `Play`、`ScriptDefinition`、`ScriptEvent`、`StageProp`、`PlaySource`
+
+### `components/play/PlayContext.tsx`
+
+- 当前工作剧本上下文
+- 处理示例剧本、导入、导出、持久化、迁移
+
+### `lib/sample-plays.ts`
+
+- 内置示例剧本库
+
+### `lib/default-script.json`
+
+- `Cendrillon` 示例数据
+
+### `lib/qinqiong-sample.json`
+
+- `秦琼卖马` 示例数据
+
+### `lib/demo-script.ts`
+
+- 兼容导出默认剧本与旧别名
+
+### `lib/play-schema.ts`
+
+- JSON 结构与业务校验
+- 导入预览辅助
+
+### `lib/customScript.ts`
+
+- 排练页草稿存储
+
+### `lib/stage-props.ts`
+
+- 道具标准化与兼容处理
+
+## 9. 造型与国际化
 
 ### `components/costumes/CostumeContext.tsx`
 
 - 造型状态上下文
-- 负责 `localStorage` 持久化
 
 ### `components/costumes/CostumeBar.tsx`
 
-- 角色造型入口条
+- 造型入口条
 
 ### `components/costumes/CostumeSelector.tsx`
 
-- 造型选择弹层
-- 支持角色、动物、剪影三类造型
+- 造型选择器
 
 ### `components/costumes/CharacterSvgs.tsx`
 
-- 角色专属 SVG 原画
-- 包含继母、大姐、小妹、国王、很年轻的女孩等形象
+- 角色 SVG
 
 ### `components/costumes/AnimalSvgs.tsx`
 
-- 通用动物造型 SVG
-- 当前包含老虎、兔子、熊猫
-
-## 6. 业务逻辑与数据层
-
-### `types/script.ts`
-
-- 项目最重要的领域类型定义
-- 定义演员、场次、事件、造型、运行时状态
-
-### `components/play/PlayContext.tsx`
-
-- 管理当前已加载剧本
-- 从示例剧本初始化
-- 负责带版本号的浏览器持久化、旧数据迁移以及 JSON 导入导出辅助
-
-### `lib/default-script.json`
-
-- 内置示例剧目数据源
-- 恢复默认剧本时的来源
-
-### `lib/demo-script.ts`
-
-- 从默认剧目中导出 `defaultPlay`
-- 同时提供第一场次别名 `demoScript`
-
-### `lib/player.ts`
-
-- 播放引擎核心
-- 负责把事件数组推导为舞台状态
-
-### `lib/customScript.ts`
-
-- 排练页本地编排辅助逻辑
-- 包括按场次本地存取、插入事件、删除判断、位置事件查找
-
-### `lib/event-editor-core.ts`
-
-- 事件编辑共享核心
-- 统一事件工厂、删除规则、走位类型切换和摘要生成
+- 动物 SVG
 
 ### `lib/costumes.ts`
 
-- 造型系统的配色、名称和角色设计元数据
+- 造型元数据
 
-### `lib/eventMeta.ts`
+### `components/locale/LocaleContext.tsx`
 
-- 事件类型的颜色和文案映射
+- 语言状态
 
-## 7. 静态资源与其他文件
+### `components/locale/LanguageToggle.tsx`
 
-### `public/actors/**`
+- 中法切换控件
 
-- 角色默认或坐姿资源图
-- 当专属图片缺失时，系统会回退到 SVG 或剪影
+### `lib/i18n.ts`
 
-### `next-env.d.ts`
+- 文案字典
 
-- Next.js TypeScript 环境声明
+## 10. 测试
 
-### `docs/implementation-guide.md`
+### `tests/play-schema.test.ts`
 
-- 旧路径兼容文档入口
+- JSON 校验
 
-## 8. 当前应重点关注的文件
+### `tests/player.test.ts`
 
-如果你要理解整个系统，优先读这几项：
+- 播放器逻辑
+
+### `tests/event-editor-core.test.ts`
+
+- 共享编辑内核
+
+### `tests/custom-script.test.ts`
+
+- 排练草稿存储
+
+### `tests/play-context.test.tsx`
+
+- 当前剧本持久化与迁移
+
+## 11. 优先阅读顺序
+
+如果要快速理解全站，优先读：
 
 1. `types/script.ts`
-2. `lib/default-script.json`
-3. `lib/player.ts`
-4. `components/RehearsalClient.tsx`
-5. `components/StageCanvas.tsx`
-6. `app/director/DirectorClient.tsx`
+2. `lib/sample-plays.ts`
+3. `components/play/PlayContext.tsx`
+4. `lib/play-schema.ts`
+5. `lib/player.ts`
+6. `components/setup/ModeSetupScreen.tsx`
+7. `components/RehearsalClient.tsx`
+8. `app/director/DirectorClient.tsx`
+9. `components/StageCanvas.tsx`

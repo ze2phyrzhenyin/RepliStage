@@ -1,42 +1,42 @@
 # StageCue 文档中心
 
-本目录是 StageCue 的主文档入口，按使用对象和维护场景拆分。
+`doc/` 是当前仓库唯一主文档入口，所有说明均以这里为准。
 
-## 阅读顺序
+## 推荐阅读顺序
 
-### 给产品/架构/接手开发的人
+产品 / 架构 / 接手维护：
 
 1. [项目概览](./overview.md)
 2. [架构说明](./architecture.md)
 3. [代码模块索引](./module-reference.md)
 
-### 给开发者
+开发者：
 
 1. [开发文档](./development-guide.md)
-2. [剧本数据模型](./script-data-spec.md)
+2. [剧本数据规范](./script-data-spec.md)
 3. [代码模块索引](./module-reference.md)
 
-### 给最终使用者
+导演 / 演员 / 使用者：
 
 1. [用户文档](./user-guide.md)
 
 ## 文档清单
 
 - [overview.md](./overview.md)
-  项目定位、功能边界、页面结构、运行方式总览
+  当前产品定位、入口流程、能力边界
 - [architecture.md](./architecture.md)
-  前端架构、状态流、数据流、播放引擎和导演模式实现
+  路由、状态、播放器、setup 流程、导演模式、道具布景架构
 - [development-guide.md](./development-guide.md)
-  环境搭建、开发流程、改造建议、常见注意事项
+  本地开发、测试、调试、改造建议
 - [user-guide.md](./user-guide.md)
-  面向导演、演员和旁观者的使用说明
+  排练模式、导演模式、示例剧本、JSON 工作流说明
 - [script-data-spec.md](./script-data-spec.md)
-  `Play` / `Scene` / `ScriptEvent` / `StageActorState` 的数据规范
+  `Play` / `Scene` / `StageConfig` / `ScriptEvent` / `PlaySource`
 - [module-reference.md](./module-reference.md)
-  对仓库内主要代码文件逐一说明职责
+  核心文件和目录职责索引
 - [review-notes.md](./review-notes.md)
-  当前代码审查结果、已知风险、优化建议与排查优先级
+  当前代码审查结论、风险与优化方向
 
 ## 兼容说明
 
-旧文档路径 `docs/implementation-guide.md` 已保留，但内容会指向本目录，避免多份文档长期漂移。
+旧入口 [docs/implementation-guide.md](/Users/zephyrsui/Downloads/theare/docs/implementation-guide.md) 仅保留跳转说明，避免两套文档长期漂移。
