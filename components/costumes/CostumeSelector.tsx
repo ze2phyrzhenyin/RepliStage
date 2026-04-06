@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLocale } from "@/components/locale/LocaleContext";
 import { getAnimalLabel, getSkinToneLabel } from "@/lib/i18n";
 import type { Actor, CostumeVariant, SkinTone, AnimalType } from "@/types/script";
-import { SKIN_PALETTES, getHairColor } from "@/lib/costumes";
+import { SKIN_PALETTES, getHairColor, DESIGNED_ACTORS } from "@/lib/costumes";
 import { useCostumes } from "./CostumeContext";
 import { BelleMereSvg, SoeurGrandeSvg, SoeurPetiteSvg, RoiSvg, TresJeuneFilleSvg, FeeSvg, PereSvg, TresJeunePrinceSvg, GardeSvg, MereSvg, YangChengyueSvg, XueErSvg, WangChaojeSvg } from "./CharacterSvgs";
 import { TigerSvg, RabbitSvg, PandaSvg } from "./AnimalSvgs";
@@ -109,7 +109,7 @@ export function CostumeSelector({ actor, onClose }: CostumeSelectorProps) {
     onClose();
   }
 
-  const hasDesign = ["belle_mere","soeur_grande","soeur_petite","roi","tres_jeune_fille"].includes(actor.id);
+  const hasDesign = DESIGNED_ACTORS.has(actor.id);
 
   return (
     <div

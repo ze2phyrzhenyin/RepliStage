@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import type { ActorPose, AnimationState, Expression } from "@/types/script";
 import type { CostumeVariant } from "@/types/script";
-import { SKIN_PALETTES, getHairColor } from "@/lib/costumes";
+import { SKIN_PALETTES, getHairColor, DESIGNED_ACTORS } from "@/lib/costumes";
 import { BelleMereSvg, SoeurGrandeSvg, SoeurPetiteSvg, RoiSvg, TresJeuneFilleSvg, FeeSvg, PereSvg, TresJeunePrinceSvg, GardeSvg, MereSvg, YangChengyueSvg, XueErSvg, WangChaojeSvg } from "./costumes/CharacterSvgs";
 import { TigerSvg, RabbitSvg, PandaSvg } from "./costumes/AnimalSvgs";
 
@@ -226,10 +226,10 @@ export function HumanActorSprite({
         animate={bodyAnim}
         style={{ width: "100%", height: "100%", transformOrigin: "bottom center" }}
       >
-        {costume ? (
+        {(costume ?? (DESIGNED_ACTORS.has(actorId) ? { kind: "character" as const, skinTone: "fair" as const } : null)) ? (
           <CostumeRenderer
             actorId={actorId}
-            costume={costume}
+            costume={costume ?? { kind: "character" as const, skinTone: "fair" as const }}
             actorColor={actorColor}
             isSpeaking={isSpeaking}
             pose={pose}
