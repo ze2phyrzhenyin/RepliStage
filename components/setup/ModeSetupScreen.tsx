@@ -116,70 +116,37 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
             </div>
           </div>
 
-          <div className="mb-6 grid gap-3 rounded-[26px] border border-white/[0.06] bg-white/[0.025] p-3 md:grid-cols-3">
-            {[
-              { step: "01", title: t("setup.currentPlay"), description: t("setup.useCurrentPlay") },
-              { step: "02", title: t("setup.samplePlays"), description: t("setup.importJson") },
-              { step: "03", title: t("setup.sceneSelection"), description: stepThreeLabel },
-            ].map((item, index) => (
-              <div
-                key={item.step}
-                className="rounded-[22px] border px-4 py-4"
-                style={{
-                  borderColor: index === 2 ? "rgba(241,194,125,0.22)" : "rgba(255,255,255,0.06)",
-                  background: index === 2 ? "rgba(241,194,125,0.07)" : "rgba(255,255,255,0.02)",
-                }}
-              >
-                <p className="text-[10px] uppercase tracking-[0.3em] text-[#f1c27d]/60">{item.step}</p>
-                <p className="mt-2 text-sm font-medium text-white/82">{item.title}</p>
-                <p className="mt-1 text-xs leading-6 text-white/36">{item.description}</p>
-              </div>
-            ))}
-          </div>
-
           <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="space-y-4">
               <section className="glass-panel rounded-[28px] px-5 py-5">
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
-                      <span className="text-[10px] uppercase tracking-[0.3em] text-[#f1c27d]/65">01</span>
-                      <span className="text-[11px] text-white/44">{t("setup.currentPlay")}</span>
-                    </div>
+                    <p className="page-kicker mb-2">{t("setup.samplePlays")}</p>
                     <h2 className="display-title text-2xl text-white">{play.title}</h2>
                     <p className="mt-2 text-sm text-white/42">{sourceLabel}</p>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedSceneId(play.scenes[0]?.id ?? "")}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/60 transition hover:bg-white/[0.08] hover:text-white/82"
-                  >
-                    {t("setup.useCurrentPlay")}
-                  </button>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedSceneId(play.scenes[0]?.id ?? "")}
+                      className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/60 transition hover:bg-white/[0.08] hover:text-white/82"
+                    >
+                      {t("setup.useCurrentPlay")}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={openImportPicker}
+                      className="rounded-full bg-[#f1c27d] px-4 py-2 text-xs font-medium text-[#0a0c14] transition hover:bg-[#f5d090]"
+                    >
+                      {t("setup.importJson")}
+                    </button>
+                  </div>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2 text-xs text-white/40">
                   <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.sceneCount", { count: playSummary.sceneCount })}</span>
                   <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.totalMeta", { actors: playSummary.totalActors, events: playSummary.totalEvents })}</span>
                 </div>
-              </section>
-
-              <section className="glass-panel rounded-[28px] px-5 py-5">
-                <div className="mb-4 flex items-center justify-between gap-3">
-                  <div>
-                    <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
-                      <span className="text-[10px] uppercase tracking-[0.3em] text-[#f1c27d]/65">02</span>
-                      <span className="text-[11px] text-white/44">{t("setup.samplePlays")}</span>
-                    </div>
-                    <p className="text-sm text-white/38">{t("setup.sampleDescription")}</p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={openImportPicker}
-                    className="rounded-full bg-[#f1c27d] px-4 py-2 text-xs font-medium text-[#0a0c14] transition hover:bg-[#f5d090]"
-                  >
-                    {t("setup.importJson")}
-                  </button>
-                </div>
+                <p className="mt-5 text-sm text-white/38">{t("setup.sampleDescription")}</p>
 
                 <div className="space-y-2">
                   {sampleLibrary.map((sample) => {
@@ -212,10 +179,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
 
               {(importPreview || importErrors.length > 0 || status) && (
                 <section className="glass-panel rounded-[28px] px-5 py-5">
-                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#7fd1b9]/75">JSON</span>
-                    <span className="text-[11px] text-white/44">{t("setup.importStatus")}</span>
-                  </div>
+                  <p className="page-kicker mb-3">{t("setup.importStatus")}</p>
                   {status && <p className="mb-3 text-sm text-white/56">{status}</p>}
                   {importPreview && (
                     <div className="space-y-3">
@@ -246,10 +210,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
             </div>
 
             <section className="glass-panel sticky top-6 rounded-[28px] px-5 py-5 self-start">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-[#f1c27d]/65">03</span>
-                <span className="text-[11px] text-white/44">{t("setup.sceneSelection")}</span>
-              </div>
+              <p className="page-kicker mb-3">{t("setup.sceneSelection")}</p>
               <div className="space-y-2">
                 {play.scenes.map((scene) => {
                   const active = scene.id === currentScene?.id;
