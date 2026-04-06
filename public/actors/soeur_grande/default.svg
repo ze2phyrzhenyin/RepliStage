@@ -1,0 +1,174 @@
+<svg viewBox="0 0 160 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Dress: amber gold (overdone) -->
+    <radialGradient id="sg-dress" cx="45%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="#e8a830"/>
+      <stop offset="45%" stop-color="#c08010"/>
+      <stop offset="100%" stop-color="#7a4e08"/>
+    </radialGradient>
+    <!-- Bodice: richer gold -->
+    <linearGradient id="sg-bodice" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9a6010"/>
+      <stop offset="40%" stop-color="#d4940a"/>
+      <stop offset="100%" stop-color="#9a6010"/>
+    </linearGradient>
+    <!-- Skin: fair, powdered -->
+    <radialGradient id="sg-skin" cx="50%" cy="38%" r="58%">
+      <stop offset="0%" stop-color="#f8e4c8"/>
+      <stop offset="100%" stop-color="#e0c090"/>
+    </radialGradient>
+    <!-- Hair: dark brown, stiff -->
+    <radialGradient id="sg-hair" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#5a3818"/>
+      <stop offset="100%" stop-color="#281408"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Floor shadow -->
+  <ellipse cx="80" cy="298" rx="36" ry="4.5" fill="rgba(0,0,0,0.3)"/>
+
+  <!-- ── Legs (visible through dress hem) ── -->
+  <rect x="54" y="248" width="18" height="48" rx="7" fill="#7a4e08"/>
+  <rect x="88" y="248" width="18" height="48" rx="7" fill="#7a4e08"/>
+
+  <!-- ── Skirt (full, ostentatious) ── -->
+  <!-- Under-skirt layer (slightly darker, for depth) -->
+  <path d="M 36 155 Q 4 210 2 300 L 158 300 Q 156 210 124 155 Z" fill="#5e3e06"/>
+  <!-- Main skirt -->
+  <path d="M 40 155 Q 10 210 8 298 L 152 298 Q 150 210 120 155 Z" fill="url(#sg-dress)"/>
+  <!-- Ostentatious flounce rows -->
+  <!-- Third row up from bottom -->
+  <path d="M 12 240 Q 80 228 148 240 L 150 258 Q 80 244 10 258 Z" fill="#b87808" opacity="0.6"/>
+  <!-- Second row -->
+  <path d="M 8 260 Q 80 248 152 260 L 152 276 Q 80 262 8 276 Z" fill="#b87808" opacity="0.7"/>
+  <!-- Bottom row (widest) -->
+  <path d="M 6 278 Q 80 266 154 278 L 154 298 Q 80 282 6 298 Z" fill="#9a6408"/>
+  <!-- Gold ribbon trim on each flounce -->
+  <path d="M 10 258 Q 80 244 150 258" fill="none" stroke="#f0c030" stroke-width="1.5" opacity="0.55"/>
+  <path d="M 8 276 Q 80 262 152 276" fill="none" stroke="#f0c030" stroke-width="1.5" opacity="0.55"/>
+  <!-- Skirt highlight panel (center front) -->
+  <path d="M 72 155 Q 66 210 68 298 L 92 298 Q 94 210 88 155 Z" fill="rgba(255,200,80,0.06)"/>
+  <!-- Skirt fold shadows -->
+  <path d="M 52 160 Q 38 210 36 298 L 44 298 Q 44 210 56 162 Z" fill="rgba(0,0,0,0.12)"/>
+  <path d="M 108 160 Q 122 210 124 298 L 116 298 Q 116 210 104 162 Z" fill="rgba(0,0,0,0.12)"/>
+
+  <!-- ── Bodice ── -->
+  <path d="M 40 115 L 38 155 L 122 155 L 120 115 Q 80 104 40 115 Z" fill="url(#sg-bodice)"/>
+  <!-- Bodice center seam -->
+  <line x1="80" y1="104" x2="80" y2="155" stroke="rgba(0,0,0,0.2)" stroke-width="1.2"/>
+  <!-- Exaggerated off-shoulder line with ruffle -->
+  <path d="M 38 115 Q 80 102 122 115" fill="none" stroke="#d4a020" stroke-width="2.5"/>
+  <!-- Ruffle trim at neckline -->
+  <path d="M 38 115 Q 48 108 58 114 Q 68 108 78 114 Q 88 108 98 114 Q 108 108 118 114 Q 122 115 122 115" fill="none" stroke="#e8c040" stroke-width="2" opacity="0.6"/>
+  <!-- Bodice ornamental brooch center -->
+  <ellipse cx="80" cy="128" rx="6" ry="4" fill="#e0a020"/>
+  <ellipse cx="80" cy="128" rx="4" ry="2.5" fill="#f0c040"/>
+  <ellipse cx="80" cy="127.5" rx="1.5" ry="1" fill="rgba(255,240,200,0.6)"/>
+  <!-- Waist tightening -->
+  <path d="M 46 145 Q 80 138 114 145 L 116 155 Q 80 148 44 155 Z" fill="rgba(0,0,0,0.18)"/>
+
+  <!-- ── Left shoulder (bare, exaggerated) ── -->
+  <ellipse cx="40" cy="115" rx="16" ry="8" fill="#e0c090"/>
+  <!-- ── Right shoulder ── -->
+  <ellipse cx="120" cy="115" rx="16" ry="8" fill="#d8b880"/>
+
+  <!-- ── Left arm (hand on hip — imperious) ── -->
+  <path d="M 40 115 Q 22 135 22 165 Q 24 170 32 168 Q 30 140 46 120 Z" fill="#dcc090"/>
+  <!-- Left hand on hip -->
+  <path d="M 22 165 Q 18 178 24 186 Q 32 188 36 180 Q 32 170 32 166 Z" fill="#e8d4b0"/>
+  <!-- Fist/hand on hip position -->
+  <path d="M 36 180 Q 40 190 38 198 Q 30 200 26 192 Q 20 186 24 180 Z" fill="#e0c890"/>
+
+  <!-- ── Right arm (slightly away from body, languid gesture) ── -->
+  <path d="M 120 115 Q 136 132 136 162 Q 134 168 126 166 Q 128 140 114 120 Z" fill="#d8b880"/>
+  <!-- Right hand with long glove suggestion -->
+  <path d="M 136 162 Q 140 175 134 183 Q 126 186 122 176 Q 126 166 126 162 Z" fill="#e8d4b0"/>
+
+  <!-- ── Long opera gloves suggestion ── -->
+  <path d="M 22 165 L 22 200 Q 22 205 26 206 Q 30 206 32 202 L 36 168" fill="#f0e0b8" opacity="0.4"/>
+  <path d="M 126 166 L 138 198 Q 138 204 134 205 Q 130 205 128 200 L 126 166" fill="#f0e0b8" opacity="0.4"/>
+
+  <!-- ── Neck ── -->
+  <rect x="72" y="96" width="16" height="20" rx="6" fill="url(#sg-skin)"/>
+
+  <!-- ── Hair (back volume, piled high — absurdly so) ── -->
+  <ellipse cx="80" cy="50" rx="36" ry="42" fill="#201008"/>
+  <!-- Main hair mass (towering updo) -->
+  <ellipse cx="80" cy="18" rx="24" ry="20" fill="url(#sg-hair)"/>
+  <!-- Left side -->
+  <ellipse cx="54" cy="52" rx="12" ry="20" fill="#341c0a"/>
+  <!-- Right side -->
+  <ellipse cx="106" cy="52" rx="12" ry="20" fill="#341c0a"/>
+  <!-- Tower of hair on top -->
+  <ellipse cx="80" cy="8" rx="16" ry="12" fill="#4a2810"/>
+  <!-- Ridiculous hair tower even higher -->
+  <ellipse cx="80" cy="-2" rx="10" ry="8" fill="#3a1e08"/>
+  <!-- Hair ostrich feather (garish accessory) -->
+  <path d="M 96 4 Q 106 -8 102 -18 Q 94 -22 88 -12 Q 92 -4 96 4" fill="#d4a020" opacity="0.75"/>
+  <path d="M 98 2 Q 112 -6 110 -16 Q 102 -20 96 -10 Q 98 -4 98 2" fill="#e8b828" opacity="0.65"/>
+  <path d="M 96 4 Q 110 6 114 -2 Q 110 -14 100 -8 Q 100 -2 96 4" fill="#c89018" opacity="0.5"/>
+  <!-- Feather stem -->
+  <line x1="96" y1="4" x2="92" y2="20" stroke="#9a7010" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ── Head ── -->
+  <ellipse cx="80" cy="56" rx="25" ry="27" fill="url(#sg-skin)"/>
+  <!-- Angular jaw (not soft) -->
+  <path d="M 57 68 Q 68 88 80 89 Q 92 88 103 68" fill="url(#sg-skin)"/>
+  <!-- Powdered look: slight highlight on nose/brow -->
+  <ellipse cx="80" cy="52" rx="8" ry="5" fill="rgba(255,240,210,0.18)"/>
+
+  <!-- ── Hair front layer ── -->
+  <!-- Left temple (tight curl waves) -->
+  <path d="M 56 40 Q 46 52 48 70 Q 52 78 60 72 Q 50 60 58 48 Z" fill="#3a1c08"/>
+  <!-- Right temple -->
+  <path d="M 104 40 Q 114 52 112 70 Q 108 78 100 72 Q 110 60 102 48 Z" fill="#3a1c08"/>
+  <!-- Formal curl details -->
+  <path d="M 52 54 Q 48 60 50 66 Q 54 70 58 65 Q 54 58 52 54" fill="#2a1408"/>
+  <path d="M 108 54 Q 112 60 110 66 Q 106 70 102 65 Q 106 58 108 54" fill="#2a1408"/>
+
+  <!-- ── Eyes (haughty, heavily made up) ── -->
+  <!-- Left eye -->
+  <ellipse cx="67" cy="54" rx="9" ry="6" fill="white"/>
+  <ellipse cx="67" cy="55" rx="5" ry="4.5" fill="#5a3810"/>
+  <ellipse cx="67" cy="55" rx="3" ry="3" fill="#1a0e04"/>
+  <ellipse cx="69" cy="53.5" rx="1.4" ry="1.2" fill="rgba(255,255,255,0.65)"/>
+  <!-- Heavy kohl lid line -->
+  <path d="M 58 51 Q 67 46 76 51" fill="none" stroke="#1a0a02" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- Wing liner (overdone) -->
+  <path d="M 58 51 L 54 47" stroke="#1a0a02" stroke-width="2" stroke-linecap="round"/>
+  <!-- Haughty arched eyebrow (very high) -->
+  <path d="M 57 44 Q 67 38 76 42" fill="none" stroke="#3a2010" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- Lower lid dark line -->
+  <path d="M 59 58 Q 67 61 75 58" fill="none" stroke="rgba(80,40,20,0.4)" stroke-width="1.2"/>
+
+  <!-- Right eye -->
+  <ellipse cx="93" cy="54" rx="9" ry="6" fill="white"/>
+  <ellipse cx="93" cy="55" rx="5" ry="4.5" fill="#5a3810"/>
+  <ellipse cx="93" cy="55" rx="3" ry="3" fill="#1a0e04"/>
+  <ellipse cx="95" cy="53.5" rx="1.4" ry="1.2" fill="rgba(255,255,255,0.65)"/>
+  <path d="M 84 51 Q 93 46 102 51" fill="none" stroke="#1a0a02" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M 102 51 L 106 47" stroke="#1a0a02" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 84 44 Q 93 38 103 42" fill="none" stroke="#3a2010" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M 85 58 Q 93 61 101 58" fill="none" stroke="rgba(80,40,20,0.4)" stroke-width="1.2"/>
+
+  <!-- ── Nose (sharp, slightly pinched — supercilious) ── -->
+  <path d="M 79 60 Q 77 66 78 70 Q 80 72 82 70 Q 83 66 81 60" fill="none" stroke="rgba(160,90,60,0.22)" stroke-width="1.4" stroke-linecap="round"/>
+  <ellipse cx="77.5" cy="70" rx="2.2" ry="1.5" fill="rgba(160,90,60,0.14)"/>
+  <ellipse cx="82.5" cy="70" rx="2.2" ry="1.5" fill="rgba(160,90,60,0.14)"/>
+
+  <!-- ── Mouth (thin-lipped, pursed with disdain) ── -->
+  <path d="M 70 77 Q 76 74 80 75 Q 84 74 90 77 Q 84 79 80 78 Q 76 79 70 77 Z" fill="#c07060"/>
+  <path d="M 70 77 Q 80 81 90 77 Q 84 79 80 78 Q 76 79 70 77 Z" fill="#d08070"/>
+  <path d="M 70 77 Q 80 75 90 77" fill="none" stroke="#a05848" stroke-width="1"/>
+  <!-- Disdainful corner droop (slight sneer) -->
+  <path d="M 70 77 Q 68 79 69 81" fill="none" stroke="#a05848" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Garish necklace -->
+  <path d="M 54 108 Q 80 114 106 108" fill="none" stroke="#d4a020" stroke-width="2" opacity="0.6"/>
+  <circle cx="60" cy="109" r="3.5" fill="#e8b830"/>
+  <circle cx="70" cy="111" r="3.5" fill="#d4a020"/>
+  <circle cx="80" cy="113" r="4" fill="#e8b830"/>
+  <circle cx="90" cy="111" r="3.5" fill="#d4a020"/>
+  <circle cx="100" cy="109" r="3.5" fill="#e8b830"/>
+  <ellipse cx="80" cy="112.5" rx="1.8" ry="1.4" fill="rgba(255,240,180,0.6)"/>
+</svg>

@@ -1,0 +1,796 @@
+{
+  "id": "cinderella",
+  "title": "Cendrillon",
+  "scenes": [
+    {
+      "id": "scene-9-maison-en-verre",
+      "title": "SCÈNE 9",
+      "subtitle": "Dans la maison en verre de la belle-mère de la très jeune fille.",
+      "setting": "大玻璃房中央是一张椅子，右侧是内厅，左上方是门口，右下方是清洁区。继母崩溃地坐着，大姐绕着她焦躁踱步，随后小妹、国王、卫兵与很年轻的女孩先后进入。",
+      "stage": {
+        "width": 920,
+        "height": 520,
+        "doorX": 160,
+        "doorY": 98,
+        "chairX": 460,
+        "chairY": 348
+      },
+      "actors": [
+        {
+          "id": "belle_mere",
+          "name": "继母",
+          "color": "#f08c78",
+          "shortLabel": "BM"
+        },
+        {
+          "id": "soeur_grande",
+          "name": "大姐",
+          "color": "#ffcb6b",
+          "shortLabel": "SG"
+        },
+        {
+          "id": "soeur_petite",
+          "name": "小妹",
+          "color": "#7fd1b9",
+          "shortLabel": "SP"
+        },
+        {
+          "id": "roi",
+          "name": "国王",
+          "color": "#7ea6ff",
+          "shortLabel": "ROI"
+        },
+        {
+          "id": "garde_1",
+          "name": "卫兵一",
+          "color": "#95a0b8",
+          "shortLabel": "G1"
+        },
+        {
+          "id": "garde_2",
+          "name": "卫兵二",
+          "color": "#7b879f",
+          "shortLabel": "G2"
+        },
+        {
+          "id": "tres_jeune_fille",
+          "name": "很年轻的女孩",
+          "color": "#f3e2c7",
+          "shortLabel": "TJF"
+        }
+      ],
+      "events": [
+        {
+          "id": "e1",
+          "type": "blackout_start",
+          "duration": 1.4
+        },
+        {
+          "id": "e2",
+          "type": "action",
+          "duration": 2.2,
+          "text": "旁白：第二天，在未来继母那座巨大的玻璃房里，危机彻底爆发了。"
+        },
+        {
+          "id": "e3",
+          "type": "blackout_end",
+          "duration": 0.6
+        },
+        {
+          "id": "e4",
+          "type": "enter",
+          "actorId": "belle_mere",
+          "duration": 1.1,
+          "x": 460,
+          "y": 348,
+          "fromSide": "left"
+        },
+        {
+          "id": "e5",
+          "type": "enter",
+          "actorId": "soeur_grande",
+          "duration": 1,
+          "x": 500,
+          "y": 292,
+          "fromSide": "right"
+        },
+        {
+          "id": "e6",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 1.8,
+          "text": "继母瘫坐在椅子上，神情恍惚；大姐围着她焦躁踱步。"
+        },
+        {
+          "id": "e7",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 6.8,
+          "text": "Moi, il me semble qu'en partant quelqu'un m'a bousculée ou bien pire j'ai bousculé quelqu'un… Un enfant, un jeune homme avec un air ahuri. J'espère que ce n'était pas quelqu'un d'important… Je préfère pas y penser. Manquerait plus que ça… Que ce soit quelqu'un d'important…"
+        },
+        {
+          "id": "e8",
+          "type": "move",
+          "actorId": "soeur_grande",
+          "duration": 0.9,
+          "x": 555,
+          "y": 318
+        },
+        {
+          "id": "e9",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.8,
+          "text": "Tu n'es quand même pas \"rentrée\" dans le prince ?"
+        },
+        {
+          "id": "e10",
+          "type": "pause",
+          "duration": 0.9
+        },
+        {
+          "id": "e11",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 1.2,
+          "text": "继母猛地从椅子上站起来，怒火骤然爆发。"
+        },
+        {
+          "id": "e12",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 5.6,
+          "text": "Qu'est-ce que tu viens de dire idiote ! Ne me parle plus jamais comme tu viens de le faire, tu entends ?! Je t'interdis de me parler comme ça ! Jamais tu me reparles comme ça de toute ta vie, tu entends ?"
+        },
+        {
+          "id": "e13",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.4,
+          "text": "Mais c'est toi qui viens de me dire que…"
+        },
+        {
+          "id": "e14",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 7,
+          "text": "Fais bien attention à toi ! Vraiment ! Je pourrais devenir méchante, je pourrais te faire très mal ! Je pourrais tous vous écraser même ! Je pourrais vous anéantir ! Tu comprends ça ? C'est à cause de vous que tout est fichu, que tout est foutu, que tout est cassé !"
+        },
+        {
+          "id": "e15",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 5.6,
+          "text": "Nous avions un espoir dans la vie, un petit espoir de vie nouvelle, de vie différente. Et vous l'avez gâché ! Vous l'avez gâché, vous l'avez cassé. Et maintenant, tout est cassé, tout est foutu !"
+        },
+        {
+          "id": "e16",
+          "type": "enter",
+          "actorId": "soeur_petite",
+          "duration": 1,
+          "x": 676,
+          "y": 344,
+          "fromSide": "right"
+        },
+        {
+          "id": "e17",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1.4,
+          "text": "Maman."
+        },
+        {
+          "id": "e18",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.8,
+          "text": "Quoi, espèce de triste nouille ?"
+        },
+        {
+          "id": "e19",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2.8,
+          "text": "Maman, y a quelqu'un qui est là, à la porte…"
+        },
+        {
+          "id": "e20",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.8,
+          "text": "Qu'est-ce qu'on s'en fout de qui est là, à la porte ?!"
+        },
+        {
+          "id": "e21",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2,
+          "text": "Ben, c'est quelqu'un qui…"
+        },
+        {
+          "id": "e22",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 3.6,
+          "text": "T'as que ça à foutre de ta vie toi, de traîner près de la porte ? En attendant que quelqu'un vienne nous emmerder ?"
+        },
+        {
+          "id": "e23",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2,
+          "text": "Maman, il prétend que…"
+        },
+        {
+          "id": "e24",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.4,
+          "text": "Et tu vois pas qu'on s'en fout de ce qu'il prétend ?"
+        },
+        {
+          "id": "e25",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 4.4,
+          "text": "Il dit qu'il est le roi et qu'il voudrait te parler… En plus, il lui ressemble comme sur les photos."
+        },
+        {
+          "id": "e26",
+          "type": "pause",
+          "duration": 1
+        },
+        {
+          "id": "e27",
+          "type": "action",
+          "duration": 1.6,
+          "text": "继母与大姐同时僵住，目光猛地转向门口；空气像被抽空了一样。"
+        },
+        {
+          "id": "e28",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 5.4,
+          "text": "Mais qu'est-ce qui se passe ? Qu'est-ce qui nous arrive ? Qu'est-ce qu'on a fait ? Ça va donc jamais s'arrêter ? Mon Dieu, est-ce le cauchemar qui continue ? Ou bien au contraire une éclaircie inattendue ?"
+        },
+        {
+          "id": "e29",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2.6,
+          "text": "Qu'est-ce que je fais concrètement maman ?"
+        },
+        {
+          "id": "e30",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2,
+          "text": "Je sais pas, je sais plus, je suis perdue."
+        },
+        {
+          "id": "e31",
+          "type": "enter",
+          "actorId": "roi",
+          "duration": 1.2,
+          "x": 220,
+          "y": 200,
+          "fromSide": "left"
+        },
+        {
+          "id": "e31b",
+          "type": "move",
+          "actorId": "roi",
+          "duration": 1.4,
+          "x": 325,
+          "y": 384
+        },
+        {
+          "id": "e32",
+          "type": "enter",
+          "actorId": "garde_1",
+          "duration": 1,
+          "x": 155,
+          "y": 235,
+          "fromSide": "left"
+        },
+        {
+          "id": "e33",
+          "type": "enter",
+          "actorId": "garde_2",
+          "duration": 1,
+          "x": 255,
+          "y": 230,
+          "fromSide": "left"
+        },
+        {
+          "id": "e34",
+          "type": "action",
+          "duration": 1.4,
+          "text": "国王带着两名卫兵直接穿过门口，步伐急促但仪态庄重。"
+        },
+        {
+          "id": "e35",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 6.8,
+          "text": "Pardonnez-moi mesdames, je me permets de forcer la porte de votre magnifique et originale demeure, et de pénétrer en toute simplicité chez vous, je suis assez pressé, je ne veux surtout pas vous déranger très longtemps."
+        },
+        {
+          "id": "e36",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.2,
+          "text": "Majesté."
+        },
+        {
+          "id": "e37",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 1.4,
+          "text": "Appelez-moi Jean-Philippe."
+        },
+        {
+          "id": "e38",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.2,
+          "text": "Je vous en prie Monseigneur, vous êtes ici chez vous."
+        },
+        {
+          "id": "e39",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 5.2,
+          "text": "Restez assise… Pardonnez ma visite inopinée mais je crois d'après mes renseignements que vous faisiez partie de la liste des invités de la soirée que j'ai donnée hier en l'honneur de mon fils."
+        },
+        {
+          "id": "e40",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.6,
+          "text": "Absolument. On en parlait justement, c'était une fantastique soirée."
+        },
+        {
+          "id": "e41",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 6.4,
+          "text": "D'autant plus fantastique qu'il s'est passé pour moi un événement assez considérable : mon fils a rencontré une personne inconnue et a manifesté de l'intérêt pour elle…"
+        },
+        {
+          "id": "e42",
+          "type": "action",
+          "duration": 1,
+          "text": "继母、大姐和小妹几乎同时前倾，呼吸一滞。"
+        },
+        {
+          "id": "e43",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "e44",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 4.6,
+          "text": "Oui, et ce n'est pas banal, croyez-moi. C'est la première fois que mon fils manifeste de l'intérêt pour une personne, pardonnez ce détail intime, autre que sa mère."
+        },
+        {
+          "id": "e45",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "e46",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 6.6,
+          "text": "Cet événement est tout sauf banal. Mon fils a une histoire particulière un peu triste. Je voudrais absolument retrouver cette personne inconnue et donner une chance à mon fils de la croiser à nouveau. Je vais donc organiser une deuxième soirée d'ici deux semaines et tout faire pour que cette personne puisse être présente."
+        },
+        {
+          "id": "e47",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 772,
+          "y": 404,
+          "fromSide": "right"
+        },
+        {
+          "id": "e48",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.6,
+          "text": "很年轻的女孩抱着吸尘器从清洁区挤进来，神情疲惫却直率。"
+        },
+        {
+          "id": "e49",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 3,
+          "text": "Si vous pouviez m'aider à l'identifier ou tout du moins m'aider à la prévenir."
+        },
+        {
+          "id": "e50",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.4,
+          "text": "Pardon c'est quand que vous aurez fini de discuter, je dois passer un coup d'aspirateur ?"
+        },
+        {
+          "id": "e51",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 2.2,
+          "text": "Personnellement, je n'en ai pas pour très longtemps."
+        },
+        {
+          "id": "e52",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.2,
+          "text": "À moins que vous puissiez aller discuter ailleurs parce que j'ai encore beaucoup à faire ensuite et il est déjà tard."
+        },
+        {
+          "id": "e53",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 3.6,
+          "text": "Non mais dis donc, vous voyez pas qu'on est occupés. Excusez-nous Sire, c'est la femme d'entretien."
+        },
+        {
+          "id": "e54",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 1.4,
+          "text": "Elle est bien jeune."
+        },
+        {
+          "id": "e55",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 3.4,
+          "text": "Elle fait jeune mais elle a son âge vous savez ! Elle adore son travail."
+        },
+        {
+          "id": "e56",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.4,
+          "text": "Bon ben, j'attends."
+        },
+        {
+          "id": "e57",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 5.4,
+          "text": "Alors voilà je vous ai presque tout dit. Ce sont des petits détails que j'ai pu glaner avec peine. Mon fils n'est pas très bavard. Cette jeune femme portait sur elle, d'après lui, une très jolie robe crème."
+        },
+        {
+          "id": "e58",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.8,
+          "text": "Une jolie robe crème… ah oui…"
+        },
+        {
+          "id": "e59",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2,
+          "text": "Elle était pas crème ta robe maman ?"
+        },
+        {
+          "id": "e60",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 5,
+          "text": "Mon fils, qui n'a pas parlé avec elle très longtemps, m'a dit que cette personne, pardonnez-moi l'expression, lui était tout d'abord \"rentrée dedans\"."
+        },
+        {
+          "id": "e61",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1,
+          "text": "Ah ?"
+        },
+        {
+          "id": "e62",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.2,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "e63",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 5.2,
+          "text": "Oui, leur rencontre a été très rapide. Cette jeune personne était très pressée et elle lui est tout d'abord \"rentrée dedans\"… comme il dit. Ce sont des indices assez maigres, j'en conviens. D'autant que mon fils n'a pas eu le temps de bien graver dans sa mémoire le visage de cette jeune personne. Il était très ému m'a-t-il dit."
+        },
+        {
+          "id": "e64",
+          "type": "pause",
+          "duration": 1
+        },
+        {
+          "id": "e65",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 1.5,
+          "text": "继母坐回椅子里，忽然镇定下来，像抓住了某个危险而诱人的机会。"
+        },
+        {
+          "id": "e66",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 4,
+          "text": "Hé bien, je crois Monseigneur… qu'il est possible que je puisse vous venir en aide…"
+        },
+        {
+          "id": "e67",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 1,
+          "text": "Ah bon."
+        },
+        {
+          "id": "e68",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "e69",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 4.8,
+          "text": "Oui, je crois que j'ai une petite idée quant à l'identité de cette personne… Oui, je crois que je connais même assez bien cette personne, c'est drôle, je n'avais pas immédiatement pensé à elle… mais après réflexion…"
+        },
+        {
+          "id": "e70",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1.6,
+          "text": "C'est qui ?"
+        },
+        {
+          "id": "e71",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 3.6,
+          "text": "Ah, ce serait formidable ! Et vous auriez les moyens de la prévenir de cette deuxième soirée que je compte organiser pour elle ?"
+        },
+        {
+          "id": "e72",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 3,
+          "text": "Mais absolument et je saurai la convaincre d'y assister je crois."
+        },
+        {
+          "id": "e73",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 1.2,
+          "text": "C'est formidable."
+        },
+        {
+          "id": "e74",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1.6,
+          "text": "Mais c'est qui ?"
+        },
+        {
+          "id": "e75",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.4,
+          "text": "Je crois préférable, mes enfants, de préserver son anonymat."
+        },
+        {
+          "id": "e76",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 8,
+          "text": "Je suis tout à fait d'accord. D'ailleurs, mon fils ne doit pas être au courant de ma démarche. Comme vous le savez évidemment, sa mère est morte quand il avait cinq ans. Depuis ce jour, pour lui épargner une trop grande souffrance, je lui raconte que sa mère est partie en voyage et qu'elle a du mal à rentrer à cause d'incessantes grèves des transports."
+        },
+        {
+          "id": "e77",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 4.8,
+          "text": "Mais chaque soir, je dois trouver un nouveau mensonge pour justifier qu'elle ne l'appelle pas et ça c'est terrible."
+        },
+        {
+          "id": "e78",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 3.6,
+          "text": "Terrible en effet… pauvre enfant. Il attend sa mère chaque jour qui passe."
+        },
+        {
+          "id": "e79",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 1.6,
+          "text": "Vous aimez les enfants on dirait ?"
+        },
+        {
+          "id": "e80",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.6,
+          "text": "Oh oui, je les adore."
+        },
+        {
+          "id": "e81",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 3.6,
+          "text": "Vous comprenez que j'ai été fou de joie en apprenant qu'il s'intéressait enfin à quelqu'un d'autre que sa mère."
+        },
+        {
+          "id": "e82",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 3.4,
+          "text": "La mère de votre fils est morte ? Et il le sait pas ?"
+        },
+        {
+          "id": "e83",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.6,
+          "text": "De quoi elle se mêle, elle ?"
+        },
+        {
+          "id": "e84",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 1.4,
+          "text": "Non, mon enfant…"
+        },
+        {
+          "id": "e85",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.2,
+          "text": "Excusez-la, vraiment, elle ne sait pas ce qu'elle dit."
+        },
+        {
+          "id": "e86",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 5.8,
+          "text": "Ce n'est rien madame. Après ces magnifiques perspectives, je suis dans une humeur incroyable. Je vais prendre congé de vous et je compte sur vous… Je compte sur vous."
+        },
+        {
+          "id": "e87",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1,
+          "text": "Vous pouvez."
+        },
+        {
+          "id": "e88",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 3.2,
+          "text": "Au revoir madame, au revoir mesdemoiselles, croyez dès à présent en mon infinie reconnaissance."
+        },
+        {
+          "id": "e89",
+          "type": "action",
+          "duration": 1.2,
+          "text": "继母和两姐妹低头送别，卫兵同时转身准备离开。"
+        },
+        {
+          "id": "e90",
+          "type": "exit",
+          "actorId": "roi",
+          "duration": 0.9,
+          "toSide": "top"
+        },
+        {
+          "id": "e91",
+          "type": "exit",
+          "actorId": "garde_1",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "e92",
+          "type": "exit",
+          "actorId": "garde_2",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "e93",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1.6,
+          "text": "C'est dingue ça !"
+        },
+        {
+          "id": "e94",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2,
+          "text": "Mais c'est qui cette personne ?"
+        },
+        {
+          "id": "e95",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 1.6,
+          "text": "继母什么也不回答，只带着神秘而危险的沉默起身离开。"
+        },
+        {
+          "id": "e96",
+          "type": "move",
+          "actorId": "belle_mere",
+          "duration": 1,
+          "x": 610,
+          "y": 182
+        },
+        {
+          "id": "e97",
+          "type": "exit",
+          "actorId": "belle_mere",
+          "duration": 0.9,
+          "toSide": "top"
+        },
+        {
+          "id": "e98",
+          "type": "move",
+          "actorId": "soeur_grande",
+          "duration": 0.9,
+          "x": 560,
+          "y": 226
+        },
+        {
+          "id": "e99",
+          "type": "move",
+          "actorId": "soeur_petite",
+          "duration": 0.9,
+          "x": 662,
+          "y": 250
+        },
+        {
+          "id": "e100",
+          "type": "exit",
+          "actorId": "soeur_grande",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "e101",
+          "type": "exit",
+          "actorId": "soeur_petite",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "e102",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 2,
+          "text": "所有人离开后，很年轻的女孩仍独自站着，手里握着吸尘器，像突然被世界遗忘。"
+        },
+        {
+          "id": "e103",
+          "type": "scene_end",
+          "duration": 0.8
+        }
+      ]
+    }
+  ]
+}

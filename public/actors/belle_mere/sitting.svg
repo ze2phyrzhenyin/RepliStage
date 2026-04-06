@@ -1,0 +1,226 @@
+<svg viewBox="0 0 160 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Same palette as standing belle_mere -->
+    <radialGradient id="bms-skirt" cx="50%" cy="30%" r="68%">
+      <stop offset="0%" stop-color="#c45878"/>
+      <stop offset="45%" stop-color="#9a3858"/>
+      <stop offset="100%" stop-color="#5e1f38"/>
+    </radialGradient>
+    <linearGradient id="bms-bodice" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7a2840"/>
+      <stop offset="40%" stop-color="#b04868"/>
+      <stop offset="100%" stop-color="#7a2840"/>
+    </linearGradient>
+    <radialGradient id="bms-skin" cx="50%" cy="38%" r="62%">
+      <stop offset="0%" stop-color="#f5d2b2"/>
+      <stop offset="100%" stop-color="#d8aa88"/>
+    </radialGradient>
+    <radialGradient id="bms-hair" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#7a3020"/>
+      <stop offset="100%" stop-color="#2e0e08"/>
+    </radialGradient>
+    <linearGradient id="bms-neck" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ecc8a0"/>
+      <stop offset="100%" stop-color="#d8aa84"/>
+    </linearGradient>
+    <!-- Lap/skirt spreading sideways -->
+    <radialGradient id="bms-lap" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#b04868"/>
+      <stop offset="100%" stop-color="#5e1f38"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Floor shadow (slightly wider when seated, dress spreads more) -->
+  <ellipse cx="80" cy="298" rx="50" ry="5" fill="rgba(0,0,0,0.3)"/>
+
+  <!-- ══════════════════════════════════════
+       HAIR — back volume
+       ══════════════════════════════════════ -->
+  <ellipse cx="80" cy="44" rx="40" ry="44" fill="#2e1008"/>
+  <ellipse cx="80" cy="12" rx="26" ry="22" fill="url(#bms-hair)"/>
+  <path d="M 44 38 Q 34 54 38 78 Q 44 84 50 74 Q 42 58 48 42 Z" fill="#3a1810"/>
+  <path d="M 116 38 Q 126 54 122 78 Q 116 84 110 74 Q 118 58 112 42 Z" fill="#3a1810"/>
+
+  <!-- ══════════════════════════════════════
+       SEATED SKIRT — spreads wide at sides
+       ══════════════════════════════════════
+       When sitting, the skirt billows outward
+       to the sides and pools at the front.
+       ══════════════════════════════════════ -->
+  <!-- Side spread (left) -->
+  <path d="M 38 165 Q 4 175 2 240 Q 6 270 20 290 L 44 280 Q 28 258 30 226 Q 32 200 44 172 Z" fill="url(#bms-skirt)"/>
+  <!-- Side spread (right) -->
+  <path d="M 122 165 Q 156 175 158 240 Q 154 270 140 290 L 116 280 Q 132 258 130 226 Q 128 200 116 172 Z" fill="url(#bms-skirt)"/>
+  <!-- Front skirt — falls from lap/knees to floor -->
+  <path d="M 44 195 Q 20 230 16 298 L 144 298 Q 140 230 116 195 Q 80 200 44 195 Z" fill="url(#bms-skirt)"/>
+  <!-- Lap skirt surface (horizontal top) -->
+  <path d="M 38 165 Q 80 180 122 165 Q 80 192 38 165 Z" fill="url(#bms-lap)"/>
+  <!-- Fold shadows on skirt -->
+  <path d="M 50 178 Q 34 220 30 298 L 46 298 Q 42 220 56 180 Z" fill="rgba(0,0,0,0.15)"/>
+  <path d="M 110 178 Q 126 220 130 298 L 114 298 Q 118 220 104 180 Z" fill="rgba(0,0,0,0.15)"/>
+  <path d="M 64 190 Q 54 232 52 298 L 60 298 Q 60 232 68 192 Z" fill="rgba(0,0,0,0.07)"/>
+  <path d="M 96 190 Q 106 232 108 298 L 100 298 Q 100 232 92 192 Z" fill="rgba(0,0,0,0.07)"/>
+  <!-- Skirt trim / flounce at hem -->
+  <path d="M 16 280 Q 80 268 144 280 L 144 298 Q 80 284 16 298 Z" fill="#6e2040"/>
+  <path d="M 20 264 Q 80 252 140 264 L 141 275 Q 80 260 19 275 Z" fill="rgba(180,80,110,0.3)"/>
+  <path d="M 16 280 Q 80 268 144 280" fill="none" stroke="rgba(255,220,200,0.16)" stroke-width="1.5" stroke-dasharray="4,5"/>
+  <!-- Center highlight -->
+  <path d="M 74 190 Q 70 235 72 298 L 88 298 Q 90 235 86 190 Z" fill="rgba(255,255,255,0.06)"/>
+
+  <!-- ══════════════════════════════════════
+       BODICE (same as standing)
+       ══════════════════════════════════════ -->
+  <path d="M 40 105 L 38 165 L 122 165 L 120 105 Q 80 93 40 105 Z" fill="url(#bms-bodice)"/>
+  <line x1="80" y1="93" x2="80" y2="165" stroke="rgba(0,0,0,0.18)" stroke-width="1.2"/>
+  <path d="M 46 153 Q 80 146 114 153 L 116 165 Q 80 158 44 165 Z" fill="rgba(0,0,0,0.2)"/>
+  <path d="M 58 105 Q 80 97 102 105 L 100 123 Q 80 115 60 123 Z" fill="rgba(255,255,255,0.09)"/>
+  <path d="M 40 105 Q 80 93 120 105" fill="none" stroke="#d8a8b0" stroke-width="2"/>
+  <path d="M 40 105 Q 80 95 120 105" fill="none" stroke="rgba(255,240,225,0.25)" stroke-width="3.5" stroke-dasharray="3,4"/>
+
+  <!-- ══════════════════════════════════════
+       SHOULDERS / ARMS (seated position)
+       Arms rest more toward lap / sides
+       ══════════════════════════════════════ -->
+  <!-- Left shoulder -->
+  <ellipse cx="38" cy="105" rx="14" ry="7" fill="#e4b898"/>
+  <!-- Right shoulder -->
+  <ellipse cx="122" cy="105" rx="14" ry="7" fill="#d8aa88"/>
+
+  <!-- Left arm — resting on lap, fan closed in hand -->
+  <path d="M 38 105 Q 24 120 26 152 Q 28 165 40 170 Q 44 158 38 130 Q 44 110 46 108 Z" fill="#e0b090"/>
+  <!-- Left gloved hand in lap (holding closed fan) -->
+  <path d="M 26 152 Q 22 165 34 175 Q 44 178 46 168 Q 42 158 42 152 Z" fill="#f2e4d4"/>
+  <!-- Fan (closed, resting in lap) -->
+  <rect x="28" y="162" width="18" height="28" rx="3"
+    fill="#c8a8b0" opacity="0.75" transform="rotate(-30 37 176)"/>
+  <path d="M 26 158 L 22 182" stroke="#9a7880" stroke-width="1" opacity="0.6"/>
+  <path d="M 29 156 L 25 180" stroke="#9a7880" stroke-width="1" opacity="0.6"/>
+  <path d="M 32 154 L 29 178" stroke="#9a7880" stroke-width="1" opacity="0.6"/>
+  <path d="M 35 153 L 33 177" stroke="#9a7880" stroke-width="0.8" opacity="0.5"/>
+  <!-- Fan spine detail -->
+  <line x1="24" y1="185" x2="24" y2="192" stroke="#7a6848" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Right arm — elbow on arm rest, hand raised slightly — imperious seated posture -->
+  <path d="M 122 105 Q 135 118 136 148 Q 134 162 122 166 Q 122 145 116 118 Z" fill="#d8aa88"/>
+  <!-- Right hand — slightly raised gesture (she gestures while talking even seated) -->
+  <path d="M 136 148 Q 140 160 132 168 Q 124 170 122 162 Q 126 154 126 148 Z" fill="#f2e4d4"/>
+  <!-- Finger suggestion on right hand -->
+  <path d="M 132 164 L 134 170" stroke="#d8b898" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M 128 166 L 130 172" stroke="#d8b898" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- ══════════════════════════════════════
+       NECK & DÉCOLLETÉ
+       ══════════════════════════════════════ -->
+  <rect x="71" y="83" width="18" height="24" rx="7" fill="url(#bms-neck)"/>
+  <ellipse cx="80" cy="105" rx="22" ry="6" fill="rgba(60,10,20,0.14)"/>
+
+  <!-- ══════════════════════════════════════
+       FACE (identical to standing)
+       ══════════════════════════════════════ -->
+  <ellipse cx="80" cy="60" rx="27" ry="30" fill="url(#bms-skin)"/>
+  <path d="M 55 68 Q 68 88 80 89 Q 92 88 105 68" fill="url(#bms-skin)"/>
+  <ellipse cx="62" cy="66" rx="8" ry="5" fill="rgba(180,100,80,0.1)"/>
+  <ellipse cx="98" cy="66" rx="8" ry="5" fill="rgba(180,100,80,0.1)"/>
+  <ellipse cx="65" cy="64" rx="7" ry="4" fill="rgba(220,120,100,0.12)"/>
+  <ellipse cx="95" cy="64" rx="7" ry="4" fill="rgba(220,120,100,0.12)"/>
+
+  <!-- Left eye -->
+  <ellipse cx="69" cy="56" rx="8" ry="5" fill="white"/>
+  <ellipse cx="69" cy="57" rx="4.5" ry="4" fill="#2a4820"/>
+  <ellipse cx="69" cy="57" rx="2.8" ry="2.8" fill="#0e1808"/>
+  <ellipse cx="71" cy="55.5" rx="1.2" ry="1.1" fill="rgba(255,255,255,0.75)"/>
+  <path d="M 61 54 Q 69 50 77 54" fill="none" stroke="#3a1808" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M 62 58 Q 69 60 76 58" fill="none" stroke="rgba(120,60,40,0.35)" stroke-width="0.8"/>
+  <path d="M 62 53 L 60 49" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 65 51.5 L 64 47" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 69 50.5 L 69 46" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 73 51.5 L 74 47" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 76 53 L 78 49.5" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 60 47 Q 68 41 77 45" fill="none" stroke="#4a2010" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Right eye -->
+  <ellipse cx="91" cy="56" rx="8" ry="5" fill="white"/>
+  <ellipse cx="91" cy="57" rx="4.5" ry="4" fill="#2a4820"/>
+  <ellipse cx="91" cy="57" rx="2.8" ry="2.8" fill="#0e1808"/>
+  <ellipse cx="93" cy="55.5" rx="1.2" ry="1.1" fill="rgba(255,255,255,0.75)"/>
+  <path d="M 83 54 Q 91 50 99 54" fill="none" stroke="#3a1808" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M 84 58 Q 91 60 98 58" fill="none" stroke="rgba(120,60,40,0.35)" stroke-width="0.8"/>
+  <path d="M 84 53 L 82 49" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 87 51.5 L 86 47" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 91 50.5 L 91 46" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 95 51.5 L 96 47" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 98 53 L 100 49.5" stroke="#2a1008" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 83 47 Q 91 41 100 45" fill="none" stroke="#4a2010" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <path d="M 78 60 Q 76 66 77 70 Q 80 73 83 70 Q 84 66 82 60" fill="none" stroke="rgba(160,90,70,0.28)" stroke-width="1.4" stroke-linecap="round"/>
+  <ellipse cx="76.5" cy="70" rx="2.2" ry="1.4" fill="rgba(160,90,70,0.15)"/>
+  <ellipse cx="83.5" cy="70" rx="2.2" ry="1.4" fill="rgba(160,90,70,0.15)"/>
+
+  <!-- Mouth -->
+  <path d="M 70 77 Q 76 74 80 76 Q 84 74 90 77 Q 84 79 80 78 Q 76 79 70 77 Z" fill="#c06880"/>
+  <path d="M 70 77 Q 80 82 90 77 Q 84 79 80 78 Q 76 79 70 77 Z" fill="#d07890"/>
+  <path d="M 70 77 Q 80 75 90 77" fill="none" stroke="#a85068" stroke-width="1"/>
+  <ellipse cx="80" cy="78" rx="5" ry="1.5" fill="rgba(255,210,200,0.3)"/>
+  <path d="M 89 77 Q 92 78 91 80" fill="none" stroke="#b06070" stroke-width="0.9" stroke-linecap="round"/>
+
+  <!-- ══════════════════════════════════════
+       HAIR — FRONT LAYER
+       ══════════════════════════════════════ -->
+  <path d="M 54 38 Q 42 50 44 78 Q 50 86 58 78 Q 48 58 56 44 Z" fill="#4a1e10"/>
+  <path d="M 106 38 Q 118 50 116 78 Q 110 86 102 78 Q 112 58 104 44 Z" fill="#4a1e10"/>
+  <ellipse cx="80" cy="12" rx="24" ry="18" fill="url(#bms-hair)"/>
+  <ellipse cx="64" cy="8" rx="14" ry="10" fill="#5a2418"/>
+  <ellipse cx="96" cy="8" rx="14" ry="10" fill="#5a2418"/>
+  <ellipse cx="80" cy="-2" rx="12" ry="9" fill="#6a2e18"/>
+  <path d="M 58 6 Q 62 -2 70 2 Q 66 10 58 6" fill="#3a1408"/>
+  <path d="M 56 14 Q 58 4 66 8 Q 62 16 56 14" fill="#3a1408"/>
+  <path d="M 102 6 Q 98 -2 90 2 Q 94 10 102 6" fill="#3a1408"/>
+  <path d="M 104 14 Q 102 4 94 8 Q 98 16 104 14" fill="#3a1408"/>
+  <path d="M 68 -4 Q 76 -8 86 -4" fill="none" stroke="#2a1008" stroke-width="1.2"/>
+  <path d="M 64 4 Q 72 0 80 2" fill="none" stroke="#2a1008" stroke-width="1"/>
+  <path d="M 80 2 Q 88 0 96 4" fill="none" stroke="#2a1008" stroke-width="1"/>
+
+  <!-- Hair ornament -->
+  <line x1="88" y1="-4" x2="86" y2="8" stroke="#c8a030" stroke-width="1.2"/>
+  <line x1="91" y1="-5" x2="89" y2="7" stroke="#c8a030" stroke-width="1.2"/>
+  <line x1="94" y1="-4" x2="92" y2="8" stroke="#c8a030" stroke-width="1.2"/>
+  <path d="M 86 8 Q 90 10 92 8 L 94 -4 Q 90 -6 86 -4 Z" fill="#d4b040" opacity="0.6"/>
+  <circle cx="90" cy="-6" r="4" fill="#f8f0e8" stroke="#d8c8a8" stroke-width="0.5"/>
+  <ellipse cx="89" cy="-7" rx="1.5" ry="1.2" fill="rgba(255,255,255,0.6)"/>
+
+  <!-- ══════════════════════════════════════
+       ACCESSORIES
+       ══════════════════════════════════════ -->
+  <!-- Pearl necklace -->
+  <path d="M 56 90 Q 80 96 104 90" fill="none" stroke="rgba(200,180,150,0.3)" stroke-width="0.8"/>
+  <circle cx="60"  cy="91" r="3"   fill="#f8f2ec" stroke="#ddd0c0" stroke-width="0.6"/>
+  <circle cx="67"  cy="93" r="3"   fill="#f8f2ec" stroke="#ddd0c0" stroke-width="0.6"/>
+  <circle cx="74"  cy="95" r="3.2" fill="#f8f2ec" stroke="#ddd0c0" stroke-width="0.6"/>
+  <circle cx="80"  cy="96" r="3.2" fill="#f8f2ec" stroke="#ddd0c0" stroke-width="0.6"/>
+  <circle cx="86"  cy="95" r="3.2" fill="#f8f2ec" stroke="#ddd0c0" stroke-width="0.6"/>
+  <circle cx="93"  cy="93" r="3"   fill="#f8f2ec" stroke="#ddd0c0" stroke-width="0.6"/>
+  <circle cx="100" cy="91" r="3"   fill="#f8f2ec" stroke="#ddd0c0" stroke-width="0.6"/>
+  <ellipse cx="79.5" cy="95" rx="1.2" ry="0.9" fill="rgba(255,255,255,0.55)"/>
+  <!-- Pendant drop -->
+  <line x1="80" y1="99" x2="80" y2="105" stroke="#c8a840" stroke-width="1"/>
+  <ellipse cx="80" cy="107" rx="4" ry="2.8" fill="#d4b860"/>
+  <ellipse cx="80" cy="107" rx="2.5" ry="1.7" fill="#f0d880"/>
+  <ellipse cx="79.5" cy="106.5" rx="0.9" ry="0.7" fill="rgba(255,255,200,0.6)"/>
+
+  <!-- Earrings -->
+  <circle cx="52" cy="58" r="3" fill="#d4b040" stroke="#b89020" stroke-width="0.5"/>
+  <ellipse cx="52" cy="58" rx="1.5" ry="1.2" fill="rgba(255,230,100,0.5)"/>
+  <line x1="52" y1="61" x2="52" y2="68" stroke="#c8a030" stroke-width="1.2"/>
+  <ellipse cx="52" cy="70" rx="3.5" ry="2.5" fill="#f8f0e0" stroke="#d8c8a0" stroke-width="0.5"/>
+  <ellipse cx="51.5" cy="69.5" rx="1.3" ry="1" fill="rgba(255,255,255,0.6)"/>
+
+  <circle cx="108" cy="58" r="3" fill="#d4b040" stroke="#b89020" stroke-width="0.5"/>
+  <ellipse cx="108" cy="58" rx="1.5" ry="1.2" fill="rgba(255,230,100,0.5)"/>
+  <line x1="108" y1="61" x2="108" y2="68" stroke="#c8a030" stroke-width="1.2"/>
+  <ellipse cx="108" cy="70" rx="3.5" ry="2.5" fill="#f8f0e0" stroke="#d8c8a0" stroke-width="0.5"/>
+  <ellipse cx="107.5" cy="69.5" rx="1.3" ry="1" fill="rgba(255,255,255,0.6)"/>
+
+  <!-- Chin shadow -->
+  <ellipse cx="80" cy="86" rx="14" ry="4" fill="rgba(40,10,20,0.12)"/>
+</svg>
