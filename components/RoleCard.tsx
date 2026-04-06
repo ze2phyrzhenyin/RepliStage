@@ -10,7 +10,7 @@ export function RoleCard({ actor, sceneId }: { actor: Actor; sceneId: string }) 
   return (
     <Link
       href={`/rehearsal?scene=${encodeURIComponent(sceneId)}&role=${encodeURIComponent(actor.id)}`}
-      className="group relative flex flex-col rounded-2xl border border-white/8 bg-white/[0.03] p-5 transition hover:border-white/16 hover:bg-white/[0.055] hover:-translate-y-0.5"
+      className="glass-panel raise-on-hover group relative flex flex-col rounded-2xl p-5 transition"
     >
       {/* Color bar */}
       <div

@@ -55,11 +55,11 @@ export default function EventEditor({
 
   return (
     <div className="flex flex-col h-full">
-      <div className="px-3 py-1 border-b border-white/[0.04]">
+      <div className="px-3 py-2 border-b border-white/[0.04] bg-white/[0.015]">
         <SharedInsertBar afterIndex={-1} actors={actors} onInsert={onInsert} variant="panel" />
       </div>
 
-      <div className="flex-1 overflow-y-auto py-1">
+      <div className="flex-1 overflow-y-auto px-2 py-2">
         {events.map((event, index) => {
           const isActive = index === currentEventIndex;
           const isSelected = index === selectedEventIndex;
@@ -85,14 +85,18 @@ export default function EventEditor({
               )}
 
               <div
-                className="flex items-center gap-2 px-3 py-1.5 cursor-pointer transition group"
+                className="flex items-center gap-2 rounded-2xl px-3 py-2 cursor-pointer transition group"
                 style={{
                   background: isActive
-                    ? "rgba(241,194,125,0.07)"
+                    ? "rgba(241,194,125,0.08)"
                     : isSelected
                       ? "rgba(255,255,255,0.04)"
-                      : "transparent",
-                  borderLeft: isActive ? "2px solid #f1c27d44" : "2px solid transparent",
+                      : "rgba(255,255,255,0.015)",
+                  border: isActive
+                    ? "1px solid rgba(241,194,125,0.18)"
+                    : isSelected
+                      ? "1px solid rgba(255,255,255,0.08)"
+                      : "1px solid rgba(255,255,255,0.03)",
                 }}
                 onClick={() => { onSeek(index); onSelect(index); }}
               >

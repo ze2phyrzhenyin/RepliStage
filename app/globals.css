@@ -4,6 +4,10 @@
 
 :root {
   color-scheme: dark;
+  --font-body: "Avenir Next", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --page-glow-gold: rgba(241, 194, 125, 0.18);
+  --page-glow-blue: rgba(126, 166, 255, 0.12);
 }
 
 * {
@@ -19,7 +23,8 @@ body {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
 }
 
 a {
@@ -48,6 +53,104 @@ select {
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(8, 12, 26, 0.88);
   backdrop-filter: blur(14px);
+}
+
+.page-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-shell::before,
+.page-shell::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(18px);
+  opacity: 0.9;
+  z-index: -1;
+}
+
+.page-shell::before {
+  width: 34rem;
+  height: 24rem;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--page-glow-gold) 0%, transparent 68%);
+}
+
+.page-shell::after {
+  width: 24rem;
+  height: 18rem;
+  right: 8%;
+  bottom: 12%;
+  background: radial-gradient(circle, var(--page-glow-blue) 0%, transparent 72%);
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    rgba(7, 10, 20, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 24px 60px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.page-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.44em;
+  font-size: 0.68rem;
+  color: rgba(241, 194, 125, 0.58);
+}
+
+.display-title {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+}
+
+.fade-in-up {
+  animation: fadeInUp 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.fade-in-soft {
+  animation: fadeInSoft 700ms ease both;
+}
+
+.raise-on-hover {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.raise-on-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.26);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInSoft {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .glow-hover {

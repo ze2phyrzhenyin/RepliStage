@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, type ChangeEvent } from "react";
+import { useState, useEffect, useMemo, useRef, type ChangeEvent } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useLocale } from "@/components/locale/LocaleContext";
@@ -41,10 +41,15 @@ export default function DirectorClient() {
   const [drawingPathFor, setDrawingPathFor] = useState<{ eventIndex: number; actorId: string } | null>(null);
   const [importPreview, setImportPreview] = useState<ImportPreview | null>(null);
   const [importErrors, setImportErrors] = useState<string[]>([]);
+  const [showUtilityMenu, setShowUtilityMenu] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const historyRef = useRef<Play[]>([JSON.parse(JSON.stringify(loadedPlay))]);
   const historyIndexRef = useRef(0);
+  const hasUnsavedChanges = useMemo(
+    () => JSON.stringify(play) !== JSON.stringify(loadedPlay),
+    [play, loadedPlay],
+  );
 
   useEffect(() => {
     const nextPlay = JSON.parse(JSON.stringify(loadedPlay)) as Play;
@@ -239,6 +244,7 @@ export default function DirectorClient() {
   }
 
   function handleExportJson() {
+    setShowUtilityMenu(false);
     setSaveMsg(null);
     try {
       const blob = new Blob([JSON.stringify(play, null, 2)], { type: "application/json" });
@@ -257,6 +263,7 @@ export default function DirectorClient() {
   }
 
   async function handleImportFile(event: ChangeEvent<HTMLInputElement>) {
+    setShowUtilityMenu(false);
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -295,6 +302,7 @@ export default function DirectorClient() {
   }
 
   function handleResetToSample() {
+    setShowUtilityMenu(false);
     resetPlay();
     setImportPreview(null);
     setImportErrors([]);
@@ -303,6 +311,7 @@ export default function DirectorClient() {
   }
 
   function handleClearBrowserStorage() {
+    setShowUtilityMenu(false);
     if (typeof window === "undefined") return;
 
     const confirmed = window.confirm(t("director.clearConfirm"));
@@ -333,114 +342,164 @@ export default function DirectorClient() {
   }
 
   const currentEvent = scene.events[currentEventIndex];
+  const actionButtonClassName =
+    "inline-flex items-center justify-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-medium transition disabled:opacity-50";
+  const toolIconButtonClassName =
+    "flex h-8 w-8 items-center justify-center rounded-xl text-white/38 hover:bg-white/5 hover:text-white/78 transition disabled:cursor-not-allowed disabled:opacity-20";
 
   return (
       <div className="h-screen flex flex-col overflow-hidden" style={{ background: "#080612", color: "rgba(255,255,255,0.85)" }}>
         <header
-          className="flex items-center gap-3 px-4 h-11 shrink-0"
+          className="shrink-0 px-3 py-3 sm:px-4"
           style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", background: "#06040f" }}
         >
-          <Link
-            href="/"
-            className="flex items-center gap-1.5 text-xs text-white/35 hover:text-white/70 transition shrink-0"
-          >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            {t("director.home")}
-          </Link>
-
-          <span className="text-white/15">|</span>
-          <span className="text-[10px] uppercase tracking-[0.4em] text-[#f1c27d]/50 shrink-0">{t("director.title")}</span>
-
           <input
-            value={play.title}
-            onChange={(e) => setPlay((current) => ({ ...current, title: e.target.value }))}
-            className="bg-transparent text-sm text-white/60 outline-none border-b border-transparent hover:border-white/20 focus:border-white/40 transition px-1 min-w-0 w-40"
-            placeholder={t("director.playTitlePlaceholder")}
+            ref={fileInputRef}
+            type="file"
+            accept="application/json,.json"
+            className="hidden"
+            onChange={handleImportFile}
           />
 
-          <div className="ml-auto flex items-center gap-2">
-            <button
-              onClick={undo}
-              disabled={!canUndo}
-              title={`${t("director.undo")} ⌘Z`}
-              className="p-1.5 rounded text-white/35 hover:text-white/70 transition disabled:opacity-20 disabled:cursor-not-allowed hover:bg-white/5"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2.5 5.5a4.5 4.5 0 1 1 0 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-                <path d="M2.5 2.5v3h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <button
-              onClick={redo}
-              disabled={!canRedo}
-              title={`${t("director.redo")} ⌘⇧Z`}
-              className="p-1.5 rounded text-white/35 hover:text-white/70 transition disabled:opacity-20 disabled:cursor-not-allowed hover:bg-white/5"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M11.5 5.5a4.5 4.5 0 1 0 0 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-                <path d="M11.5 2.5v3h-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <Link
+                    href="/"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-white/44 transition hover:border-white/20 hover:text-white/72"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    {t("director.home")}
+                  </Link>
+                  <span className="text-[10px] uppercase tracking-[0.38em] text-[#f1c27d]/52">
+                    {t("director.title")}
+                  </span>
+                </div>
+                <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-end sm:gap-3">
+                  <input
+                    value={play.title}
+                    onChange={(e) => setPlay((current) => ({ ...current, title: e.target.value }))}
+                    className="min-w-0 border-b border-white/10 bg-transparent px-1 pb-1 text-base font-medium text-white/78 outline-none transition hover:border-white/20 focus:border-[#f1c27d]/45 sm:w-[260px]"
+                    placeholder={t("director.playTitlePlaceholder")}
+                  />
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={undo}
+                      disabled={!canUndo}
+                      title={`${t("director.undo")} ⌘Z`}
+                      className={toolIconButtonClassName}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2.5 5.5a4.5 4.5 0 1 1 0 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+                        <path d="M2.5 2.5v3h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+                    <button
+                      onClick={redo}
+                      disabled={!canRedo}
+                      title={`${t("director.redo")} ⌘⇧Z`}
+                      className={toolIconButtonClassName}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M11.5 5.5a4.5 4.5 0 1 0 0 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+                        <path d="M11.5 2.5v3h-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+                    {saveMsg && (
+                      <span
+                        className="rounded-full px-2.5 py-1 text-[11px]"
+                        style={{
+                          background: isErrorMessage(saveMsg) ? "rgba(240,100,80,0.15)" : "rgba(100,200,100,0.15)",
+                          color: isErrorMessage(saveMsg) ? "#f08c78" : "#7fd1b9",
+                          border: "1px solid currentColor",
+                        }}
+                      >
+                        {saveMsg}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
 
-            <div className="w-px h-4 bg-white/10 mx-1" />
+              <div className="relative shrink-0 md:hidden">
+                <button
+                  onClick={() => setShowUtilityMenu((value) => !value)}
+                  className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/62 transition hover:border-white/20 hover:text-white/84"
+                  aria-expanded={showUtilityMenu}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 5h10M3 8h10M3 11h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                  </svg>
+                </button>
 
-            {saveMsg && (
-              <span
-                className="text-[11px] px-2.5 py-0.5 rounded-full"
-                style={{
-                  background: isErrorMessage(saveMsg) ? "rgba(240,100,80,0.15)" : "rgba(100,200,100,0.15)",
-                  color: isErrorMessage(saveMsg) ? "#f08c78" : "#7fd1b9",
-                  border: "1px solid currentColor",
-                }}
-              >
-                {saveMsg}
-              </span>
-            )}
+                {showUtilityMenu && (
+                  <div className="absolute right-0 top-full z-20 mt-2 w-52 rounded-2xl border border-white/10 bg-[#0b1019]/96 p-2 shadow-[0_18px_44px_rgba(0,0,0,0.34)] backdrop-blur-xl">
+                    <button
+                      onClick={handleResetToSample}
+                      className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm text-white/72 transition hover:bg-white/[0.05]"
+                    >
+                      <span>{t("director.restore")}</span>
+                      <span className="text-[10px] uppercase tracking-[0.24em] text-[#b8a4f0]">safe</span>
+                    </button>
+                    <button
+                      onClick={handleClearBrowserStorage}
+                      className="mt-1 flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm text-[#f5b0a4] transition hover:bg-[#f08c78]/10"
+                    >
+                      <span>{t("director.clearStorage")}</span>
+                      <span className="text-[10px] uppercase tracking-[0.24em] text-[#f08c78]">reset</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
 
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="application/json,.json"
-              className="hidden"
-              onChange={handleImportFile}
-            />
-            <button
-              onClick={handleSaveToBrowser}
-              className="flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-medium transition disabled:opacity-50 shrink-0"
-              style={{ background: "#f1c27d", color: "#0a0c14" }}
-            >
-              {t("director.save")}
-            </button>
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-medium transition disabled:opacity-50 shrink-0"
-              style={{ background: "#7ea6ff", color: "#0a0c14" }}
-            >
-              {t("director.import")}
-            </button>
-            <button
-              onClick={handleExportJson}
-              className="flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-medium transition shrink-0"
-              style={{ background: "#7fd1b9", color: "#0a0c14" }}
-            >
-              {t("director.export")}
-            </button>
-            <button
-              onClick={handleResetToSample}
-              className="flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-medium transition shrink-0"
-              style={{ background: usingDefaultPlay ? "#555" : "#b8a4f0", color: "#0a0c14" }}
-            >
-              {t("director.restore")}
-            </button>
-            <button
-              onClick={handleClearBrowserStorage}
-              className="flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-medium transition shrink-0"
-              style={{ background: "#f08c78", color: "#0a0c14" }}
-            >
-              {t("director.clearStorage")}
-            </button>
+            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+              <div className="grid grid-cols-3 gap-2 md:flex md:flex-wrap">
+                <button
+                  onClick={handleSaveToBrowser}
+                  className={actionButtonClassName}
+                  style={{ background: "#f1c27d", color: "#0a0c14" }}
+                >
+                  {t("director.save")}
+                </button>
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className={actionButtonClassName}
+                  style={{ background: "#7ea6ff", color: "#0a0c14" }}
+                >
+                  {t("director.import")}
+                </button>
+                <button
+                  onClick={handleExportJson}
+                  className={actionButtonClassName}
+                  style={{ background: "#7fd1b9", color: "#0a0c14" }}
+                >
+                  {t("director.export")}
+                </button>
+              </div>
+
+              <div className="hidden items-center gap-2 md:flex">
+                <div className="rounded-full border border-white/10 bg-white/[0.03] p-1">
+                  <button
+                    onClick={handleResetToSample}
+                    className="rounded-full px-3 py-1.5 text-xs font-medium transition"
+                    style={{ background: usingDefaultPlay ? "rgba(255,255,255,0.06)" : "rgba(184,164,240,0.18)", color: usingDefaultPlay ? "rgba(255,255,255,0.42)" : "#e9ddff" }}
+                  >
+                    {t("director.restore")}
+                  </button>
+                </div>
+                <button
+                  onClick={handleClearBrowserStorage}
+                  className="inline-flex items-center justify-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition"
+                  style={{ borderColor: "rgba(240,140,120,0.28)", color: "#f5b0a4", background: "rgba(240,140,120,0.08)" }}
+                >
+                  {t("director.clearStorage")}
+                </button>
+              </div>
+            </div>
           </div>
         </header>
 
@@ -536,6 +595,33 @@ export default function DirectorClient() {
           </div>
         )}
 
+        <div className="shrink-0 border-b border-white/[0.06] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] px-4 py-2.5">
+          <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-white/28">{t("director.status")}</span>
+              <span
+                className="rounded-full border px-2.5 py-1 text-[11px]"
+                style={{
+                  borderColor: hasUnsavedChanges ? "rgba(241,194,125,0.28)" : "rgba(127,209,185,0.28)",
+                  color: hasUnsavedChanges ? "#f1c27d" : "#7fd1b9",
+                  background: hasUnsavedChanges ? "rgba(241,194,125,0.08)" : "rgba(127,209,185,0.08)",
+                }}
+              >
+                {hasUnsavedChanges ? t("common.unsaved") : t("common.saved")}
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-white/58">
+                {usingDefaultPlay ? t("director.sourceSample") : t("director.sourceBrowser")}
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-white/58">
+                {t("director.activeScene")}: {scene.title || t("common.untitled")}
+              </span>
+            </div>
+            <p className="text-[11px] text-white/42">
+              {hasUnsavedChanges ? t("director.statusUnsaved") : t("director.statusSaved")} · {t("director.hint")}
+            </p>
+          </div>
+        </div>
+
         <div className="flex flex-1 min-h-0">
           <SceneList
             play={play}
@@ -548,9 +634,11 @@ export default function DirectorClient() {
 
           <div
             className="flex flex-col shrink-0"
-            style={{ width: 480, borderRight: "1px solid rgba(255,255,255,0.07)", background: "#05040d" }}
+            style={{ width: 480, borderRight: "1px solid rgba(255,255,255,0.07)", background: "linear-gradient(180deg, #05040d 0%, #080813 100%)" }}
           >
-            <div className="flex items-center gap-2 px-3 py-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="border-b border-white/[0.06] px-3 py-2">
+              <p className="mb-2 text-[10px] uppercase tracking-[0.28em] text-white/24">{t("director.manageScene")}</p>
+              <div className="flex items-center gap-2">
               <input
                 value={scene.title}
                 onChange={(e) => updateScene(scene.id, (current) => ({ ...current, title: e.target.value }))}
@@ -562,6 +650,7 @@ export default function DirectorClient() {
                 className="flex-1 bg-transparent text-xs text-white/35 outline-none border-b border-transparent hover:border-white/15 focus:border-white/25 px-1 transition"
                 placeholder={t("director.subtitlePlaceholder")}
               />
+              </div>
             </div>
 
             {drawingPathFor && (
@@ -580,6 +669,10 @@ export default function DirectorClient() {
                 </button>
               </div>
             )}
+
+            <div className="px-3 pt-2 pb-1">
+              <p className="text-[10px] uppercase tracking-[0.28em] text-white/24">{t("director.stagePanel")}</p>
+            </div>
 
             <div className="px-3 py-2 flex-shrink-0">
               <StageCanvas
@@ -600,7 +693,7 @@ export default function DirectorClient() {
             <div className="flex items-center gap-2 px-3 py-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
               <button
                 onClick={() => setCurrentEventIndex(Math.max(0, currentEventIndex - 1))}
-                className="text-white/35 hover:text-white/70 transition text-lg leading-none px-2 py-0.5 rounded hover:bg-white/5"
+                className="text-white/35 hover:text-white/70 transition text-lg leading-none px-2 py-0.5 rounded-xl hover:bg-white/5"
               >‹</button>
               <div className="flex-1 text-center">
                 <span className="text-[10px] text-white/30">{currentEventIndex + 1} / {scene.events.length}</span>
@@ -614,7 +707,7 @@ export default function DirectorClient() {
               </div>
               <button
                 onClick={() => setCurrentEventIndex(Math.min(scene.events.length - 1, currentEventIndex + 1))}
-                className="text-white/35 hover:text-white/70 transition text-lg leading-none px-2 py-0.5 rounded hover:bg-white/5"
+                className="text-white/35 hover:text-white/70 transition text-lg leading-none px-2 py-0.5 rounded-xl hover:bg-white/5"
               >›</button>
             </div>
 
@@ -651,8 +744,10 @@ export default function DirectorClient() {
             </div>
           </div>
 
-          <div className="flex flex-col flex-1 min-w-0 min-h-0">
-            <div className="flex shrink-0" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+          <div className="flex flex-col flex-1 min-w-0 min-h-0 bg-[linear-gradient(180deg,#06050f_0%,#090913_100%)]">
+            <div className="border-b border-white/[0.07] px-4 py-2">
+              <p className="text-[10px] uppercase tracking-[0.28em] text-white/24">{t("director.eventTimeline")}</p>
+              <div className="mt-2 flex">
               {(["events", "actors"] as Tab[]).map((item) => (
                 <button
                   key={item}
@@ -668,6 +763,7 @@ export default function DirectorClient() {
                     : t("director.actorManager", { count: scene.actors.length })}
                 </button>
               ))}
+              </div>
             </div>
 
             <div className="flex-1 overflow-y-auto">
