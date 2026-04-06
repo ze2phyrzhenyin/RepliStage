@@ -3,6 +3,120 @@
   "title": "Cendrillon",
   "scenes": [
     {
+      "id": "scene-7-interieur-palais",
+      "title": "SCÈNE 7",
+      "subtitle": "Quelques instants plus tard, à l’intérieur du palais.",
+      "setting": "宫殿内部的舞台灯火璀璨。很年轻的王子手持麦克风，朝观众方向缓缓走来。礼宾的介绍声、观众的惊呼与掌声包围着整座大厅；很年轻的女孩则在歌曲尾声时悄悄摸到舞台后方。",
+      "stage": {
+        "width": 920,
+        "height": 520,
+        "doorX": 180,
+        "doorY": 96
+      },
+      "actors": [
+        {
+          "id": "tres_jeune_prince",
+          "name": "很年轻的王子",
+          "color": "#dce7ff",
+          "shortLabel": "TJP"
+        },
+        {
+          "id": "tres_jeune_fille",
+          "name": "很年轻的女孩",
+          "color": "#f3e2c7",
+          "shortLabel": "TJF"
+        }
+      ],
+      "events": [
+        { "id": "s7e1", "type": "blackout_start", "duration": 1 },
+        { "id": "s7e2", "type": "action", "duration": 3.6, "text": "礼宾的声音从舞台深处响起：诸位久等了，瓦格拉姆与诺曼底的王子今晚将以英文献唱一首歌，把它献给自己的家人，尤其是他的父亲。" },
+        { "id": "s7e3", "type": "action", "duration": 2.2, "text": "全场爆发出惊呼、尖叫与热烈的欢呼，像潮水一样朝舞台涌来。" },
+        { "id": "s7e4", "type": "blackout_end", "duration": 0.7 },
+        { "id": "s7e5", "type": "enter", "actorId": "tres_jeune_prince", "duration": 1, "x": 454, "y": 232, "fromSide": "top" },
+        { "id": "s7e6", "type": "action", "actorId": "tres_jeune_prince", "duration": 7.8, "text": "很年轻的王子一边朝观众方向走，一边唱起《Father and Son》的翻唱。歌声稚嫩却真诚，像一封临时写下的公开家书。" },
+        { "id": "s7e7", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 760, "y": 402, "fromSide": "right" },
+        { "id": "s7e8", "type": "move_path", "actorId": "tres_jeune_fille", "duration": 1.8, "path": [ { "x": 720, "y": 388 }, { "x": 650, "y": 356 }, { "x": 596, "y": 318 } ] },
+        { "id": "s7e9", "type": "action", "duration": 2.4, "text": "就在歌曲即将结束之前，很年轻的女孩悄悄滑到舞台后方，靠近王子。王子注意到了她，歌声却没有中断。" },
+        { "id": "s7e10", "type": "pause", "duration": 1.4 },
+        { "id": "s7e11", "type": "action", "duration": 2.8, "text": "歌曲结束，掌声和喝彩声更加汹涌。王子与女孩隔着短短的舞台距离互相望着，却都没有马上说话。" },
+        { "id": "s7e12", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.8, "toSide": "right" },
+        { "id": "s7e13", "type": "exit", "actorId": "tres_jeune_prince", "duration": 0.8, "toSide": "top" },
+        { "id": "s7e14", "type": "scene_end", "duration": 0.8 }
+      ]
+    },
+    {
+      "id": "scene-8-devant-portes-palais",
+      "title": "SCÈNE 8",
+      "subtitle": "Quelques instants plus tard, devant les portes du palais.",
+      "setting": "宫殿大门外，掌声和喝彩还从里面不断传出。很年轻的女孩先跑出宫门，仙女在外面等着她；王子随后几乎是逃一样冲出来，两人在门前相撞，第一次真正短暂交谈。",
+      "stage": {
+        "width": 920,
+        "height": 520,
+        "doorX": 646,
+        "doorY": 96
+      },
+      "actors": [
+        {
+          "id": "tres_jeune_prince",
+          "name": "很年轻的王子",
+          "color": "#dce7ff",
+          "shortLabel": "TJP"
+        },
+        {
+          "id": "tres_jeune_fille",
+          "name": "很年轻的女孩",
+          "color": "#f3e2c7",
+          "shortLabel": "TJF"
+        },
+        {
+          "id": "fee",
+          "name": "仙女",
+          "color": "#b9b6ff",
+          "shortLabel": "FEE"
+        }
+      ],
+      "events": [
+        { "id": "s8e1", "type": "blackout_start", "duration": 1 },
+        { "id": "s8e2", "type": "action", "duration": 2.6, "text": "宫殿里面的掌声、喝彩与叫好声还在持续。很年轻的女孩红着脸冲出门来，像刚从一场不真实的梦里逃开。" },
+        { "id": "s8e3", "type": "blackout_end", "duration": 0.7 },
+        { "id": "s8e4", "type": "enter", "actorId": "fee", "duration": 1, "x": 274, "y": 302, "fromSide": "left" },
+        { "id": "s8e5", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 544, "y": 286, "fromSide": "top" },
+        { "id": "s8e6", "type": "action", "actorId": "fee", "duration": 2.4, "text": "仙女在宫门外等着她，朝她招手，像在说：这就要走了吗？别现在就逃掉。" },
+        { "id": "s8e7", "type": "move", "actorId": "tres_jeune_fille", "duration": 0.9, "x": 598, "y": 274 },
+        { "id": "s8e8", "type": "action", "duration": 1.6, "text": "很年轻的女孩刚想折返进去，宫门又被猛地推开。很年轻的王子几乎是跑着冲出来，像从自己的宴会中临时逃脱。" },
+        { "id": "s8e9", "type": "enter", "actorId": "tres_jeune_prince", "duration": 1, "x": 690, "y": 248, "fromSide": "top" },
+        { "id": "s8e10", "type": "move_path", "actorId": "tres_jeune_prince", "duration": 1.1, "path": [ { "x": 654, "y": 258 }, { "x": 618, "y": 270 }, { "x": 586, "y": 284 } ] },
+        { "id": "s8e11", "type": "action", "duration": 1.4, "text": "两人一下撞在一起，王子几乎仰面跌倒。" },
+        { "id": "s8e12", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.6, "text": "Excusez-moi." },
+        { "id": "s8e13", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.4, "text": "Pardon." },
+        { "id": "s8e14", "type": "line", "actorId": "tres_jeune_prince", "duration": 4.4, "text": "C'est de ma faute, je regardais mes chaussures !" },
+        { "id": "s8e15", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.8, "text": "J'ai rien senti, vous excusez pas." },
+        { "id": "s8e16", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.8, "text": "Mes hommages chez vous." },
+        { "id": "s8e17", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.8, "text": "Vous pareillement." },
+        { "id": "s8e18", "type": "action", "duration": 1.8, "text": "他们各自朝相反方向走了几步，又同时停下、转身，再次朝彼此靠近。两个人都明显尴尬。" },
+        { "id": "s8e19", "type": "line", "actorId": "tres_jeune_prince", "duration": 2.8, "text": "Vous vouliez me dire quelque chose ?" },
+        { "id": "s8e20", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.2, "text": "Euh non… je croyais que c'était vous qui vouliez…" },
+        { "id": "s8e21", "type": "line", "actorId": "tres_jeune_prince", "duration": 5.8, "text": "Euh non ! Bon ben, c'est bien… Ben, au revoir alors… Il fait beau, vous trouvez pas ? C'est dommage qu'il n'y ait pas de soleil…" },
+        { "id": "s8e22", "type": "line", "actorId": "tres_jeune_fille", "duration": 5.6, "text": "Oui c'est vrai… Mais faut dire que la nuit c'est rare qu'il y ait du soleil en cette saison." },
+        { "id": "s8e23", "type": "line", "actorId": "tres_jeune_prince", "duration": 4.8, "text": "Oui c'est vrai ! Absolument. Bon ben, je vais rentrer…" },
+        { "id": "s8e24", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.4, "text": "En tout cas, vous avez… de belles chaussures…" },
+        { "id": "s8e25", "type": "line", "actorId": "tres_jeune_prince", "duration": 3.2, "text": "Ah oui… surtout celle-là, non ?" },
+        { "id": "s8e26", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.6, "text": "Ah oui c'est vrai, vous avez raison, c'est la mieux des deux." },
+        { "id": "s8e27", "type": "action", "actorId": "tres_jeune_fille", "duration": 1.2, "text": "她的手表突然响了起来，像把这个刚刚开始的瞬间一下子切断。" },
+        { "id": "s8e28", "type": "line", "actorId": "tres_jeune_fille", "duration": 5.2, "text": "Mince je suis en train d'oublier l'heure moi, je dois rentrer… Et j'ai plein de trucs à penser. Faut pas que j'oublie…" },
+        { "id": "s8e29", "type": "line", "actorId": "tres_jeune_prince", "duration": 6.2, "text": "Moi aussi je dois y aller. J'attends un coup de fil de ma mère, elle doit me téléphoner ce soir." },
+        { "id": "s8e30", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.4, "text": "Ah bon." },
+        { "id": "s8e31", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.4, "text": "Ben oui." },
+        { "id": "s8e32", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.8, "text": "Bon ben salut." },
+        { "id": "s8e33", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.4, "text": "Salut." },
+        { "id": "s8e34", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.9, "toSide": "left" },
+        { "id": "s8e35", "type": "action", "actorId": "tres_jeune_prince", "duration": 2.6, "text": "很年轻的王子站在原地，目送她离开，像还没弄明白刚才到底发生了什么，却已经舍不得那一刻结束。" },
+        { "id": "s8e36", "type": "exit", "actorId": "tres_jeune_prince", "duration": 0.8, "toSide": "top" },
+        { "id": "s8e37", "type": "exit", "actorId": "fee", "duration": 0.8, "toSide": "left" },
+        { "id": "s8e38", "type": "scene_end", "duration": 0.8 }
+      ]
+    },
+    {
       "id": "scene-9-maison-en-verre",
       "title": "SCÈNE 9",
       "subtitle": "Dans la maison en verre de la belle-mère de la très jeune fille.",
