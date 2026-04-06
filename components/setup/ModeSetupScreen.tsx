@@ -9,6 +9,7 @@ import { formatPlayImportError, parsePlay, summarizePlay } from "@/lib/play-sche
 import type { Play } from "@/types/script";
 
 type SetupMode = "rehearsal" | "director";
+type SourceMode = "sample" | "import";
 
 export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
   const router = useRouter();
@@ -24,6 +25,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
   const [importErrors, setImportErrors] = useState<string[]>([]);
   const [importPreview, setImportPreview] = useState<{ fileName: string; play: Play } | null>(null);
   const [status, setStatus] = useState<string | null>(null);
+  const [sourceMode, setSourceMode] = useState<SourceMode>(playSource.type === "imported" ? "import" : "sample");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const currentScene = play.scenes.find((scene) => scene.id === selectedSceneId) ?? play.scenes[0];
@@ -43,6 +45,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
   }
 
   function handleSelectSample(sampleId: string) {
+    setSourceMode("sample");
     loadSamplePlay(sampleId);
     const nextSample = sampleLibrary.find((sample) => sample.id === sampleId);
     setSelectedSceneId(nextSample?.play.scenes[0]?.id ?? "");
@@ -51,6 +54,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
   }
 
   async function handleImportFile(event: ChangeEvent<HTMLInputElement>) {
+    setSourceMode("import");
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -72,6 +76,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
   function applyImportedPlay() {
     if (!importPreview) return;
     const nextPlay = importPlayFromText(JSON.stringify(importPreview.play));
+    setSourceMode("import");
     setSelectedSceneId(nextPlay.scenes[0]?.id ?? "");
     setImportPreview(null);
     setImportErrors([]);
@@ -114,6 +119,16 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
               <h1 className="display-title text-4xl font-light text-white">{title}</h1>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-white/42">{description}</p>
             </div>
+            <button
+              type="button"
+              onClick={() => {
+                setSourceMode(playSource.type === "imported" ? "import" : "sample");
+                setSelectedSceneId(play.scenes[0]?.id ?? "");
+              }}
+              className="hidden rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/52 transition hover:bg-white/[0.08] hover:text-white/78 sm:inline-flex"
+            >
+              {t("setup.useCurrentPlay")}
+            </button>
           </div>
 
           <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
@@ -121,22 +136,35 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
               <section className="glass-panel rounded-[28px] px-5 py-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <p className="page-kicker mb-2">{t("setup.samplePlays")}</p>
+                    <p className="page-kicker mb-2">{t("setup.sourceMode")}</p>
                     <h2 className="display-title text-2xl text-white">{play.title}</h2>
                     <p className="mt-2 text-sm text-white/42">{sourceLabel}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
                     <button
                       type="button"
-                      onClick={() => setSelectedSceneId(play.scenes[0]?.id ?? "")}
-                      className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/60 transition hover:bg-white/[0.08] hover:text-white/82"
+                      onClick={() => setSourceMode("sample")}
+                      className="rounded-full border px-3 py-1.5 text-xs transition"
+                      style={{
+                        borderColor: sourceMode === "sample" ? "rgba(241,194,125,0.28)" : "rgba(255,255,255,0.1)",
+                        background: sourceMode === "sample" ? "rgba(241,194,125,0.12)" : "rgba(255,255,255,0.04)",
+                        color: sourceMode === "sample" ? "#f1c27d" : "rgba(255,255,255,0.62)",
+                      }}
                     >
-                      {t("setup.useCurrentPlay")}
+                      {t("setup.samplePlays")}
                     </button>
                     <button
                       type="button"
-                      onClick={openImportPicker}
-                      className="rounded-full bg-[#f1c27d] px-4 py-2 text-xs font-medium text-[#0a0c14] transition hover:bg-[#f5d090]"
+                      onClick={() => {
+                        setSourceMode("import");
+                        openImportPicker();
+                      }}
+                      className="rounded-full border px-3 py-1.5 text-xs transition"
+                      style={{
+                        borderColor: sourceMode === "import" ? "rgba(126,166,255,0.28)" : "rgba(255,255,255,0.1)",
+                        background: sourceMode === "import" ? "rgba(126,166,255,0.12)" : "rgba(255,255,255,0.04)",
+                        color: sourceMode === "import" ? "#9ab6ff" : "rgba(255,255,255,0.62)",
+                      }}
                     >
                       {t("setup.importJson")}
                     </button>
@@ -146,35 +174,52 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
                   <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.sceneCount", { count: playSummary.sceneCount })}</span>
                   <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.totalMeta", { actors: playSummary.totalActors, events: playSummary.totalEvents })}</span>
                 </div>
-                <p className="mt-5 text-sm text-white/38">{t("setup.sampleDescription")}</p>
-
-                <div className="space-y-2">
-                  {sampleLibrary.map((sample) => {
-                    const active = playSource.type === "sample" && playSource.sampleId === sample.id;
-                    return (
+                {sourceMode === "sample" ? (
+                  <>
+                    <p className="mt-5 text-sm text-white/38">{t("setup.sampleDescription")}</p>
+                    <div className="mt-4 space-y-2">
+                      {sampleLibrary.map((sample) => {
+                        const active = playSource.type === "sample" && playSource.sampleId === sample.id;
+                        return (
+                          <button
+                            key={sample.id}
+                            type="button"
+                            onClick={() => handleSelectSample(sample.id)}
+                            className="w-full rounded-2xl border px-4 py-3 text-left transition"
+                            style={{
+                              borderColor: active ? "rgba(241,194,125,0.24)" : "rgba(255,255,255,0.08)",
+                              background: active ? "rgba(241,194,125,0.08)" : "rgba(255,255,255,0.025)",
+                            }}
+                          >
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="min-w-0">
+                                <p className="truncate text-sm font-medium text-white/82">{sample.title}</p>
+                                <p className="mt-1 text-xs text-white/40">{sample.description[locale]}</p>
+                              </div>
+                              <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] text-white/36">
+                                {t("home.sceneCount", { count: sample.play.scenes.length })}
+                              </span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </>
+                ) : (
+                  <div className="mt-5 rounded-2xl border border-[#9ab6ff]/18 bg-[#9ab6ff]/[0.06] px-4 py-4">
+                    <p className="text-sm text-white/72">{t("setup.importPrompt")}</p>
+                    <div className="mt-4 flex flex-wrap items-center gap-3">
                       <button
-                        key={sample.id}
                         type="button"
-                        onClick={() => handleSelectSample(sample.id)}
-                        className="w-full rounded-2xl border px-4 py-3 text-left transition"
-                        style={{
-                          borderColor: active ? "rgba(241,194,125,0.24)" : "rgba(255,255,255,0.08)",
-                          background: active ? "rgba(241,194,125,0.08)" : "rgba(255,255,255,0.025)",
-                        }}
+                        onClick={openImportPicker}
+                        className="rounded-full bg-[#9ab6ff] px-4 py-2 text-xs font-medium text-[#08111f] transition hover:bg-[#b3c7ff]"
                       >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="min-w-0">
-                            <p className="truncate text-sm font-medium text-white/82">{sample.title}</p>
-                            <p className="mt-1 text-xs text-white/40">{sample.description[locale]}</p>
-                          </div>
-                          <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] text-white/36">
-                            {t("home.sceneCount", { count: sample.play.scenes.length })}
-                          </span>
-                        </div>
+                        {t("setup.importJson")}
                       </button>
-                    );
-                  })}
-                </div>
+                      <span className="text-xs text-white/38">{t("setup.importHint")}</span>
+                    </div>
+                  </div>
+                )}
               </section>
 
               {(importPreview || importErrors.length > 0 || status) && (
