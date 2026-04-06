@@ -1694,6 +1694,101 @@
         { "id": "s13e91", "type": "action", "duration": 2.8, "text": "旁白：幸好，总有一天，一切还是安静了下来。" },
         { "id": "s13e92", "type": "scene_end", "duration": 0.8 }
       ]
+    },
+    {
+      "id": "scene-14-mere-mourante",
+      "title": "SCÈNE 14",
+      "subtitle": "La mémoire, la fée et la chambre de la mère mourante.",
+      "setting": "故事来到尾声。舞台上先只剩旁白的声音，随后空间退回到故事开头那间病床前的房间。很年轻的女孩在仙女陪伴下，重新看见母亲临终前的最后时刻，像在观看一场只属于自己的投影。",
+      "stage": {
+        "width": 920,
+        "height": 520,
+        "doorX": 150,
+        "doorY": 96,
+        "chairX": 470,
+        "chairY": 342
+      },
+      "actors": [
+        {
+          "id": "tres_jeune_fille",
+          "name": "很年轻的女孩",
+          "color": "#f3e2c7",
+          "shortLabel": "TJF"
+        },
+        {
+          "id": "fee",
+          "name": "仙女",
+          "color": "#b9b6ff",
+          "shortLabel": "FEE"
+        },
+        {
+          "id": "mere",
+          "name": "母亲",
+          "color": "#f6c9d1",
+          "shortLabel": "MERE"
+        }
+      ],
+      "events": [
+        { "id": "s14e1", "type": "blackout_start", "duration": 1.2 },
+        { "id": "s14e2", "type": "action", "duration": 7.2, "text": "旁白：故事到了这里，几乎该结束了。至于这究竟是我自己的故事，还是别人的故事，其实已经不重要。记忆疲惫，身体与声音像住在了两个地方；可生命很长，也很幸福，我已心满意足。" },
+        { "id": "s14e3", "type": "action", "duration": 6.4, "text": "旁白：不过我知道，你们仍想知道关于很年轻的女孩的最后一个细节。于是我就告诉你们：有一天，她请求已经成为朋友的仙女，让她再听一遍母亲去世前说过的话。" },
+        { "id": "s14e4", "type": "blackout_end", "duration": 0.8 },
+        { "id": "s14e5", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 340, "y": 300, "fromSide": "left" },
+        { "id": "s14e6", "type": "enter", "actorId": "fee", "duration": 1, "x": 580, "y": 286, "fromSide": "right" },
+        { "id": "s14e7", "type": "action", "duration": 2.6, "text": "舞台像被记忆慢慢擦亮。很年轻的女孩与仙女站在微弱光里，面前是母亲临终前的房间，仿佛一段旧影像重新开始播放。" },
+        { "id": "s14e8", "type": "enter", "actorId": "mere", "duration": 1, "x": 470, "y": 342, "fromSide": "top" },
+        { "id": "s14e9", "type": "action", "actorId": "mere", "duration": 1.8, "text": "母亲静静坐在椅子旁，面容虚弱却温柔，仿佛时间从未真正流逝。" },
+        { "id": "s14e10", "type": "line", "actorId": "mere", "duration": 8.6, "text": "Ma chérie… Si tu es malheureuse, pour te donner du courage, pense à moi… Mais n'oublie jamais, si tu penses à moi fais-le toujours avec le sourire." },
+        { "id": "s14e11", "type": "pause", "duration": 1.2 },
+        { "id": "s14e12", "type": "action", "actorId": "tres_jeune_fille", "duration": 2.4, "text": "很年轻的女孩站在原地，像被这句迟来的叮嘱轻轻击中。她第一次明白，原来自己一直误解了母亲留下的话。" },
+        { "id": "s14e13", "type": "action", "duration": 5.2, "text": "旁白：当然，重新看到母亲仍会令人悲伤。但从这一天起，每当她再想起母亲，感到的已不再只是哀伤，而是一股能让她继续向前的力量。" },
+        { "id": "s14e14", "type": "exit", "actorId": "mere", "duration": 0.8, "toSide": "top" },
+        { "id": "s14e15", "type": "exit", "actorId": "fee", "duration": 0.8, "toSide": "right" },
+        { "id": "s14e16", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.8, "toSide": "left" },
+        { "id": "s14e17", "type": "scene_end", "duration": 0.8 }
+      ]
+    },
+    {
+      "id": "scene-15-nuit-de-fete",
+      "title": "SCÈNE 15",
+      "subtitle": "Plus tard. Une nuit de fête.",
+      "setting": "更晚一些的某个夜晚，音乐响起。舞台变成庆典般的空地，王子与很年轻的女孩尽情舞动。旁白在这场跳舞的狂欢上方，为整部故事落下最后的尾声。",
+      "stage": {
+        "width": 920,
+        "height": 520,
+        "doorX": 150,
+        "doorY": 96
+      },
+      "actors": [
+        {
+          "id": "tres_jeune_prince",
+          "name": "很年轻的王子",
+          "color": "#dce7ff",
+          "shortLabel": "TJP"
+        },
+        {
+          "id": "tres_jeune_fille",
+          "name": "很年轻的女孩",
+          "color": "#f3e2c7",
+          "shortLabel": "TJF"
+        }
+      ],
+      "events": [
+        { "id": "s15e1", "type": "blackout_start", "duration": 1 },
+        { "id": "s15e2", "type": "action", "duration": 2.6, "text": "更久以后。节庆的夜晚。音乐响起，灯光像金色浪潮一样铺开。" },
+        { "id": "s15e3", "type": "blackout_end", "duration": 0.7 },
+        { "id": "s15e4", "type": "enter", "actorId": "tres_jeune_prince", "duration": 1, "x": 380, "y": 286, "fromSide": "left" },
+        { "id": "s15e5", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 560, "y": 286, "fromSide": "right" },
+        { "id": "s15e6", "type": "action", "duration": 2.8, "text": "很年轻的王子与很年轻的女孩跳起舞来，越跳越快，像要把先前所有误会、眼泪与伤口都甩出身体。" },
+        { "id": "s15e7", "type": "move_path", "actorId": "tres_jeune_prince", "duration": 1.6, "path": [ { "x": 420, "y": 270 }, { "x": 470, "y": 246 }, { "x": 518, "y": 274 } ] },
+        { "id": "s15e8", "type": "move_path", "actorId": "tres_jeune_fille", "duration": 1.6, "path": [ { "x": 528, "y": 300 }, { "x": 474, "y": 324 }, { "x": 430, "y": 292 } ] },
+        { "id": "s15e9", "type": "action", "duration": 6.6, "text": "旁白：这些时刻，她后来也从未忘记。即使生活最终把他们带往不同方向，王子与女孩仍彼此通信，从世界的另一端寄来字句，一直到他们生命结束。" },
+        { "id": "s15e10", "type": "pause", "duration": 1.2 },
+        { "id": "s15e11", "type": "action", "duration": 4.8, "text": "旁白：好了，故事真的结束了。幸好连错误也会有尽头。于是现在，我安静下来，然后离开。" },
+        { "id": "s15e12", "type": "exit", "actorId": "tres_jeune_prince", "duration": 0.8, "toSide": "right" },
+        { "id": "s15e13", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.8, "toSide": "left" },
+        { "id": "s15e14", "type": "scene_end", "duration": 0.8 }
+      ]
     }
   ]
 }
