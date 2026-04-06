@@ -8,16 +8,25 @@ export function LanguageToggle() {
   const { locale, setLocale, t } = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const isToolPage = pathname.startsWith("/director") || pathname.startsWith("/rehearsal");
-  const topOffset = isToolPage
-    ? "calc(env(safe-area-inset-top, 0px) + 3.75rem)"
-    : "calc(env(safe-area-inset-top, 0px) + 1rem)";
+  const isDirectorPage = pathname.startsWith("/director");
+  const isRehearsalPage = pathname.startsWith("/rehearsal");
   const currentLabel = t(`lang.${locale}`);
+  const floatingStyle = isDirectorPage
+    ? {
+        bottom: "calc(env(safe-area-inset-bottom, 0px) + 1rem)",
+        top: "auto",
+      }
+    : {
+        top: isRehearsalPage
+          ? "calc(env(safe-area-inset-top, 0px) + 3.75rem)"
+          : "calc(env(safe-area-inset-top, 0px) + 1rem)",
+        bottom: "auto",
+      };
 
   return (
     <div
       className="fixed right-3 z-[70] sm:right-4"
-      style={{ top: topOffset }}
+      style={floatingStyle}
     >
       <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-[#070b14]/72 p-1 shadow-[0_14px_40px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:flex">
         <span className="px-2 text-[10px] uppercase tracking-[0.24em] text-white/28">
@@ -56,7 +65,10 @@ export function LanguageToggle() {
         </button>
 
         {open && (
-          <div className="absolute right-0 mt-2 min-w-[148px] rounded-2xl border border-white/10 bg-[#070b14]/92 p-1.5 shadow-[0_16px_42px_rgba(0,0,0,0.28)] backdrop-blur-xl">
+          <div
+            className="absolute right-0 min-w-[148px] rounded-2xl border border-white/10 bg-[#070b14]/92 p-1.5 shadow-[0_16px_42px_rgba(0,0,0,0.28)] backdrop-blur-xl"
+            style={isDirectorPage ? { bottom: "calc(100% + 0.5rem)" } : { top: "calc(100% + 0.5rem)" }}
+          >
             {(["zh", "fr"] as const).map((item) => {
               const active = item === locale;
               return (
