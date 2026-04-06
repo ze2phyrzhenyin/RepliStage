@@ -1,0 +1,301 @@
+"use client";
+
+import { useMemo, useRef, useState, type ChangeEvent } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useLocale } from "@/components/locale/LocaleContext";
+import { usePlayData } from "@/components/play/PlayContext";
+import { formatPlayImportError, parsePlay, summarizePlay } from "@/lib/play-schema";
+import type { Play } from "@/types/script";
+
+type SetupMode = "rehearsal" | "director";
+
+export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
+  const router = useRouter();
+  const { locale, t } = useLocale();
+  const {
+    play,
+    playSource,
+    sampleLibrary,
+    loadSamplePlay,
+    importPlayFromText,
+  } = usePlayData();
+  const [selectedSceneId, setSelectedSceneId] = useState(play.scenes[0]?.id ?? "");
+  const [importErrors, setImportErrors] = useState<string[]>([]);
+  const [importPreview, setImportPreview] = useState<{ fileName: string; play: Play } | null>(null);
+  const [status, setStatus] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const currentScene = play.scenes.find((scene) => scene.id === selectedSceneId) ?? play.scenes[0];
+  const playSummary = useMemo(() => summarizePlay(play), [play]);
+  const title = mode === "rehearsal" ? t("setup.rehearsalTitle") : t("setup.directorTitle");
+  const description = mode === "rehearsal" ? t("setup.rehearsalDescription") : t("setup.directorDescription");
+  const stepThreeLabel = mode === "rehearsal" ? t("setup.continueToRoles") : t("setup.continueToDirector");
+  const sourceLabel =
+    playSource.type === "sample"
+      ? t("home.playSourceSample")
+      : playSource.type === "imported"
+        ? t("home.playSourceImported")
+        : t("home.playSourceEdited");
+
+  function openImportPicker() {
+    fileInputRef.current?.click();
+  }
+
+  function handleSelectSample(sampleId: string) {
+    loadSamplePlay(sampleId);
+    const nextSample = sampleLibrary.find((sample) => sample.id === sampleId);
+    setSelectedSceneId(nextSample?.play.scenes[0]?.id ?? "");
+    setImportPreview(null);
+    setImportErrors([]);
+  }
+
+  async function handleImportFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const text = await file.text();
+      const parsed = parsePlay(JSON.parse(text));
+      setImportPreview({ fileName: file.name, play: parsed });
+      setImportErrors([]);
+      setStatus(t("director.importParsed"));
+    } catch (error) {
+      setImportPreview(null);
+      setImportErrors(formatPlayImportError(error, locale));
+      setStatus(t("director.importFailed"));
+    } finally {
+      event.target.value = "";
+    }
+  }
+
+  function applyImportedPlay() {
+    if (!importPreview) return;
+    const nextPlay = importPlayFromText(JSON.stringify(importPreview.play));
+    setSelectedSceneId(nextPlay.scenes[0]?.id ?? "");
+    setImportPreview(null);
+    setImportErrors([]);
+    setStatus(t("director.importApplied"));
+  }
+
+  function goNext() {
+    if (!currentScene) return;
+    if (mode === "rehearsal") {
+      router.push(`/select-role?scene=${encodeURIComponent(currentScene.id)}`);
+      return;
+    }
+    router.push(`/director?scene=${encodeURIComponent(currentScene.id)}`);
+  }
+
+  return (
+    <main className="page-shell min-h-screen px-5 py-12 sm:px-6">
+      <div className="mx-auto max-w-5xl">
+        <div className="glass-panel rounded-[32px] px-6 py-7 sm:px-8">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json,.json"
+            className="hidden"
+            onChange={handleImportFile}
+          />
+
+          <div className="mb-8 flex items-start justify-between gap-4">
+            <div>
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs text-white/34 hover:text-white/70 transition mb-4"
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                {t("setup.backHome")}
+              </Link>
+              <p className="page-kicker mb-2">{t("setup.kicker")}</p>
+              <h1 className="display-title text-4xl font-light text-white">{title}</h1>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/42">{description}</p>
+            </div>
+          </div>
+
+          <div className="mb-6 grid gap-3 rounded-[26px] border border-white/[0.06] bg-white/[0.025] p-3 md:grid-cols-3">
+            {[
+              { step: "01", title: t("setup.currentPlay"), description: t("setup.useCurrentPlay") },
+              { step: "02", title: t("setup.samplePlays"), description: t("setup.importJson") },
+              { step: "03", title: t("setup.sceneSelection"), description: stepThreeLabel },
+            ].map((item, index) => (
+              <div
+                key={item.step}
+                className="rounded-[22px] border px-4 py-4"
+                style={{
+                  borderColor: index === 2 ? "rgba(241,194,125,0.22)" : "rgba(255,255,255,0.06)",
+                  background: index === 2 ? "rgba(241,194,125,0.07)" : "rgba(255,255,255,0.02)",
+                }}
+              >
+                <p className="text-[10px] uppercase tracking-[0.3em] text-[#f1c27d]/60">{item.step}</p>
+                <p className="mt-2 text-sm font-medium text-white/82">{item.title}</p>
+                <p className="mt-1 text-xs leading-6 text-white/36">{item.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="space-y-4">
+              <section className="glass-panel rounded-[28px] px-5 py-5">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                      <span className="text-[10px] uppercase tracking-[0.3em] text-[#f1c27d]/65">01</span>
+                      <span className="text-[11px] text-white/44">{t("setup.currentPlay")}</span>
+                    </div>
+                    <h2 className="display-title text-2xl text-white">{play.title}</h2>
+                    <p className="mt-2 text-sm text-white/42">{sourceLabel}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedSceneId(play.scenes[0]?.id ?? "")}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/60 transition hover:bg-white/[0.08] hover:text-white/82"
+                  >
+                    {t("setup.useCurrentPlay")}
+                  </button>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2 text-xs text-white/40">
+                  <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.sceneCount", { count: playSummary.sceneCount })}</span>
+                  <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.totalMeta", { actors: playSummary.totalActors, events: playSummary.totalEvents })}</span>
+                </div>
+              </section>
+
+              <section className="glass-panel rounded-[28px] px-5 py-5">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div>
+                    <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                      <span className="text-[10px] uppercase tracking-[0.3em] text-[#f1c27d]/65">02</span>
+                      <span className="text-[11px] text-white/44">{t("setup.samplePlays")}</span>
+                    </div>
+                    <p className="text-sm text-white/38">{t("setup.sampleDescription")}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={openImportPicker}
+                    className="rounded-full bg-[#f1c27d] px-4 py-2 text-xs font-medium text-[#0a0c14] transition hover:bg-[#f5d090]"
+                  >
+                    {t("setup.importJson")}
+                  </button>
+                </div>
+
+                <div className="space-y-2">
+                  {sampleLibrary.map((sample) => {
+                    const active = playSource.type === "sample" && playSource.sampleId === sample.id;
+                    return (
+                      <button
+                        key={sample.id}
+                        type="button"
+                        onClick={() => handleSelectSample(sample.id)}
+                        className="w-full rounded-2xl border px-4 py-3 text-left transition"
+                        style={{
+                          borderColor: active ? "rgba(241,194,125,0.24)" : "rgba(255,255,255,0.08)",
+                          background: active ? "rgba(241,194,125,0.08)" : "rgba(255,255,255,0.025)",
+                        }}
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="truncate text-sm font-medium text-white/82">{sample.title}</p>
+                            <p className="mt-1 text-xs text-white/40">{sample.description[locale]}</p>
+                          </div>
+                          <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] text-white/36">
+                            {t("home.sceneCount", { count: sample.play.scenes.length })}
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+
+              {(importPreview || importErrors.length > 0 || status) && (
+                <section className="glass-panel rounded-[28px] px-5 py-5">
+                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#7fd1b9]/75">JSON</span>
+                    <span className="text-[11px] text-white/44">{t("setup.importStatus")}</span>
+                  </div>
+                  {status && <p className="mb-3 text-sm text-white/56">{status}</p>}
+                  {importPreview && (
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-sm font-medium text-white/78">{importPreview.fileName}</p>
+                        <p className="mt-1 text-xs text-white/38">
+                          {importPreview.play.title} · {t("home.sceneCount", { count: importPreview.play.scenes.length })}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={applyImportedPlay}
+                        className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-xs text-white/70 transition hover:bg-white/[0.08] hover:text-white"
+                      >
+                        {t("director.applyImport")}
+                      </button>
+                    </div>
+                  )}
+                  {importErrors.length > 0 && (
+                    <div className="space-y-1 text-sm text-[#f0a6a6]">
+                      {importErrors.map((error) => (
+                        <p key={error}>{error}</p>
+                      ))}
+                    </div>
+                  )}
+                </section>
+              )}
+            </div>
+
+            <section className="glass-panel sticky top-6 rounded-[28px] px-5 py-5 self-start">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-[#f1c27d]/65">03</span>
+                <span className="text-[11px] text-white/44">{t("setup.sceneSelection")}</span>
+              </div>
+              <div className="space-y-2">
+                {play.scenes.map((scene) => {
+                  const active = scene.id === currentScene?.id;
+                  return (
+                    <button
+                      key={scene.id}
+                      type="button"
+                      onClick={() => setSelectedSceneId(scene.id)}
+                      className="w-full rounded-2xl border px-4 py-3 text-left transition"
+                      style={{
+                        borderColor: active ? "rgba(241,194,125,0.24)" : "rgba(255,255,255,0.08)",
+                        background: active ? "rgba(241,194,125,0.08)" : "rgba(255,255,255,0.025)",
+                      }}
+                    >
+                      <p className="text-sm font-medium text-white/82">{scene.title}</p>
+                      <p className="mt-1 text-xs text-white/38">{scene.subtitle}</p>
+                      <p className="mt-2 text-[11px] text-white/32">
+                        {t("setup.sceneMeta", { actors: scene.actors.length, events: scene.events.length })}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {currentScene && (
+                <div className="mt-5 rounded-2xl border border-white/[0.06] bg-white/[0.03] px-4 py-4">
+                  <p className="text-xs uppercase tracking-[0.22em] text-white/24">{t("role.setting")}</p>
+                  <p className="mt-3 text-sm leading-7 text-white/46">{currentScene.setting}</p>
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={goNext}
+                disabled={!currentScene}
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f1c27d] px-5 py-3 text-sm font-medium text-[#0a0c14] transition hover:bg-[#f5d090] disabled:opacity-50"
+              >
+                {stepThreeLabel}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}

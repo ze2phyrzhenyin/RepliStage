@@ -29,19 +29,16 @@ function isErrorMessage(message: string) {
   return /échec|error|failed|失败|错误/i.test(message);
 }
 
-export default function DirectorClient() {
+export default function DirectorClient({ initialSceneId = "" }: { initialSceneId?: string }) {
   const { locale, t } = useLocale();
   const {
     play: loadedPlay,
     setPlay: persistPlay,
     resetPlay,
-    usingDefaultPlay,
     playSource,
-    sampleLibrary,
-    loadSamplePlay,
   } = usePlayData();
   const [play, setPlayRaw] = useState<Play>(() => JSON.parse(JSON.stringify(loadedPlay)));
-  const [activeSceneId, setActiveSceneId] = useState<string>(loadedPlay.scenes[0].id);
+  const [activeSceneId, setActiveSceneId] = useState<string>(initialSceneId || loadedPlay.scenes[0].id);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>("events");
@@ -51,7 +48,6 @@ export default function DirectorClient() {
   const [importPreview, setImportPreview] = useState<ImportPreview | null>(null);
   const [importErrors, setImportErrors] = useState<string[]>([]);
   const [showUtilityMenu, setShowUtilityMenu] = useState(false);
-  const [showSampleMenu, setShowSampleMenu] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const historyRef = useRef<Play[]>([JSON.parse(JSON.stringify(loadedPlay))]);
@@ -64,13 +60,13 @@ export default function DirectorClient() {
   useEffect(() => {
     const nextPlay = JSON.parse(JSON.stringify(loadedPlay)) as Play;
     setPlayRaw(nextPlay);
-    setActiveSceneId(nextPlay.scenes[0].id);
+    setActiveSceneId(nextPlay.scenes.some((scene) => scene.id === initialSceneId) ? initialSceneId : nextPlay.scenes[0].id);
     setCurrentEventIndex(0);
     setSelectedEventIndex(null);
     setSelectedActorId(null);
     historyRef.current = [JSON.parse(JSON.stringify(nextPlay))];
     historyIndexRef.current = 0;
-  }, [loadedPlay]);
+  }, [initialSceneId, loadedPlay]);
 
   function setPlay(updater: Play | ((prev: Play) => Play)) {
     setPlayRaw((prev) => {
@@ -333,19 +329,8 @@ export default function DirectorClient() {
     setTimeout(() => setSaveMsg(null), 4000);
   }
 
-  function handleResetToSample() {
-    setShowUtilityMenu(false);
-    setShowSampleMenu(false);
-    resetPlay();
-    setImportPreview(null);
-    setImportErrors([]);
-    setSaveMsg(t("director.restored"));
-    setTimeout(() => setSaveMsg(null), 4000);
-  }
-
   function handleClearBrowserStorage() {
     setShowUtilityMenu(false);
-    setShowSampleMenu(false);
     if (typeof window === "undefined") return;
 
     const confirmed = window.confirm(t("director.clearConfirm"));
@@ -373,16 +358,6 @@ export default function DirectorClient() {
       setSaveMsg(t("director.clearFailed"));
       setTimeout(() => setSaveMsg(null), 4000);
     }
-  }
-
-  function handleLoadSample(sampleId: string) {
-    setShowUtilityMenu(false);
-    setShowSampleMenu(false);
-    loadSamplePlay(sampleId);
-    setImportPreview(null);
-    setImportErrors([]);
-    setSaveMsg(t("director.restored"));
-    setTimeout(() => setSaveMsg(null), 4000);
   }
 
   const currentEvent = scene.events[currentEventIndex];
@@ -488,22 +463,9 @@ export default function DirectorClient() {
 
                 {showUtilityMenu && (
                   <div className="absolute right-0 top-full z-20 mt-2 w-52 rounded-2xl border border-white/10 bg-[#0b1019]/96 p-2 shadow-[0_18px_44px_rgba(0,0,0,0.34)] backdrop-blur-xl">
-                    <div className="px-3 py-2">
-                      <p className="text-[10px] uppercase tracking-[0.22em] text-white/28">{t("director.sampleMenu")}</p>
-                    </div>
-                    {sampleLibrary.map((sample) => (
-                      <button
-                        key={sample.id}
-                        onClick={() => handleLoadSample(sample.id)}
-                        className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm text-white/72 transition hover:bg-white/[0.05]"
-                      >
-                        <span>{sample.title}</span>
-                        <span className="text-[10px] uppercase tracking-[0.24em] text-[#b8a4f0]">{sample.localeTag}</span>
-                      </button>
-                    ))}
                     <button
                       onClick={handleClearBrowserStorage}
-                      className="mt-1 flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm text-[#f5b0a4] transition hover:bg-[#f08c78]/10"
+                      className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm text-[#f5b0a4] transition hover:bg-[#f08c78]/10"
                     >
                       <span>{t("director.clearStorage")}</span>
                       <span className="text-[10px] uppercase tracking-[0.24em] text-[#f08c78]">reset</span>
@@ -539,32 +501,13 @@ export default function DirectorClient() {
               </div>
 
               <div className="hidden items-center gap-2 md:flex">
-                <div className="relative">
-                  <button
-                    onClick={() => setShowSampleMenu((value) => !value)}
-                    className="inline-flex items-center justify-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition"
-                    style={{ borderColor: "rgba(184,164,240,0.28)", color: usingDefaultPlay ? "#e9ddff" : "rgba(255,255,255,0.72)", background: "rgba(184,164,240,0.08)" }}
-                  >
-                    {t("director.loadSample")}
-                  </button>
-                  {showSampleMenu && (
-                    <div className="absolute right-0 top-full z-20 mt-2 min-w-[240px] rounded-2xl border border-white/10 bg-[#0b1019]/96 p-2 shadow-[0_18px_44px_rgba(0,0,0,0.34)] backdrop-blur-xl">
-                      <div className="px-3 py-2">
-                        <p className="text-[10px] uppercase tracking-[0.22em] text-white/28">{t("director.sampleMenu")}</p>
-                      </div>
-                      {sampleLibrary.map((sample) => (
-                        <button
-                          key={sample.id}
-                          onClick={() => handleLoadSample(sample.id)}
-                          className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm text-white/72 transition hover:bg-white/[0.05]"
-                        >
-                          <span>{sample.title}</span>
-                          <span className="text-[10px] uppercase tracking-[0.24em] text-[#b8a4f0]">{sample.localeTag}</span>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <Link
+                  href="/director/setup"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition"
+                  style={{ borderColor: "rgba(184,164,240,0.28)", color: "rgba(255,255,255,0.72)", background: "rgba(184,164,240,0.08)" }}
+                >
+                  {t("director.loadSample")}
+                </Link>
                 <button
                   onClick={handleClearBrowserStorage}
                   className="inline-flex items-center justify-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition"
