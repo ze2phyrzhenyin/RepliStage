@@ -1,109 +1,175 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import type { Play } from "@/types/script";
+import type { Play, PlaySource } from "@/types/script";
 import { defaultPlay } from "@/lib/demo-script";
 import { parsePlay } from "@/lib/play-schema";
+import {
+  clonePlay,
+  defaultPlayFromSamples,
+  defaultSampleId,
+  getSamplePlay,
+  inferSampleSource,
+  samplePlays,
+  type SamplePlayDescriptor,
+} from "@/lib/sample-plays";
 
 const PLAY_STORAGE_KEY = "stagecue_current_play_v1";
-const PLAY_STORAGE_VERSION = 2;
+const PLAY_STORAGE_VERSION = 3;
 
 type PersistedPlayState = {
   version: number;
   play: Play;
+  source?: PlaySource;
 };
 
 type PlayContextValue = {
   play: Play;
-  setPlay: (play: Play) => void;
+  setPlay: (play: Play, source?: PlaySource) => void;
   resetPlay: () => void;
+  loadSamplePlay: (sampleId: string) => void;
   importPlayFromText: (text: string) => Play;
   exportPlayToText: () => string;
   usingDefaultPlay: boolean;
+  playSource: PlaySource;
+  currentSampleId: string | null;
+  sampleLibrary: SamplePlayDescriptor[];
 };
 
 const PlayContext = createContext<PlayContextValue>({
   play: defaultPlay,
   setPlay: () => {},
   resetPlay: () => {},
+  loadSamplePlay: () => {},
   importPlayFromText: () => defaultPlay,
   exportPlayToText: () => JSON.stringify(defaultPlay, null, 2),
   usingDefaultPlay: true,
+  playSource: { type: "sample", sampleId: defaultSampleId },
+  currentSampleId: defaultSampleId,
+  sampleLibrary: samplePlays,
 });
 
-function clonePlay(play: Play): Play {
-  return JSON.parse(JSON.stringify(play)) as Play;
+function inferSourceForPlay(play: Play): PlaySource {
+  const matchedSampleId = inferSampleSource(play);
+  if (matchedSampleId) {
+    return { type: "sample", sampleId: matchedSampleId };
+  }
+  return { type: "edited" };
 }
 
-function migrateStoredPlay(raw: unknown): Play {
+function migrateStoredPlay(raw: unknown): { play: Play; source: PlaySource } {
   if (!raw || typeof raw !== "object") {
-    return parsePlay(raw);
+    const play = parsePlay(raw);
+    return { play, source: inferSourceForPlay(play) };
   }
 
   const maybeWrapped = raw as Partial<PersistedPlayState>;
   if (typeof maybeWrapped.version === "number" && "play" in maybeWrapped) {
-    return parsePlay(maybeWrapped.play);
+    const play = parsePlay(maybeWrapped.play);
+    return {
+      play,
+      source: maybeWrapped.source ?? inferSourceForPlay(play),
+    };
   }
 
-  return parsePlay(raw);
+  const play = parsePlay(raw);
+  return { play, source: inferSourceForPlay(play) };
 }
 
-function loadStoredPlay(): Play {
-  if (typeof window === "undefined") return clonePlay(defaultPlay);
+function loadStoredPlay() {
+  if (typeof window === "undefined") {
+    return {
+      play: defaultPlayFromSamples(),
+      source: { type: "sample", sampleId: defaultSampleId } satisfies PlaySource,
+    };
+  }
   try {
     const raw = localStorage.getItem(PLAY_STORAGE_KEY);
-    if (!raw) return clonePlay(defaultPlay);
+    if (!raw) {
+      return {
+        play: defaultPlayFromSamples(),
+        source: { type: "sample", sampleId: defaultSampleId } satisfies PlaySource,
+      };
+    }
     const parsed = migrateStoredPlay(JSON.parse(raw));
-    return clonePlay(parsed);
+    return {
+      play: clonePlay(parsed.play),
+      source: parsed.source,
+    };
   } catch {
     try {
       localStorage.removeItem(PLAY_STORAGE_KEY);
     } catch {
       // ignore storage errors
     }
-    return clonePlay(defaultPlay);
+    return {
+      play: defaultPlayFromSamples(),
+      source: { type: "sample", sampleId: defaultSampleId } satisfies PlaySource,
+    };
   }
 }
 
 export function PlayProvider({ children }: { children: React.ReactNode }) {
-  const [play, setPlayState] = useState<Play>(() => loadStoredPlay());
+  const [{ play, source }, setState] = useState(() => loadStoredPlay());
 
   useEffect(() => {
     try {
       const persisted: PersistedPlayState = {
         version: PLAY_STORAGE_VERSION,
         play,
+        source,
       };
       localStorage.setItem(PLAY_STORAGE_KEY, JSON.stringify(persisted));
     } catch {
       // ignore storage errors
     }
-  }, [play]);
+  }, [play, source]);
 
   const value = useMemo<PlayContextValue>(() => ({
     play,
-    setPlay(nextPlay) {
-      setPlayState(clonePlay(parsePlay(nextPlay)));
+    setPlay(nextPlay, sourceOverride) {
+      const parsedPlay = clonePlay(parsePlay(nextPlay));
+      setState((prev) => ({
+        play: parsedPlay,
+        source: sourceOverride ?? (prev.source.type === "sample" ? { type: "edited" } : prev.source),
+      }));
     },
     resetPlay() {
-      setPlayState(clonePlay(defaultPlay));
+      setState({
+        play: defaultPlayFromSamples(),
+        source: { type: "sample", sampleId: defaultSampleId },
+      });
       try {
         localStorage.removeItem(PLAY_STORAGE_KEY);
       } catch {
         // ignore storage errors
       }
     },
+    loadSamplePlay(sampleId) {
+      const sample = getSamplePlay(sampleId);
+      if (!sample) return;
+      setState({
+        play: clonePlay(sample.play),
+        source: { type: "sample", sampleId: sample.id },
+      });
+    },
     importPlayFromText(text) {
       const parsed = parsePlay(JSON.parse(text));
       const nextPlay = clonePlay(parsed);
-      setPlayState(nextPlay);
+      setState({
+        play: nextPlay,
+        source: { type: "imported" },
+      });
       return nextPlay;
     },
     exportPlayToText() {
       return JSON.stringify(play, null, 2);
     },
-    usingDefaultPlay: JSON.stringify(play) === JSON.stringify(defaultPlay),
-  }), [play]);
+    usingDefaultPlay: source.type === "sample" && source.sampleId === defaultSampleId,
+    playSource: source,
+    currentSampleId: source.type === "sample" ? source.sampleId : null,
+    sampleLibrary: samplePlays,
+  }), [play, source]);
 
   return (
     <PlayContext.Provider value={value}>

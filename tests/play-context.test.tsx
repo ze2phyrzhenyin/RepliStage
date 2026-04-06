@@ -57,8 +57,9 @@ describe("PlayContext", () => {
 
     expect(renderer!.root.findByProps({ id: "title" }).children.join("")).toBe("Legacy Title");
     const persisted = JSON.parse(window.localStorage.getItem("stagecue_current_play_v1") ?? "{}");
-    expect(persisted.version).toBe(2);
+    expect(persisted.version).toBe(3);
     expect(persisted.play.title).toBe("Legacy Title");
+    expect(persisted.source.type).toBe("edited");
   });
 
   it("resets back to default play and clears storage", async () => {

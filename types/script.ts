@@ -102,3 +102,8 @@ export type Play = {
   title: string;
   scenes: ScriptDefinition[];
 };
+
+export type PlaySource =
+  | { type: "sample"; sampleId: string }
+  | { type: "imported" }
+  | { type: "edited" };

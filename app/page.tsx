@@ -8,11 +8,17 @@ import { useLocale } from "@/components/locale/LocaleContext";
 import { usePlayData } from "@/components/play/PlayContext";
 
 function HomePageContent() {
-  const { play } = usePlayData();
-  const { t } = useLocale();
+  const { play, playSource, currentSampleId, sampleLibrary, loadSamplePlay } = usePlayData();
+  const { locale, t } = useLocale();
   const searchParams = useSearchParams();
   const selectedSceneId = searchParams.get("scene");
   const scene = play.scenes.find((item) => item.id === selectedSceneId) ?? play.scenes[0];
+  const sourceLabel =
+    playSource.type === "sample"
+      ? t("home.playSourceSample")
+      : playSource.type === "imported"
+        ? t("home.playSourceImported")
+        : t("home.playSourceEdited");
 
   return (
     <main className="page-shell min-h-screen flex flex-col items-center justify-center px-5 py-16 sm:px-6">
@@ -52,6 +58,60 @@ function HomePageContent() {
             <p className="text-white/25 text-xs">
               {t("home.meta", { actors: scene.actors.length, events: scene.events.length })}
             </p>
+          </div>
+
+          <div className="grid gap-4 text-left lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="glass-panel rounded-[26px] px-5 py-5">
+              <p className="page-kicker mb-3">{t("home.currentPlay")}</p>
+              <h2 className="display-title text-2xl text-white">{play.title}</h2>
+              <p className="mt-2 text-sm text-white/42">{sourceLabel}</p>
+              <div className="mt-4 flex flex-wrap gap-2 text-xs text-white/40">
+                <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.sceneCount", { count: play.scenes.length })}</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">{t("home.meta", { actors: scene.actors.length, events: scene.events.length })}</span>
+              </div>
+              <Link
+                href="/director"
+                className="mt-5 inline-flex items-center gap-2 text-xs text-white/38 transition hover:text-[#f1c27d]"
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2" />
+                  <path d="M4 6h4M6 4v4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
+                {t("home.openDirector")}
+              </Link>
+            </div>
+
+            <div className="glass-panel rounded-[26px] px-5 py-5">
+              <p className="page-kicker mb-3">{t("home.sampleLibrary")}</p>
+              <div className="space-y-2">
+                {sampleLibrary.map((sample) => {
+                  const active = currentSampleId === sample.id && playSource.type === "sample";
+                  return (
+                    <button
+                      key={sample.id}
+                      onClick={() => loadSamplePlay(sample.id)}
+                      className="w-full rounded-2xl border px-4 py-3 text-left transition"
+                      style={{
+                        borderColor: active ? "rgba(241,194,125,0.24)" : "rgba(255,255,255,0.08)",
+                        background: active ? "rgba(241,194,125,0.08)" : "rgba(255,255,255,0.025)",
+                      }}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-medium text-white/82">{sample.title}</p>
+                          <p className="mt-1 text-xs text-white/40">
+                            {sample.description[locale]}
+                          </p>
+                        </div>
+                        <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] uppercase tracking-[0.22em] text-white/36">
+                          {sample.localeTag}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
           {play.scenes.length > 1 && (
