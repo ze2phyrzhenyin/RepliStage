@@ -320,8 +320,10 @@ function GenericProp({
           : { bottom: (stageH - prop.y) * scale }),
         width: w,
         height: h,
-        cursor: editMode ? "grab" : undefined,
+        cursor: editMode ? (prop.locked ? "default" : "grab") : undefined,
         pointerEvents: editMode ? "auto" : "none",
+        opacity: prop.locked ? 0.78 : 1,
+        filter: prop.locked ? "grayscale(0.12)" : undefined,
       }}
     >
       <PropSvgForKind kind={prop.kind} />
@@ -472,9 +474,13 @@ export function StageCanvas({
     )),
     [editMode, propDrag, stageConfig, stageState.props],
   );
-  const doorProps    = stageProps.filter((prop) => prop.kind === "door");
-  const chairProps   = stageProps.filter((prop) => prop.kind === "chair");
-  const genericProps = stageProps.filter((prop) => !SPECIAL_KINDS.has(prop.kind));
+  const orderedProps = useMemo(
+    () => [...stageProps].sort((a, b) => (a.layerOrder ?? 0) - (b.layerOrder ?? 0)),
+    [stageProps],
+  );
+  const doorProps    = orderedProps.filter((prop) => prop.kind === "door");
+  const chairProps   = orderedProps.filter((prop) => prop.kind === "chair");
+  const genericProps = orderedProps.filter((prop) => !SPECIAL_KINDS.has(prop.kind));
   const hangingProps = genericProps.filter((prop) => PROP_LAYERS[prop.kind] === "hanging");
   const backProps = genericProps.filter((prop) => (PROP_LAYERS[prop.kind] ?? "back") === "back");
   const frontProps = genericProps.filter((prop) => PROP_LAYERS[prop.kind] === "front");
@@ -573,6 +579,7 @@ export function StageCanvas({
 
   function startPropDrag(prop: StageProp) {
     return (e: React.PointerEvent) => {
+      if (prop.locked) return;
       e.stopPropagation();
       e.preventDefault();
       (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);

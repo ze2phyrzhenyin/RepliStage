@@ -212,12 +212,26 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
   }
 
   function updateStageProp(propId: string, x: number, y: number) {
+    const source = getStageProps(scene.stage).find((prop) => prop.id === propId);
+    if (!source) return;
     updateScene(scene.id, (current) => ({
       ...current,
       stage: upsertStageProp(current.stage, {
-        ...(getStageProps(current.stage).find((prop) => prop.id === propId) as StageProp),
+        ...source,
         x,
         y,
+      }),
+    }));
+  }
+
+  function patchStageProp(propId: string, updates: Partial<StageProp>) {
+    const source = getStageProps(scene.stage).find((prop) => prop.id === propId);
+    if (!source) return;
+    updateScene(scene.id, (current) => ({
+      ...current,
+      stage: upsertStageProp(current.stage, {
+        ...source,
+        ...updates,
       }),
     }));
   }
@@ -246,6 +260,32 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
         label: source.label,
       }),
     }));
+  }
+
+  function handleTogglePropLock(propId: string) {
+    const source = sceneProps.find((prop) => prop.id === propId);
+    if (!source) return;
+    patchStageProp(propId, { locked: !source.locked });
+  }
+
+  function movePropLayer(propId: string, direction: -1 | 1) {
+    const ordered = [...sceneProps].sort((a, b) => (a.layerOrder ?? 0) - (b.layerOrder ?? 0));
+    const index = ordered.findIndex((prop) => prop.id === propId);
+    const swapIndex = index + direction;
+    if (index < 0 || swapIndex < 0 || swapIndex >= ordered.length) return;
+    const current = ordered[index];
+    const target = ordered[swapIndex];
+    patchStageProp(current.id, { layerOrder: target.layerOrder ?? swapIndex });
+    patchStageProp(target.id, { layerOrder: current.layerOrder ?? index });
+  }
+
+  function sendPropLayer(propId: string, position: "front" | "back") {
+    const ordered = [...sceneProps].sort((a, b) => (a.layerOrder ?? 0) - (b.layerOrder ?? 0));
+    const source = ordered.find((prop) => prop.id === propId);
+    if (!source) return;
+    const minLayer = ordered[0]?.layerOrder ?? 0;
+    const maxLayer = ordered[ordered.length - 1]?.layerOrder ?? 0;
+    patchStageProp(propId, { layerOrder: position === "front" ? maxLayer + 1 : minLayer - 1 });
   }
 
   function handleAddProp(kind: StagePropKind) {
@@ -776,25 +816,34 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
 
               {sceneProps.map((prop) => (
                 <div key={prop.id} className="w-full rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2.5">
-                  <div className="mb-2 flex items-center justify-between">
+                  <div className="mb-2 flex items-center justify-between gap-2">
                     <div className="flex flex-col">
                       <span className="text-[11px] text-white/62">{t(`stage.${prop.kind}` as never)}</span>
                       <span className="text-[10px] text-white/28">{prop.id}</span>
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => handleDuplicateProp(prop.id)}
-                      className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
-                    >
-                      {t("director.duplicateProp")}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveProp(prop.id)}
-                      className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
-                    >
-                      {t("director.removeProp")}
-                    </button>
+                    <div className="flex flex-wrap justify-end gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => handleTogglePropLock(prop.id)}
+                        className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
+                      >
+                        {prop.locked ? t("director.unlockProp") : t("director.lockProp")}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDuplicateProp(prop.id)}
+                        className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
+                      >
+                        {t("director.duplicateProp")}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveProp(prop.id)}
+                        className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
+                      >
+                        {t("director.removeProp")}
+                      </button>
+                    </div>
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <label className="flex items-center gap-1">
@@ -815,6 +864,45 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
                         className="w-16 bg-white/5 rounded px-1.5 py-0.5 text-white/60 outline-none"
                       />
                     </label>
+                    <label className="flex items-center gap-1">
+                      <span>{t("director.layerOrder")}</span>
+                      <input
+                        type="number"
+                        value={prop.layerOrder ?? 0}
+                        onChange={(e) => patchStageProp(prop.id, { layerOrder: Number(e.target.value) || 0 })}
+                        className="w-16 bg-white/5 rounded px-1.5 py-0.5 text-white/60 outline-none"
+                      />
+                    </label>
+                  </div>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => movePropLayer(prop.id, -1)}
+                      className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
+                    >
+                      {t("director.layerBack")}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => movePropLayer(prop.id, 1)}
+                      className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
+                    >
+                      {t("director.layerFront")}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => sendPropLayer(prop.id, "back")}
+                      className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
+                    >
+                      {t("director.sendToBack")}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => sendPropLayer(prop.id, "front")}
+                      className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
+                    >
+                      {t("director.bringToFront")}
+                    </button>
                   </div>
                 </div>
               ))}

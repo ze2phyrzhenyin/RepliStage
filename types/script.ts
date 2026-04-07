@@ -45,6 +45,8 @@ export type StageProp = {
   x: number;
   y: number;
   label?: string;
+  locked?: boolean;
+  layerOrder?: number;
 };
 
 export type StageConfig = {

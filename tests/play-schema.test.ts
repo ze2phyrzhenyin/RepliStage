@@ -122,8 +122,8 @@ describe("play-schema", () => {
       width: 920,
       height: 520,
       props: [
-        { id: "door", kind: "door", x: 180, y: 110 },
-        { id: "chair", kind: "chair", x: 470, y: 350 },
+        { id: "door", kind: "door", x: 180, y: 110, locked: true, layerOrder: 1 },
+        { id: "chair", kind: "chair", x: 470, y: 350, layerOrder: 2 },
       ],
     };
 

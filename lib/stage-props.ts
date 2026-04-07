@@ -46,6 +46,10 @@ function cloneStageProp(prop: StageProp): StageProp {
   return { ...prop };
 }
 
+function getNextLayerOrder(props: StageProp[]) {
+  return props.reduce((max, prop) => Math.max(max, prop.layerOrder ?? 0), 0) + 1;
+}
+
 type NormalizeStagePropOptions = {
   includeDefaults?: boolean;
 };
@@ -100,9 +104,13 @@ export function hasStageProp(stage: StageConfig, kind: StagePropKind): boolean {
 
 export function upsertStageProp(stage: StageConfig, nextProp: StageProp): StageConfig {
   const props = normalizeStageProps(stage);
+  const withDefaults = {
+    ...cloneStageProp(nextProp),
+    layerOrder: nextProp.layerOrder ?? getNextLayerOrder(props),
+  };
   const nextProps = props.some((prop) => prop.id === nextProp.id)
-    ? props.map((prop) => (prop.id === nextProp.id ? cloneStageProp(nextProp) : prop))
-    : [...props, cloneStageProp(nextProp)];
+    ? props.map((prop) => (prop.id === nextProp.id ? withDefaults : prop))
+    : [...props, withDefaults];
 
   return syncStageLegacyFields({ ...stage, props: nextProps });
 }
@@ -120,6 +128,7 @@ export function createDefaultStageProp(kind: StagePropKind): StageProp {
   return {
     ...cloneStageProp(DEFAULT_STAGE_PROPS[kind]),
     id: createStagePropId(kind),
+    locked: false,
   };
 }
 

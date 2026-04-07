@@ -27,6 +27,8 @@ export const stagePropSchema = z.object({
   x: z.number(),
   y: z.number(),
   label: z.string().optional(),
+  locked: z.boolean().optional(),
+  layerOrder: z.number().int().optional(),
 });
 
 export const stageConfigSchema = z.object({
