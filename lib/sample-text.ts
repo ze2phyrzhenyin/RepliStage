@@ -218,6 +218,41 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
         setting: {
           fr: "Au centre de la grande maison en verre se trouve une chaise ; à droite, l’accès à l’intérieur, en haut à gauche la porte, et en bas à droite l’espace de ménage. La belle-mère, anéantie, est assise ; la grande sœur tourne autour d’elle avec agitation, puis la petite sœur, le roi, les gardes et la très jeune fille entrent à leur tour.",
         },
+        events: {
+          e2: {
+            fr: "LA VOIX DE LA NARRATRICE. Le lendemain, dans l’immense maison de verre de la future belle-mère, la crise éclata pour de bon.",
+          },
+          e6: {
+            fr: "La belle-mère s’effondre sur la chaise, hagarde ; la grande sœur tourne autour d’elle avec nervosité.",
+          },
+          e11: {
+            fr: "La belle-mère bondit brusquement de sa chaise, emportée par une colère soudaine.",
+          },
+          e27: {
+            fr: "La belle-mère et la grande sœur se figent en même temps et se tournent vers la porte ; l’air semble soudain manquer dans la pièce.",
+          },
+          e34: {
+            fr: "Le roi franchit la porte avec ses deux gardes, pressé mais toujours solennel.",
+          },
+          e42: {
+            fr: "La belle-mère et les deux sœurs se penchent presque en même temps, le souffle suspendu.",
+          },
+          e48: {
+            fr: "La très jeune fille entre en serrant son aspirateur contre elle ; elle a l’air épuisée mais toujours franche.",
+          },
+          e65: {
+            fr: "La belle-mère se rassied et retrouve soudain un calme inquiétant, comme si une occasion dangereuse venait de s’offrir à elle.",
+          },
+          e89: {
+            fr: "La belle-mère et les deux sœurs baissent la tête pour saluer le départ du roi ; les gardes se retournent au même moment.",
+          },
+          e95: {
+            fr: "La belle-mère ne répond rien. Elle se lève dans un silence opaque et dangereux, puis s’éloigne.",
+          },
+          e102: {
+            fr: "Quand tout le monde a disparu, la très jeune fille reste seule, son aspirateur à la main, comme soudain abandonnée par le monde.",
+          },
+        },
       },
       "scene-12-devant-palais": {
         subtitle: {
@@ -226,6 +261,41 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
         },
         setting: {
           fr: "Devant le palais, les lumières ne sont pas encore éteintes. Le roi parle à voix basse avec son fils près de l’entrée, tandis que la belle-mère, habillée d’une tenue excentrique et très moderne, attend à quelques pas. Deux gardes se tiennent non loin. Plus tard, la très jeune fille arrive à l’extérieur du palais et engage avec le prince leur première véritable conversation.",
+        },
+        events: {
+          s12e2: {
+            fr: "LA VOIX DE LA NARRATRICE. Quelques instants plus tard, la seconde soirée devant le palais devient encore plus étrange que la première. Le roi brûle de voir son fils retrouver la personne qui l’a tant troublé ; la belle-mère, elle, s’imagine déjà être cette personne.",
+          },
+          s12e9: {
+            fr: "Le roi souffle quelques mots d’encouragement à son fils puis désigne, à quelques pas, la belle-mère. Avec sa tenue extravagante et moderne, elle prend clairement cette soirée pour un signe du destin.",
+          },
+          s12e22: {
+            fr: "Le prince reste comme cloué sur place. Sa peur se lit de plus en plus sur son visage ; ses lèvres remuent sans qu’il parvienne à intervenir.",
+          },
+          s12e29: {
+            fr: "Le prince lève aussitôt la main pour appeler son père à l’aide. Le roi accourt et les gardes se tendent à leur tour.",
+          },
+          s12e46: {
+            fr: "La belle-mère regarde autour d’elle comme si le sol venait de se dérober, incapable de comprendre comment la situation a pu se renverser si vite.",
+          },
+          s12e48: {
+            fr: "Sur un signe du roi, les gardes s’avancent. La belle-mère se dégage en criant, se met à courir vers les portes du palais et déclenche les rires des invités. Dans la confusion, elle perd une chaussure.",
+          },
+          s12e51: {
+            fr: "L’un des gardes se baisse pour ramasser la chaussure tombée ; l’autre garde encore l’entrée avec méfiance.",
+          },
+          s12e53: {
+            fr: "Le roi reconduit son fils, encore bouleversé, à l’intérieur du palais. Devant l’entrée, il ne reste plus qu’un peu de nuit et les remous grotesques de la scène qui vient d’avoir lieu.",
+          },
+          s12e80: {
+            fr: "Le prince comprend enfin le mensonge qu’on entretient depuis dix ans. Il éclate en sanglots ; la jeune fille s’avance et le serre dans ses bras.",
+          },
+          s12e87: {
+            fr: "Le prince retire une chaussure et la tend à la jeune fille. Elle la reçoit avec soin, comme si elle recueillait enfin une preuve tardive et précieuse.",
+          },
+          s12e98: {
+            fr: "Le très jeune prince reste devant le palais à la regarder partir, comme s’il apercevait pour la première fois un chemin vers l’avenir.",
+          },
         },
       },
       "scene-13-maison-en-verre": {
