@@ -18,6 +18,13 @@ export const STAGE_PROP_KINDS: StagePropKind[] = [
   "broken_plate",
   "tea_set",
   "signboard_yiyuanzhai",
+  "ashtray",
+  "cigarette",
+  "wristwatch",
+  "invitation_card",
+  "smoke_effect",
+  "food_set",
+  "silver_note",
 ];
 
 const DEFAULT_STAGE_PROPS: Record<StagePropKind, StageProp> = {
@@ -40,6 +47,14 @@ const DEFAULT_STAGE_PROPS: Record<StagePropKind, StageProp> = {
   broken_plate:         { id: "broken_plate",         kind: "broken_plate",         x: 460, y: 455 },
   tea_set:              { id: "tea_set",              kind: "tea_set",              x: 380, y: 400 },
   signboard_yiyuanzhai: { id: "signboard_yiyuanzhai", kind: "signboard_yiyuanzhai", x: 460, y:  70 },
+  // Supplementary props
+  ashtray:        { id: "ashtray",        kind: "ashtray",        x: 380, y: 448 },
+  cigarette:      { id: "cigarette",      kind: "cigarette",      x: 300, y: 440 },
+  wristwatch:     { id: "wristwatch",     kind: "wristwatch",     x: 340, y: 440 },
+  invitation_card:{ id: "invitation_card",kind: "invitation_card",x: 420, y: 440 },
+  smoke_effect:   { id: "smoke_effect",   kind: "smoke_effect",   x: 300, y: 360 },
+  food_set:       { id: "food_set",       kind: "food_set",       x: 460, y: 400 },
+  silver_note:    { id: "silver_note",    kind: "silver_note",    x: 460, y: 440 },
 };
 
 function cloneStageProp(prop: StageProp): StageProp {

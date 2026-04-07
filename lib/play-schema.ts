@@ -23,6 +23,8 @@ export const stagePropSchema = z.object({
     "shoe", "bed", "dance_light",
     "counter_table", "display_shelf", "plate_stand", "suitcase",
     "porcelain_plate", "broken_plate", "tea_set", "signboard_yiyuanzhai",
+    "ashtray", "cigarette", "wristwatch", "invitation_card",
+    "smoke_effect", "food_set", "silver_note",
   ]),
   x: z.number(),
   y: z.number(),
@@ -68,7 +70,8 @@ export const scriptEventSchema = z.object({
   y: z.number().optional(),
   fromSide: z.enum(["left", "right", "top", "bottom"]).optional(),
   toSide: z.enum(["left", "right", "top", "bottom"]).optional(),
-  pose: z.enum(["stand", "sit"]).optional(),
+  pose: z.enum(["stand", "sit", "lie", "floor"]).optional(),
+  heldPropKind: stagePropSchema.shape.kind.optional(),
   path: z.array(pathPointSchema).optional(),
 });
 

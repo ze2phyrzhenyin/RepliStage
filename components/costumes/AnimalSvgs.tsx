@@ -182,3 +182,57 @@ export function PandaSvg() {
     </svg>
   );
 }
+
+// ── Sheep ─────────────────────────────────────────────────────
+export function SheepSvg() {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Ears */}
+      <ellipse cx="44" cy="60" rx="12" ry="8" fill="#e8e4e0" transform="rotate(-30 44 60)" />
+      <ellipse cx="116" cy="60" rx="12" ry="8" fill="#e8e4e0" transform="rotate(30 116 60)" />
+      <ellipse cx="44" cy="60" rx="8" ry="5" fill="#f0c0b0" transform="rotate(-30 44 60)" />
+      <ellipse cx="116" cy="60" rx="8" ry="5" fill="#f0c0b0" transform="rotate(30 116 60)" />
+      {/* Woolly head */}
+      <ellipse cx="80" cy="58" rx="32" ry="28" fill="#f0ede8" />
+      {/* Wool texture bumps on head */}
+      {([[56,42],[68,36],[80,34],[92,36],[104,42],[60,52],[100,52]] as [number,number][]).map(([cx,cy],i) => (
+        <ellipse key={i} cx={cx} cy={cy} rx="9" ry="7" fill="#e8e4e0" />
+      ))}
+      {/* Face */}
+      <ellipse cx="80" cy="64" rx="20" ry="18" fill="#f8f4f0" />
+      {/* Eyes */}
+      <ellipse cx="70" cy="60" rx="5" ry="4" fill="#fff" />
+      <ellipse cx="90" cy="60" rx="5" ry="4" fill="#fff" />
+      <ellipse cx="70" cy="61" rx="3" ry="3" fill="#2a1a10" />
+      <ellipse cx="90" cy="61" rx="3" ry="3" fill="#2a1a10" />
+      <circle cx="69" cy="60" r="1" fill="#fff" />
+      <circle cx="89" cy="60" r="1" fill="#fff" />
+      {/* Nose */}
+      <ellipse cx="80" cy="72" rx="6" ry="4" fill="#f0a0a0" />
+      <ellipse cx="77" cy="71" rx="2" ry="1.5" fill="#d06060" />
+      <ellipse cx="83" cy="71" rx="2" ry="1.5" fill="#d06060" />
+      {/* Mouth */}
+      <path d="M75 76 Q80 80 85 76" stroke="#c06060" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      {/* Neck */}
+      <rect x="68" y="84" width="24" height="14" rx="8" fill="#f0ede8" />
+      {/* Woolly body */}
+      <ellipse cx="80" cy="170" rx="52" ry="78" fill="#e8e4e0" />
+      {/* Wool bumps on body */}
+      {([[36,120],[56,108],[80,104],[104,108],[124,120],[30,148],[130,148],[34,176],[126,176]] as [number,number][]).map(([cx,cy],i) => (
+        <ellipse key={i} cx={cx} cy={cy} rx="18" ry="14" fill="#f0ede8" />
+      ))}
+      {/* Legs */}
+      <rect x="44" y="240" width="18" height="48" rx="8" fill="#d0c8c0" />
+      <rect x="98" y="240" width="18" height="48" rx="8" fill="#d0c8c0" />
+      <rect x="52" y="240" width="18" height="44" rx="8" fill="#d0c8c0" />
+      <rect x="90" y="240" width="18" height="44" rx="8" fill="#d0c8c0" />
+      {/* Hooves */}
+      <ellipse cx="53" cy="287" rx="10" ry="6" fill="#6a5848" />
+      <ellipse cx="107" cy="287" rx="10" ry="6" fill="#6a5848" />
+      <ellipse cx="61" cy="283" rx="10" ry="6" fill="#6a5848" />
+      <ellipse cx="99" cy="283" rx="10" ry="6" fill="#6a5848" />
+      {/* Shadow */}
+      <ellipse cx="80" cy="295" rx="48" ry="5" fill="rgba(0,0,0,0.15)" />
+    </svg>
+  );
+}

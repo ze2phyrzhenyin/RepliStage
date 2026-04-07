@@ -6,7 +6,7 @@ import type { ActorPose, AnimationState, Expression } from "@/types/script";
 import type { CostumeVariant } from "@/types/script";
 import { SKIN_PALETTES, getHairColor, DESIGNED_ACTORS } from "@/lib/costumes";
 import { BelleMereSvg, SoeurGrandeSvg, SoeurPetiteSvg, RoiSvg, TresJeuneFilleSvg, FeeSvg, PereSvg, TresJeunePrinceSvg, GardeSvg, MereSvg, YangChengyueSvg, XueErSvg, WangChaojeSvg } from "./costumes/CharacterSvgs";
-import { TigerSvg, RabbitSvg, PandaSvg } from "./costumes/AnimalSvgs";
+import { TigerSvg, RabbitSvg, PandaSvg, SheepSvg } from "./costumes/AnimalSvgs";
 
 // Module-level cache: once a URL 404s, remember it across component remounts.
 const imageFailureCache = new Set<string>();
@@ -36,7 +36,7 @@ export function SilhouetteSvg({
   isSpeaking: boolean;
   pose: ActorPose;
 }) {
-  if (pose === "sit") {
+  if (pose === "sit" || pose === "lie" || pose === "floor") {
     return (
       <svg viewBox="0 0 40 60" width="100%" height="100%" style={{ overflow: "visible" }}>
         {isSpeaking && <ellipse cx="20" cy="55" rx="14" ry="4" fill={color} opacity="0.18" />}
@@ -83,7 +83,7 @@ function CostumeRenderer({
   }
 
   if (costume.kind === "animal") {
-    const AnimalComp = { tiger: TigerSvg, rabbit: RabbitSvg, panda: PandaSvg }[costume.animal];
+    const AnimalComp = { tiger: TigerSvg, rabbit: RabbitSvg, panda: PandaSvg, sheep: SheepSvg }[costume.animal];
     return (
       <div className="relative w-full h-full">
         <AnimalComp />
@@ -99,26 +99,28 @@ function CostumeRenderer({
   const { skin } = SKIN_PALETTES[costume.skinTone];
   const hair = getHairColor(actorId, costume.skinTone);
   const svgProps = { skin, hair };
+  // lie/floor degrade to sit until per-character SVG variants are added
+  const legacyPose: "stand" | "sit" = (pose === "stand") ? "stand" : "sit";
 
   let svgNode: React.ReactNode;
   switch (actorId) {
-    case "belle_mere":        svgNode = <BelleMereSvg {...svgProps} pose={pose} />; break;
-    case "soeur_grande":      svgNode = <SoeurGrandeSvg {...svgProps} pose={pose} />; break;
-    case "soeur_petite":      svgNode = <SoeurPetiteSvg {...svgProps} pose={pose} />; break;
-    case "roi":               svgNode = <RoiSvg {...svgProps} pose={pose} />; break;
-    case "tres_jeune_fille":  svgNode = <TresJeuneFilleSvg {...svgProps} pose={pose} />; break;
-    case "fee":               svgNode = <FeeSvg {...svgProps} pose={pose} />; break;
-    case "pere":              svgNode = <PereSvg {...svgProps} pose={pose} />; break;
-    case "tres_jeune_prince": svgNode = <TresJeunePrinceSvg {...svgProps} pose={pose} />; break;
+    case "belle_mere":        svgNode = <BelleMereSvg {...svgProps} pose={legacyPose} />; break;
+    case "soeur_grande":      svgNode = <SoeurGrandeSvg {...svgProps} pose={legacyPose} />; break;
+    case "soeur_petite":      svgNode = <SoeurPetiteSvg {...svgProps} pose={legacyPose} />; break;
+    case "roi":               svgNode = <RoiSvg {...svgProps} pose={legacyPose} />; break;
+    case "tres_jeune_fille":  svgNode = <TresJeuneFilleSvg {...svgProps} pose={legacyPose} />; break;
+    case "fee":               svgNode = <FeeSvg {...svgProps} pose={legacyPose} />; break;
+    case "pere":              svgNode = <PereSvg {...svgProps} pose={legacyPose} />; break;
+    case "tres_jeune_prince": svgNode = <TresJeunePrinceSvg {...svgProps} pose={legacyPose} />; break;
     case "garde_1":
-    case "garde_2":           svgNode = <GardeSvg {...svgProps} pose={pose} />; break;
-    case "mere":              svgNode = <MereSvg {...svgProps} pose={pose} />; break;
-    case "yang_chengyue":     svgNode = <YangChengyueSvg {...svgProps} pose={pose} />; break;
-    case "xue_er":            svgNode = <XueErSvg {...svgProps} pose={pose} />; break;
-    case "wang_chaojie":      svgNode = <WangChaojeSvg {...svgProps} pose={pose} />; break;
+    case "garde_2":           svgNode = <GardeSvg {...svgProps} pose={legacyPose} />; break;
+    case "mere":              svgNode = <MereSvg {...svgProps} pose={legacyPose} />; break;
+    case "yang_chengyue":     svgNode = <YangChengyueSvg {...svgProps} pose={legacyPose} />; break;
+    case "xue_er":            svgNode = <XueErSvg {...svgProps} pose={legacyPose} />; break;
+    case "wang_chaojie":      svgNode = <WangChaojeSvg {...svgProps} pose={legacyPose} />; break;
     default:
       // Fallback: generic silhouette in actor color
-      svgNode = <SilhouetteSvg color={actorColor} isSpeaking={isSpeaking} pose={pose} />;
+      svgNode = <SilhouetteSvg color={actorColor} isSpeaking={isSpeaking} pose={legacyPose} />;
   }
 
   return (
@@ -144,7 +146,7 @@ function ActorImage({
   isSpeaking: boolean;
   pose: ActorPose;
 }) {
-  const baseName = pose === "sit" ? "sitting" : "default";
+  const baseName = (pose === "sit" || pose === "lie" || pose === "floor") ? "sitting" : "default";
   const pngSrc = `/actors/${actorId}/${baseName}.png`;
   const svgSrc = `/actors/${actorId}/${baseName}.svg`;
 

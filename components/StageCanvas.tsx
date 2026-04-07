@@ -928,6 +928,20 @@ export function StageCanvas({
                   scale={scale}
                   costume={getCostume(actor.actorId)}
                 />
+                {actor.heldPropKind && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "22%",
+                      right: "-18%",
+                      width: spriteW * 0.45,
+                      height: spriteW * 0.45,
+                      pointerEvents: "none",
+                    }}
+                  >
+                    <PropSvgForKind kind={actor.heldPropKind} />
+                  </div>
+                )}
               </motion.div>
 
               {/* Edit mode: name label + coordinates */}

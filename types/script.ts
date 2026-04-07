@@ -11,11 +11,11 @@ export type Expression =
 export type AnimationState = "idle" | "enter" | "move" | "talk" | "action" | "exit";
 
 export type ActorVariant = "steady" | "lively" | "leaning";
-export type ActorPose = "stand" | "sit";
+export type ActorPose = "stand" | "sit" | "lie" | "floor";
 
 // ── Costume system ───────────────────────────────────────────
 export type SkinTone = "fair" | "tan" | "dark";
-export type AnimalType = "tiger" | "rabbit" | "panda";
+export type AnimalType = "tiger" | "rabbit" | "panda" | "sheep";
 
 export type CostumeVariant =
   | { kind: "character"; skinTone: SkinTone }
@@ -37,7 +37,10 @@ export type StagePropKind =
   | "shoe" | "bed" | "dance_light"
   // 秦琼卖马
   | "counter_table" | "display_shelf" | "plate_stand" | "suitcase"
-  | "porcelain_plate" | "broken_plate" | "tea_set" | "signboard_yiyuanzhai";
+  | "porcelain_plate" | "broken_plate" | "tea_set" | "signboard_yiyuanzhai"
+  // Supplementary props
+  | "ashtray" | "cigarette" | "wristwatch" | "invitation_card"
+  | "smoke_effect" | "food_set" | "silver_note";
 
 export type StageProp = {
   id: string;
@@ -74,6 +77,7 @@ export type StageActorState = {
   scale: number;
   variant: ActorVariant;
   pose: ActorPose;
+  heldPropKind?: StagePropKind;
 };
 
 export type PathPoint = { x: number; y: number };
@@ -106,6 +110,8 @@ type BaseEvent = {
   toSide?: "left" | "right" | "top" | "bottom";
   /** Explicit pose override — set by director panel to bypass text inference */
   pose?: ActorPose;
+  /** Hold prop attached to actor's hand (visual only hint) */
+  heldPropKind?: StagePropKind;
   /** Waypoints for move_path events */
   path?: PathPoint[];
 };

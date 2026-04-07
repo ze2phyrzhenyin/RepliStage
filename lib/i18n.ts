@@ -205,6 +205,11 @@ const translations: Record<Locale, TranslationMap> = {
     "editor.auto": "自动",
     "editor.stand": "站",
     "editor.sit": "坐",
+    "editor.lie": "躺",
+    "editor.floor": "倒地",
+    "editor.lieDown": "躺下",
+    "editor.fallDown": "跌倒",
+    "editor.heldProp": "手持道具",
     "editor.enterSide": "从哪侧入场",
     "editor.exitSide": "从哪侧退场",
     "editor.stageX": "舞台X",
@@ -245,6 +250,7 @@ const translations: Record<Locale, TranslationMap> = {
     "costume.animal.tiger": "虎",
     "costume.animal.rabbit": "兔",
     "costume.animal.panda": "猫熊",
+    "costume.animal.sheep": "羊",
     "stage.drawingPath": "绘制中… {count} 点",
     "stage.drawPathHint": "在舞台上拖拽绘制路径",
     "stage.chair": "椅子",
@@ -264,6 +270,13 @@ const translations: Record<Locale, TranslationMap> = {
     "stage.broken_plate": "碎盘",
     "stage.tea_set": "茶具",
     "stage.signboard_yiyuanzhai": "艺园斋牌匾",
+    "stage.ashtray": "烟灰缸",
+    "stage.cigarette": "香烟",
+    "stage.wristwatch": "手表",
+    "stage.invitation_card": "请柬",
+    "stage.smoke_effect": "烟雾特效",
+    "stage.food_set": "酒菜陈设",
+    "stage.silver_note": "银票",
     "event.line": "台词",
     "event.action": "动作",
     "event.prop_show": "道具出现",
@@ -499,6 +512,11 @@ const translations: Record<Locale, TranslationMap> = {
     "editor.auto": "Auto",
     "editor.stand": "Debout",
     "editor.sit": "Assis",
+    "editor.lie": "Allongé",
+    "editor.floor": "À terre",
+    "editor.lieDown": "S'allonger",
+    "editor.fallDown": "Tomber",
+    "editor.heldProp": "Accessoire tenu",
     "editor.enterSide": "Côté d’entrée",
     "editor.exitSide": "Côté de sortie",
     "editor.stageX": "Plateau X",
@@ -539,6 +557,7 @@ const translations: Record<Locale, TranslationMap> = {
     "costume.animal.tiger": "Tigre",
     "costume.animal.rabbit": "Lapin",
     "costume.animal.panda": "Panda",
+    "costume.animal.sheep": "Mouton",
     "stage.drawingPath": "Tracé… {count} points",
     "stage.drawPathHint": "Glissez sur le plateau pour dessiner une trajectoire",
     "stage.chair": "Chaise",
@@ -558,6 +577,13 @@ const translations: Record<Locale, TranslationMap> = {
     "stage.broken_plate": "Plat brisé",
     "stage.tea_set": "Service à thé",
     "stage.signboard_yiyuanzhai": "Enseigne Yiyuanzhai",
+    "stage.ashtray": "Cendrier",
+    "stage.cigarette": "Cigarette",
+    "stage.wristwatch": "Montre",
+    "stage.invitation_card": "Carton d'invitation",
+    "stage.smoke_effect": "Effet de fumée",
+    "stage.food_set": "Service de table",
+    "stage.silver_note": "Billet d'argent",
     "event.line": "Réplique",
     "event.action": "Action",
     "event.prop_show": "Apparition accessoire",
@@ -608,7 +634,7 @@ export function getSkinToneLabel(locale: Locale, tone: "fair" | "tan" | "dark") 
   return translate(locale, `costume.skin.${tone}`);
 }
 
-export function getAnimalLabel(locale: Locale, animal: "tiger" | "rabbit" | "panda") {
+export function getAnimalLabel(locale: Locale, animal: "tiger" | "rabbit" | "panda" | "sheep") {
   return translate(locale, `costume.animal.${animal}`);
 }
 

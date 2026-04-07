@@ -28,6 +28,14 @@ export const PROP_DIMS: Partial<Record<StagePropKind, { w: number; h: number }>>
   broken_plate:         { w:  66, h:  46 },
   tea_set:              { w:  84, h:  46 },
   signboard_yiyuanzhai: { w: 130, h:  44 },
+  // Supplementary props
+  ashtray:              { w:  44, h:  28 },
+  cigarette:            { w:  36, h:  12 },
+  wristwatch:           { w:  40, h:  40 },
+  invitation_card:      { w:  56, h:  40 },
+  smoke_effect:         { w: 100, h: 100 },
+  food_set:             { w: 110, h:  50 },
+  silver_note:          { w:  52, h:  28 },
 };
 
 export const PROP_LAYERS: Partial<Record<StagePropKind, PropRenderLayer>> = {
@@ -46,6 +54,13 @@ export const PROP_LAYERS: Partial<Record<StagePropKind, PropRenderLayer>> = {
   broken_plate: "front",
   tea_set: "front",
   signboard_yiyuanzhai: "hanging",
+  ashtray: "front",
+  cigarette: "front",
+  wristwatch: "front",
+  invitation_card: "front",
+  smoke_effect: "front",
+  food_set: "front",
+  silver_note: "front",
 };
 
 export const PROP_ANCHORS: Partial<Record<StagePropKind, PropAnchor>> = {
@@ -851,6 +866,173 @@ export function SignboardYiyuanzhaiSvg() {
   );
 }
 
+// ── Ashtray (烟灰缸) ──────────────────────────────────────────
+export function AshtraySvg() {
+  return (
+    <svg viewBox="0 0 44 28" width="100%" height="100%" style={{ display: "block" }}>
+      {/* Shadow */}
+      <ellipse cx="22" cy="26" rx="18" ry="3" fill="rgba(0,0,0,0.25)" />
+      {/* Bowl */}
+      <path d="M4 14 Q6 26 22 26 Q38 26 40 14 L36 10 Q22 8 8 10 Z" fill="#c8c0b0" />
+      {/* Rim */}
+      <ellipse cx="22" cy="14" rx="18" ry="5" fill="#ddd8c8" />
+      <ellipse cx="22" cy="14" rx="13" ry="3.5" fill="#b8b0a0" />
+      {/* Ash residue */}
+      <ellipse cx="22" cy="14" rx="8" ry="2" fill="rgba(80,80,80,0.35)" />
+      {/* Cigarette rest notch left */}
+      <rect x="3" y="12" width="5" height="4" rx="1" fill="#b8b0a0" />
+      {/* Cigarette rest notch right */}
+      <rect x="36" y="12" width="5" height="4" rx="1" fill="#b8b0a0" />
+    </svg>
+  );
+}
+
+// ── Cigarette (香烟) ──────────────────────────────────────────
+export function CigaretteSvg() {
+  return (
+    <svg viewBox="0 0 36 12" width="100%" height="100%" style={{ display: "block" }}>
+      {/* Smoke wisps */}
+      <path d="M4 4 Q3 0 5 -3" stroke="rgba(200,200,200,0.55)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      <path d="M6 3 Q8 -1 6 -4" stroke="rgba(200,200,200,0.4)" strokeWidth="1" fill="none" strokeLinecap="round" />
+      {/* Filter end */}
+      <rect x="24" y="4" width="10" height="4" rx="2" fill="#d4a040" />
+      {/* Paper body */}
+      <rect x="5" y="4" width="19" height="4" rx="2" fill="#f0ede8" />
+      {/* Lit tip */}
+      <ellipse cx="4" cy="6" rx="3" ry="2.5" fill="#e05020" />
+      <ellipse cx="4" cy="6" rx="1.5" ry="1.2" fill="#ffcc44" opacity="0.8" />
+    </svg>
+  );
+}
+
+// ── Wristwatch (手表) ─────────────────────────────────────────
+export function WristwatchSvg() {
+  return (
+    <svg viewBox="0 0 40 40" width="100%" height="100%" style={{ display: "block" }}>
+      {/* Strap top */}
+      <rect x="14" y="0" width="12" height="10" rx="3" fill="#4a3020" />
+      {/* Strap bottom */}
+      <rect x="14" y="30" width="12" height="10" rx="3" fill="#4a3020" />
+      {/* Case */}
+      <circle cx="20" cy="20" r="12" fill="#c0c0c8" stroke="#888898" strokeWidth="1.5" />
+      <circle cx="20" cy="20" r="10" fill="#f0f4f8" />
+      {/* 12/6 markers */}
+      <rect x="19" y="11" width="2" height="3" rx="1" fill="#333" />
+      <rect x="19" y="26" width="2" height="3" rx="1" fill="#333" />
+      {/* 3/9 markers */}
+      <rect x="27" y="19" width="3" height="2" rx="1" fill="#333" />
+      <rect x="10" y="19" width="3" height="2" rx="1" fill="#333" />
+      {/* Hour hand */}
+      <line x1="20" y1="20" x2="20" y2="13" stroke="#222" strokeWidth="2" strokeLinecap="round" />
+      {/* Minute hand */}
+      <line x1="20" y1="20" x2="26" y2="18" stroke="#222" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Center dot */}
+      <circle cx="20" cy="20" r="1.5" fill="#555" />
+    </svg>
+  );
+}
+
+// ── Invitation Card (请柬) ────────────────────────────────────
+export function InvitationCardSvg() {
+  return (
+    <svg viewBox="0 0 56 40" width="100%" height="100%" style={{ display: "block" }}>
+      {/* Shadow */}
+      <ellipse cx="28" cy="38" rx="22" ry="3" fill="rgba(0,0,0,0.2)" />
+      {/* Card body */}
+      <rect x="4" y="4" width="48" height="32" rx="3" fill="#fdf6e8" stroke="#d4b860" strokeWidth="1.5" />
+      {/* Gold border inner */}
+      <rect x="7" y="7" width="42" height="26" rx="2" fill="none" stroke="#d4b860" strokeWidth="0.8" opacity="0.6" />
+      {/* Red seal circle */}
+      <circle cx="28" cy="20" r="8" fill="none" stroke="#c82828" strokeWidth="1.2" />
+      <text x="28" y="24" textAnchor="middle" fontFamily="serif" fontSize="9" fill="#c82828" fontWeight="bold">请</text>
+      {/* Decorative corner flourishes */}
+      <path d="M10 10 Q14 10 14 14" stroke="#d4b860" strokeWidth="1" fill="none" />
+      <path d="M46 10 Q42 10 42 14" stroke="#d4b860" strokeWidth="1" fill="none" />
+      <path d="M10 30 Q14 30 14 26" stroke="#d4b860" strokeWidth="1" fill="none" />
+      <path d="M46 30 Q42 30 42 26" stroke="#d4b860" strokeWidth="1" fill="none" />
+    </svg>
+  );
+}
+
+// ── Smoke Effect (烟雾/爆炸特效) ──────────────────────────────
+export function SmokeEffectSvg() {
+  return (
+    <svg viewBox="0 0 100 100" width="100%" height="100%" style={{ display: "block" }}>
+      <defs>
+        <radialGradient id="smoke-g" cx="50%" cy="60%" r="50%">
+          <stop offset="0%" stopColor="rgba(240,240,240,0.9)" />
+          <stop offset="70%" stopColor="rgba(200,200,200,0.5)" />
+          <stop offset="100%" stopColor="rgba(180,180,180,0)" />
+        </radialGradient>
+      </defs>
+      {/* Main smoke cloud */}
+      <ellipse cx="50" cy="58" rx="38" ry="30" fill="url(#smoke-g)" />
+      <ellipse cx="34" cy="50" rx="22" ry="18" fill="rgba(220,220,220,0.6)" />
+      <ellipse cx="66" cy="48" rx="20" ry="17" fill="rgba(220,220,220,0.55)" />
+      <ellipse cx="50" cy="38" rx="18" ry="16" fill="rgba(235,235,235,0.65)" />
+      <ellipse cx="50" cy="26" rx="12" ry="10" fill="rgba(245,245,245,0.5)" />
+      {/* Flash center */}
+      <ellipse cx="50" cy="60" rx="14" ry="10" fill="rgba(255,220,100,0.45)" />
+      <ellipse cx="50" cy="62" rx="7" ry="5" fill="rgba(255,150,40,0.35)" />
+      {/* Debris sparks */}
+      {([[20,72],[36,82],[50,86],[64,82],[80,72]] as [number,number][]).map(([x,y],i) => (
+        <circle key={i} cx={x} cy={y} r={2} fill="rgba(200,180,100,0.55)" />
+      ))}
+    </svg>
+  );
+}
+
+// ── Food Set (酒菜陈设) ───────────────────────────────────────
+export function FoodSetSvg() {
+  return (
+    <svg viewBox="0 0 110 50" width="100%" height="100%" style={{ display: "block" }}>
+      {/* Shadow */}
+      <ellipse cx="55" cy="48" rx="48" ry="3.5" fill="rgba(0,0,0,0.2)" />
+      {/* Wine jug left */}
+      <ellipse cx="18" cy="34" rx="10" ry="12" fill="#8b3a20" />
+      <rect x="12" y="22" width="12" height="14" rx="5" fill="#a04020" />
+      <ellipse cx="18" cy="22" rx="6" ry="3" fill="#c05030" />
+      <rect x="24" y="27" width="6" height="3" rx="1.5" fill="#8b3a20" />
+      {/* Small cup */}
+      <path d="M30 36 Q34 44 38 44 Q42 44 46 36 Z" fill="#d4c080" />
+      <line x1="30" y1="36" x2="46" y2="36" stroke="#b8a060" strokeWidth="1.5" />
+      {/* Bowl of food center */}
+      <ellipse cx="62" cy="40" rx="18" ry="6" fill="#e8d8b0" />
+      <ellipse cx="62" cy="38" rx="16" ry="5" fill="#f0e4c0" />
+      <ellipse cx="62" cy="36" rx="12" ry="4" fill="#d4a858" />
+      {/* Chopsticks */}
+      <line x1="76" y1="28" x2="88" y2="46" stroke="#7a4010" strokeWidth="2" strokeLinecap="round" />
+      <line x1="79" y1="28" x2="91" y2="46" stroke="#7a4010" strokeWidth="2" strokeLinecap="round" />
+      {/* Small plate right */}
+      <ellipse cx="98" cy="42" rx="10" ry="4" fill="#e8e0d0" />
+      <ellipse cx="98" cy="40" rx="8" ry="3" fill="#d4c8b0" />
+    </svg>
+  );
+}
+
+// ── Silver Note (银票) ────────────────────────────────────────
+export function SilverNoteSvg() {
+  return (
+    <svg viewBox="0 0 52 28" width="100%" height="100%" style={{ display: "block" }}>
+      {/* Shadow */}
+      <ellipse cx="26" cy="26.5" rx="22" ry="2.5" fill="rgba(0,0,0,0.18)" />
+      {/* Note body */}
+      <rect x="2" y="4" width="48" height="20" rx="2" fill="#f4f0e4" stroke="#a09060" strokeWidth="1.2" />
+      {/* Decorative border lines */}
+      <rect x="5" y="7" width="42" height="14" rx="1" fill="none" stroke="#a09060" strokeWidth="0.6" opacity="0.5" />
+      {/* 银 character center */}
+      <text x="26" y="18" textAnchor="middle" fontFamily="serif" fontSize="11" fill="#6a5820" fontWeight="bold">銀</text>
+      {/* Value marks */}
+      <rect x="7" y="9" width="8" height="10" rx="1" fill="rgba(160,144,96,0.15)" />
+      <text x="11" y="17" textAnchor="middle" fontFamily="serif" fontSize="7" fill="#8a7030">票</text>
+      <rect x="37" y="9" width="8" height="10" rx="1" fill="rgba(160,144,96,0.15)" />
+      <text x="41" y="17" textAnchor="middle" fontFamily="serif" fontSize="7" fill="#8a7030">票</text>
+      {/* Fold crease */}
+      <line x1="2" y1="14" x2="50" y2="14" stroke="rgba(160,144,96,0.25)" strokeWidth="0.8" />
+    </svg>
+  );
+}
+
 // ── Dispatcher ───────────────────────────────────────────────
 export function PropSvgForKind({ kind }: { kind: StagePropKind }) {
   switch (kind) {
@@ -869,6 +1051,13 @@ export function PropSvgForKind({ kind }: { kind: StagePropKind }) {
     case "broken_plate":         return <BrokenPlateSvg />;
     case "tea_set":              return <TeaSetSvg />;
     case "signboard_yiyuanzhai": return <SignboardYiyuanzhaiSvg />;
+    case "ashtray":              return <AshtraySvg />;
+    case "cigarette":            return <CigaretteSvg />;
+    case "wristwatch":           return <WristwatchSvg />;
+    case "invitation_card":      return <InvitationCardSvg />;
+    case "smoke_effect":         return <SmokeEffectSvg />;
+    case "food_set":             return <FoodSetSvg />;
+    case "silver_note":          return <SilverNoteSvg />;
     default:                     return null;
   }
 }

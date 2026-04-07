@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useLocale } from "@/components/locale/LocaleContext";
 import type { Actor, ActorPose, ScriptEvent, StageProp } from "@/types/script";
 import { canDeleteEvent, getMoveTypePatch, getPropById, getPropKindOptions, getSideOptionLabel } from "@/lib/event-editor-core";
+import { STAGE_PROP_KINDS } from "@/lib/stage-props";
 
 type Props = {
   event: ScriptEvent;
@@ -36,7 +37,8 @@ export function SharedEventForm({
   const showPos = event.type === "enter" || event.type === "move";
   const showFrom = event.type === "enter";
   const showTo = event.type === "exit";
-  const showPose = event.type === "line";
+  const showPose = event.type === "line" || event.type === "action";
+  const showHeldProp = event.type === "line" || event.type === "action";
   const showProp = event.type === "prop_show" || event.type === "prop_hide" || event.type === "prop_swap";
   const showNextPropKind = event.type === "prop_swap";
   const propKinds = getPropKindOptions(stageProps);
@@ -159,6 +161,26 @@ export function SharedEventForm({
               <option value="">{t("editor.auto")}</option>
               <option value="stand">{t("editor.stand")}</option>
               <option value="sit">{t("editor.sit")}</option>
+              <option value="lie">{t("editor.lie")}</option>
+              <option value="floor">{t("editor.floor")}</option>
+            </select>
+          </label>
+        )}
+
+        {showHeldProp && (
+          <label className="flex flex-col gap-1">
+            <span className={labelClassName}>{t("editor.heldProp")}</span>
+            <select
+              value={event.heldPropKind ?? ""}
+              onChange={(e) => onUpdate({ heldPropKind: (e.target.value as ScriptEvent["heldPropKind"]) || undefined })}
+              className={inputClassName}
+            >
+              <option value="">{t("editor.none")}</option>
+              {STAGE_PROP_KINDS.filter((k) => k !== "door" && k !== "chair").map((kind) => (
+                <option key={kind} value={kind}>
+                  {t(`stage.${kind}` as never)}
+                </option>
+              ))}
             </select>
           </label>
         )}
@@ -217,8 +239,10 @@ export function SharedEventForm({
         <div className="flex items-center gap-2 flex-wrap">
           <span className={labelClassName}>{t("editor.action")}</span>
           {([
-            { label: t("editor.sitDown"), pose: "sit" as ActorPose, text: t("editor.sitDown") },
-            { label: t("editor.standUp"), pose: "stand" as ActorPose, text: t("editor.standUp") },
+            { label: t("editor.sitDown"),  pose: "sit"   as ActorPose, text: t("editor.sitDown") },
+            { label: t("editor.standUp"),  pose: "stand" as ActorPose, text: t("editor.standUp") },
+            { label: t("editor.lieDown"),  pose: "lie"   as ActorPose, text: t("editor.lieDown") },
+            { label: t("editor.fallDown"), pose: "floor" as ActorPose, text: t("editor.fallDown") },
           ]).map(({ label, pose, text }) => (
             <button
               key={label}

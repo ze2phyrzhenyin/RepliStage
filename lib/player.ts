@@ -238,32 +238,74 @@ function applyActorFocus(
 }
 
 function sitStandYShift(currentPose: ActorPose, newPose: ActorPose): number {
-  if (currentPose === "sit" && newPose === "stand") return 35;
-  if (currentPose === "stand" && newPose === "sit") return -35;
+  const standingPoses: ActorPose[] = ["stand"];
+  const lowPoses: ActorPose[] = ["sit", "lie", "floor"];
+  const wasStanding = standingPoses.includes(currentPose);
+  const nowLow = lowPoses.includes(newPose);
+  const wasLow = lowPoses.includes(currentPose);
+  const nowStanding = standingPoses.includes(newPose);
+  if (wasStanding && nowLow) return -35;
+  if (wasLow && nowStanding) return 35;
   return 0;
 }
 
-const SITTABLE_ACTORS = new Set(["belle_mere"]);
-
 function inferPoseFromText(currentPose: ActorPose, actorId: string | undefined, text?: string): ActorPose {
-  if (!actorId || !text || !SITTABLE_ACTORS.has(actorId)) return currentPose;
+  if (!actorId || !text) return currentPose;
   const normalized = text.toLowerCase();
 
+  // Lie / recline — highest specificity
+  if (
+    normalized.includes("躺") ||
+    normalized.includes("卧") ||
+    normalized.includes("半躺") ||
+    normalized.includes("仰卧") ||
+    normalized.includes("倚着枕") ||
+    normalized.includes("recline") ||
+    normalized.includes("lying")
+  ) {
+    return "lie";
+  }
+
+  // Floor / collapse
+  if (
+    normalized.includes("跌坐") ||
+    normalized.includes("倒地") ||
+    normalized.includes("摔") ||
+    normalized.includes("跪") ||
+    normalized.includes("跌倒") ||
+    normalized.includes("撞倒") ||
+    normalized.includes("倒在地")
+  ) {
+    return "floor";
+  }
+
+  // Sit
   if (
     normalized.includes("瘫坐") ||
     normalized.includes("坐回") ||
     normalized.includes("坐在") ||
+    normalized.includes("坐下") ||
+    normalized.includes("入座") ||
+    normalized.includes("落座") ||
     normalized.includes("restez assise") ||
-    normalized.includes("assise")
+    normalized.includes("assise") ||
+    normalized.includes("s'assoit") ||
+    normalized.includes("s'asseoir")
   ) {
     return "sit";
   }
 
+  // Stand / rise
   if (
     normalized.includes("站起") ||
     normalized.includes("起身") ||
-    normalized.includes("从椅子上站起来") ||
-    normalized.includes("se lève")
+    normalized.includes("从椅子上站起") ||
+    normalized.includes("站立") ||
+    normalized.includes("直起身") ||
+    normalized.includes("爬起") ||
+    normalized.includes("se lève") ||
+    normalized.includes("se relève") ||
+    normalized.includes("stand up")
   ) {
     return "stand";
   }
@@ -428,6 +470,7 @@ export function deriveStageState(
             scale: 1.06,
             pose: newPoseLine,
             y: current.y + sitStandYShift(current.pose, newPoseLine),
+            heldPropKind: event.heldPropKind ?? current.heldPropKind,
           };
         }
         break;
@@ -446,6 +489,7 @@ export function deriveStageState(
             scale: 1.04,
             pose: newPoseAction,
             y: current.y + sitStandYShift(current.pose, newPoseAction),
+            heldPropKind: event.heldPropKind ?? current.heldPropKind,
           };
         }
         break;

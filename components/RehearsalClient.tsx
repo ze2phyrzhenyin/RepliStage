@@ -114,7 +114,9 @@ export function RehearsalClient({
     setCurrentEventIndex(afterIndex + 1);
   }
 
-  const [mode, setMode] = useState<Mode>("stage");
+  const [mode, setMode] = useState<Mode>(() =>
+    typeof window !== "undefined" && window.innerWidth < 640 ? "script" : "stage",
+  );
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [autoplay, setAutoplay] = useState(true);
@@ -411,7 +413,7 @@ export function RehearsalClient({
                   </div>
                 </div>
               </div>
-              <div className="h-44 sm:h-auto sm:w-64 xl:w-72 border-t sm:border-t-0 sm:border-l border-white/[0.05] flex flex-col min-h-0 shrink-0">
+              <div className="h-32 sm:h-auto sm:w-64 xl:w-72 border-t sm:border-t-0 sm:border-l border-white/[0.05] flex flex-col min-h-0 shrink-0">
                 <div className="px-4 pt-3 pb-1 shrink-0">
                   <p className="text-[10px] uppercase tracking-[0.3em] text-white/20">{t("rehearsal.panelScript")}</p>
                 </div>
@@ -435,7 +437,7 @@ export function RehearsalClient({
 
           {mode === "script" && (
             <motion.div key="script" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="flex flex-col sm:flex-row h-full">
-              <div className="h-auto sm:w-56 xl:w-64 border-b sm:border-b-0 sm:border-r border-white/[0.05] flex flex-col p-3 gap-3 shrink-0">
+              <div className="hidden sm:flex h-auto sm:w-56 xl:w-64 border-b sm:border-b-0 sm:border-r border-white/[0.05] flex-col p-3 gap-3 shrink-0">
                 <p className="text-[10px] uppercase tracking-[0.3em] text-white/20">{t("rehearsal.panelStage")}</p>
                 <div className="relative">
                   <StageCanvas
@@ -481,7 +483,7 @@ export function RehearsalClient({
                 </div>
               </div>
               <div className="flex-1 min-w-0 min-h-0 flex flex-col">
-                <div className="px-6 pt-3 pb-1 shrink-0">
+                <div className="px-4 sm:px-6 pt-3 pb-1 shrink-0">
                   <p className="text-[10px] uppercase tracking-[0.3em] text-white/20">{getLocalizedPlayTitle(play, locale)} — {getLocalizedSceneTitle(play, scene, locale)}{getLocalizedSceneSubtitle(play, scene, locale) ? ` · ${getLocalizedSceneSubtitle(play, scene, locale)}` : ""}</p>
                 </div>
                 <div className="flex-1 min-h-0">

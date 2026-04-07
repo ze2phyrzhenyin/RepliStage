@@ -44,6 +44,7 @@ export const ANIMAL_LABELS: Record<AnimalType, string> = {
   tiger:  "Tiger",
   rabbit: "Rabbit",
   panda:  "Panda",
+  sheep:  "Sheep",
 };
 
 export function costumeLabel(c: CostumeVariant): string {

@@ -7,11 +7,11 @@ import type { Actor, CostumeVariant, SkinTone, AnimalType } from "@/types/script
 import { SKIN_PALETTES, getHairColor, DESIGNED_ACTORS } from "@/lib/costumes";
 import { useCostumes } from "./CostumeContext";
 import { BelleMereSvg, SoeurGrandeSvg, SoeurPetiteSvg, RoiSvg, TresJeuneFilleSvg, FeeSvg, PereSvg, TresJeunePrinceSvg, GardeSvg, MereSvg, YangChengyueSvg, XueErSvg, WangChaojeSvg } from "./CharacterSvgs";
-import { TigerSvg, RabbitSvg, PandaSvg } from "./AnimalSvgs";
+import { TigerSvg, RabbitSvg, PandaSvg, SheepSvg } from "./AnimalSvgs";
 import { SilhouetteSvg } from "@/components/HumanActorSprite";
 
 const SKIN_TONES: SkinTone[] = ["fair", "tan", "dark"];
-const ANIMALS: AnimalType[] = ["tiger", "rabbit", "panda"];
+const ANIMALS: AnimalType[] = ["tiger", "rabbit", "panda", "sheep"];
 
 function CharacterPreview({ actorId, skinTone }: { actorId: string; skinTone: SkinTone }) {
   const { skin } = SKIN_PALETTES[skinTone];
@@ -44,6 +44,7 @@ function AnimalPreview({ animal }: { animal: AnimalType }) {
     case "tiger":  return <TigerSvg />;
     case "rabbit": return <RabbitSvg />;
     case "panda":  return <PandaSvg />;
+    case "sheep":  return <SheepSvg />;
   }
 }
 
