@@ -82,13 +82,33 @@ type StageConfig = {
 ### 当前真实推荐写法
 
 ```ts
-type StagePropKind = "door" | "chair";
+type StagePropKind =
+  | "door"
+  | "chair"
+  | "bed"
+  | "magic_box"
+  | "microphone_stand"
+  | "counter_table"
+  | "display_shelf"
+  | "plate_stand"
+  | "suitcase"
+  | "porcelain_plate"
+  | "broken_plate"
+  | "tea_set"
+  | "signboard_yiyuanzhai"
+  | "shoe"
+  | "parade_umbrella"
+  | "dance_light"
+  | "carriage";
 
 type StageProp = {
   id: string;
   kind: StagePropKind;
   x: number;
   y: number;
+  label?: string;
+  locked?: boolean;
+  layerOrder?: number;
 };
 ```
 
@@ -96,7 +116,10 @@ type StageProp = {
 
 - `props` 是当前推荐的统一道具模型
 - `doorX/doorY/chairX/chairY` 仅为兼容旧数据保留
-- 场次至少应显式配置一个 `door`
+- 每个道具都应有稳定唯一的 `id`
+- `label` 用于导演模式和舞台上的识别标签
+- `locked` 用于锁定道具，避免误拖
+- `layerOrder` 用于控制同层道具的前后顺序
 
 ## 5. 事件模型
 
@@ -113,7 +136,10 @@ type ScriptEvent = {
     | "action"
     | "exit"
     | "pause"
-    | "scene_end";
+    | "scene_end"
+    | "prop_show"
+    | "prop_hide"
+    | "prop_swap";
   duration: number;
   actorId?: string;
   text?: string;
@@ -123,6 +149,8 @@ type ScriptEvent = {
   toSide?: "left" | "right" | "top" | "bottom";
   pose?: "stand" | "sit";
   path?: { x: number; y: number }[];
+  propId?: string;
+  nextPropKind?: StagePropKind;
 };
 ```
 
@@ -173,6 +201,21 @@ type ScriptEvent = {
 ### `scene_end`
 
 - 场次结束标记
+
+### `prop_show`
+
+- 显示指定道具
+- 常用字段：`propId`
+
+### `prop_hide`
+
+- 隐藏指定道具
+- 常用字段：`propId`
+
+### `prop_swap`
+
+- 将指定道具替换为新的道具类型
+- 常用字段：`propId`、`nextPropKind`
 
 ## 7. 运行时派生状态
 

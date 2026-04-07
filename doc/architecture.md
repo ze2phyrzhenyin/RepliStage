@@ -126,6 +126,9 @@ StageCue 是一个“剧本 JSON 驱动 UI”的前端应用。
 - `exit`
 - `pause`
 - `scene_end`
+- `prop_show`
+- `prop_hide`
+- `prop_swap`
 
 ## 5. setup 流程架构
 
@@ -180,6 +183,7 @@ setup 页当前负责：
 - 事件编辑
 - 路径走位
 - 道具布景编辑
+- 道具标签、锁定与图层顺序编辑
 - 导入 / 导出 JSON
 - 保存到浏览器
 - 清除浏览器保存
@@ -211,7 +215,7 @@ setup 页当前负责：
 - `lib/stage-props.ts`
 - `types/script.ts`
 
-门和椅子当前统一作为 `StageProp` 处理。
+当前舞台道具以 `StageProp` 为统一模型处理。
 
 这意味着：
 
@@ -219,6 +223,7 @@ setup 页当前负责：
 - 拖拽逻辑统一
 - 导演编辑逻辑统一
 - 数据校验逻辑统一
+- 道具可以有标签、锁定状态与图层顺序
 - 道具还可以作为事件时间线的一部分被显示、隐藏或替换
 
 旧字段 `doorX/doorY/chairX/chairY` 仍被兼容，但真实模型已经升级为 `stage.props`。
