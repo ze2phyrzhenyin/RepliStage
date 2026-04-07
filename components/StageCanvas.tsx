@@ -7,7 +7,8 @@ import { HumanActorSprite } from "@/components/HumanActorSprite";
 import { getActorById, DerivedStageState } from "@/lib/player";
 import { getStageProps } from "@/lib/stage-props";
 import { useCostumes } from "@/components/costumes/CostumeContext";
-import type { Actor, StageConfig, ScriptEvent, PathPoint, StageProp } from "@/types/script";
+import type { Actor, StageConfig, ScriptEvent, PathPoint, StageProp, StagePropKind } from "@/types/script";
+import { PROP_ANCHORS, PROP_DIMS, PROP_LAYERS, PropSvgForKind } from "@/components/props/PropSvgs";
 
 // Sprite base dims
 const SPRITE_W = 56;
@@ -291,6 +292,43 @@ function ChairFront({
   );
 }
 
+// ── Generic prop (all non-door / non-chair kinds) ────────────
+const SPECIAL_KINDS = new Set<StagePropKind>(["door", "chair"]);
+
+function GenericProp({
+  prop, scale, stageH, editMode, onStartDrag,
+}: {
+  prop: StageProp;
+  scale: number;
+  stageH: number;
+  editMode?: boolean;
+  onStartDrag?: (e: React.MouseEvent) => void;
+}) {
+  const dims = PROP_DIMS[prop.kind];
+  if (!dims) return null;
+  const w = dims.w * scale;
+  const h = dims.h * scale;
+  const anchor = PROP_ANCHORS[prop.kind] ?? "floor";
+  return (
+    <div
+      onMouseDown={editMode ? onStartDrag : undefined}
+      style={{
+        position: "absolute",
+        left: (prop.x - dims.w / 2) * scale,
+        ...(anchor === "top"
+          ? { top: prop.y * scale }
+          : { bottom: (stageH - prop.y) * scale }),
+        width: w,
+        height: h,
+        cursor: editMode ? "grab" : undefined,
+        pointerEvents: editMode ? "auto" : "none",
+      }}
+    >
+      <PropSvgForKind kind={prop.kind} />
+    </div>
+  );
+}
+
 // ── Stage background ─────────────────────────────────────────
 function TheatricalBackground({
   scale, canvasWidth, canvasHeight, spotX, spotY,
@@ -434,8 +472,12 @@ export function StageCanvas({
     )),
     [propDrag, stageConfig],
   );
-  const doorProps = stageProps.filter((prop) => prop.kind === "door");
-  const chairProps = stageProps.filter((prop) => prop.kind === "chair");
+  const doorProps    = stageProps.filter((prop) => prop.kind === "door");
+  const chairProps   = stageProps.filter((prop) => prop.kind === "chair");
+  const genericProps = stageProps.filter((prop) => !SPECIAL_KINDS.has(prop.kind));
+  const hangingProps = genericProps.filter((prop) => PROP_LAYERS[prop.kind] === "hanging");
+  const backProps = genericProps.filter((prop) => (PROP_LAYERS[prop.kind] ?? "back") === "back");
+  const frontProps = genericProps.filter((prop) => PROP_LAYERS[prop.kind] === "front");
 
   useEffect(() => {
     function measure() {
@@ -563,6 +605,17 @@ export function StageCanvas({
           spotY={editMode ? null : (spotPos?.y ?? null)}
         />
 
+        {hangingProps.map((prop) => (
+          <GenericProp
+            key={prop.id}
+            prop={prop}
+            scale={scale}
+            stageH={stageH}
+            editMode={editMode}
+            onStartDrag={editMode ? startPropDrag(prop) : undefined}
+          />
+        ))}
+
         {doorProps.map((prop) => (
           <DoorProp
             key={prop.id}
@@ -581,6 +634,17 @@ export function StageCanvas({
             scale={scale}
             chairX={prop.x}
             chairY={prop.y}
+            stageH={stageH}
+            editMode={editMode}
+            onStartDrag={editMode ? startPropDrag(prop) : undefined}
+          />
+        ))}
+
+        {backProps.map((prop) => (
+          <GenericProp
+            key={prop.id}
+            prop={prop}
+            scale={scale}
             stageH={stageH}
             editMode={editMode}
             onStartDrag={editMode ? startPropDrag(prop) : undefined}
@@ -803,6 +867,17 @@ export function StageCanvas({
           />
         ))}
 
+        {frontProps.map((prop) => (
+          <GenericProp
+            key={prop.id}
+            prop={prop}
+            scale={scale}
+            stageH={stageH}
+            editMode={editMode}
+            onStartDrag={editMode ? startPropDrag(prop) : undefined}
+          />
+        ))}
+
         {/* Path drawing mode banner */}
         {drawingPathFor && (
           <div
@@ -840,7 +915,7 @@ export function StageCanvas({
               bottom: (stageH - propDrag.stageY) * scale + 12,
             }}
           >
-            {propDrag.kind === "chair" ? t("stage.chair") : t("stage.door")} ({propDrag.stageX}, {propDrag.stageY})
+            {t(`stage.${propDrag.kind}` as never)} ({propDrag.stageX}, {propDrag.stageY})
           </div>
         )}
       </div>

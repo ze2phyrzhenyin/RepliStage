@@ -30,7 +30,14 @@ export type Actor = {
   shortLabel: string;
 };
 
-export type StagePropKind = "door" | "chair";
+export type StagePropKind =
+  | "door" | "chair"
+  // Cinderella / Cendrillon
+  | "magic_box" | "carriage" | "parade_umbrella" | "microphone_stand"
+  | "shoe" | "bed" | "dance_light"
+  // 秦琼卖马
+  | "counter_table" | "display_shelf" | "plate_stand" | "suitcase"
+  | "porcelain_plate" | "broken_plate" | "tea_set" | "signboard_yiyuanzhai";
 
 export type StageProp = {
   id: string;

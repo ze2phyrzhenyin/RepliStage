@@ -17,7 +17,13 @@ export const actorSchema = z.object({
 
 export const stagePropSchema = z.object({
   id: z.string().min(1),
-  kind: z.enum(["door", "chair"]),
+  kind: z.enum([
+    "door", "chair",
+    "magic_box", "carriage", "parade_umbrella", "microphone_stand",
+    "shoe", "bed", "dance_light",
+    "counter_table", "display_shelf", "plate_stand", "suitcase",
+    "porcelain_plate", "broken_plate", "tea_set", "signboard_yiyuanzhai",
+  ]),
   x: z.number(),
   y: z.number(),
 });

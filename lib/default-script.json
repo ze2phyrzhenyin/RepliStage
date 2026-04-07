@@ -6,12 +6,16 @@
       "id": "scene-4-depart-soiree",
       "title": "SCÈNE 4",
       "subtitle": "Départ à la soirée du roi.",
-      "setting": "很年轻的女孩独自在卧室里躺着。父亲穿着路易十四式的戏服来向她告别，带着歉意匆匆离开；随后仙女从衣柜后出现，试图说服她去国王的晚会，并用一台不太可靠的魔法盒子替她准备礼服。",
+      "setting": "很年轻的女孩独自在卧室里躺着，床边还留着她母亲旧物的痕迹。父亲穿着路易十四式的戏服来向她告别，带着歉意匆匆离开；随后仙女从衣柜后出现，试图说服她去国王的晚会，并用一台不太可靠的魔法盒子替她准备礼服。",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 748,
-        "doorY": 108
+        "doorY": 108,
+        "props": [
+          { "id": "scene4-bed", "kind": "bed", "x": 286, "y": 404 },
+          { "id": "scene4-magic-box", "kind": "magic_box", "x": 566, "y": 402 }
+        ]
       },
       "actors": [
         {
@@ -37,9 +41,9 @@
         { "id": "s4e1", "type": "blackout_start", "duration": 1 },
         { "id": "s4e2", "type": "action", "duration": 2, "text": "旁白：终于，所有人期待已久的大日子到来了。" },
         { "id": "s4e3", "type": "blackout_end", "duration": 0.7 },
-        { "id": "s4e4", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 358, "y": 336, "fromSide": "left" },
+        { "id": "s4e4", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 292, "y": 356, "fromSide": "left" },
         { "id": "s4e5", "type": "action", "actorId": "tres_jeune_fille", "duration": 2.4, "text": "很年轻的女孩一个人躺在床边，像故意把自己留在今晚的热闹之外。" },
-        { "id": "s4e6", "type": "enter", "actorId": "pere", "duration": 1, "x": 628, "y": 252, "fromSide": "right" },
+        { "id": "s4e6", "type": "enter", "actorId": "pere", "duration": 1, "x": 676, "y": 256, "fromSide": "right" },
         { "id": "s4e7", "type": "action", "actorId": "pere", "duration": 1.8, "text": "父亲穿着一身夸张的路易十四式服装，点着烟，明显带着内疚。" },
         { "id": "s4e8", "type": "line", "actorId": "pere", "duration": 10.4, "text": "Bon, on y va nous… Moi, ça m'embête un peu de te laisser là… C'est la dernière pour aujourd'hui, promis ! De toute façon, j'ai pas le choix, quand je suis avec elle je peux pas fumer…" },
         { "id": "s4e9", "type": "line", "actorId": "pere", "duration": 8.8, "text": "C'est peut-être mieux que tu viennes pas, tu sais… C'est pas sûr que ce soit tellement marrant pour les enfants cette soirée. Bon, ben moi j'y vais…" },
@@ -85,7 +89,7 @@
         { "id": "s4e49", "type": "line", "actorId": "fee", "duration": 6.8, "text": "On s'en fout de ta chambre ! Alors voilà, tu vas entrer là-dedans. C'est une boîte magique. On peut créer tout ce qu'on veut avec." },
         { "id": "s4e50", "type": "line", "actorId": "tres_jeune_fille", "duration": 6.8, "text": "Et qu'est-ce qui va se passer là-dedans ? Vous allez me faire quoi ? De la magie magique ou bien de la magie amateur ?" },
         { "id": "s4e51", "type": "line", "actorId": "fee", "duration": 7.2, "text": "T'inquiète pas. Je bosse, je progresse, je lis des bouquins, je suis au point. Bon, arrête de parler, entre là-dedans." },
-        { "id": "s4e52", "type": "move", "actorId": "tres_jeune_fille", "duration": 0.8, "x": 522, "y": 294 },
+        { "id": "s4e52", "type": "move", "actorId": "tres_jeune_fille", "duration": 0.8, "x": 536, "y": 340 },
         { "id": "s4e53", "type": "action", "actorId": "tres_jeune_fille", "duration": 1.6, "text": "她半信半疑地走进魔法盒子。" },
         { "id": "s4e54", "type": "line", "actorId": "fee", "duration": 8, "text": "Normal, bon, tu te décontractes, ça va bien se passer, je me concentre, t'arrêtes de parler. C'est un tour de magie qui a été inventé dans les années cinquante, il est bien rodé." },
         { "id": "s4e55", "type": "action", "duration": 2.2, "text": "盒子里传出女孩的抱怨声，仙女则夸张地做出魔术师般的大动作。" },
@@ -186,12 +190,15 @@
       "id": "scene-6-devant-palais",
       "title": "SCÈNE 6",
       "subtitle": "Quelques instants plus tard, devant le palais.",
-      "setting": "宫殿门前正传出极其现代的音乐。继母、小妹、大姐与父亲带着请柬来到门口，却立刻发现宴会里的衣着风格和他们的想象完全不同。混乱之中，继母先撞上很年轻的王子；随后很年轻的女孩在仙女陪伴下抵达，并目睹国王催促王子回到宴会中央。",
+      "setting": "宫殿门前正传出极其现代的音乐。继母、小妹、大姐与父亲带着请柬来到门口，门外还倒扣着她情急间拿来遮脸的洋伞，却立刻发现宴会里的衣着风格和他们的想象完全不同。混乱之中，继母先撞上很年轻的王子；随后很年轻的女孩在仙女陪伴下抵达，并目睹国王催促王子回到宴会中央。",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 646,
-        "doorY": 96
+        "doorY": 96,
+        "props": [
+          { "id": "scene6-umbrella", "kind": "parade_umbrella", "x": 474, "y": 316 }
+        ]
       },
       "actors": [
         {
@@ -320,12 +327,15 @@
       "id": "scene-7-interieur-palais",
       "title": "SCÈNE 7",
       "subtitle": "Quelques instants plus tard, à l’intérieur du palais.",
-      "setting": "宫殿内部的舞台灯火璀璨。很年轻的王子手持麦克风，朝观众方向缓缓走来。礼宾的介绍声、观众的惊呼与掌声包围着整座大厅；很年轻的女孩则在歌曲尾声时悄悄摸到舞台后方。",
+      "setting": "宫殿内部的舞台灯火璀璨，立麦架在舞台中央等着王子。礼宾的介绍声、观众的惊呼与掌声包围着整座大厅；很年轻的女孩则在歌曲尾声时悄悄摸到舞台后方。",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 180,
-        "doorY": 96
+        "doorY": 96,
+        "props": [
+          { "id": "scene7-mic", "kind": "microphone_stand", "x": 452, "y": 250 }
+        ]
       },
       "actors": [
         {
@@ -346,7 +356,7 @@
         { "id": "s7e2", "type": "action", "duration": 3.6, "text": "礼宾的声音从舞台深处响起：诸位久等了，瓦格拉姆与诺曼底的王子今晚将以英文献唱一首歌，把它献给自己的家人，尤其是他的父亲。" },
         { "id": "s7e3", "type": "action", "duration": 2.2, "text": "全场爆发出惊呼、尖叫与热烈的欢呼，像潮水一样朝舞台涌来。" },
         { "id": "s7e4", "type": "blackout_end", "duration": 0.7 },
-        { "id": "s7e5", "type": "enter", "actorId": "tres_jeune_prince", "duration": 1, "x": 454, "y": 232, "fromSide": "top" },
+        { "id": "s7e5", "type": "enter", "actorId": "tres_jeune_prince", "duration": 1, "x": 454, "y": 248, "fromSide": "top" },
         { "id": "s7e6", "type": "action", "actorId": "tres_jeune_prince", "duration": 7.8, "text": "很年轻的王子一边朝观众方向走，一边唱起《Father and Son》的翻唱。歌声稚嫩却真诚，像一封临时写下的公开家书。" },
         { "id": "s7e7", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 760, "y": 402, "fromSide": "right" },
         { "id": "s7e8", "type": "move_path", "actorId": "tres_jeune_fille", "duration": 1.8, "path": [ { "x": 720, "y": 388 }, { "x": 650, "y": 356 }, { "x": 596, "y": 318 } ] },
@@ -2127,14 +2137,15 @@
       "id": "scene-14-mere-mourante",
       "title": "SCÈNE 14",
       "subtitle": "La mémoire, la fée et la chambre de la mère mourante.",
-      "setting": "故事来到尾声。舞台上先只剩旁白的声音，随后空间退回到故事开头那间病床前的房间。很年轻的女孩在仙女陪伴下，重新看见母亲临终前的最后时刻，像在观看一场只属于自己的投影。",
+      "setting": "故事来到尾声。舞台上先只剩旁白的声音，随后空间退回到故事开头那间病床前的房间。病床重新出现在昏黄的记忆光里；很年轻的女孩在仙女陪伴下，重新看见母亲临终前的最后时刻，像在观看一场只属于自己的投影。",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 150,
         "doorY": 96,
-        "chairX": 470,
-        "chairY": 342
+        "props": [
+          { "id": "scene14-bed", "kind": "bed", "x": 472, "y": 392 }
+        ]
       },
       "actors": [
         {
@@ -2164,8 +2175,8 @@
         { "id": "s14e5", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 340, "y": 300, "fromSide": "left" },
         { "id": "s14e6", "type": "enter", "actorId": "fee", "duration": 1, "x": 580, "y": 286, "fromSide": "right" },
         { "id": "s14e7", "type": "action", "duration": 2.6, "text": "舞台像被记忆慢慢擦亮。很年轻的女孩与仙女站在微弱光里，面前是母亲临终前的房间，仿佛一段旧影像重新开始播放。" },
-        { "id": "s14e8", "type": "enter", "actorId": "mere", "duration": 1, "x": 470, "y": 342, "fromSide": "top" },
-        { "id": "s14e9", "type": "action", "actorId": "mere", "duration": 1.8, "text": "母亲静静坐在椅子旁，面容虚弱却温柔，仿佛时间从未真正流逝。" },
+        { "id": "s14e8", "type": "enter", "actorId": "mere", "duration": 1, "x": 472, "y": 350, "fromSide": "top" },
+        { "id": "s14e9", "type": "action", "actorId": "mere", "duration": 1.8, "text": "母亲静静躺在病床上，面容虚弱却温柔，仿佛时间从未真正流逝。" },
         { "id": "s14e10", "type": "line", "actorId": "mere", "duration": 8.6, "text": "Ma chérie… Si tu es malheureuse, pour te donner du courage, pense à moi… Mais n'oublie jamais, si tu penses à moi fais-le toujours avec le sourire." },
         { "id": "s14e11", "type": "pause", "duration": 1.2 },
         { "id": "s14e12", "type": "action", "actorId": "tres_jeune_fille", "duration": 2.4, "text": "很年轻的女孩站在原地，像被这句迟来的叮嘱轻轻击中。她第一次明白，原来自己一直误解了母亲留下的话。" },
@@ -2180,12 +2191,15 @@
       "id": "scene-15-nuit-de-fete",
       "title": "SCÈNE 15",
       "subtitle": "Plus tard. Une nuit de fête.",
-      "setting": "更晚一些的某个夜晚，音乐响起。舞台变成庆典般的空地，王子与很年轻的女孩尽情舞动。旁白在这场跳舞的狂欢上方，为整部故事落下最后的尾声。",
+      "setting": "更晚一些的某个夜晚，音乐响起。舞台变成庆典般的空地，头顶悬着暖金色的舞会灯。王子与很年轻的女孩尽情舞动，旁白在这场跳舞的狂欢上方，为整部故事落下最后的尾声。",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 150,
-        "doorY": 96
+        "doorY": 96,
+        "props": [
+          { "id": "scene15-light", "kind": "dance_light", "x": 460, "y": 32 }
+        ]
       },
       "actors": [
         {

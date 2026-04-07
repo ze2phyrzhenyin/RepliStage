@@ -1,8 +1,45 @@
 import type { StageConfig, StageProp, StagePropKind } from "@/types/script";
 
+export const STAGE_PROP_KINDS: StagePropKind[] = [
+  "door",
+  "chair",
+  "magic_box",
+  "carriage",
+  "parade_umbrella",
+  "microphone_stand",
+  "shoe",
+  "bed",
+  "dance_light",
+  "counter_table",
+  "display_shelf",
+  "plate_stand",
+  "suitcase",
+  "porcelain_plate",
+  "broken_plate",
+  "tea_set",
+  "signboard_yiyuanzhai",
+];
+
 const DEFAULT_STAGE_PROPS: Record<StagePropKind, StageProp> = {
-  door: { id: "door", kind: "door", x: 160, y: 98 },
-  chair: { id: "chair", kind: "chair", x: 460, y: 348 },
+  door:                 { id: "door",                 kind: "door",                 x: 160, y:  98 },
+  chair:                { id: "chair",                kind: "chair",                x: 460, y: 348 },
+  // Cinderella
+  magic_box:            { id: "magic_box",            kind: "magic_box",            x: 300, y: 400 },
+  carriage:             { id: "carriage",             kind: "carriage",             x: 750, y: 430 },
+  parade_umbrella:      { id: "parade_umbrella",      kind: "parade_umbrella",      x: 200, y: 360 },
+  microphone_stand:     { id: "microphone_stand",     kind: "microphone_stand",     x: 460, y: 410 },
+  shoe:                 { id: "shoe",                 kind: "shoe",                 x: 460, y: 460 },
+  bed:                  { id: "bed",                  kind: "bed",                  x: 460, y: 450 },
+  dance_light:          { id: "dance_light",          kind: "dance_light",          x: 460, y: 100 },
+  // 秦琼卖马
+  counter_table:        { id: "counter_table",        kind: "counter_table",        x: 460, y: 400 },
+  display_shelf:        { id: "display_shelf",        kind: "display_shelf",        x: 800, y: 350 },
+  plate_stand:          { id: "plate_stand",          kind: "plate_stand",          x: 520, y: 410 },
+  suitcase:             { id: "suitcase",             kind: "suitcase",             x: 300, y: 452 },
+  porcelain_plate:      { id: "porcelain_plate",      kind: "porcelain_plate",      x: 460, y: 420 },
+  broken_plate:         { id: "broken_plate",         kind: "broken_plate",         x: 460, y: 455 },
+  tea_set:              { id: "tea_set",              kind: "tea_set",              x: 380, y: 400 },
+  signboard_yiyuanzhai: { id: "signboard_yiyuanzhai", kind: "signboard_yiyuanzhai", x: 460, y:  70 },
 };
 
 function cloneStageProp(prop: StageProp): StageProp {

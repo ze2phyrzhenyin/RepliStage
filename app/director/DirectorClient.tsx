@@ -7,7 +7,7 @@ import { useLocale } from "@/components/locale/LocaleContext";
 import { usePlayData } from "@/components/play/PlayContext";
 import type { Play, ScriptDefinition, ScriptEvent, Actor, StageConfig, PathPoint, StageProp, StagePropKind } from "@/types/script";
 import { deriveStageState } from "@/lib/player";
-import { createDefaultStageProp, getStageProps, removeStageProp, syncStageLegacyFields, upsertStageProp } from "@/lib/stage-props";
+import { createDefaultStageProp, getStageProps, removeStageProp, STAGE_PROP_KINDS, syncStageLegacyFields, upsertStageProp } from "@/lib/stage-props";
 import SceneList from "@/components/director/SceneList";
 import EventEditor from "@/components/director/EventEditor";
 import ActorManager from "@/components/director/ActorManager";
@@ -739,23 +739,19 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
               className="flex flex-wrap gap-x-4 gap-y-1 px-3 py-2 text-[10px] text-white/30"
               style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
             >
-              <div className="w-full flex items-center justify-between gap-3">
+              <div className="w-full flex flex-col gap-2">
                 <span className="uppercase tracking-[0.22em] text-white/22">{t("director.stageProps")}</span>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => handleAddProp("door")}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[10px] text-white/55 transition hover:bg-white/[0.08] hover:text-white/80"
-                  >
-                    + {t("stage.door")}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleAddProp("chair")}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[10px] text-white/55 transition hover:bg-white/[0.08] hover:text-white/80"
-                  >
-                    + {t("stage.chair")}
-                  </button>
+                <div className="flex flex-wrap gap-1.5">
+                  {STAGE_PROP_KINDS.map((kind) => (
+                    <button
+                      key={kind}
+                      type="button"
+                      onClick={() => handleAddProp(kind)}
+                      className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] text-white/50 transition hover:bg-white/[0.08] hover:text-white/80"
+                    >
+                      + {t(`stage.${kind}` as never)}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -763,7 +759,7 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
                 <div key={prop.id} className="w-full rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2.5">
                   <div className="mb-2 flex items-center justify-between">
                     <div className="flex flex-col">
-                      <span className="text-[11px] text-white/62">{prop.kind === "door" ? t("stage.door") : t("stage.chair")}</span>
+                      <span className="text-[11px] text-white/62">{t(`stage.${prop.kind}` as never)}</span>
                       <span className="text-[10px] text-white/28">{prop.id}</span>
                     </div>
                     <button
@@ -776,7 +772,7 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <label className="flex items-center gap-1">
-                      <span>{t(prop.kind === "door" ? "director.doorX" : "director.chairX")}</span>
+                      <span>{prop.kind === "door" ? t("director.doorX") : prop.kind === "chair" ? t("director.chairX") : "X"}</span>
                       <input
                         type="number"
                         value={prop.x}
@@ -785,7 +781,7 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
                       />
                     </label>
                     <label className="flex items-center gap-1">
-                      <span>{t(prop.kind === "door" ? "director.doorY" : "director.chairY")}</span>
+                      <span>{prop.kind === "door" ? t("director.doorY") : prop.kind === "chair" ? t("director.chairY") : "Y"}</span>
                       <input
                         type="number"
                         value={prop.y}

@@ -6,12 +6,18 @@
       "id": "scene-1-yiyuanzhai",
       "title": "第一场",
       "subtitle": "艺园斋午后，来客登门",
-      "setting": "艺园斋前厅陈设古雅，左上方是店门，右侧通往里间。杨成岳整理古玩，雪儿在一旁帮忙，王超杰随后带着手提箱登门。",
+      "setting": "艺园斋前厅陈设古雅，正中是待客兼看货的柜台，后方立着博古架，上方悬着“艺园斋”匾额。左上方是店门，右侧通往里间。杨成岳整理古玩，雪儿在一旁帮忙，王超杰随后登门。",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 154,
-        "doorY": 98
+        "doorY": 98,
+        "props": [
+          { "id": "scene1-sign", "kind": "signboard_yiyuanzhai", "x": 462, "y": 26 },
+          { "id": "scene1-shelf", "kind": "display_shelf", "x": 756, "y": 286 },
+          { "id": "scene1-counter", "kind": "counter_table", "x": 464, "y": 354 },
+          { "id": "scene1-stand", "kind": "plate_stand", "x": 550, "y": 366 }
+        ]
       },
       "actors": [
         {
@@ -37,8 +43,8 @@
         { "id": "s1e1", "type": "blackout_start", "duration": 1.2 },
         { "id": "s1e2", "type": "action", "duration": 2.4, "text": "午后，艺园斋里安静得只剩下擦拭瓷器的声音。杨成岳在柜台前忙碌，雪儿想搭把手。" },
         { "id": "s1e3", "type": "blackout_end", "duration": 0.6 },
-        { "id": "s1e4", "type": "enter", "actorId": "yang_chengyue", "duration": 1, "x": 430, "y": 292, "fromSide": "right" },
-        { "id": "s1e5", "type": "enter", "actorId": "xue_er", "duration": 1, "x": 330, "y": 286, "fromSide": "left" },
+        { "id": "s1e4", "type": "enter", "actorId": "yang_chengyue", "duration": 1, "x": 472, "y": 312, "fromSide": "right" },
+        { "id": "s1e5", "type": "enter", "actorId": "xue_er", "duration": 1, "x": 346, "y": 306, "fromSide": "left" },
         { "id": "s1e6", "type": "line", "actorId": "yang_chengyue", "duration": 3.8, "text": "雪儿，这些活儿我来就行，你多休息会儿。" },
         { "id": "s1e7", "type": "line", "actorId": "xue_er", "duration": 3.4, "text": "你每天太辛苦了，我想帮你做点事儿。" },
         { "id": "s1e8", "type": "action", "actorId": "yang_chengyue", "duration": 1.5, "text": "杨成岳抬手把高处的盘子取下来，放在掌心细看。" },
@@ -50,7 +56,7 @@
         { "id": "s1e14", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "这里是艺园斋吗？" },
         { "id": "s1e15", "type": "line", "actorId": "xue_er", "duration": 1.2, "text": "对。" },
         { "id": "s1e16", "type": "line", "actorId": "wang_chaojie", "duration": 2.4, "text": "我想找一下老板。" },
-        { "id": "s1e17", "type": "move", "actorId": "yang_chengyue", "duration": 0.9, "x": 456, "y": 304 },
+        { "id": "s1e17", "type": "move", "actorId": "yang_chengyue", "duration": 0.9, "x": 492, "y": 316 },
         { "id": "s1e18", "type": "line", "actorId": "yang_chengyue", "duration": 4.4, "text": "在下便是艺园斋的老板杨成岳。" },
         { "id": "s1e19", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "我找韩老板。" },
         { "id": "s1e20", "type": "line", "actorId": "yang_chengyue", "duration": 3.8, "text": "先生，韩老板已经去世三年多了。" },
@@ -64,7 +70,7 @@
         { "id": "s1e28", "type": "action", "actorId": "wang_chaojie", "duration": 1.4, "text": "王超杰轻拍手提箱，神色带着几分踌躇。" },
         { "id": "s1e29", "type": "line", "actorId": "wang_chaojie", "duration": 4.8, "text": "我有一件雍正年间的盘子，想找老板看看。" },
         { "id": "s1e30", "type": "action", "actorId": "yang_chengyue", "duration": 1.4, "text": "杨成岳抬手示意王超杰到柜台前细看盘子。" },
-        { "id": "s1e31", "type": "move_path", "actorId": "wang_chaojie", "duration": 1.6, "path": [ { "x": 310, "y": 250 }, { "x": 378, "y": 276 }, { "x": 430, "y": 300 } ] },
+        { "id": "s1e31", "type": "move_path", "actorId": "wang_chaojie", "duration": 1.6, "path": [ { "x": 310, "y": 258 }, { "x": 374, "y": 286 }, { "x": 420, "y": 312 } ] },
         { "id": "s1e32", "type": "line", "actorId": "yang_chengyue", "duration": 4.4, "text": "先生，请近前来，还没有请教先生尊姓大名。" },
         { "id": "s1e33", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "我是北京王超杰。" },
         { "id": "s1e34", "type": "line", "actorId": "xue_er", "duration": 4.8, "text": "原来您就是王超杰先生，家父对您的唱功可是赞不绝口呢。" },
@@ -100,12 +106,20 @@
       "id": "scene-2-yiyuanzhai-ye",
       "title": "第二场",
       "subtitle": "夜谈买卖，碎盘见真",
-      "setting": "夜色渐深，艺园斋仍亮着灯。杨成岳请王超杰留饭，雪儿在旁相陪。几只盘子摆在桌案旁，谈戏、议价、告别，最后真伪在碎裂声中揭开。",
+      "setting": "夜色渐深，艺园斋仍亮着灯。柜台前摆着茶具与盘托，博古架在后景沉默发亮。杨成岳请王超杰留饭，雪儿在旁相陪；谈戏、议价、告别，最后真伪在碎裂声中揭开。",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 154,
-        "doorY": 98
+        "doorY": 98,
+        "props": [
+          { "id": "scene2-sign", "kind": "signboard_yiyuanzhai", "x": 462, "y": 26 },
+          { "id": "scene2-shelf", "kind": "display_shelf", "x": 756, "y": 286 },
+          { "id": "scene2-counter", "kind": "counter_table", "x": 464, "y": 354 },
+          { "id": "scene2-plate-stand", "kind": "plate_stand", "x": 540, "y": 366 },
+          { "id": "scene2-plate", "kind": "porcelain_plate", "x": 540, "y": 338 },
+          { "id": "scene2-tea", "kind": "tea_set", "x": 394, "y": 348 }
+        ]
       },
       "actors": [
         {
@@ -131,9 +145,9 @@
         { "id": "s2e1", "type": "blackout_start", "duration": 1.2 },
         { "id": "s2e2", "type": "action", "duration": 2.2, "text": "夜里，灯火照着艺园斋的前厅。桌案边摆着酒菜，王超杰与杨成岳谈戏议价，雪儿侍立一旁。" },
         { "id": "s2e3", "type": "blackout_end", "duration": 0.6 },
-        { "id": "s2e4", "type": "enter", "actorId": "yang_chengyue", "duration": 1, "x": 432, "y": 300, "fromSide": "right" },
-        { "id": "s2e5", "type": "enter", "actorId": "wang_chaojie", "duration": 1, "x": 362, "y": 286, "fromSide": "left" },
-        { "id": "s2e6", "type": "enter", "actorId": "xue_er", "duration": 0.9, "x": 554, "y": 286, "fromSide": "right" },
+        { "id": "s2e4", "type": "enter", "actorId": "yang_chengyue", "duration": 1, "x": 488, "y": 314, "fromSide": "right" },
+        { "id": "s2e5", "type": "enter", "actorId": "wang_chaojie", "duration": 1, "x": 384, "y": 302, "fromSide": "left" },
+        { "id": "s2e6", "type": "enter", "actorId": "xue_er", "duration": 0.9, "x": 590, "y": 302, "fromSide": "right" },
         { "id": "s2e7", "type": "line", "actorId": "yang_chengyue", "duration": 6.8, "text": "先生的《秦琼卖马》，谭派味道十足，胜过谭小培先生。" },
         { "id": "s2e8", "type": "line", "actorId": "wang_chaojie", "duration": 3, "text": "取笑了取笑了，我那是邯郸学步。" },
         { "id": "s2e9", "type": "line", "actorId": "yang_chengyue", "duration": 6.4, "text": "先生，客栈已经去找了，家妻准备了点菜肴，不如在这儿先用下吧。" },
