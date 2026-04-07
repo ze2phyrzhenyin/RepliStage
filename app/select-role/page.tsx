@@ -8,10 +8,11 @@ import { RoleCard } from "@/components/RoleCard";
 import CostumeBar from "@/components/costumes/CostumeBar";
 import { usePlayData } from "@/components/play/PlayContext";
 import { LanguageToggle } from "@/components/locale/LanguageToggle";
+import { getLocalizedSceneSetting, getLocalizedSceneTitle } from "@/lib/sample-text";
 
 function SelectRolePageContent() {
   const { play } = usePlayData();
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const searchParams = useSearchParams();
   const selectedSceneId = searchParams.get("scene");
   const scene = play.scenes.find((item) => item.id === selectedSceneId) ?? play.scenes[0];
@@ -33,7 +34,7 @@ function SelectRolePageContent() {
               </Link>
               <LanguageToggle />
             </div>
-            <p className="page-kicker mb-2">{scene.title}</p>
+            <p className="page-kicker mb-2">{getLocalizedSceneTitle(play, scene, locale)}</p>
             <h1 className="display-title text-4xl font-light text-white">{t("role.title")}</h1>
             <p className="mt-3 max-w-lg text-sm leading-7 text-white/42">
               {t("role.description")}
@@ -55,7 +56,7 @@ function SelectRolePageContent() {
                       border: `1px solid ${active ? "rgba(241,194,125,0.3)" : "rgba(255,255,255,0.08)"}`,
                     }}
                   >
-                    {item.title}
+                    {getLocalizedSceneTitle(play, item, locale)}
                   </Link>
                 );
               })}
@@ -85,7 +86,7 @@ function SelectRolePageContent() {
 
           <div className="glass-panel relative z-10 mt-4 rounded-[26px] px-6 py-5">
             <p className="page-kicker mb-3">{t("role.setting")}</p>
-            <p className="text-sm text-white/50 leading-7">{scene.setting}</p>
+            <p className="text-sm text-white/50 leading-7">{getLocalizedSceneSetting(play, scene, locale)}</p>
           </div>
         </div>
       </div>

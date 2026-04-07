@@ -4,8 +4,12 @@ import { forwardRef, useEffect, useRef } from "react";
 import { useLocale } from "@/components/locale/LocaleContext";
 import { Actor, ScriptEvent } from "@/types/script";
 import { getActorById } from "@/lib/player";
+import { getLocalizedEventText } from "@/lib/sample-text";
+import type { Play } from "@/types/script";
 
 type ScriptPanelProps = {
+  play: Play;
+  sceneId: string;
   actors: Actor[];
   events: ScriptEvent[];
   currentEventIndex: number;
@@ -19,6 +23,8 @@ type ScriptPanelProps = {
 // ─── individual event renderers ─────────────────────────────
 
 type EntryProps = {
+  play: Play;
+  sceneId: string;
   event: ScriptEvent;
   actors: Actor[];
   index: number;
@@ -33,10 +39,13 @@ type EntryProps = {
 };
 
 const ScriptEntry = forwardRef<HTMLDivElement, EntryProps>(function ScriptEntry(
-  { event, actors, isCurrent, isPast, selectedRoleId, showAllLines, revealedLineIds, onClick, compact, t },
+  { play, sceneId, event, actors, isCurrent, isPast, selectedRoleId, showAllLines, revealedLineIds, onClick, compact, t },
   ref,
 ) {
+  const { locale } = useLocale();
   const actor = event.actorId ? getActorById(actors, event.actorId) : null;
+  const scene = play.scenes.find((item) => item.id === sceneId);
+  const localizedText = scene ? getLocalizedEventText(play, scene, event, locale) : (event.text ?? null);
 
   // Dividers
   if (event.type === "blackout_start" || event.type === "blackout_end") {
@@ -111,7 +120,7 @@ const ScriptEntry = forwardRef<HTMLDivElement, EntryProps>(function ScriptEntry(
           className="text-xs italic leading-5"
           style={{ color: isCurrent ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.28)" }}
         >
-          {actor ? `${actor.name}：` : ""}（{event.text}）
+          {actor ? `${actor.name}：` : ""}（{localizedText}）
         </span>
       </div>
     );
@@ -122,7 +131,7 @@ const ScriptEntry = forwardRef<HTMLDivElement, EntryProps>(function ScriptEntry(
     const isOwnLine = event.actorId === selectedRoleId;
     const lineText =
       showAllLines || !isOwnLine || revealedLineIds.has(event.id)
-        ? event.text
+        ? localizedText
         : t("script.hiddenPrompt");
     const isHidden = isOwnLine && !showAllLines && !revealedLineIds.has(event.id);
 
@@ -173,6 +182,8 @@ const ScriptEntry = forwardRef<HTMLDivElement, EntryProps>(function ScriptEntry(
 // ─── main panel ────────────────────────────────────────────
 
 export function ScriptPanel({
+  play,
+  sceneId,
   actors,
   events,
   currentEventIndex,
@@ -200,6 +211,8 @@ export function ScriptPanel({
         <ScriptEntry
           key={event.id}
           ref={index === currentEventIndex ? currentRef : undefined}
+          play={play}
+          sceneId={sceneId}
           event={event}
           actors={actors}
           index={index}

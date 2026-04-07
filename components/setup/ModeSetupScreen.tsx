@@ -8,6 +8,7 @@ import { usePlayData } from "@/components/play/PlayContext";
 import { formatPlayImportError, parsePlay, summarizePlay } from "@/lib/play-schema";
 import { LanguageToggle } from "@/components/locale/LanguageToggle";
 import type { Play } from "@/types/script";
+import { getLocalizedPlayTitle, getLocalizedSceneSetting, getLocalizedSceneSubtitle, getLocalizedSceneTitle } from "@/lib/sample-text";
 
 type SetupMode = "rehearsal" | "director";
 type SourceMode = "sample" | "import";
@@ -129,7 +130,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="page-kicker mb-2">{t("setup.sourceMode")}</p>
-                    <h2 className="display-title text-2xl text-white">{play.title}</h2>
+                    <h2 className="display-title text-2xl text-white">{getLocalizedPlayTitle(play, locale)}</h2>
                     <p className="mt-2 text-sm text-white/42">{sourceLabel}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
@@ -185,7 +186,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
                           >
                             <div className="flex items-start justify-between gap-3">
                               <div className="min-w-0">
-                                <p className="truncate text-sm font-medium text-white/82">{sample.title}</p>
+                                <p className="truncate text-sm font-medium text-white/82">{getLocalizedPlayTitle(sample.play, locale)}</p>
                                 <p className="mt-1 text-xs text-white/40">{sample.description[locale]}</p>
                               </div>
                               <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] text-white/36">
@@ -223,7 +224,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
                       <div>
                         <p className="text-sm font-medium text-white/78">{importPreview.fileName}</p>
                         <p className="mt-1 text-xs text-white/38">
-                          {importPreview.play.title} · {t("home.sceneCount", { count: importPreview.play.scenes.length })}
+                          {getLocalizedPlayTitle(importPreview.play, locale)} · {t("home.sceneCount", { count: importPreview.play.scenes.length })}
                         </p>
                       </div>
                       <button
@@ -262,8 +263,8 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
                         background: active ? "rgba(241,194,125,0.08)" : "rgba(255,255,255,0.025)",
                       }}
                     >
-                      <p className="text-sm font-medium text-white/82">{scene.title}</p>
-                      <p className="mt-1 text-xs text-white/38">{scene.subtitle}</p>
+                      <p className="text-sm font-medium text-white/82">{getLocalizedSceneTitle(play, scene, locale)}</p>
+                      <p className="mt-1 text-xs text-white/38">{getLocalizedSceneSubtitle(play, scene, locale)}</p>
                       <p className="mt-2 text-[11px] text-white/32">
                         {t("setup.sceneMeta", { actors: scene.actors.length, events: scene.events.length })}
                       </p>
@@ -275,7 +276,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
               {currentScene && (
                 <div className="mt-5 rounded-2xl border border-white/[0.06] bg-white/[0.03] px-4 py-4">
                   <p className="text-xs uppercase tracking-[0.22em] text-white/24">{t("role.setting")}</p>
-                  <p className="mt-3 text-sm leading-7 text-white/46">{currentScene.setting}</p>
+                  <p className="mt-3 text-sm leading-7 text-white/46">{getLocalizedSceneSetting(play, currentScene, locale)}</p>
                 </div>
               )}
 

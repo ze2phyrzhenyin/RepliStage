@@ -27,6 +27,7 @@ import {
   saveCustomEvents,
 } from "@/lib/customScript";
 import { ScriptEvent, PathPoint } from "@/types/script";
+import { getLocalizedEventText, getLocalizedPlayTitle, getLocalizedSceneSubtitle, getLocalizedSceneTitle } from "@/lib/sample-text";
 
 const StageCanvas = dynamic(
   () => import("@/components/StageCanvas").then((m) => m.StageCanvas),
@@ -43,7 +44,7 @@ export function RehearsalClient({
   initialSceneId: string;
 }) {
   const router = useRouter();
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const { play } = usePlayData();
   const scene = play.scenes.find((item) => item.id === initialSceneId) ?? play.scenes[0];
   const selectedRoleId = initialRoleId;
@@ -138,6 +139,10 @@ export function RehearsalClient({
     revealedLineIds,
     t("script.hiddenPrompt"),
   );
+  const currentActionText =
+    currentEvent?.type === "action"
+      ? getLocalizedEventText(play, scene, currentEvent, locale)
+      : null;
   const currentEventIsOwnLine = !isObserver && Boolean(currentEvent && isOwnLine(currentEvent, selectedRoleId));
   const currentLineRevealed = currentEvent ? revealedLineIds.has(currentEvent.id) : false;
 
@@ -346,7 +351,7 @@ export function RehearsalClient({
             >
               {play.scenes.map((item) => (
                 <option key={item.id} value={item.id}>
-                  {item.title}
+                  {getLocalizedSceneTitle(play, item, locale)}
                 </option>
               ))}
             </select>
@@ -388,7 +393,7 @@ export function RehearsalClient({
                         actors={scene.actors}
                         event={currentEvent}
                         text={currentLineText}
-                        actionText={stageState.currentActionText}
+                        actionText={currentActionText}
                         isOwnLine={currentEventIsOwnLine}
                         revealed={currentLineRevealed}
                         onToggleReveal={toggleRevealCurrentLine}
@@ -411,6 +416,8 @@ export function RehearsalClient({
                 </div>
                 <div className="flex-1 min-h-0">
                   <ScriptPanel
+                    play={play}
+                    sceneId={scene.id}
                     actors={scene.actors}
                     events={customEvents}
                     currentEventIndex={currentEventIndex}
@@ -470,10 +477,12 @@ export function RehearsalClient({
               </div>
               <div className="flex-1 min-w-0 min-h-0 flex flex-col">
                 <div className="px-6 pt-3 pb-1 shrink-0">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/20">{play.title} — {scene.title}{scene.subtitle ? ` · ${scene.subtitle}` : ""}</p>
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/20">{getLocalizedPlayTitle(play, locale)} — {getLocalizedSceneTitle(play, scene, locale)}{getLocalizedSceneSubtitle(play, scene, locale) ? ` · ${getLocalizedSceneSubtitle(play, scene, locale)}` : ""}</p>
                 </div>
                 <div className="flex-1 min-h-0">
                   <ScriptPanel
+                    play={play}
+                    sceneId={scene.id}
                     actors={scene.actors}
                     events={customEvents}
                     currentEventIndex={currentEventIndex}
@@ -563,7 +572,7 @@ export function RehearsalClient({
             className="flex-1 rounded-lg border border-white/10 bg-white/[0.04] px-2 py-1 text-[11px] text-white/60 outline-none"
           >
             {play.scenes.map((item) => (
-              <option key={item.id} value={item.id}>{item.title}</option>
+              <option key={item.id} value={item.id}>{getLocalizedSceneTitle(play, item, locale)}</option>
             ))}
           </select>
         </div>
