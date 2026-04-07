@@ -1,4 +1,4 @@
-import type { Actor, ScriptEvent } from "@/types/script";
+import type { Actor, ScriptEvent, StageProp } from "@/types/script";
 import type { Locale } from "@/lib/i18n";
 import { getSideLabel, translate } from "@/lib/i18n";
 
@@ -8,6 +8,9 @@ export const EVENT_INSERT_TYPES: Array<ScriptEvent["type"]> = [
   "enter",
   "exit",
   "move",
+  "prop_show",
+  "prop_hide",
+  "prop_swap",
   "pause",
 ];
 
@@ -38,9 +41,12 @@ export function canDeleteEvent(event: ScriptEvent) {
 export function createEvent(
   type: ScriptEvent["type"],
   actors: Actor[],
+  stageProps: StageProp[] = [],
   afterEvent?: ScriptEvent,
 ): ScriptEvent {
   const firstActor = actors[0]?.id;
+  const firstProp = stageProps[0];
+  const defaultSwapKind = stageProps.find((prop) => prop.kind !== firstProp?.kind)?.kind ?? "chair";
   const base = { id: genId(type), type, duration: 2.0 };
 
   switch (type) {
@@ -56,11 +62,44 @@ export function createEvent(
       return { ...base, actorId: afterEvent?.actorId ?? firstActor, x: DEFAULT_STAGE_X, y: DEFAULT_STAGE_Y, duration: 0.8 };
     case "move_path":
       return { ...base, actorId: afterEvent?.actorId ?? firstActor, path: [], duration: 2.0 };
+    case "prop_show":
+      return {
+        ...base,
+        propId: firstProp?.id,
+        propKind: firstProp?.kind,
+        text: "",
+        duration: 1.0,
+      };
+    case "prop_hide":
+      return {
+        ...base,
+        propId: firstProp?.id,
+        propKind: firstProp?.kind,
+        text: "",
+        duration: 0.8,
+      };
+    case "prop_swap":
+      return {
+        ...base,
+        propId: firstProp?.id,
+        propKind: firstProp?.kind,
+        nextPropKind: defaultSwapKind,
+        text: "",
+        duration: 1.0,
+      };
     case "pause":
       return { ...base, duration: 1.0 };
     default:
       return base as ScriptEvent;
   }
+}
+
+export function getPropById(stageProps: StageProp[], propId?: string) {
+  return stageProps.find((prop) => prop.id === propId);
+}
+
+export function getPropKindOptions(stageProps: StageProp[]) {
+  return Array.from(new Set(stageProps.map((prop) => prop.kind)));
 }
 
 export function getMoveTypePatch(event: ScriptEvent, nextType: "move" | "move_path"): Partial<ScriptEvent> {
@@ -81,8 +120,14 @@ export function getMoveTypePatch(event: ScriptEvent, nextType: "move" | "move_pa
   };
 }
 
-export function getEventPreviewText(event: ScriptEvent, actors: Actor[], locale: Locale = "zh") {
+export function getEventPreviewText(
+  event: ScriptEvent,
+  actors: Actor[],
+  locale: Locale = "zh",
+  stageProps: StageProp[] = [],
+) {
   const actor = actors.find((item) => item.id === event.actorId);
+  const prop = getPropById(stageProps, event.propId);
 
   if (event.type === "line" || event.type === "action") {
     const text = event.text?.trim();
@@ -97,6 +142,20 @@ export function getEventPreviewText(event: ScriptEvent, actors: Actor[], locale:
     return event.path && event.path.length > 0
       ? translate(locale, "editor.pathReady", { count: event.path.length })
       : (locale === "zh" ? "未绘制路径" : translate(locale, "editor.pathEmpty"));
+  }
+
+  if (event.type === "prop_show" || event.type === "prop_hide") {
+    const kind = event.propKind ?? prop?.kind;
+    return [
+      kind ? translate(locale, `stage.${kind}`) : event.propId ?? translate(locale, "editor.none"),
+      event.text?.trim() ? `· ${event.text.trim().slice(0, 30)}` : "",
+    ].join(" ").trim();
+  }
+
+  if (event.type === "prop_swap") {
+    const fromLabel = translate(locale, `stage.${event.propKind ?? prop?.kind ?? "chair"}`);
+    const toLabel = event.nextPropKind ? translate(locale, `stage.${event.nextPropKind}`) : "?";
+    return `${fromLabel} → ${toLabel}`;
   }
 
   return actor?.name ?? "";

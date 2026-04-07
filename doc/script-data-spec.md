@@ -218,13 +218,20 @@ type PlaySource =
 - 场次 id 是否重复
 - 角色 id 是否重复
 - 事件 id 是否重复
-- 道具 kind 是否重复
+- 道具 id 是否重复
 - `actorId` 是否存在
+- 道具事件的 `propId` 是否存在
+- `prop_swap` 是否声明 `nextPropKind`
 - `move_path` 是否为空
 - `line` 是否有文本
 - `enter` / `move` 是否有坐标
 - 是否缺少 `scene_end`
-- 是否缺少门道具
+
+另外，事件类型现在除了演员相关事件，还支持：
+
+- `prop_show`
+- `prop_hide`
+- `prop_swap`
 
 ## 10. 编辑建议
 

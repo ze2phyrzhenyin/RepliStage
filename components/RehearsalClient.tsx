@@ -26,6 +26,7 @@ import {
   resetCustomEvents,
   saveCustomEvents,
 } from "@/lib/customScript";
+import { getStageProps } from "@/lib/stage-props";
 import { ScriptEvent, PathPoint } from "@/types/script";
 import { getLocalizedEventText, getLocalizedPlayTitle, getLocalizedSceneSubtitle, getLocalizedSceneTitle } from "@/lib/sample-text";
 
@@ -140,7 +141,7 @@ export function RehearsalClient({
     t("script.hiddenPrompt"),
   );
   const currentActionText =
-    currentEvent?.type === "action"
+    currentEvent?.type === "action" || currentEvent?.type === "prop_show" || currentEvent?.type === "prop_hide" || currentEvent?.type === "prop_swap"
       ? getLocalizedEventText(play, scene, currentEvent, locale)
       : null;
   const currentEventIsOwnLine = !isObserver && Boolean(currentEvent && isOwnLine(currentEvent, selectedRoleId));
@@ -452,10 +453,14 @@ export function RehearsalClient({
                   <p className="text-xs text-white/55 leading-5">
                     {currentEvent?.type === "line" && currentActor ? t("rehearsal.currentLine", { name: currentActor.name })
                       : currentEvent?.type === "action" && currentActor ? t("rehearsal.currentAction", { name: currentActor.name })
+                      : currentEvent?.type === "action" ? t("event.action")
                       : currentEvent?.type === "enter" && currentActor ? t("rehearsal.currentEnter", { name: currentActor.name })
                       : currentEvent?.type === "exit" && currentActor ? t("rehearsal.currentExit", { name: currentActor.name })
                       : currentEvent?.type === "move" && currentActor ? t("rehearsal.currentMove", { name: currentActor.name })
                       : currentEvent?.type === "move_path" && currentActor ? t("rehearsal.currentMovePath", { name: currentActor.name })
+                      : currentEvent?.type === "prop_show" ? t("event.prop_show")
+                      : currentEvent?.type === "prop_hide" ? t("event.prop_hide")
+                      : currentEvent?.type === "prop_swap" ? t("event.prop_swap")
                       : currentEvent?.type === "blackout_start" ? t("rehearsal.currentBlackout")
                       : currentEvent?.type === "scene_end" ? t("rehearsal.sceneComplete")
                       : t("rehearsal.currentPause")}
@@ -543,6 +548,7 @@ export function RehearsalClient({
                 <DirectorPanel
                   actors={scene.actors}
                   events={customEvents}
+                  stageProps={getStageProps(scene.stage)}
                   currentEventIndex={currentEventIndex}
                   onSeek={handleSeek}
                   onUpdateEvent={handleUpdateEvent}

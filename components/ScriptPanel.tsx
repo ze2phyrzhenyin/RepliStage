@@ -104,6 +104,27 @@ const ScriptEntry = forwardRef<HTMLDivElement, EntryProps>(function ScriptEntry(
     );
   }
 
+  if (event.type === "prop_show" || event.type === "prop_hide" || event.type === "prop_swap") {
+    return (
+      <div
+        ref={ref}
+        onClick={onClick}
+        className="cursor-pointer px-3 py-1 rounded-lg transition-colors hover:bg-white/[0.03]"
+        style={{
+          opacity: isPast ? 0.3 : 1,
+          background: isCurrent ? "rgba(255,255,255,0.04)" : undefined,
+        }}
+      >
+        <span
+          className="text-xs italic leading-5"
+          style={{ color: isCurrent ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.28)" }}
+        >
+          （{localizedText ?? t(`event.${event.type}`)}）
+        </span>
+      </div>
+    );
+  }
+
   // Action
   if (event.type === "action") {
     return (

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/components/locale/LocaleContext";
-import { Actor, ScriptEvent } from "@/types/script";
+import { Actor, ScriptEvent, StageProp } from "@/types/script";
 import { getActorById } from "@/lib/player";
 import { eventColor, eventLabel as evtLabel } from "@/lib/eventMeta";
 import { canDeleteEvent, getEventPreviewText } from "@/lib/event-editor-core";
@@ -12,6 +12,7 @@ import { SharedInsertBar } from "@/components/editor/SharedInsertBar";
 type DirectorPanelProps = {
   events: ScriptEvent[];
   actors: Actor[];
+  stageProps?: StageProp[];
   currentEventIndex: number;
   onSeek: (index: number) => void;
   onUpdateEvent: (index: number, updates: Partial<ScriptEvent>) => void;
@@ -30,27 +31,31 @@ function getEventMeta(event: ScriptEvent, locale: "zh" | "fr") {
   return { label: evtLabel(event.type, locale), color: eventColor(event.type) };
 }
 
+type EventCardProps = {
+  event: ScriptEvent;
+  index: number;
+  isCurrent: boolean;
+  isPast: boolean;
+  actors: Actor[];
+  stageProps?: StageProp[];
+  onSeek: () => void;
+  onUpdate: (updates: Partial<ScriptEvent>) => void;
+  onDelete: () => void;
+  onDrawPath?: (index: number) => void;
+};
+
 function EventCard({
   event,
   index,
   isCurrent,
   isPast,
   actors,
+  stageProps = [],
   onSeek,
   onUpdate,
   onDelete,
   onDrawPath,
-}: {
-  event: ScriptEvent;
-  index: number;
-  isCurrent: boolean;
-  isPast: boolean;
-  actors: Actor[];
-  onSeek: () => void;
-  onUpdate: (updates: Partial<ScriptEvent>) => void;
-  onDelete: () => void;
-  onDrawPath?: (index: number) => void;
-}) {
+}: EventCardProps) {
   const { locale } = useLocale();
   const [expanded, setExpanded] = useState(false);
   const actor = event.actorId ? getActorById(actors, event.actorId) : null;
@@ -81,13 +86,13 @@ function EventCard({
         >
           {label}
         </span>
-          {actor && (
-            <span className="text-[11px] font-medium" style={{ color: actor.color }}>
-              {actor.name}
-            </span>
-          )}
+        {actor && (
+          <span className="text-[11px] font-medium" style={{ color: actor.color }}>
+            {actor.name}
+          </span>
+        )}
         <span className="flex-1 text-[11px] text-white/35 truncate">
-          {getEventPreviewText(event, actors, locale)}
+          {getEventPreviewText(event, actors, locale, stageProps)}
         </span>
         <span className="text-[10px] text-white/20 shrink-0">{index + 1}</span>
         <span
@@ -103,6 +108,7 @@ function EventCard({
           event={event}
           index={index}
           actors={actors}
+          stageProps={stageProps}
           onUpdate={onUpdate}
           onDelete={onDelete}
           onDrawPath={onDrawPath}
@@ -116,6 +122,7 @@ function EventCard({
 export function DirectorPanel({
   events,
   actors,
+  stageProps = [],
   currentEventIndex,
   onSeek,
   onUpdateEvent,
@@ -157,7 +164,7 @@ export function DirectorPanel({
     if (idx !== null && idx !== dragIdx) setDropIdx(idx);
   }
 
-  function handleListPointerUp(e: React.PointerEvent) {
+  function handleListPointerUp() {
     if (dragIdx !== null && dropIdx !== null && dragIdx !== dropIdx) {
       onMoveEvent(dragIdx, dropIdx);
     }
@@ -284,6 +291,7 @@ export function DirectorPanel({
                     isCurrent={index === currentEventIndex}
                     isPast={index < currentEventIndex}
                     actors={actors}
+                    stageProps={stageProps}
                     onSeek={() => onSeek(index)}
                     onUpdate={(updates) => onUpdateEvent(index, updates)}
                     onDelete={() => onDeleteEvent(index)}
@@ -310,6 +318,7 @@ export function DirectorPanel({
         <SharedInsertBar
           afterIndex={currentEventIndex}
           actors={actors}
+          stageProps={stageProps}
           afterEvent={events[currentEventIndex]}
           onInsert={onInsertEvent}
           variant="compact"

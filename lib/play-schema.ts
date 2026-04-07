@@ -26,6 +26,7 @@ export const stagePropSchema = z.object({
   ]),
   x: z.number(),
   y: z.number(),
+  label: z.string().optional(),
 });
 
 export const stageConfigSchema = z.object({
@@ -48,12 +49,18 @@ export const scriptEventSchema = z.object({
     "move_path",
     "line",
     "action",
+    "prop_show",
+    "prop_hide",
+    "prop_swap",
     "exit",
     "pause",
     "scene_end",
   ]),
   duration: z.number().positive(),
   actorId: z.string().optional(),
+  propId: z.string().optional(),
+  propKind: stagePropSchema.shape.kind.optional(),
+  nextPropKind: stagePropSchema.shape.kind.optional(),
   text: z.string().optional(),
   x: z.number().optional(),
   y: z.number().optional(),
@@ -93,6 +100,7 @@ export const playSchema = z.object({
     const actorIds = new Set<string>();
     const eventIds = new Set<string>();
     const propIds = new Set<string>();
+    const propsById = new Map<string, z.infer<typeof stagePropSchema>>();
 
     scene.stage.props?.forEach((prop, propIndex) => {
       if (propIds.has(prop.id)) {
@@ -103,6 +111,7 @@ export const playSchema = z.object({
         });
       }
       propIds.add(prop.id);
+      propsById.set(prop.id, prop);
     });
 
     scene.actors.forEach((actor, actorIndex) => {
@@ -149,6 +158,30 @@ export const playSchema = z.object({
           code: z.ZodIssueCode.custom,
           path: [...eventPath, "text"],
           message: translate("zh", "error.lineTextRequired"),
+        });
+      }
+
+      if ((event.type === "prop_show" || event.type === "prop_hide" || event.type === "prop_swap") && !event.propId) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: [...eventPath, "propId"],
+          message: "道具事件必须指定 propId",
+        });
+      }
+
+      if (event.propId && !propsById.has(event.propId)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: [...eventPath, "propId"],
+          message: `场次 "${scene.title || scene.id}" 中不存在道具 ID "${event.propId}"`,
+        });
+      }
+
+      if (event.type === "prop_swap" && !event.nextPropKind) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: [...eventPath, "nextPropKind"],
+          message: "prop_swap 事件必须指定 nextPropKind",
         });
       }
 

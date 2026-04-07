@@ -195,6 +195,7 @@
         { "id": "s2e51", "type": "line", "actorId": "xue_er", "duration": 7.6, "text": "成岳，你为何不让我试试？家父就是因为晚年打眼损失惨重，才郁郁而终。虽然我知道你眼力好，但是难免走眼啊。" },
         { "id": "s2e52", "type": "line", "actorId": "yang_chengyue", "duration": 3.6, "text": "哎，你知我为何不让你看吗？" },
         { "id": "s2e53", "type": "action", "actorId": "yang_chengyue", "duration": 1.8, "text": "杨成岳猛一挥手，那只盘子应声坠地，碎片散了一地。" },
+        { "id": "s2e53a", "type": "prop_swap", "propId": "scene2-plate", "propKind": "porcelain_plate", "nextPropKind": "broken_plate", "duration": 0.6, "text": "柜台上的粉彩大盘在灯下化作一地碎瓷。" },
         { "id": "s2e54", "type": "line", "actorId": "xue_er", "duration": 3.4, "text": "成岳，你这是为何……" },
         { "id": "s2e55", "type": "line", "actorId": "yang_chengyue", "duration": 2.2, "text": "雪儿，请随我来。" },
         { "id": "s2e56", "type": "action", "actorId": "yang_chengyue", "duration": 1.6, "text": "他从里间取出真正的旧盘，放到碎片旁边对照。" },

@@ -3,11 +3,12 @@
 import { useLocale } from "@/components/locale/LocaleContext";
 import { eventColor, eventLabel } from "@/lib/eventMeta";
 import { createEvent, EVENT_INSERT_TYPES } from "@/lib/event-editor-core";
-import type { Actor, ScriptEvent } from "@/types/script";
+import type { Actor, ScriptEvent, StageProp } from "@/types/script";
 
 type Props = {
   afterIndex: number;
   actors: Actor[];
+  stageProps?: StageProp[];
   afterEvent?: ScriptEvent;
   onInsert: (afterIndex: number, event: ScriptEvent) => void;
   onClose?: () => void;
@@ -17,6 +18,7 @@ type Props = {
 export function SharedInsertBar({
   afterIndex,
   actors,
+  stageProps = [],
   afterEvent,
   onInsert,
   onClose,
@@ -30,7 +32,7 @@ export function SharedInsertBar({
         <button
           key={type}
           onClick={() => {
-            onInsert(afterIndex, createEvent(type, actors, afterEvent));
+            onInsert(afterIndex, createEvent(type, actors, stageProps, afterEvent));
             onClose?.();
           }}
           className={variant === "panel"

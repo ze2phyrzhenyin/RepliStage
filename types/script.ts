@@ -44,6 +44,7 @@ export type StageProp = {
   kind: StagePropKind;
   x: number;
   y: number;
+  label?: string;
 };
 
 export type StageConfig = {
@@ -85,11 +86,17 @@ type BaseEvent = {
     | "move_path"
     | "line"
     | "action"
+    | "prop_show"
+    | "prop_hide"
+    | "prop_swap"
     | "exit"
     | "pause"
     | "scene_end";
   duration: number;
   actorId?: string;
+  propId?: string;
+  propKind?: StagePropKind;
+  nextPropKind?: StagePropKind;
   text?: string;
   x?: number;
   y?: number;

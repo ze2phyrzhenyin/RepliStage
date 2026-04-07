@@ -5,12 +5,14 @@ import {
   Expression,
   ScriptDefinition,
   ScriptEvent,
+  StageProp,
   StageActorState,
 } from "@/types/script";
-import { getStageProp } from "@/lib/stage-props";
+import { getStageProp, getStageProps } from "@/lib/stage-props";
 
 export type DerivedStageState = {
   actors: Record<string, StageActorState>;
+  props: StageProp[];
   blackoutVisible: boolean;
   currentEvent: ScriptEvent;
   currentLineText: string | null;
@@ -330,6 +332,7 @@ export function deriveStageState(
   events: ScriptEvent[] = scene.events,
 ): DerivedStageState {
   const actors = getInitialActorMap(scene);
+  let props = getStageProps(scene.stage);
   let blackoutVisible = false;
   let currentLineText: string | null = null;
   let currentActionText: string | null = null;
@@ -446,6 +449,38 @@ export function deriveStageState(
           };
         }
         break;
+      case "prop_show":
+        if (event.propId) {
+          const sceneProp = getStageProps(scene.stage).find((prop) => prop.id === event.propId);
+          if (sceneProp && !props.some((prop) => prop.id === event.propId)) {
+            props = [...props, { ...sceneProp }];
+          }
+        }
+        currentActionText = event.text ?? null;
+        currentLineText = null;
+        activeActorId = null;
+        break;
+      case "prop_hide":
+        if (event.propId) {
+          props = props.filter((prop) => prop.id !== event.propId);
+        }
+        currentActionText = event.text ?? null;
+        currentLineText = null;
+        activeActorId = null;
+        break;
+      case "prop_swap":
+        if (event.propId && event.nextPropKind) {
+          const nextKind = event.nextPropKind;
+          props = props.map((prop) => (
+            prop.id === event.propId
+              ? { ...prop, kind: nextKind }
+              : prop
+          ));
+        }
+        currentActionText = event.text ?? null;
+        currentLineText = null;
+        activeActorId = null;
+        break;
       case "exit":
         if (event.actorId) {
           const current = actors[event.actorId];
@@ -492,6 +527,7 @@ export function deriveStageState(
 
   return {
     actors,
+    props,
     blackoutVisible,
     currentEvent: events[boundedIndex],
     currentLineText,

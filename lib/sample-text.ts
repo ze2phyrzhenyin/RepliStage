@@ -32,6 +32,9 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
           s4e2: {
             fr: "LA VOIX DE LA NARRATRICE. Enfin arriva le grand jour que tout le monde attendait.",
           },
+          s4e3a: {
+            fr: "Pour l’instant, la chambre est encore vide de tout prodige : aucune boîte magique n’est apparue.",
+          },
           s4e5: {
             fr: "La très jeune fille est allongée seule près du lit, comme si elle avait volontairement choisi de rester en dehors de la fête de ce soir.",
           },
@@ -58,6 +61,9 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
           },
           s4e46: {
             fr: "Quand la lumière revient, une immense boîte magique occupe désormais une bonne moitié de la chambre.",
+          },
+          s4e46a: {
+            fr: "La boîte magique surgit soudain au milieu de la chambre, comme si elle avait poussé dans l’air.",
           },
           s4e53: {
             fr: "Méfiante, elle finit tout de même par entrer dans la boîte magique.",
@@ -310,6 +316,12 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
           s13e2: {
             fr: "LA VOIX DE LA NARRATRICE. Le lendemain, dans la maison en verre, tout le monde suffoquait d’inquiétude. Depuis son retour de la soirée du palais, la future belle-mère s’était enfermée dans sa chambre et son état ne cessait d’alarmer la maison.",
           },
+          s13e3a: {
+            fr: "La chaussure du prince n’est pas encore visible ; la preuve n’entrera que plus tard avec la très jeune fille.",
+          },
+          s13e56a: {
+            fr: "La chaussure apparaît enfin comme pièce à conviction au milieu du salon.",
+          },
           s13e89: {
             fr: "LA VOIX DE LA NARRATRICE. À partir de ce jour, la très jeune fille quitta cette maison avec son père. Plus tard, il se remaria avec une femme moins désagréable et finit même par arrêter de fumer.",
           },
@@ -424,6 +436,9 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
           },
           s2e53: {
             fr: "D’un geste brusque, Yang Chengyue fait voler l’assiette : elle s’écrase au sol en mille morceaux.",
+          },
+          s2e53a: {
+            fr: "Sur le comptoir, la grande assiette peinte cesse d’être un trésor : elle devient un amas de tessons froids.",
           },
           s2e56: {
             fr: "Il rapporte alors de l’arrière-boutique la véritable vieille assiette et la pose à côté des tessons pour les comparer.",

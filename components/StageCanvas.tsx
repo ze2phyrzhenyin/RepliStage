@@ -465,12 +465,12 @@ export function StageCanvas({
   const stageW = stageConfig.width;
   const stageH = stageConfig.height;
   const stageProps = useMemo(
-    () => getStageProps(stageConfig).map((prop) => (
+    () => (editMode ? getStageProps(stageConfig) : stageState.props).map((prop) => (
       propDrag?.propId === prop.id
         ? { ...prop, x: propDrag.stageX, y: propDrag.stageY }
         : prop
     )),
-    [propDrag, stageConfig],
+    [editMode, propDrag, stageConfig, stageState.props],
   );
   const doorProps    = stageProps.filter((prop) => prop.kind === "door");
   const chairProps   = stageProps.filter((prop) => prop.kind === "chair");

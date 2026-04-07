@@ -233,6 +233,21 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
     }));
   }
 
+  function handleDuplicateProp(propId: string) {
+    const source = sceneProps.find((prop) => prop.id === propId);
+    if (!source) return;
+    const duplicate = createDefaultStageProp(source.kind);
+    updateScene(scene.id, (current) => ({
+      ...current,
+      stage: upsertStageProp(current.stage, {
+        ...duplicate,
+        x: source.x + 18,
+        y: source.y + 18,
+        label: source.label,
+      }),
+    }));
+  }
+
   function handleAddProp(kind: StagePropKind) {
     updateScene(scene.id, (current) => ({
       ...current,
@@ -766,6 +781,13 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
                       <span className="text-[11px] text-white/62">{t(`stage.${prop.kind}` as never)}</span>
                       <span className="text-[10px] text-white/28">{prop.id}</span>
                     </div>
+                    <button
+                      type="button"
+                      onClick={() => handleDuplicateProp(prop.id)}
+                      className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40 transition hover:text-white/75 hover:bg-white/[0.06]"
+                    >
+                      {t("director.duplicateProp")}
+                    </button>
                     <button
                       type="button"
                       onClick={() => handleRemoveProp(prop.id)}

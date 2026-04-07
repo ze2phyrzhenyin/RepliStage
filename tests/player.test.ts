@@ -147,4 +147,28 @@ describe("player", () => {
     const exited = deriveStageState(scene, 1, scene.events);
     expect(exited.actors.girl.y).toBe(142);
   });
+
+  it("updates visible props from prop events", () => {
+    const scene = makeScene([
+      { id: "e1", type: "prop_hide", propId: "plate-1", propKind: "porcelain_plate", duration: 0.8, text: "先把盘子收起来。" },
+      { id: "e2", type: "prop_show", propId: "plate-1", propKind: "porcelain_plate", duration: 0.8, text: "盘子重新被端出来。" },
+      { id: "e3", type: "prop_swap", propId: "plate-1", propKind: "porcelain_plate", nextPropKind: "broken_plate", duration: 1, text: "盘子被摔碎。" },
+    ]);
+    scene.stage = {
+      width: 920,
+      height: 520,
+      props: [{ id: "plate-1", kind: "porcelain_plate", x: 460, y: 360 }],
+    };
+
+    const hidden = deriveStageState(scene, 0, scene.events);
+    expect(hidden.props).toHaveLength(0);
+    expect(hidden.currentActionText).toBe("先把盘子收起来。");
+
+    const shown = deriveStageState(scene, 1, scene.events);
+    expect(shown.props).toEqual([{ id: "plate-1", kind: "porcelain_plate", x: 460, y: 360 }]);
+
+    const swapped = deriveStageState(scene, 2, scene.events);
+    expect(swapped.props[0].kind).toBe("broken_plate");
+    expect(swapped.currentActionText).toBe("盘子被摔碎。");
+  });
 });

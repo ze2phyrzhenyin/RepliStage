@@ -7,6 +7,7 @@ import { eventColor, eventLabel } from "@/lib/eventMeta";
 import { canDeleteEvent, getEventPreviewText } from "@/lib/event-editor-core";
 import { SharedEventForm } from "@/components/editor/SharedEventForm";
 import { SharedInsertBar } from "@/components/editor/SharedInsertBar";
+import { getStageProps } from "@/lib/stage-props";
 
 type Props = {
   scene: ScriptDefinition;
@@ -44,6 +45,7 @@ export default function EventEditor({
   const listRef = useRef<HTMLDivElement>(null);
 
   const { events, actors } = scene;
+  const stageProps = getStageProps(scene.stage);
 
   function getIndexAtPoint(x: number, y: number): number | null {
     const els = document.elementsFromPoint(x, y);
@@ -78,7 +80,7 @@ export default function EventEditor({
   return (
     <div className="flex flex-col h-full">
       <div className="px-3 py-2 border-b border-white/[0.04] bg-white/[0.015]">
-        <SharedInsertBar afterIndex={-1} actors={actors} onInsert={onInsert} variant="panel" />
+        <SharedInsertBar afterIndex={-1} actors={actors} stageProps={stageProps} onInsert={onInsert} variant="panel" />
       </div>
 
       <div
@@ -147,7 +149,7 @@ export default function EventEditor({
                 )}
 
                 <span className="flex-1 text-xs truncate" style={{ color: "rgba(255,255,255,0.55)" }}>
-                  {getEventPreviewText(event, actors, locale)}
+                  {getEventPreviewText(event, actors, locale, stageProps)}
                 </span>
 
                 <span className="text-[9px] text-white/20 shrink-0">{event.duration}s</span>
@@ -166,6 +168,7 @@ export default function EventEditor({
                   event={event}
                   index={index}
                   actors={actors}
+                  stageProps={stageProps}
                   onUpdate={(updates) => onUpdate(index, updates)}
                   onDelete={() => onDelete(index)}
                   onDrawPath={onDrawPath}
@@ -178,6 +181,7 @@ export default function EventEditor({
                   <SharedInsertBar
                     afterIndex={index}
                     actors={actors}
+                    stageProps={stageProps}
                     afterEvent={event}
                     onInsert={onInsert}
                     onClose={() => setShowInsertAfter(null)}

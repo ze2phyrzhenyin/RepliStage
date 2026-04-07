@@ -160,4 +160,34 @@ describe("play-schema", () => {
 
     expect(() => parsePlay(play)).toThrow(/道具 ID/);
   });
+
+  it("rejects prop events that point to missing props", () => {
+    const play = makeValidPlay();
+    play.scenes[0].stage.props = [{ id: "chair-a", kind: "chair", x: 460, y: 348 }];
+    play.scenes[0].events[3] = {
+      id: "e4",
+      type: "prop_show",
+      propId: "missing-prop",
+      propKind: "shoe",
+      text: "鞋子掉了下来。",
+      duration: 1,
+    };
+
+    expect(() => parsePlay(play)).toThrow(/不存在道具 ID/);
+  });
+
+  it("rejects prop_swap events without nextPropKind", () => {
+    const play = makeValidPlay();
+    play.scenes[0].stage.props = [{ id: "plate-a", kind: "porcelain_plate", x: 460, y: 348 }];
+    play.scenes[0].events[3] = {
+      id: "e4",
+      type: "prop_swap",
+      propId: "plate-a",
+      propKind: "porcelain_plate",
+      text: "盘子被摔碎。",
+      duration: 1,
+    };
+
+    expect(() => parsePlay(play)).toThrow(/nextPropKind/);
+  });
 });

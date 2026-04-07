@@ -41,6 +41,7 @@
         { "id": "s4e1", "type": "blackout_start", "duration": 1 },
         { "id": "s4e2", "type": "action", "duration": 2, "text": "旁白：终于，所有人期待已久的大日子到来了。" },
         { "id": "s4e3", "type": "blackout_end", "duration": 0.7 },
+        { "id": "s4e3a", "type": "prop_hide", "propId": "scene4-magic-box", "propKind": "magic_box", "duration": 0.1, "text": "房间里此刻还没有魔法盒。" },
         { "id": "s4e4", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 292, "y": 356, "fromSide": "left" },
         { "id": "s4e5", "type": "action", "actorId": "tres_jeune_fille", "duration": 2.4, "text": "很年轻的女孩一个人躺在床边，像故意把自己留在今晚的热闹之外。" },
         { "id": "s4e6", "type": "enter", "actorId": "pere", "duration": 1, "x": 676, "y": 256, "fromSide": "right" },
@@ -84,6 +85,7 @@
         { "id": "s4e44", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.4, "text": "D'accord, mais vous rallumez !" },
         { "id": "s4e45", "type": "line", "actorId": "fee", "duration": 3.8, "text": "Super ! Je m'occupe de ta robe, ça va être marrant ça !" },
         { "id": "s4e46", "type": "action", "duration": 2.6, "text": "灯光重新亮起。房间里凭空多出一个巨大的魔法盒子，占去了半间屋子。" },
+        { "id": "s4e46a", "type": "prop_show", "propId": "scene4-magic-box", "propKind": "magic_box", "duration": 0.6, "text": "魔法盒子突然出现在卧室中央。" },
         { "id": "s4e47", "type": "line", "actorId": "fee", "duration": 1.4, "text": "Ouais, génial !" },
         { "id": "s4e48", "type": "line", "actorId": "tres_jeune_fille", "duration": 3.4, "text": "C'est quoi ça ? Et ma chambre, vous l'avez mise où ?" },
         { "id": "s4e49", "type": "line", "actorId": "fee", "duration": 6.8, "text": "On s'en fout de ta chambre ! Alors voilà, tu vas entrer là-dedans. C'est une boîte magique. On peut créer tout ce qu'on veut avec." },
@@ -1992,7 +1994,11 @@
         "doorX": 160,
         "doorY": 98,
         "chairX": 446,
-        "chairY": 346
+        "chairY": 346,
+        "props": [
+          { "id": "scene13-chair", "kind": "chair", "x": 446, "y": 346 },
+          { "id": "scene13-shoe", "kind": "shoe", "x": 690, "y": 414 }
+        ]
       },
       "actors": [
         {
@@ -2042,6 +2048,7 @@
         { "id": "s13e1", "type": "blackout_start", "duration": 1.2 },
         { "id": "s13e2", "type": "action", "duration": 3.2, "text": "旁白：第二天，在玻璃房里，每个人都被不安压得喘不过气。自从昨夜从宫廷晚会回来，未来的继母就把自己关在房间里，病情让人越来越担心。" },
         { "id": "s13e3", "type": "blackout_end", "duration": 0.6 },
+        { "id": "s13e3a", "type": "prop_hide", "propId": "scene13-shoe", "propKind": "shoe", "duration": 0.1, "text": "王子的鞋暂时还没有出现在舞台上。" },
         { "id": "s13e4", "type": "enter", "actorId": "soeur_grande", "duration": 1, "x": 446, "y": 346, "fromSide": "right" },
         { "id": "s13e5", "type": "action", "actorId": "soeur_grande", "duration": 1.4, "text": "大姐坐在椅子上，神情萎顿，像被一夜之间抽空了力气。" },
         { "id": "s13e6", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 720, "y": 392, "fromSide": "right" },
@@ -2095,6 +2102,7 @@
         { "id": "s13e54", "type": "line", "actorId": "soeur_grande", "duration": 2.2, "text": "Nous, c'est Cendrier qu'on connaît !" },
         { "id": "s13e55", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 704, "y": 370, "fromSide": "right" },
         { "id": "s13e56", "type": "action", "actorId": "tres_jeune_fille", "duration": 1.6, "text": "很年轻的女孩回来了，手里握着王子的鞋，像拿着某种能让所有人闭嘴的证据。" },
+        { "id": "s13e56a", "type": "prop_show", "propId": "scene13-shoe", "propKind": "shoe", "duration": 0.5, "text": "鞋子作为证物出现在众人面前。" },
         { "id": "s13e57", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.8, "text": "C'est pas ça dont vous parlez ?" },
         { "id": "s13e58", "type": "action", "actorId": "roi", "duration": 1.6, "text": "国王接过鞋子，认真翻看鞋底与内侧标记。两姐妹彻底呆住了。" },
         { "id": "s13e59", "type": "line", "actorId": "roi", "duration": 6.4, "text": "Attendez voir… Ben si, c'est la chaussure de mon fils, c'est marqué le nom du fabricant à l'intérieur ! Et c'est sa pointure. Il chausse très petit pour son âge." },

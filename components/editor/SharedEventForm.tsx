@@ -2,13 +2,14 @@
 
 import clsx from "clsx";
 import { useLocale } from "@/components/locale/LocaleContext";
-import type { Actor, ActorPose, ScriptEvent } from "@/types/script";
-import { canDeleteEvent, getMoveTypePatch, getSideOptionLabel } from "@/lib/event-editor-core";
+import type { Actor, ActorPose, ScriptEvent, StageProp } from "@/types/script";
+import { canDeleteEvent, getMoveTypePatch, getPropById, getPropKindOptions, getSideOptionLabel } from "@/lib/event-editor-core";
 
 type Props = {
   event: ScriptEvent;
   index: number;
   actors: Actor[];
+  stageProps?: StageProp[];
   onUpdate: (updates: Partial<ScriptEvent>) => void;
   onDelete: () => void;
   onDrawPath?: (index: number) => void;
@@ -21,6 +22,7 @@ export function SharedEventForm({
   event,
   index,
   actors,
+  stageProps = [],
   onUpdate,
   onDelete,
   onDrawPath,
@@ -30,10 +32,15 @@ export function SharedEventForm({
   const isMove = event.type === "move" || event.type === "move_path";
   const showActor = ["line", "action", "enter", "exit", "move", "move_path"].includes(event.type);
   const showText = event.type === "line" || event.type === "action";
+  const showPropText = event.type === "prop_show" || event.type === "prop_hide" || event.type === "prop_swap";
   const showPos = event.type === "enter" || event.type === "move";
   const showFrom = event.type === "enter";
   const showTo = event.type === "exit";
   const showPose = event.type === "line";
+  const showProp = event.type === "prop_show" || event.type === "prop_hide" || event.type === "prop_swap";
+  const showNextPropKind = event.type === "prop_swap";
+  const propKinds = getPropKindOptions(stageProps);
+  const selectedProp = getPropById(stageProps, event.propId);
 
   const labelClassName = variant === "panel" ? "text-white/30" : "text-[10px] text-white/35";
   const inputClassName = variant === "panel"
@@ -99,6 +106,43 @@ export function SharedEventForm({
               <option value="">{t("editor.none")}</option>
               {actors.map((actor) => (
                 <option key={actor.id} value={actor.id}>{actor.name}</option>
+              ))}
+            </select>
+          </label>
+        )}
+
+        {showProp && (
+          <label className="flex flex-col gap-1">
+            <span className={labelClassName}>{t("editor.prop")}</span>
+            <select
+              value={event.propId ?? ""}
+              onChange={(e) => {
+                const prop = getPropById(stageProps, e.target.value || undefined);
+                onUpdate({ propId: e.target.value || undefined, propKind: prop?.kind });
+              }}
+              className={clsx(inputClassName, variant === "compact" && "flex-1")}
+            >
+              <option value="">{t("editor.none")}</option>
+              {stageProps.map((prop) => (
+                <option key={prop.id} value={prop.id}>
+                  {t(`stage.${prop.kind}` as never)} · {prop.id}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+
+        {showNextPropKind && (
+          <label className="flex flex-col gap-1">
+            <span className={labelClassName}>{t("editor.swapTo")}</span>
+            <select
+              value={event.nextPropKind ?? ""}
+              onChange={(e) => onUpdate({ nextPropKind: (e.target.value || undefined) as ScriptEvent["nextPropKind"] })}
+              className={inputClassName}
+            >
+              <option value="">{t("editor.none")}</option>
+              {propKinds.map((kind) => (
+                <option key={kind} value={kind}>{t(`stage.${kind}` as never)}</option>
               ))}
             </select>
           </label>
@@ -203,6 +247,32 @@ export function SharedEventForm({
             className={textareaClassName}
             placeholder={event.type === "line" ? t("editor.linePlaceholder") : t("editor.actionPlaceholder")}
           />
+        </label>
+      )}
+
+      {showPropText && (
+        <label className="flex flex-col gap-1">
+          <span className={labelClassName}>
+            {event.type === "prop_swap" ? t("editor.swapDescription") : t("editor.propDescription")}
+          </span>
+          <textarea
+            value={event.text ?? ""}
+            onChange={(e) => onUpdate({ text: e.target.value })}
+            rows={2}
+            className={textareaClassName}
+            placeholder={
+              event.type === "prop_show"
+                ? t("editor.propShowPlaceholder")
+                : event.type === "prop_hide"
+                  ? t("editor.propHidePlaceholder")
+                  : t("editor.propSwapPlaceholder")
+            }
+          />
+          {selectedProp && (
+            <span className="text-[10px] text-white/30">
+              {t(`stage.${selectedProp.kind}` as never)} · {selectedProp.id}
+            </span>
+          )}
         </label>
       )}
 
