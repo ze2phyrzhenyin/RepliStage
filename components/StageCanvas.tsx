@@ -44,6 +44,76 @@ type StageCanvasProps = {
   currentEvent?: ScriptEvent | null;
 };
 
+function getPropLabelMetrics(prop: StageProp, scale: number, stageH: number) {
+  if (prop.kind === "door") {
+    return {
+      left: prop.x * scale,
+      top: Math.max(18, prop.y * scale - 14),
+    };
+  }
+
+  if (prop.kind === "chair") {
+    const { left, w } = chairPosition(scale, prop.x, prop.y, stageH);
+    return {
+      left: left + w / 2,
+      top: prop.y * scale - CHAIR_H * scale - 8,
+    };
+  }
+
+  const dims = PROP_DIMS[prop.kind];
+  if (!dims) {
+    return {
+      left: prop.x * scale,
+      top: prop.y * scale,
+    };
+  }
+
+  const anchor = PROP_ANCHORS[prop.kind] ?? "floor";
+  return {
+    left: prop.x * scale,
+    top: anchor === "top"
+      ? prop.y * scale + dims.h * scale + 10
+      : prop.y * scale - dims.h * scale - 8,
+  };
+}
+
+function PropLabel({
+  prop,
+  scale,
+  stageH,
+}: {
+  prop: StageProp;
+  scale: number;
+  stageH: number;
+}) {
+  if (!prop.label?.trim()) return null;
+  const pos = getPropLabelMetrics(prop, scale, stageH);
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: pos.left,
+        top: pos.top,
+        transform: "translate(-50%, -100%)",
+        pointerEvents: "none",
+      }}
+    >
+      <span
+        className="rounded-full border px-2 py-0.5 text-[10px] leading-none"
+        style={{
+          color: "rgba(255,255,255,0.82)",
+          background: prop.locked ? "rgba(18,22,32,0.84)" : "rgba(8,10,18,0.72)",
+          borderColor: prop.locked ? "rgba(241,194,125,0.28)" : "rgba(255,255,255,0.14)",
+          backdropFilter: "blur(8px)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {prop.label}
+      </span>
+    </div>
+  );
+}
+
 // ── Door prop ────────────────────────────────────────────────
 function DoorProp({
   scale, doorX, doorY, stageH, editMode, onStartDrag,
@@ -623,6 +693,15 @@ export function StageCanvas({
             stageH={stageH}
             editMode={editMode}
             onStartDrag={editMode ? startPropDrag(prop) : undefined}
+          />
+        ))}
+
+        {(editMode ? orderedProps : orderedProps.filter((prop) => prop.label)).map((prop) => (
+          <PropLabel
+            key={`${prop.id}-label`}
+            prop={prop}
+            scale={scale}
+            stageH={stageH}
           />
         ))}
 

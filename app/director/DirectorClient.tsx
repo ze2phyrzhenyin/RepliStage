@@ -874,6 +874,16 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
                       />
                     </label>
                   </div>
+                  <label className="mt-2 flex items-center gap-2">
+                    <span>{t("director.propLabel")}</span>
+                    <input
+                      type="text"
+                      value={prop.label ?? ""}
+                      onChange={(e) => patchStageProp(prop.id, { label: e.target.value || undefined })}
+                      placeholder={t("director.propLabelPlaceholder")}
+                      className="min-w-0 flex-1 bg-white/5 rounded px-2 py-1 text-white/65 outline-none"
+                    />
+                  </label>
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     <button
                       type="button"
