@@ -99,28 +99,26 @@ function CostumeRenderer({
   const { skin } = SKIN_PALETTES[costume.skinTone];
   const hair = getHairColor(actorId, costume.skinTone);
   const svgProps = { skin, hair };
-  // lie/floor degrade to sit until per-character SVG variants are added
-  const legacyPose: "stand" | "sit" = (pose === "stand") ? "stand" : "sit";
 
   let svgNode: React.ReactNode;
   switch (actorId) {
-    case "belle_mere":        svgNode = <BelleMereSvg {...svgProps} pose={legacyPose} />; break;
-    case "soeur_grande":      svgNode = <SoeurGrandeSvg {...svgProps} pose={legacyPose} />; break;
-    case "soeur_petite":      svgNode = <SoeurPetiteSvg {...svgProps} pose={legacyPose} />; break;
-    case "roi":               svgNode = <RoiSvg {...svgProps} pose={legacyPose} />; break;
-    case "tres_jeune_fille":  svgNode = <TresJeuneFilleSvg {...svgProps} pose={legacyPose} />; break;
-    case "fee":               svgNode = <FeeSvg {...svgProps} pose={legacyPose} />; break;
-    case "pere":              svgNode = <PereSvg {...svgProps} pose={legacyPose} />; break;
-    case "tres_jeune_prince": svgNode = <TresJeunePrinceSvg {...svgProps} pose={legacyPose} />; break;
+    case "belle_mere":        svgNode = <BelleMereSvg {...svgProps} pose={pose} />; break;
+    case "soeur_grande":      svgNode = <SoeurGrandeSvg {...svgProps} pose={pose} />; break;
+    case "soeur_petite":      svgNode = <SoeurPetiteSvg {...svgProps} pose={pose} />; break;
+    case "roi":               svgNode = <RoiSvg {...svgProps} pose={pose} />; break;
+    case "tres_jeune_fille":  svgNode = <TresJeuneFilleSvg {...svgProps} pose={pose} />; break;
+    case "fee":               svgNode = <FeeSvg {...svgProps} pose={pose} />; break;
+    case "pere":              svgNode = <PereSvg {...svgProps} pose={pose} />; break;
+    case "tres_jeune_prince": svgNode = <TresJeunePrinceSvg {...svgProps} pose={pose} />; break;
     case "garde_1":
-    case "garde_2":           svgNode = <GardeSvg {...svgProps} pose={legacyPose} />; break;
-    case "mere":              svgNode = <MereSvg {...svgProps} pose={legacyPose} />; break;
-    case "yang_chengyue":     svgNode = <YangChengyueSvg {...svgProps} pose={legacyPose} />; break;
-    case "xue_er":            svgNode = <XueErSvg {...svgProps} pose={legacyPose} />; break;
-    case "wang_chaojie":      svgNode = <WangChaojeSvg {...svgProps} pose={legacyPose} />; break;
+    case "garde_2":           svgNode = <GardeSvg {...svgProps} pose={pose} />; break;
+    case "mere":              svgNode = <MereSvg {...svgProps} pose={pose} />; break;
+    case "yang_chengyue":     svgNode = <YangChengyueSvg {...svgProps} pose={pose} />; break;
+    case "xue_er":            svgNode = <XueErSvg {...svgProps} pose={pose} />; break;
+    case "wang_chaojie":      svgNode = <WangChaojeSvg {...svgProps} pose={pose} />; break;
     default:
       // Fallback: generic silhouette in actor color
-      svgNode = <SilhouetteSvg color={actorColor} isSpeaking={isSpeaking} pose={legacyPose} />;
+      svgNode = <SilhouetteSvg color={actorColor} isSpeaking={isSpeaking} pose={pose} />;
   }
 
   return (

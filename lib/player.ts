@@ -261,7 +261,13 @@ function inferPoseFromText(currentPose: ActorPose, actorId: string | undefined, 
     normalized.includes("仰卧") ||
     normalized.includes("倚着枕") ||
     normalized.includes("recline") ||
-    normalized.includes("lying")
+    normalized.includes("lying") ||
+    normalized.includes("allongée") ||
+    normalized.includes("allongé") ||
+    normalized.includes("couchée") ||
+    normalized.includes("couché") ||
+    normalized.includes("s'allonge") ||
+    normalized.includes("se couche")
   ) {
     return "lie";
   }
@@ -274,7 +280,13 @@ function inferPoseFromText(currentPose: ActorPose, actorId: string | undefined, 
     normalized.includes("跪") ||
     normalized.includes("跌倒") ||
     normalized.includes("撞倒") ||
-    normalized.includes("倒在地")
+    normalized.includes("倒在地") ||
+    normalized.includes("s'effondre") ||
+    normalized.includes("s'écroule") ||
+    normalized.includes("tombe") ||
+    normalized.includes("à terre") ||
+    normalized.includes("à genoux") ||
+    normalized.includes("s'agenouille")
   ) {
     return "floor";
   }
@@ -290,7 +302,9 @@ function inferPoseFromText(currentPose: ActorPose, actorId: string | undefined, 
     normalized.includes("restez assise") ||
     normalized.includes("assise") ||
     normalized.includes("s'assoit") ||
-    normalized.includes("s'asseoir")
+    normalized.includes("s'asseoir") ||
+    normalized.includes("s'installe") ||
+    normalized.includes("prend place")
   ) {
     return "sit";
   }
@@ -305,6 +319,8 @@ function inferPoseFromText(currentPose: ActorPose, actorId: string | undefined, 
     normalized.includes("爬起") ||
     normalized.includes("se lève") ||
     normalized.includes("se relève") ||
+    normalized.includes("se redresse") ||
+    normalized.includes("se met debout") ||
     normalized.includes("stand up")
   ) {
     return "stand";

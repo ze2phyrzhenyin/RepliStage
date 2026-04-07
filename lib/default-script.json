@@ -6,133 +6,664 @@
       "id": "scene-4-depart-soiree",
       "title": "SCÈNE 4",
       "subtitle": "Départ à la soirée du roi.",
-      "setting": "很年轻的女孩独自在卧室里躺着，床边还留着她母亲旧物的痕迹。父亲穿着路易十四式的戏服来向她告别，带着歉意匆匆离开；随后仙女从衣柜后出现，试图说服她去国王的晚会，并用一台不太可靠的魔法盒子替她准备礼服。",
+      "setting": "La très jeune fille est allongée seule dans sa chambre, entourée des souvenirs de sa mère. Son père, déguisé en costume Louis XIV, vient lui dire au revoir avec un sentiment de culpabilité avant de partir en hâte ; la fée surgit ensuite de derrière l'armoire, tente de la convaincre d'aller à la soirée du roi, et essaie de lui préparer une tenue avec une boîte magique qui ne fonctionne pas très bien.",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 748,
         "doorY": 108,
         "props": [
-          { "id": "scene4-bed", "kind": "bed", "x": 286, "y": 404 },
-          { "id": "scene4-magic-box", "kind": "magic_box", "x": 566, "y": 402 }
+          {
+            "id": "scene4-bed",
+            "kind": "bed",
+            "x": 286,
+            "y": 404
+          },
+          {
+            "id": "scene4-magic-box",
+            "kind": "magic_box",
+            "x": 566,
+            "y": 402
+          }
         ]
       },
       "actors": [
         {
           "id": "tres_jeune_fille",
-          "name": "很年轻的女孩",
+          "name": "Très Jeune Fille",
           "color": "#f3e2c7",
           "shortLabel": "TJF"
         },
         {
           "id": "pere",
-          "name": "父亲",
+          "name": "Père",
           "color": "#c5b7a6",
           "shortLabel": "P"
         },
         {
           "id": "fee",
-          "name": "仙女",
+          "name": "Fée",
           "color": "#b9b6ff",
           "shortLabel": "FEE"
         }
       ],
       "events": [
-        { "id": "s4e1", "type": "blackout_start", "duration": 1 },
-        { "id": "s4e2", "type": "action", "duration": 2, "text": "旁白：终于，所有人期待已久的大日子到来了。" },
-        { "id": "s4e3", "type": "blackout_end", "duration": 0.7 },
-        { "id": "s4e3a", "type": "prop_hide", "propId": "scene4-magic-box", "propKind": "magic_box", "duration": 0.1, "text": "房间里此刻还没有魔法盒。" },
-        { "id": "s4e4", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 292, "y": 356, "fromSide": "left" },
-        { "id": "s4e5", "type": "action", "actorId": "tres_jeune_fille", "duration": 2.4, "text": "很年轻的女孩一个人躺在床边，像故意把自己留在今晚的热闹之外。" },
-        { "id": "s4e6", "type": "enter", "actorId": "pere", "duration": 1, "x": 676, "y": 256, "fromSide": "right" },
-        { "id": "s4e7", "type": "action", "actorId": "pere", "duration": 1.8, "text": "父亲穿着一身夸张的路易十四式服装，点着烟，明显带着内疚。" },
-        { "id": "s4e8", "type": "line", "actorId": "pere", "duration": 10.4, "text": "Bon, on y va nous… Moi, ça m'embête un peu de te laisser là… C'est la dernière pour aujourd'hui, promis ! De toute façon, j'ai pas le choix, quand je suis avec elle je peux pas fumer…" },
-        { "id": "s4e9", "type": "line", "actorId": "pere", "duration": 8.8, "text": "C'est peut-être mieux que tu viennes pas, tu sais… C'est pas sûr que ce soit tellement marrant pour les enfants cette soirée. Bon, ben moi j'y vais…" },
-        { "id": "s4e10", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.8, "text": "Bon, ben salut." },
-        { "id": "s4e11", "type": "line", "actorId": "pere", "duration": 9.2, "text": "Bon ben salut… Tu sais en ce moment, c'est pas gai la vie pour moi. Elle, là-haut, elle est pénible, depuis quelque temps, j'ai carrément l'impression que je suis devenu invisible…" },
-        { "id": "s4e12", "type": "action", "duration": 2.8, "text": "楼上传来继母的催促声：你怎么还不来，大家都在等你！父亲一下慌了。" },
-        { "id": "s4e13", "type": "line", "actorId": "pere", "duration": 2.2, "text": "Bon là, elle s'est aperçue que je n'étais pas là, j'y vais." },
-        { "id": "s4e14", "type": "action", "actorId": "pere", "duration": 1.6, "text": "他匆忙把手里的烟递给女儿，几乎是逃一样地离开。" },
-        { "id": "s4e15", "type": "exit", "actorId": "pere", "duration": 0.8, "toSide": "right" },
-        { "id": "s4e16", "type": "action", "actorId": "tres_jeune_fille", "duration": 1.6, "text": "很年轻的女孩把父亲的烟掐灭在小小的烟灰缸里。" },
-        { "id": "s4e17", "type": "enter", "actorId": "fee", "duration": 1, "x": 182, "y": 250, "fromSide": "left" },
-        { "id": "s4e18", "type": "line", "actorId": "fee", "duration": 1.8, "text": "T'y vas pas toi ?" },
-        { "id": "s4e19", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.4, "text": "Non !" },
-        { "id": "s4e20", "type": "line", "actorId": "fee", "duration": 2.6, "text": "C'est toi qui as pas voulu y aller ou c'est eux ?" },
-        { "id": "s4e21", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.2, "text": "C'est moi, j'ai pas la tête à ça, pas du tout." },
-        { "id": "s4e22", "type": "line", "actorId": "fee", "duration": 4.8, "text": "En tout cas, moi j'adorerais pouvoir aller pour la première fois dans une soirée pareille, ressentir tout ce qu'on ressent dans ces moments-là." },
-        { "id": "s4e23", "type": "line", "actorId": "fee", "duration": 5.4, "text": "Les émotions, le trac, l'excitation. C'est sûr, moi à ta place, j'irais. Moi, je peux plus ressentir ça, j'ai trop vécu déjà." },
-        { "id": "s4e24", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.8, "text": "Ben moi, je suis pas comme vous, j'ai pas envie." },
-        { "id": "s4e25", "type": "line", "actorId": "fee", "duration": 3.4, "text": "Je te crois pas que t'as pas envie de t'amuser de temps en temps." },
-        { "id": "s4e26", "type": "line", "actorId": "tres_jeune_fille", "duration": 6.8, "text": "Hé ben si, c'est comme ça madame “je sais mieux à la place des autres ce qu'ils pensent” ! Vous pouvez me laisser un peu maintenant ?" },
-        { "id": "s4e27", "type": "line", "actorId": "fee", "duration": 2, "text": "Tu dois penser à ta mère ?" },
-        { "id": "s4e28", "type": "action", "actorId": "tres_jeune_fille", "duration": 1.2, "text": "她的手表突然响起。" },
-        { "id": "s4e29", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.6, "text": "Exactement." },
-        { "id": "s4e30", "type": "line", "actorId": "fee", "duration": 6.2, "text": "Une soirée comme celle-là, c'est sûr c'est un peu tarte mais c'est drôle des fois de faire des choses un peu tartes. T'en as déjà vu des rois et des princes toi ?" },
-        { "id": "s4e31", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.8, "text": "J'ai rien à me mettre de toute façon." },
-        { "id": "s4e32", "type": "line", "actorId": "fee", "duration": 2.2, "text": "T'occupe, je m'en occupe." },
-        { "id": "s4e33", "type": "line", "actorId": "tres_jeune_fille", "duration": 7.2, "text": "Avec vos pouvoirs magiques ? Je les connais de l'autre fois, c'était pas terrible. En fait, je me demande si vous êtes pas en train de me baratiner depuis le début avec cette histoire de fée." },
-        { "id": "s4e34", "type": "line", "actorId": "fee", "duration": 1.8, "text": "Alors là, j'en ai marre." },
-        { "id": "s4e35", "type": "exit", "actorId": "fee", "duration": 0.8, "toSide": "left" },
-        { "id": "s4e36", "type": "action", "duration": 3.6, "text": "灯忽然熄灭。紧接着，像暴风雨一样的雷鸣、撞击和远处的尖叫声一起压了下来。很年轻的女孩被吓得大叫。" },
-        { "id": "s4e37", "type": "pause", "duration": 1.2 },
-        { "id": "s4e38", "type": "enter", "actorId": "fee", "duration": 0.8, "x": 210, "y": 246, "fromSide": "left" },
-        { "id": "s4e39", "type": "action", "actorId": "fee", "duration": 1.2, "text": "风暴停下后，仙女重新出现，像什么都没发生一样点起一根烟。" },
-        { "id": "s4e40", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.8, "text": "C'est vous qui avez fait ça ?! Faut prévenir avant la prochaine fois ! Ça fait peur !" },
-        { "id": "s4e41", "type": "line", "actorId": "fee", "duration": 1.8, "text": "T'avais des doutes !" },
-        { "id": "s4e42", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.8, "text": "Vous voulez pas rallumer la lumière maintenant ?" },
-        { "id": "s4e43", "type": "line", "actorId": "fee", "duration": 4.2, "text": "Bon, on y va, on va faire un tour à cette soirée ?" },
-        { "id": "s4e44", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.4, "text": "D'accord, mais vous rallumez !" },
-        { "id": "s4e45", "type": "line", "actorId": "fee", "duration": 3.8, "text": "Super ! Je m'occupe de ta robe, ça va être marrant ça !" },
-        { "id": "s4e46", "type": "action", "duration": 2.6, "text": "灯光重新亮起。房间里凭空多出一个巨大的魔法盒子，占去了半间屋子。" },
-        { "id": "s4e46a", "type": "prop_show", "propId": "scene4-magic-box", "propKind": "magic_box", "duration": 0.6, "text": "魔法盒子突然出现在卧室中央。" },
-        { "id": "s4e47", "type": "line", "actorId": "fee", "duration": 1.4, "text": "Ouais, génial !" },
-        { "id": "s4e48", "type": "line", "actorId": "tres_jeune_fille", "duration": 3.4, "text": "C'est quoi ça ? Et ma chambre, vous l'avez mise où ?" },
-        { "id": "s4e49", "type": "line", "actorId": "fee", "duration": 6.8, "text": "On s'en fout de ta chambre ! Alors voilà, tu vas entrer là-dedans. C'est une boîte magique. On peut créer tout ce qu'on veut avec." },
-        { "id": "s4e50", "type": "line", "actorId": "tres_jeune_fille", "duration": 6.8, "text": "Et qu'est-ce qui va se passer là-dedans ? Vous allez me faire quoi ? De la magie magique ou bien de la magie amateur ?" },
-        { "id": "s4e51", "type": "line", "actorId": "fee", "duration": 7.2, "text": "T'inquiète pas. Je bosse, je progresse, je lis des bouquins, je suis au point. Bon, arrête de parler, entre là-dedans." },
-        { "id": "s4e52", "type": "move", "actorId": "tres_jeune_fille", "duration": 0.8, "x": 536, "y": 340 },
-        { "id": "s4e53", "type": "action", "actorId": "tres_jeune_fille", "duration": 1.6, "text": "她半信半疑地走进魔法盒子。" },
-        { "id": "s4e54", "type": "line", "actorId": "fee", "duration": 8, "text": "Normal, bon, tu te décontractes, ça va bien se passer, je me concentre, t'arrêtes de parler. C'est un tour de magie qui a été inventé dans les années cinquante, il est bien rodé." },
-        { "id": "s4e55", "type": "action", "duration": 2.2, "text": "盒子里传出女孩的抱怨声，仙女则夸张地做出魔术师般的大动作。" },
-        { "id": "s4e56", "type": "action", "duration": 2.4, "text": "砰的一声巨响从盒子里炸开，白烟四溢，女孩惊叫起来。" },
-        { "id": "s4e57", "type": "line", "actorId": "fee", "duration": 2, "text": "Ho ça va ?" },
-        { "id": "s4e58", "type": "action", "duration": 2.2, "text": "烟雾散开后，女孩咳嗽着出来，居然被打扮成了一个啦啦队鼓号手。" },
-        { "id": "s4e59", "type": "line", "actorId": "fee", "duration": 1.4, "text": "Merde, raté." },
-        { "id": "s4e60", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.8, "text": "Y a pas une glace que je puisse me voir." },
-        { "id": "s4e61", "type": "line", "actorId": "fee", "duration": 3.8, "text": "Non, c'est pas la peine, c'est raté, c'était le premier essai. Retourne dans la boîte, je me reconcentre !" },
-        { "id": "s4e62", "type": "action", "actorId": "tres_jeune_fille", "duration": 1.4, "text": "女孩骂骂咧咧地又钻了进去。" },
-        { "id": "s4e63", "type": "action", "duration": 2.2, "text": "第二次更大的爆响之后，烟雾里竟走出一只羊。" },
-        { "id": "s4e64", "type": "action", "actorId": "tres_jeune_fille", "duration": 2.2, "text": "很年轻的女孩被打扮成一只羊，惊魂未定，几乎不肯再靠近那盒子一步。" },
-        { "id": "s4e65", "type": "line", "actorId": "fee", "duration": 2.8, "text": "En plus, c'est pas du tout ça, on recommence." },
-        { "id": "s4e66", "type": "line", "actorId": "tres_jeune_fille", "duration": 6.4, "text": "Moi, je retourne pas là-dedans, allez-y vous pour voir, ça fout la trouille ! En plus, si on peut plus sortir…" },
-        { "id": "s4e67", "type": "action", "actorId": "fee", "duration": 1.4, "text": "仙女嘴硬，自己钻进盒子示范，结果也被困在了里面。" },
-        { "id": "s4e68", "type": "line", "actorId": "fee", "duration": 3, "text": "C'est tout à fait normal à l'intérieur !" },
-        { "id": "s4e69", "type": "pause", "duration": 1.4 },
-        { "id": "s4e70", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.8, "text": "Alors ?… Alors ?" },
-        { "id": "s4e71", "type": "line", "actorId": "fee", "duration": 2.8, "text": "Je retrouve pas comment on sort." },
-        { "id": "s4e72", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.4, "text": "Je vous l'avais dit ! Vous voulez pas vous servir de vos vrais pouvoirs ?" },
-        { "id": "s4e73", "type": "line", "actorId": "fee", "duration": 1.6, "text": "Jamais !" },
-        { "id": "s4e74", "type": "line", "actorId": "tres_jeune_fille", "duration": 8.8, "text": "Ah ! Moi j'ai une idée. Ma mère, elle m'avait donné plein de robes à elle, dedans y en a une qu'elle avait mise pour le mariage de sa tante quand elle avait le même âge que moi." },
-        { "id": "s4e75", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.2, "text": "Je sais où elle est, je l'ai planquée quelque part, je peux la mettre." },
-        { "id": "s4e76", "type": "line", "actorId": "fee", "duration": 6, "text": "Bon ok ! Ça va être un peu naze mais comme ça, au moins, on perd pas trop de temps. Je passe te prendre en voiture dans un quart d'heure." },
-        { "id": "s4e77", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.8, "text": "Vous avez une voiture ?" },
-        { "id": "s4e78", "type": "line", "actorId": "fee", "duration": 2.6, "text": "Euh non, mais je vais en trouver une." },
-        { "id": "s4e79", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.6, "text": "Vous allez pas en piquer une ?" },
-        { "id": "s4e80", "type": "line", "actorId": "fee", "duration": 1.8, "text": "Évidemment non." },
-        { "id": "s4e81", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.6, "text": "Ma mère disait que c'est mal de voler." },
-        { "id": "s4e82", "type": "line", "actorId": "fee", "duration": 3.2, "text": "Bon écoute, tu commences à faire… hum, avec ta mère…" },
-        { "id": "s4e83", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.4, "text": "Oui je sais, j'énerve tout le monde. Bon, j'y vais." },
-        { "id": "s4e84", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.8, "toSide": "right" },
-        { "id": "s4e85", "type": "exit", "actorId": "fee", "duration": 0.8, "toSide": "left" },
-        { "id": "s4e86", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s4e1",
+          "type": "blackout_start",
+          "duration": 1
+        },
+        {
+          "id": "s4e2",
+          "type": "action",
+          "duration": 2,
+          "text": "Narrateur : Enfin, le grand jour tant attendu par tout le monde est arrivé."
+        },
+        {
+          "id": "s4e3",
+          "type": "blackout_end",
+          "duration": 0.7
+        },
+        {
+          "id": "s4e3a",
+          "type": "prop_hide",
+          "propId": "scene4-magic-box",
+          "propKind": "magic_box",
+          "duration": 0.1,
+          "text": "La boîte magique n'est pas encore dans la chambre."
+        },
+        {
+          "id": "s4e4",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 292,
+          "y": 356,
+          "fromSide": "left"
+        },
+        {
+          "id": "s4e5",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.4,
+          "text": "La très jeune fille est allongée seule au bord du lit, comme si elle s'était délibérément mise à l'écart de l'agitation de ce soir."
+        },
+        {
+          "id": "s4e6",
+          "type": "enter",
+          "actorId": "pere",
+          "duration": 1,
+          "x": 676,
+          "y": 256,
+          "fromSide": "right"
+        },
+        {
+          "id": "s4e7",
+          "type": "action",
+          "actorId": "pere",
+          "duration": 1.8,
+          "text": "Le père, affublé d'un costume Louis XIV extravagant, allume une cigarette, visiblement rongé par la culpabilité."
+        },
+        {
+          "id": "s4e8",
+          "type": "line",
+          "actorId": "pere",
+          "duration": 10.4,
+          "text": "Bon, on y va nous… Moi, ça m'embête un peu de te laisser là… C'est la dernière pour aujourd'hui, promis ! De toute façon, j'ai pas le choix, quand je suis avec elle je peux pas fumer…"
+        },
+        {
+          "id": "s4e9",
+          "type": "line",
+          "actorId": "pere",
+          "duration": 8.8,
+          "text": "C'est peut-être mieux que tu viennes pas, tu sais… C'est pas sûr que ce soit tellement marrant pour les enfants cette soirée. Bon, ben moi j'y vais…"
+        },
+        {
+          "id": "s4e10",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.8,
+          "text": "Bon, ben salut."
+        },
+        {
+          "id": "s4e11",
+          "type": "line",
+          "actorId": "pere",
+          "duration": 9.2,
+          "text": "Bon ben salut… Tu sais en ce moment, c'est pas gai la vie pour moi. Elle, là-haut, elle est pénible, depuis quelque temps, j'ai carrément l'impression que je suis devenu invisible…"
+        },
+        {
+          "id": "s4e12",
+          "type": "action",
+          "duration": 2.8,
+          "text": "La voix de la belle-mère résonne d'en haut : tu n'es toujours pas là, tout le monde t'attend ! Le père panique aussitôt."
+        },
+        {
+          "id": "s4e13",
+          "type": "line",
+          "actorId": "pere",
+          "duration": 2.2,
+          "text": "Bon là, elle s'est aperçue que je n'étais pas là, j'y vais."
+        },
+        {
+          "id": "s4e14",
+          "type": "action",
+          "actorId": "pere",
+          "duration": 1.6,
+          "text": "Il fourre précipitamment sa cigarette dans la main de sa fille et part presque en courant."
+        },
+        {
+          "id": "s4e15",
+          "type": "exit",
+          "actorId": "pere",
+          "duration": 0.8,
+          "toSide": "right"
+        },
+        {
+          "id": "s4e16",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.6,
+          "text": "La très jeune fille écrase la cigarette de son père dans le petit cendrier."
+        },
+        {
+          "id": "s4e17",
+          "type": "enter",
+          "actorId": "fee",
+          "duration": 1,
+          "x": 182,
+          "y": 250,
+          "fromSide": "left"
+        },
+        {
+          "id": "s4e18",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 1.8,
+          "text": "T'y vas pas toi ?"
+        },
+        {
+          "id": "s4e19",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.4,
+          "text": "Non !"
+        },
+        {
+          "id": "s4e20",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 2.6,
+          "text": "C'est toi qui as pas voulu y aller ou c'est eux ?"
+        },
+        {
+          "id": "s4e21",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.2,
+          "text": "C'est moi, j'ai pas la tête à ça, pas du tout."
+        },
+        {
+          "id": "s4e22",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 4.8,
+          "text": "En tout cas, moi j'adorerais pouvoir aller pour la première fois dans une soirée pareille, ressentir tout ce qu'on ressent dans ces moments-là."
+        },
+        {
+          "id": "s4e23",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 5.4,
+          "text": "Les émotions, le trac, l'excitation. C'est sûr, moi à ta place, j'irais. Moi, je peux plus ressentir ça, j'ai trop vécu déjà."
+        },
+        {
+          "id": "s4e24",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.8,
+          "text": "Ben moi, je suis pas comme vous, j'ai pas envie."
+        },
+        {
+          "id": "s4e25",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 3.4,
+          "text": "Je te crois pas que t'as pas envie de t'amuser de temps en temps."
+        },
+        {
+          "id": "s4e26",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 6.8,
+          "text": "Hé ben si, c'est comme ça madame “je sais mieux à la place des autres ce qu'ils pensent” ! Vous pouvez me laisser un peu maintenant ?"
+        },
+        {
+          "id": "s4e27",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 2,
+          "text": "Tu dois penser à ta mère ?"
+        },
+        {
+          "id": "s4e28",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.2,
+          "text": "Sa montre sonne brusquement."
+        },
+        {
+          "id": "s4e29",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.6,
+          "text": "Exactement."
+        },
+        {
+          "id": "s4e30",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 6.2,
+          "text": "Une soirée comme celle-là, c'est sûr c'est un peu tarte mais c'est drôle des fois de faire des choses un peu tartes. T'en as déjà vu des rois et des princes toi ?"
+        },
+        {
+          "id": "s4e31",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.8,
+          "text": "J'ai rien à me mettre de toute façon."
+        },
+        {
+          "id": "s4e32",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 2.2,
+          "text": "T'occupe, je m'en occupe."
+        },
+        {
+          "id": "s4e33",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 7.2,
+          "text": "Avec vos pouvoirs magiques ? Je les connais de l'autre fois, c'était pas terrible. En fait, je me demande si vous êtes pas en train de me baratiner depuis le début avec cette histoire de fée."
+        },
+        {
+          "id": "s4e34",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 1.8,
+          "text": "Alors là, j'en ai marre."
+        },
+        {
+          "id": "s4e35",
+          "type": "exit",
+          "actorId": "fee",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s4e36",
+          "type": "action",
+          "duration": 3.6,
+          "text": "La lumière s'éteint d'un coup. Aussitôt, coups de tonnerre, fracas et cris lointains déferlent comme une tempête. La très jeune fille pousse un cri de frayeur."
+        },
+        {
+          "id": "s4e37",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s4e38",
+          "type": "enter",
+          "actorId": "fee",
+          "duration": 0.8,
+          "x": 210,
+          "y": 246,
+          "fromSide": "left"
+        },
+        {
+          "id": "s4e39",
+          "type": "action",
+          "actorId": "fee",
+          "duration": 1.2,
+          "text": "Après la tempête, la fée réapparaît et allume une cigarette comme si de rien n'était."
+        },
+        {
+          "id": "s4e40",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.8,
+          "text": "C'est vous qui avez fait ça ?! Faut prévenir avant la prochaine fois ! Ça fait peur !"
+        },
+        {
+          "id": "s4e41",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 1.8,
+          "text": "T'avais des doutes !"
+        },
+        {
+          "id": "s4e42",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.8,
+          "text": "Vous voulez pas rallumer la lumière maintenant ?"
+        },
+        {
+          "id": "s4e43",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 4.2,
+          "text": "Bon, on y va, on va faire un tour à cette soirée ?"
+        },
+        {
+          "id": "s4e44",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.4,
+          "text": "D'accord, mais vous rallumez !"
+        },
+        {
+          "id": "s4e45",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 3.8,
+          "text": "Super ! Je m'occupe de ta robe, ça va être marrant ça !"
+        },
+        {
+          "id": "s4e46",
+          "type": "action",
+          "duration": 2.6,
+          "text": "La lumière se rallume. Une immense boîte magique est apparue du néant dans la chambre, occupant la moitié de l'espace."
+        },
+        {
+          "id": "s4e46a",
+          "type": "prop_show",
+          "propId": "scene4-magic-box",
+          "propKind": "magic_box",
+          "duration": 0.6,
+          "text": "La boîte magique surgit au milieu de la chambre."
+        },
+        {
+          "id": "s4e47",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 1.4,
+          "text": "Ouais, génial !"
+        },
+        {
+          "id": "s4e48",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 3.4,
+          "text": "C'est quoi ça ? Et ma chambre, vous l'avez mise où ?"
+        },
+        {
+          "id": "s4e49",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 6.8,
+          "text": "On s'en fout de ta chambre ! Alors voilà, tu vas entrer là-dedans. C'est une boîte magique. On peut créer tout ce qu'on veut avec."
+        },
+        {
+          "id": "s4e50",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 6.8,
+          "text": "Et qu'est-ce qui va se passer là-dedans ? Vous allez me faire quoi ? De la magie magique ou bien de la magie amateur ?"
+        },
+        {
+          "id": "s4e51",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 7.2,
+          "text": "T'inquiète pas. Je bosse, je progresse, je lis des bouquins, je suis au point. Bon, arrête de parler, entre là-dedans."
+        },
+        {
+          "id": "s4e52",
+          "type": "move",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.8,
+          "x": 536,
+          "y": 340
+        },
+        {
+          "id": "s4e53",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.6,
+          "text": "Elle entre dans la boîte magique, encore incrédule."
+        },
+        {
+          "id": "s4e54",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 8,
+          "text": "Normal, bon, tu te décontractes, ça va bien se passer, je me concentre, t'arrêtes de parler. C'est un tour de magie qui a été inventé dans les années cinquante, il est bien rodé."
+        },
+        {
+          "id": "s4e55",
+          "type": "action",
+          "duration": 2.2,
+          "text": "De la boîte sortent les protestations de la fille, tandis que la fée exécute de grands gestes de magicienne."
+        },
+        {
+          "id": "s4e56",
+          "type": "action",
+          "duration": 2.4,
+          "text": "Une détonation retentit depuis la boîte, une fumée blanche se répand partout, la fille pousse un cri."
+        },
+        {
+          "id": "s4e57",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 2,
+          "text": "Ho ça va ?"
+        },
+        {
+          "id": "s4e58",
+          "type": "action",
+          "duration": 2.2,
+          "text": "Quand la fumée se dissipe, la fille sort en toussant, affublée d'un costume de pom-pom girl."
+        },
+        {
+          "id": "s4e59",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 1.4,
+          "text": "Merde, raté."
+        },
+        {
+          "id": "s4e60",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.8,
+          "text": "Y a pas une glace que je puisse me voir."
+        },
+        {
+          "id": "s4e61",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 3.8,
+          "text": "Non, c'est pas la peine, c'est raté, c'était le premier essai. Retourne dans la boîte, je me reconcentre !"
+        },
+        {
+          "id": "s4e62",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.4,
+          "text": "La fille ronchonne et replonge à l'intérieur."
+        },
+        {
+          "id": "s4e63",
+          "type": "action",
+          "duration": 2.2,
+          "text": "Après une deuxième explosion encore plus forte, c'est un mouton qui sort de la fumée."
+        },
+        {
+          "id": "s4e64",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.2,
+          "text": "La très jeune fille, déguisée en mouton et encore sous le choc, refuse à présent d'approcher la boîte d'un seul pas."
+        },
+        {
+          "id": "s4e65",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 2.8,
+          "text": "En plus, c'est pas du tout ça, on recommence."
+        },
+        {
+          "id": "s4e66",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 6.4,
+          "text": "Moi, je retourne pas là-dedans, allez-y vous pour voir, ça fout la trouille ! En plus, si on peut plus sortir…"
+        },
+        {
+          "id": "s4e67",
+          "type": "action",
+          "actorId": "fee",
+          "duration": 1.4,
+          "text": "La fée, pour prouver son point, entre elle-même dans la boîte pour montrer l'exemple — et se retrouve coincée à l'intérieur."
+        },
+        {
+          "id": "s4e68",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 3,
+          "text": "C'est tout à fait normal à l'intérieur !"
+        },
+        {
+          "id": "s4e69",
+          "type": "pause",
+          "duration": 1.4
+        },
+        {
+          "id": "s4e70",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.8,
+          "text": "Alors ?… Alors ?"
+        },
+        {
+          "id": "s4e71",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 2.8,
+          "text": "Je retrouve pas comment on sort."
+        },
+        {
+          "id": "s4e72",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.4,
+          "text": "Je vous l'avais dit ! Vous voulez pas vous servir de vos vrais pouvoirs ?"
+        },
+        {
+          "id": "s4e73",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 1.6,
+          "text": "Jamais !"
+        },
+        {
+          "id": "s4e74",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 8.8,
+          "text": "Ah ! Moi j'ai une idée. Ma mère, elle m'avait donné plein de robes à elle, dedans y en a une qu'elle avait mise pour le mariage de sa tante quand elle avait le même âge que moi."
+        },
+        {
+          "id": "s4e75",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.2,
+          "text": "Je sais où elle est, je l'ai planquée quelque part, je peux la mettre."
+        },
+        {
+          "id": "s4e76",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 6,
+          "text": "Bon ok ! Ça va être un peu naze mais comme ça, au moins, on perd pas trop de temps. Je passe te prendre en voiture dans un quart d'heure."
+        },
+        {
+          "id": "s4e77",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.8,
+          "text": "Vous avez une voiture ?"
+        },
+        {
+          "id": "s4e78",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 2.6,
+          "text": "Euh non, mais je vais en trouver une."
+        },
+        {
+          "id": "s4e79",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.6,
+          "text": "Vous allez pas en piquer une ?"
+        },
+        {
+          "id": "s4e80",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 1.8,
+          "text": "Évidemment non."
+        },
+        {
+          "id": "s4e81",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.6,
+          "text": "Ma mère disait que c'est mal de voler."
+        },
+        {
+          "id": "s4e82",
+          "type": "line",
+          "actorId": "fee",
+          "duration": 3.2,
+          "text": "Bon écoute, tu commences à faire… hum, avec ta mère…"
+        },
+        {
+          "id": "s4e83",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.4,
+          "text": "Oui je sais, j'énerve tout le monde. Bon, j'y vais."
+        },
+        {
+          "id": "s4e84",
+          "type": "exit",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.8,
+          "toSide": "right"
+        },
+        {
+          "id": "s4e85",
+          "type": "exit",
+          "actorId": "fee",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s4e86",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     },
     {
       "id": "scene-5-abords-palais",
       "title": "SCÈNE 5",
       "subtitle": "Au même instant, aux abords du palais du roi.",
-      "setting": "继母、父亲和两个女儿坐着豪车来到国王宫殿附近，故意在最后一百米步行，好让围观者看清他们精心准备的路易十四式礼服。她们自信满满地走向晚会，却在宫殿门前隐约感到气氛不对。",
+      "setting": "La belle-mère, le père et les deux sœurs arrivent aux abords du palais royal en voiture avec chauffeur. Ils décident de descendre à cent mètres du palais pour finir à pied, afin que les badauds puissent les voir parader dans leurs tenues Louis XIV soigneusement préparées. Ils s'avancent avec une confiance absolue, mais quelque chose semble étrangement décalé en approchant des portes du palais.",
       "stage": {
         "width": 920,
         "height": 520,
@@ -142,239 +673,985 @@
       "actors": [
         {
           "id": "belle_mere",
-          "name": "继母",
+          "name": "Belle-Mère",
           "color": "#f08c78",
           "shortLabel": "BM"
         },
         {
           "id": "pere",
-          "name": "父亲",
+          "name": "Père",
           "color": "#c5b7a6",
           "shortLabel": "P"
         },
         {
           "id": "soeur_grande",
-          "name": "大姐",
+          "name": "Grande Sœur",
           "color": "#ffcb6b",
           "shortLabel": "SG"
         },
         {
           "id": "soeur_petite",
-          "name": "小妹",
+          "name": "Petite Sœur",
           "color": "#7fd1b9",
           "shortLabel": "SP"
         }
       ],
       "events": [
-        { "id": "s5e1", "type": "blackout_start", "duration": 1 },
-        { "id": "s5e2", "type": "action", "duration": 4.4, "text": "旁白：为了参加国王的晚会，未来继母、父亲和两个未来的姐姐租了一辆带司机的豪车。但在最后一百米，他们决定下车步行，好让所有没资格进宫的人也能看见他们盛装出场。" },
-        { "id": "s5e3", "type": "blackout_end", "duration": 0.7 },
-        { "id": "s5e4", "type": "enter", "actorId": "belle_mere", "duration": 1, "x": 252, "y": 278, "fromSide": "left" },
-        { "id": "s5e5", "type": "enter", "actorId": "pere", "duration": 0.8, "x": 172, "y": 308, "fromSide": "left" },
-        { "id": "s5e6", "type": "enter", "actorId": "soeur_grande", "duration": 0.8, "x": 118, "y": 244, "fromSide": "left" },
-        { "id": "s5e7", "type": "enter", "actorId": "soeur_petite", "duration": 0.8, "x": 104, "y": 340, "fromSide": "left" },
-        { "id": "s5e8", "type": "action", "actorId": "belle_mere", "duration": 2.8, "text": "继母的礼服尤其夸张华丽。她走在最前面，像确信自己即将成为今晚最受瞩目的存在。" },
-        { "id": "s5e9", "type": "move_path", "actorId": "belle_mere", "duration": 1.6, "path": [ { "x": 328, "y": 272 }, { "x": 426, "y": 246 }, { "x": 526, "y": 214 } ] },
-        { "id": "s5e10", "type": "move_path", "actorId": "pere", "duration": 1.7, "path": [ { "x": 244, "y": 300 }, { "x": 362, "y": 286 }, { "x": 502, "y": 250 } ] },
-        { "id": "s5e11", "type": "move_path", "actorId": "soeur_grande", "duration": 1.8, "path": [ { "x": 208, "y": 240 }, { "x": 330, "y": 228 }, { "x": 470, "y": 208 } ] },
-        { "id": "s5e12", "type": "move_path", "actorId": "soeur_petite", "duration": 1.8, "path": [ { "x": 194, "y": 328 }, { "x": 314, "y": 302 }, { "x": 456, "y": 266 } ] },
-        { "id": "s5e13", "type": "action", "duration": 5.2, "text": "她一路都在想象国王和王子应该像童话梦境里那样出现。可越接近宫门，四个人就越感到一种说不清的尴尬和不安，像现实正在慢慢偏离他们脑中的版本。" },
-        { "id": "s5e14", "type": "pause", "duration": 1.2 },
-        { "id": "s5e15", "type": "action", "duration": 2.4, "text": "她们终于停在宫殿门前，里面传出的声音和氛围，让每个人都隐约觉得事情不太对。" },
-        { "id": "s5e16", "type": "exit", "actorId": "belle_mere", "duration": 0.8, "toSide": "top" },
-        { "id": "s5e17", "type": "exit", "actorId": "pere", "duration": 0.8, "toSide": "top" },
-        { "id": "s5e18", "type": "exit", "actorId": "soeur_grande", "duration": 0.8, "toSide": "top" },
-        { "id": "s5e19", "type": "exit", "actorId": "soeur_petite", "duration": 0.8, "toSide": "top" },
-        { "id": "s5e20", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s5e1",
+          "type": "blackout_start",
+          "duration": 1
+        },
+        {
+          "id": "s5e2",
+          "type": "action",
+          "duration": 4.4,
+          "text": "Narrateur : Pour assister à la soirée du roi, la future belle-mère, le père et les deux futures sœurs ont loué une voiture avec chauffeur. Mais à cent mètres du palais, ils décident de descendre et de finir à pied, pour que ceux qui n'ont pas accès au palais puissent les voir défiler en grande tenue."
+        },
+        {
+          "id": "s5e3",
+          "type": "blackout_end",
+          "duration": 0.7
+        },
+        {
+          "id": "s5e4",
+          "type": "enter",
+          "actorId": "belle_mere",
+          "duration": 1,
+          "x": 252,
+          "y": 278,
+          "fromSide": "left"
+        },
+        {
+          "id": "s5e5",
+          "type": "enter",
+          "actorId": "pere",
+          "duration": 0.8,
+          "x": 172,
+          "y": 308,
+          "fromSide": "left"
+        },
+        {
+          "id": "s5e6",
+          "type": "enter",
+          "actorId": "soeur_grande",
+          "duration": 0.8,
+          "x": 118,
+          "y": 244,
+          "fromSide": "left"
+        },
+        {
+          "id": "s5e7",
+          "type": "enter",
+          "actorId": "soeur_petite",
+          "duration": 0.8,
+          "x": 104,
+          "y": 340,
+          "fromSide": "left"
+        },
+        {
+          "id": "s5e8",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 2.8,
+          "text": "La tenue de la belle-mère est particulièrement extravagante. Elle marche en tête, comme convaincue qu'elle va être le centre de toutes les attentions ce soir."
+        },
+        {
+          "id": "s5e9",
+          "type": "move_path",
+          "actorId": "belle_mere",
+          "duration": 1.6,
+          "path": [
+            {
+              "x": 328,
+              "y": 272
+            },
+            {
+              "x": 426,
+              "y": 246
+            },
+            {
+              "x": 526,
+              "y": 214
+            }
+          ]
+        },
+        {
+          "id": "s5e10",
+          "type": "move_path",
+          "actorId": "pere",
+          "duration": 1.7,
+          "path": [
+            {
+              "x": 244,
+              "y": 300
+            },
+            {
+              "x": 362,
+              "y": 286
+            },
+            {
+              "x": 502,
+              "y": 250
+            }
+          ]
+        },
+        {
+          "id": "s5e11",
+          "type": "move_path",
+          "actorId": "soeur_grande",
+          "duration": 1.8,
+          "path": [
+            {
+              "x": 208,
+              "y": 240
+            },
+            {
+              "x": 330,
+              "y": 228
+            },
+            {
+              "x": 470,
+              "y": 208
+            }
+          ]
+        },
+        {
+          "id": "s5e12",
+          "type": "move_path",
+          "actorId": "soeur_petite",
+          "duration": 1.8,
+          "path": [
+            {
+              "x": 194,
+              "y": 328
+            },
+            {
+              "x": 314,
+              "y": 302
+            },
+            {
+              "x": 456,
+              "y": 266
+            }
+          ]
+        },
+        {
+          "id": "s5e13",
+          "type": "action",
+          "duration": 5.2,
+          "text": "Tout au long du chemin, elle a imaginé le roi et le prince surgir comme dans un conte de fées. Mais plus ils s'approchent des portes du palais, plus les quatre ressentent un malaise indéfinissable, comme si la réalité s'écartait lentement de la version qu'ils s'étaient imaginée."
+        },
+        {
+          "id": "s5e14",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s5e15",
+          "type": "action",
+          "duration": 2.4,
+          "text": "Ils s'arrêtent enfin devant les portes du palais, mais les sons et l'atmosphère qui s'en dégagent laissent chacun avec la vague impression que quelque chose ne va pas."
+        },
+        {
+          "id": "s5e16",
+          "type": "exit",
+          "actorId": "belle_mere",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s5e17",
+          "type": "exit",
+          "actorId": "pere",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s5e18",
+          "type": "exit",
+          "actorId": "soeur_grande",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s5e19",
+          "type": "exit",
+          "actorId": "soeur_petite",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s5e20",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     },
     {
       "id": "scene-6-devant-palais",
       "title": "SCÈNE 6",
       "subtitle": "Quelques instants plus tard, devant le palais.",
-      "setting": "宫殿门前正传出极其现代的音乐。继母、小妹、大姐与父亲带着请柬来到门口，门外还倒扣着她情急间拿来遮脸的洋伞，却立刻发现宴会里的衣着风格和他们的想象完全不同。混乱之中，继母先撞上很年轻的王子；随后很年轻的女孩在仙女陪伴下抵达，并目睹国王催促王子回到宴会中央。",
+      "setting": "Une musique résolument moderne sort des portes du palais. La belle-mère, la petite sœur, la grande sœur et le père arrivent avec leurs invitations ; dehors traîne un parapluie retourné que la belle-mère a utilisé pour se couvrir le visage. Ils découvrent aussitôt que les tenues des invités ne ressemblent en rien à ce qu'ils imaginaient. Dans la confusion, la belle-mère percute le très jeune prince ; puis la très jeune fille arrive accompagnée de la fée et assiste à la scène où le roi pousse son fils à retourner au cœur de la fête.",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 646,
         "doorY": 96,
         "props": [
-          { "id": "scene6-umbrella", "kind": "parade_umbrella", "x": 474, "y": 316 }
+          {
+            "id": "scene6-umbrella",
+            "kind": "parade_umbrella",
+            "x": 474,
+            "y": 316
+          }
         ]
       },
       "actors": [
         {
           "id": "belle_mere",
-          "name": "继母",
+          "name": "Belle-Mère",
           "color": "#f08c78",
           "shortLabel": "BM"
         },
         {
           "id": "soeur_petite",
-          "name": "小妹",
+          "name": "Petite Sœur",
           "color": "#7fd1b9",
           "shortLabel": "SP"
         },
         {
           "id": "soeur_grande",
-          "name": "大姐",
+          "name": "Grande Sœur",
           "color": "#ffcb6b",
           "shortLabel": "SG"
         },
         {
           "id": "pere",
-          "name": "父亲",
+          "name": "Père",
           "color": "#c5b7a6",
           "shortLabel": "P"
         },
         {
           "id": "tres_jeune_prince",
-          "name": "很年轻的王子",
+          "name": "Très Jeune Prince",
           "color": "#dce7ff",
           "shortLabel": "TJP"
         },
         {
           "id": "roi",
-          "name": "国王",
+          "name": "Roi",
           "color": "#7ea6ff",
           "shortLabel": "ROI"
         },
         {
           "id": "tres_jeune_fille",
-          "name": "很年轻的女孩",
+          "name": "Très Jeune Fille",
           "color": "#f3e2c7",
           "shortLabel": "TJF"
         },
         {
           "id": "fee",
-          "name": "仙女",
+          "name": "Fée",
           "color": "#b9b6ff",
           "shortLabel": "FEE"
         }
       ],
       "events": [
-        { "id": "s6e1", "type": "blackout_start", "duration": 1 },
-        { "id": "s6e2", "type": "action", "duration": 3.2, "text": "宫殿门口挤满了赴宴的人。门内正传出极其现代、近乎刺耳的舞曲声，和她们一路上想象的古典舞会完全不是一回事。" },
-        { "id": "s6e3", "type": "blackout_end", "duration": 0.7 },
-        { "id": "s6e4", "type": "enter", "actorId": "belle_mere", "duration": 1, "x": 432, "y": 278, "fromSide": "left" },
-        { "id": "s6e5", "type": "enter", "actorId": "soeur_petite", "duration": 0.8, "x": 362, "y": 250, "fromSide": "left" },
-        { "id": "s6e6", "type": "enter", "actorId": "soeur_grande", "duration": 0.8, "x": 344, "y": 316, "fromSide": "left" },
-        { "id": "s6e7", "type": "enter", "actorId": "pere", "duration": 0.8, "x": 286, "y": 284, "fromSide": "left" },
-        { "id": "s6e8", "type": "action", "duration": 2.4, "text": "四个人向门前侍从出示请柬。小妹和大姐朝宫殿里面瞥了一眼，脸色立刻都变了。" },
-        { "id": "s6e9", "type": "line", "actorId": "soeur_petite", "duration": 1.8, "text": "C'est horrible." },
-        { "id": "s6e10", "type": "line", "actorId": "soeur_grande", "duration": 5.8, "text": "Y a un problème, c'est pas du tout comme ça qu'on avait imaginé les choses ! Va voir, c'est horrible !" },
-        { "id": "s6e11", "type": "action", "actorId": "belle_mere", "duration": 1.8, "text": "继母狐疑地朝门里望去，脸色也一下僵住。" },
-        { "id": "s6e12", "type": "line", "actorId": "soeur_petite", "duration": 5.2, "text": "Faut rentrer à la maison ! Faut aller se changer, en vitesse !" },
-        { "id": "s6e13", "type": "line", "actorId": "belle_mere", "duration": 5.8, "text": "Mais qu'est-ce qui se passe ?! C'est pas possible ! Les gens sont devenus fous ou quoi !" },
-        { "id": "s6e14", "type": "exit", "actorId": "soeur_petite", "duration": 0.8, "toSide": "left" },
-        { "id": "s6e15", "type": "line", "actorId": "belle_mere", "duration": 2.2, "text": "Où est-ce qu'elle va, elle ?" },
-        { "id": "s6e16", "type": "line", "actorId": "soeur_grande", "duration": 6, "text": "Elle rentre à la maison. Elle dit qu'on doit vite aller se changer. Y a personne d'habillé comme nous." },
-        { "id": "s6e17", "type": "line", "actorId": "belle_mere", "duration": 5.2, "text": "Mais c'est affreux ! Qui a eu l'idée de s'habiller comme ça ?" },
-        { "id": "s6e18", "type": "line", "actorId": "soeur_grande", "duration": 1.6, "text": "C'est toi maman !" },
-        { "id": "s6e19", "type": "line", "actorId": "belle_mere", "duration": 2.8, "text": "Mais non c'est pas moi ! C'est lui !" },
-        { "id": "s6e20", "type": "action", "actorId": "belle_mere", "duration": 1.2, "text": "她一把指向父亲，把责任全推了过去。" },
-        { "id": "s6e21", "type": "line", "actorId": "soeur_grande", "duration": 2.8, "text": "Moi je rentre à la maison aussi, je vais me changer." },
-        { "id": "s6e22", "type": "line", "actorId": "belle_mere", "duration": 8.6, "text": "Il est pas question qu'on aille se changer, on a pas le temps ! On y va comme ça et c'est les autres qui seront ridicules, pas nous. Allez-y tous les deux, vous d'abord, je vous suis ensuite !" },
-        { "id": "s6e23", "type": "line", "actorId": "soeur_grande", "duration": 1.6, "text": "Comment ça ?" },
-        { "id": "s6e24", "type": "line", "actorId": "belle_mere", "duration": 8.8, "text": "Allez-y, entrez là-dedans, c'est un ordre ! Arrête de discuter ! Si tu continues, je distribue des photocopies de ton journal intime. Tu sais que je suis capable de le faire. Entrez là-dedans !" },
-        { "id": "s6e25", "type": "action", "actorId": "belle_mere", "duration": 1.4, "text": "她又转向父亲，命令他也一起进去。" },
-        { "id": "s6e26", "type": "move_path", "actorId": "soeur_grande", "duration": 1.2, "path": [ { "x": 412, "y": 296 }, { "x": 520, "y": 238 }, { "x": 614, "y": 184 } ] },
-        { "id": "s6e27", "type": "move_path", "actorId": "pere", "duration": 1.4, "path": [ { "x": 358, "y": 280 }, { "x": 470, "y": 230 }, { "x": 606, "y": 196 } ] },
-        { "id": "s6e28", "type": "exit", "actorId": "soeur_grande", "duration": 0.8, "toSide": "top" },
-        { "id": "s6e29", "type": "exit", "actorId": "pere", "duration": 0.8, "toSide": "top" },
-        { "id": "s6e30", "type": "action", "duration": 3.2, "text": "门内立刻传来口哨、哄笑和起哄声，显然父亲已经成了宴会里的笑柄。过了一会儿，大姐狼狈地折返出来。" },
-        { "id": "s6e31", "type": "enter", "actorId": "soeur_grande", "duration": 0.8, "x": 560, "y": 228, "fromSide": "top" },
-        { "id": "s6e32", "type": "line", "actorId": "soeur_grande", "duration": 8.6, "text": "Maman, ils l'ont gardé, ils lui demandent de danser des danses comme on dansait à l'époque. Ils se moquent de lui, c'est affreux. Moi je rentre à la maison." },
-        { "id": "s6e33", "type": "exit", "actorId": "soeur_grande", "duration": 0.8, "toSide": "left" },
-        { "id": "s6e34", "type": "pause", "duration": 1.2 },
-        { "id": "s6e35", "type": "action", "actorId": "belle_mere", "duration": 2.2, "text": "继母一个人留在门前，拿伞遮住脸，像在犹豫是继续等父亲，还是也立刻逃走。" },
-        { "id": "s6e36", "type": "enter", "actorId": "tres_jeune_prince", "duration": 1, "x": 664, "y": 210, "fromSide": "top" },
-        { "id": "s6e37", "type": "move_path", "actorId": "tres_jeune_prince", "duration": 1.1, "path": [ { "x": 628, "y": 230 }, { "x": 590, "y": 252 }, { "x": 546, "y": 274 } ] },
-        { "id": "s6e38", "type": "action", "duration": 1.2, "text": "继母一转身，正撞上迎面而来的很年轻的王子。王子一下跌坐在地。" },
-        { "id": "s6e39", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.6, "text": "Excusez-moi." },
-        { "id": "s6e40", "type": "line", "actorId": "belle_mere", "duration": 1.4, "text": "Pardon." },
-        { "id": "s6e41", "type": "line", "actorId": "tres_jeune_prince", "duration": 2.2, "text": "C'est moi qui m'excuse." },
-        { "id": "s6e42", "type": "line", "actorId": "belle_mere", "duration": 2, "text": "Euh oui non, c'est moi." },
-        { "id": "s6e43", "type": "line", "actorId": "tres_jeune_prince", "duration": 3.2, "text": "Vous m'avez fait peur… On se connaît pas." },
-        { "id": "s6e44", "type": "line", "actorId": "belle_mere", "duration": 1.8, "text": "Non, je crois pas." },
-        { "id": "s6e45", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.8, "text": "Mes hommages chez vous." },
-        { "id": "s6e46", "type": "line", "actorId": "belle_mere", "duration": 1.8, "text": "Oui, chez vous aussi." },
-        { "id": "s6e47", "type": "exit", "actorId": "tres_jeune_prince", "duration": 0.8, "toSide": "top" },
-        { "id": "s6e48", "type": "exit", "actorId": "belle_mere", "duration": 0.8, "toSide": "left" },
-        { "id": "s6e49", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 244, "y": 300, "fromSide": "left" },
-        { "id": "s6e50", "type": "enter", "actorId": "fee", "duration": 0.8, "x": 172, "y": 330, "fromSide": "left" },
-        { "id": "s6e51", "type": "action", "duration": 2.6, "text": "很年轻的女孩穿着母亲的婚纱，在仙女陪伴下走到宫殿门前。她还没来得及细看，王子又从宫门里退了出来，国王紧跟其后。" },
-        { "id": "s6e52", "type": "enter", "actorId": "tres_jeune_prince", "duration": 0.8, "x": 622, "y": 204, "fromSide": "top" },
-        { "id": "s6e53", "type": "enter", "actorId": "roi", "duration": 0.8, "x": 704, "y": 186, "fromSide": "top" },
-        { "id": "s6e54", "type": "line", "actorId": "roi", "duration": 2, "text": "Qu'est-ce que tu fais ?" },
-        { "id": "s6e55", "type": "line", "actorId": "tres_jeune_prince", "duration": 5.8, "text": "Tu m'avais pas dit qu'il y aurait autant de monde. J'aime pas chanter devant les gens." },
-        { "id": "s6e56", "type": "line", "actorId": "roi", "duration": 8.4, "text": "Il faut bien finir par les rencontrer les gens. Tu vas devenir adulte bientôt, tu ne peux pas continuer à vivre caché. Vas-y, tout le monde t'attend. Tu deviendras le roi de toutes ces personnes bientôt." },
-        { "id": "s6e57", "type": "line", "actorId": "tres_jeune_prince", "duration": 6.6, "text": "Et puis, c'est l'heure du coup de fil de maman. Elle va appeler ce soir, je le sens. Je voudrais pas être trop loin du téléphone quand elle appellera." },
-        { "id": "s6e58", "type": "line", "actorId": "roi", "duration": 8.4, "text": "Ta mère sera contente de savoir que tu étais présent à ton anniversaire. Chante en pensant à elle, ça lui fera plaisir." },
-        { "id": "s6e59", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.6, "text": "Ah oui, c'est vrai." },
-        { "id": "s6e60", "type": "line", "actorId": "roi", "duration": 1.6, "text": "Ben oui ! Tu vois !" },
-        { "id": "s6e61", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.8, "text": "Bon alors j'y vais !" },
-        { "id": "s6e62", "type": "line", "actorId": "roi", "duration": 1.6, "text": "Très bien mon fils." },
-        { "id": "s6e63", "type": "action", "actorId": "tres_jeune_fille", "duration": 2.4, "text": "很年轻的女孩与仙女躲在一旁，静静看完这段父子对话。她的好奇心最终压过迟疑。" },
-        { "id": "s6e64", "type": "exit", "actorId": "roi", "duration": 0.8, "toSide": "top" },
-        { "id": "s6e65", "type": "exit", "actorId": "tres_jeune_prince", "duration": 0.8, "toSide": "top" },
-        { "id": "s6e66", "type": "move_path", "actorId": "tres_jeune_fille", "duration": 1.2, "path": [ { "x": 322, "y": 286 }, { "x": 442, "y": 246 }, { "x": 592, "y": 196 } ] },
-        { "id": "s6e67", "type": "action", "duration": 2.2, "text": "宫门里再度响起热烈的欢呼。很年轻的女孩带着好奇，也跟着走了进去。" },
-        { "id": "s6e68", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.8, "toSide": "top" },
-        { "id": "s6e69", "type": "exit", "actorId": "fee", "duration": 0.8, "toSide": "left" },
-        { "id": "s6e70", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s6e1",
+          "type": "blackout_start",
+          "duration": 1
+        },
+        {
+          "id": "s6e2",
+          "type": "action",
+          "duration": 3.2,
+          "text": "La porte du palais est bondée d'invités. De l'intérieur s'échappent des airs de danse résolument modernes, presque agressifs, sans aucun rapport avec le bal classique qu'elles avaient imaginé."
+        },
+        {
+          "id": "s6e3",
+          "type": "blackout_end",
+          "duration": 0.7
+        },
+        {
+          "id": "s6e4",
+          "type": "enter",
+          "actorId": "belle_mere",
+          "duration": 1,
+          "x": 432,
+          "y": 278,
+          "fromSide": "left"
+        },
+        {
+          "id": "s6e5",
+          "type": "enter",
+          "actorId": "soeur_petite",
+          "duration": 0.8,
+          "x": 362,
+          "y": 250,
+          "fromSide": "left"
+        },
+        {
+          "id": "s6e6",
+          "type": "enter",
+          "actorId": "soeur_grande",
+          "duration": 0.8,
+          "x": 344,
+          "y": 316,
+          "fromSide": "left"
+        },
+        {
+          "id": "s6e7",
+          "type": "enter",
+          "actorId": "pere",
+          "duration": 0.8,
+          "x": 286,
+          "y": 284,
+          "fromSide": "left"
+        },
+        {
+          "id": "s6e8",
+          "type": "action",
+          "duration": 2.4,
+          "text": "Les quatre tendent leurs invitations au valet devant la porte. La petite sœur et la grande sœur jettent un coup d'œil à l'intérieur du palais et blêmissent aussitôt."
+        },
+        {
+          "id": "s6e9",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1.8,
+          "text": "C'est horrible."
+        },
+        {
+          "id": "s6e10",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 5.8,
+          "text": "Y a un problème, c'est pas du tout comme ça qu'on avait imaginé les choses ! Va voir, c'est horrible !"
+        },
+        {
+          "id": "s6e11",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 1.8,
+          "text": "La belle-mère, suspicieuse, regarde vers l'intérieur — son visage se fige."
+        },
+        {
+          "id": "s6e12",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 5.2,
+          "text": "Faut rentrer à la maison ! Faut aller se changer, en vitesse !"
+        },
+        {
+          "id": "s6e13",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 5.8,
+          "text": "Mais qu'est-ce qui se passe ?! C'est pas possible ! Les gens sont devenus fous ou quoi !"
+        },
+        {
+          "id": "s6e14",
+          "type": "exit",
+          "actorId": "soeur_petite",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s6e15",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.2,
+          "text": "Où est-ce qu'elle va, elle ?"
+        },
+        {
+          "id": "s6e16",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 6,
+          "text": "Elle rentre à la maison. Elle dit qu'on doit vite aller se changer. Y a personne d'habillé comme nous."
+        },
+        {
+          "id": "s6e17",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 5.2,
+          "text": "Mais c'est affreux ! Qui a eu l'idée de s'habiller comme ça ?"
+        },
+        {
+          "id": "s6e18",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1.6,
+          "text": "C'est toi maman !"
+        },
+        {
+          "id": "s6e19",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.8,
+          "text": "Mais non c'est pas moi ! C'est lui !"
+        },
+        {
+          "id": "s6e20",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 1.2,
+          "text": "Elle pointe le père du doigt, lui refilant toute la responsabilité."
+        },
+        {
+          "id": "s6e21",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.8,
+          "text": "Moi je rentre à la maison aussi, je vais me changer."
+        },
+        {
+          "id": "s6e22",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 8.6,
+          "text": "Il est pas question qu'on aille se changer, on a pas le temps ! On y va comme ça et c'est les autres qui seront ridicules, pas nous. Allez-y tous les deux, vous d'abord, je vous suis ensuite !"
+        },
+        {
+          "id": "s6e23",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1.6,
+          "text": "Comment ça ?"
+        },
+        {
+          "id": "s6e24",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 8.8,
+          "text": "Allez-y, entrez là-dedans, c'est un ordre ! Arrête de discuter ! Si tu continues, je distribue des photocopies de ton journal intime. Tu sais que je suis capable de le faire. Entrez là-dedans !"
+        },
+        {
+          "id": "s6e25",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 1.4,
+          "text": "Elle se tourne de nouveau vers le père et lui ordonne d'entrer lui aussi."
+        },
+        {
+          "id": "s6e26",
+          "type": "move_path",
+          "actorId": "soeur_grande",
+          "duration": 1.2,
+          "path": [
+            {
+              "x": 412,
+              "y": 296
+            },
+            {
+              "x": 520,
+              "y": 238
+            },
+            {
+              "x": 614,
+              "y": 184
+            }
+          ]
+        },
+        {
+          "id": "s6e27",
+          "type": "move_path",
+          "actorId": "pere",
+          "duration": 1.4,
+          "path": [
+            {
+              "x": 358,
+              "y": 280
+            },
+            {
+              "x": 470,
+              "y": 230
+            },
+            {
+              "x": 606,
+              "y": 196
+            }
+          ]
+        },
+        {
+          "id": "s6e28",
+          "type": "exit",
+          "actorId": "soeur_grande",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s6e29",
+          "type": "exit",
+          "actorId": "pere",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s6e30",
+          "type": "action",
+          "duration": 3.2,
+          "text": "De l'intérieur retentissent aussitôt des sifflements, des rires et des huées — le père est manifestement devenu la risée de la soirée. Peu après, la grande sœur ressort, piteuse."
+        },
+        {
+          "id": "s6e31",
+          "type": "enter",
+          "actorId": "soeur_grande",
+          "duration": 0.8,
+          "x": 560,
+          "y": 228,
+          "fromSide": "top"
+        },
+        {
+          "id": "s6e32",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 8.6,
+          "text": "Maman, ils l'ont gardé, ils lui demandent de danser des danses comme on dansait à l'époque. Ils se moquent de lui, c'est affreux. Moi je rentre à la maison."
+        },
+        {
+          "id": "s6e33",
+          "type": "exit",
+          "actorId": "soeur_grande",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s6e34",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s6e35",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 2.2,
+          "text": "La belle-mère reste seule devant la porte, l'ombrelle devant le visage, hésitant entre attendre le père et fuir à son tour."
+        },
+        {
+          "id": "s6e36",
+          "type": "enter",
+          "actorId": "tres_jeune_prince",
+          "duration": 1,
+          "x": 664,
+          "y": 210,
+          "fromSide": "top"
+        },
+        {
+          "id": "s6e37",
+          "type": "move_path",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.1,
+          "path": [
+            {
+              "x": 628,
+              "y": 230
+            },
+            {
+              "x": 590,
+              "y": 252
+            },
+            {
+              "x": 546,
+              "y": 274
+            }
+          ]
+        },
+        {
+          "id": "s6e38",
+          "type": "action",
+          "duration": 1.2,
+          "text": "La belle-mère se retourne et percute de plein fouet le très jeune prince qui venait en sens inverse. Le prince tombe à terre."
+        },
+        {
+          "id": "s6e39",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.6,
+          "text": "Excusez-moi."
+        },
+        {
+          "id": "s6e40",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.4,
+          "text": "Pardon."
+        },
+        {
+          "id": "s6e41",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.2,
+          "text": "C'est moi qui m'excuse."
+        },
+        {
+          "id": "s6e42",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2,
+          "text": "Euh oui non, c'est moi."
+        },
+        {
+          "id": "s6e43",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 3.2,
+          "text": "Vous m'avez fait peur… On se connaît pas."
+        },
+        {
+          "id": "s6e44",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.8,
+          "text": "Non, je crois pas."
+        },
+        {
+          "id": "s6e45",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.8,
+          "text": "Mes hommages chez vous."
+        },
+        {
+          "id": "s6e46",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 1.8,
+          "text": "Oui, chez vous aussi."
+        },
+        {
+          "id": "s6e47",
+          "type": "exit",
+          "actorId": "tres_jeune_prince",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s6e48",
+          "type": "exit",
+          "actorId": "belle_mere",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s6e49",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 244,
+          "y": 300,
+          "fromSide": "left"
+        },
+        {
+          "id": "s6e50",
+          "type": "enter",
+          "actorId": "fee",
+          "duration": 0.8,
+          "x": 172,
+          "y": 330,
+          "fromSide": "left"
+        },
+        {
+          "id": "s6e51",
+          "type": "action",
+          "duration": 2.6,
+          "text": "La très jeune fille, vêtue de la robe de mariée de sa mère, arrive devant le palais accompagnée de la fée. Elle n'a pas encore eu le temps de regarder autour d'elle que le prince ressort du palais en reculant, le roi sur ses talons."
+        },
+        {
+          "id": "s6e52",
+          "type": "enter",
+          "actorId": "tres_jeune_prince",
+          "duration": 0.8,
+          "x": 622,
+          "y": 204,
+          "fromSide": "top"
+        },
+        {
+          "id": "s6e53",
+          "type": "enter",
+          "actorId": "roi",
+          "duration": 0.8,
+          "x": 704,
+          "y": 186,
+          "fromSide": "top"
+        },
+        {
+          "id": "s6e54",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 2,
+          "text": "Qu'est-ce que tu fais ?"
+        },
+        {
+          "id": "s6e55",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 5.8,
+          "text": "Tu m'avais pas dit qu'il y aurait autant de monde. J'aime pas chanter devant les gens."
+        },
+        {
+          "id": "s6e56",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 8.4,
+          "text": "Il faut bien finir par les rencontrer les gens. Tu vas devenir adulte bientôt, tu ne peux pas continuer à vivre caché. Vas-y, tout le monde t'attend. Tu deviendras le roi de toutes ces personnes bientôt."
+        },
+        {
+          "id": "s6e57",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 6.6,
+          "text": "Et puis, c'est l'heure du coup de fil de maman. Elle va appeler ce soir, je le sens. Je voudrais pas être trop loin du téléphone quand elle appellera."
+        },
+        {
+          "id": "s6e58",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 8.4,
+          "text": "Ta mère sera contente de savoir que tu étais présent à ton anniversaire. Chante en pensant à elle, ça lui fera plaisir."
+        },
+        {
+          "id": "s6e59",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.6,
+          "text": "Ah oui, c'est vrai."
+        },
+        {
+          "id": "s6e60",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 1.6,
+          "text": "Ben oui ! Tu vois !"
+        },
+        {
+          "id": "s6e61",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.8,
+          "text": "Bon alors j'y vais !"
+        },
+        {
+          "id": "s6e62",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 1.6,
+          "text": "Très bien mon fils."
+        },
+        {
+          "id": "s6e63",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.4,
+          "text": "La très jeune fille et la fée observent discrètement la scène jusqu'au bout. La curiosité finit par l'emporter sur l'hésitation."
+        },
+        {
+          "id": "s6e64",
+          "type": "exit",
+          "actorId": "roi",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s6e65",
+          "type": "exit",
+          "actorId": "tres_jeune_prince",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s6e66",
+          "type": "move_path",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.2,
+          "path": [
+            {
+              "x": 322,
+              "y": 286
+            },
+            {
+              "x": 442,
+              "y": 246
+            },
+            {
+              "x": 592,
+              "y": 196
+            }
+          ]
+        },
+        {
+          "id": "s6e67",
+          "type": "action",
+          "duration": 2.2,
+          "text": "De nouvelles ovations s'élèvent depuis le palais. La très jeune fille, curieuse, finit par entrer à son tour."
+        },
+        {
+          "id": "s6e68",
+          "type": "exit",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s6e69",
+          "type": "exit",
+          "actorId": "fee",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s6e70",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     },
     {
       "id": "scene-7-interieur-palais",
       "title": "SCÈNE 7",
       "subtitle": "Quelques instants plus tard, à l’intérieur du palais.",
-      "setting": "宫殿内部的舞台灯火璀璨，立麦架在舞台中央等着王子。礼宾的介绍声、观众的惊呼与掌声包围着整座大厅；很年轻的女孩则在歌曲尾声时悄悄摸到舞台后方。",
+      "setting": "À l'intérieur du palais, la scène est illuminée et un pied de micro attend le prince au centre. La voix du maître de cérémonie, les exclamations et les applaudissements du public envahissent la grande salle ; la très jeune fille se glisse discrètement vers les coulisses à la fin de la chanson.",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 180,
         "doorY": 96,
         "props": [
-          { "id": "scene7-mic", "kind": "microphone_stand", "x": 452, "y": 250 }
+          {
+            "id": "scene7-mic",
+            "kind": "microphone_stand",
+            "x": 452,
+            "y": 250
+          }
         ]
       },
       "actors": [
         {
           "id": "tres_jeune_prince",
-          "name": "很年轻的王子",
+          "name": "Très Jeune Prince",
           "color": "#dce7ff",
           "shortLabel": "TJP"
         },
         {
           "id": "tres_jeune_fille",
-          "name": "很年轻的女孩",
+          "name": "Très Jeune Fille",
           "color": "#f3e2c7",
           "shortLabel": "TJF"
         }
       ],
       "events": [
-        { "id": "s7e1", "type": "blackout_start", "duration": 1 },
-        { "id": "s7e2", "type": "action", "duration": 3.6, "text": "礼宾的声音从舞台深处响起：诸位久等了，瓦格拉姆与诺曼底的王子今晚将以英文献唱一首歌，把它献给自己的家人，尤其是他的父亲。" },
-        { "id": "s7e3", "type": "action", "duration": 2.2, "text": "全场爆发出惊呼、尖叫与热烈的欢呼，像潮水一样朝舞台涌来。" },
-        { "id": "s7e4", "type": "blackout_end", "duration": 0.7 },
-        { "id": "s7e5", "type": "enter", "actorId": "tres_jeune_prince", "duration": 1, "x": 454, "y": 248, "fromSide": "top" },
-        { "id": "s7e6", "type": "action", "actorId": "tres_jeune_prince", "duration": 7.8, "text": "很年轻的王子一边朝观众方向走，一边唱起《Father and Son》的翻唱。歌声稚嫩却真诚，像一封临时写下的公开家书。" },
-        { "id": "s7e7", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 760, "y": 402, "fromSide": "right" },
-        { "id": "s7e8", "type": "move_path", "actorId": "tres_jeune_fille", "duration": 1.8, "path": [ { "x": 720, "y": 388 }, { "x": 650, "y": 356 }, { "x": 596, "y": 318 } ] },
-        { "id": "s7e9", "type": "action", "duration": 2.4, "text": "就在歌曲即将结束之前，很年轻的女孩悄悄滑到舞台后方，靠近王子。王子注意到了她，歌声却没有中断。" },
-        { "id": "s7e10", "type": "pause", "duration": 1.4 },
-        { "id": "s7e11", "type": "action", "duration": 2.8, "text": "歌曲结束，掌声和喝彩声更加汹涌。王子与女孩隔着短短的舞台距离互相望着，却都没有马上说话。" },
-        { "id": "s7e12", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.8, "toSide": "right" },
-        { "id": "s7e13", "type": "exit", "actorId": "tres_jeune_prince", "duration": 0.8, "toSide": "top" },
-        { "id": "s7e14", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s7e1",
+          "type": "blackout_start",
+          "duration": 1
+        },
+        {
+          "id": "s7e2",
+          "type": "action",
+          "duration": 3.6,
+          "text": "La voix du maître de cérémonie résonne depuis les coulisses : mesdames et messieurs, le prince de Wagram et de Normandie va vous interpréter ce soir une chanson en anglais, dédiée à sa famille, et en particulier à son père."
+        },
+        {
+          "id": "s7e3",
+          "type": "action",
+          "duration": 2.2,
+          "text": "La salle tout entière éclate en exclamations, en cris et en applaudissements qui déferlent comme une vague vers la scène."
+        },
+        {
+          "id": "s7e4",
+          "type": "blackout_end",
+          "duration": 0.7
+        },
+        {
+          "id": "s7e5",
+          "type": "enter",
+          "actorId": "tres_jeune_prince",
+          "duration": 1,
+          "x": 454,
+          "y": 248,
+          "fromSide": "top"
+        },
+        {
+          "id": "s7e6",
+          "type": "action",
+          "actorId": "tres_jeune_prince",
+          "duration": 7.8,
+          "text": "Le très jeune prince avance vers le public en interprétant une reprise de « Father and Son ». Sa voix est encore jeune mais sincère, comme une lettre publique écrite à la hâte."
+        },
+        {
+          "id": "s7e7",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 760,
+          "y": 402,
+          "fromSide": "right"
+        },
+        {
+          "id": "s7e8",
+          "type": "move_path",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.8,
+          "path": [
+            {
+              "x": 720,
+              "y": 388
+            },
+            {
+              "x": 650,
+              "y": 356
+            },
+            {
+              "x": 596,
+              "y": 318
+            }
+          ]
+        },
+        {
+          "id": "s7e9",
+          "type": "action",
+          "duration": 2.4,
+          "text": "Juste avant que la chanson ne se termine, la très jeune fille se glisse discrètement vers les coulisses, s'approchant du prince. Il la remarque mais ne s'arrête pas de chanter."
+        },
+        {
+          "id": "s7e10",
+          "type": "pause",
+          "duration": 1.4
+        },
+        {
+          "id": "s7e11",
+          "type": "action",
+          "duration": 2.8,
+          "text": "La chanson se termine, les applaudissements et les bravos redoublent. Le prince et la fille se regardent à travers la courte distance de la scène, sans parler immédiatement."
+        },
+        {
+          "id": "s7e12",
+          "type": "exit",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.8,
+          "toSide": "right"
+        },
+        {
+          "id": "s7e13",
+          "type": "exit",
+          "actorId": "tres_jeune_prince",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s7e14",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     },
     {
       "id": "scene-8-devant-portes-palais",
       "title": "SCÈNE 8",
       "subtitle": "Quelques instants plus tard, devant les portes du palais.",
-      "setting": "宫殿大门外，掌声和喝彩还从里面不断传出。很年轻的女孩先跑出宫门，仙女在外面等着她；王子随后几乎是逃一样冲出来，两人在门前相撞，第一次真正短暂交谈。",
+      "setting": "Devant les grandes portes du palais, les applaudissements et les ovations continuent de l'intérieur. La très jeune fille sort en courant la première, la fée l'attend dehors ; le prince sort à son tour comme en fuite, et les deux se heurtent devant les portes pour leur première vraie brève conversation.",
       "stage": {
         "width": 920,
         "height": 520,
@@ -384,69 +1661,307 @@
       "actors": [
         {
           "id": "tres_jeune_prince",
-          "name": "很年轻的王子",
+          "name": "Très Jeune Prince",
           "color": "#dce7ff",
           "shortLabel": "TJP"
         },
         {
           "id": "tres_jeune_fille",
-          "name": "很年轻的女孩",
+          "name": "Très Jeune Fille",
           "color": "#f3e2c7",
           "shortLabel": "TJF"
         },
         {
           "id": "fee",
-          "name": "仙女",
+          "name": "Fée",
           "color": "#b9b6ff",
           "shortLabel": "FEE"
         }
       ],
       "events": [
-        { "id": "s8e1", "type": "blackout_start", "duration": 1 },
-        { "id": "s8e2", "type": "action", "duration": 2.6, "text": "宫殿里面的掌声、喝彩与叫好声还在持续。很年轻的女孩红着脸冲出门来，像刚从一场不真实的梦里逃开。" },
-        { "id": "s8e3", "type": "blackout_end", "duration": 0.7 },
-        { "id": "s8e4", "type": "enter", "actorId": "fee", "duration": 1, "x": 274, "y": 302, "fromSide": "left" },
-        { "id": "s8e5", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 544, "y": 286, "fromSide": "top" },
-        { "id": "s8e6", "type": "action", "actorId": "fee", "duration": 2.4, "text": "仙女在宫门外等着她，朝她招手，像在说：这就要走了吗？别现在就逃掉。" },
-        { "id": "s8e7", "type": "move", "actorId": "tres_jeune_fille", "duration": 0.9, "x": 598, "y": 274 },
-        { "id": "s8e8", "type": "action", "duration": 1.6, "text": "很年轻的女孩刚想折返进去，宫门又被猛地推开。很年轻的王子几乎是跑着冲出来，像从自己的宴会中临时逃脱。" },
-        { "id": "s8e9", "type": "enter", "actorId": "tres_jeune_prince", "duration": 1, "x": 690, "y": 248, "fromSide": "top" },
-        { "id": "s8e10", "type": "move_path", "actorId": "tres_jeune_prince", "duration": 1.1, "path": [ { "x": 654, "y": 258 }, { "x": 618, "y": 270 }, { "x": 586, "y": 284 } ] },
-        { "id": "s8e11", "type": "action", "duration": 1.4, "text": "两人一下撞在一起，王子几乎仰面跌倒。" },
-        { "id": "s8e12", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.6, "text": "Excusez-moi." },
-        { "id": "s8e13", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.4, "text": "Pardon." },
-        { "id": "s8e14", "type": "line", "actorId": "tres_jeune_prince", "duration": 4.4, "text": "C'est de ma faute, je regardais mes chaussures !" },
-        { "id": "s8e15", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.8, "text": "J'ai rien senti, vous excusez pas." },
-        { "id": "s8e16", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.8, "text": "Mes hommages chez vous." },
-        { "id": "s8e17", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.8, "text": "Vous pareillement." },
-        { "id": "s8e18", "type": "action", "duration": 1.8, "text": "他们各自朝相反方向走了几步，又同时停下、转身，再次朝彼此靠近。两个人都明显尴尬。" },
-        { "id": "s8e19", "type": "line", "actorId": "tres_jeune_prince", "duration": 2.8, "text": "Vous vouliez me dire quelque chose ?" },
-        { "id": "s8e20", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.2, "text": "Euh non… je croyais que c'était vous qui vouliez…" },
-        { "id": "s8e21", "type": "line", "actorId": "tres_jeune_prince", "duration": 5.8, "text": "Euh non ! Bon ben, c'est bien… Ben, au revoir alors… Il fait beau, vous trouvez pas ? C'est dommage qu'il n'y ait pas de soleil…" },
-        { "id": "s8e22", "type": "line", "actorId": "tres_jeune_fille", "duration": 5.6, "text": "Oui c'est vrai… Mais faut dire que la nuit c'est rare qu'il y ait du soleil en cette saison." },
-        { "id": "s8e23", "type": "line", "actorId": "tres_jeune_prince", "duration": 4.8, "text": "Oui c'est vrai ! Absolument. Bon ben, je vais rentrer…" },
-        { "id": "s8e24", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.4, "text": "En tout cas, vous avez… de belles chaussures…" },
-        { "id": "s8e25", "type": "line", "actorId": "tres_jeune_prince", "duration": 3.2, "text": "Ah oui… surtout celle-là, non ?" },
-        { "id": "s8e26", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.6, "text": "Ah oui c'est vrai, vous avez raison, c'est la mieux des deux." },
-        { "id": "s8e27", "type": "action", "actorId": "tres_jeune_fille", "duration": 1.2, "text": "她的手表突然响了起来，像把这个刚刚开始的瞬间一下子切断。" },
-        { "id": "s8e28", "type": "line", "actorId": "tres_jeune_fille", "duration": 5.2, "text": "Mince je suis en train d'oublier l'heure moi, je dois rentrer… Et j'ai plein de trucs à penser. Faut pas que j'oublie…" },
-        { "id": "s8e29", "type": "line", "actorId": "tres_jeune_prince", "duration": 6.2, "text": "Moi aussi je dois y aller. J'attends un coup de fil de ma mère, elle doit me téléphoner ce soir." },
-        { "id": "s8e30", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.4, "text": "Ah bon." },
-        { "id": "s8e31", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.4, "text": "Ben oui." },
-        { "id": "s8e32", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.8, "text": "Bon ben salut." },
-        { "id": "s8e33", "type": "line", "actorId": "tres_jeune_prince", "duration": 1.4, "text": "Salut." },
-        { "id": "s8e34", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.9, "toSide": "left" },
-        { "id": "s8e35", "type": "action", "actorId": "tres_jeune_prince", "duration": 2.6, "text": "很年轻的王子站在原地，目送她离开，像还没弄明白刚才到底发生了什么，却已经舍不得那一刻结束。" },
-        { "id": "s8e36", "type": "exit", "actorId": "tres_jeune_prince", "duration": 0.8, "toSide": "top" },
-        { "id": "s8e37", "type": "exit", "actorId": "fee", "duration": 0.8, "toSide": "left" },
-        { "id": "s8e38", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s8e1",
+          "type": "blackout_start",
+          "duration": 1
+        },
+        {
+          "id": "s8e2",
+          "type": "action",
+          "duration": 2.6,
+          "text": "Les applaudissements, les vivats et les bravos de l'intérieur du palais se poursuivent. La très jeune fille sort en courant, les joues rouges, comme en fuite d'un rêve irréel."
+        },
+        {
+          "id": "s8e3",
+          "type": "blackout_end",
+          "duration": 0.7
+        },
+        {
+          "id": "s8e4",
+          "type": "enter",
+          "actorId": "fee",
+          "duration": 1,
+          "x": 274,
+          "y": 302,
+          "fromSide": "left"
+        },
+        {
+          "id": "s8e5",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 544,
+          "y": 286,
+          "fromSide": "top"
+        },
+        {
+          "id": "s8e6",
+          "type": "action",
+          "actorId": "fee",
+          "duration": 2.4,
+          "text": "La fée l'attend dehors devant les portes du palais, lui faisant signe comme pour dire : tu t'en vas déjà ? Ne te sauve pas maintenant."
+        },
+        {
+          "id": "s8e7",
+          "type": "move",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.9,
+          "x": 598,
+          "y": 274
+        },
+        {
+          "id": "s8e8",
+          "type": "action",
+          "duration": 1.6,
+          "text": "La très jeune fille allait faire demi-tour quand les portes du palais s'ouvrent brusquement. Le très jeune prince sort presque en courant, comme s'il s'évadait de sa propre fête."
+        },
+        {
+          "id": "s8e9",
+          "type": "enter",
+          "actorId": "tres_jeune_prince",
+          "duration": 1,
+          "x": 690,
+          "y": 248,
+          "fromSide": "top"
+        },
+        {
+          "id": "s8e10",
+          "type": "move_path",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.1,
+          "path": [
+            {
+              "x": 654,
+              "y": 258
+            },
+            {
+              "x": 618,
+              "y": 270
+            },
+            {
+              "x": 586,
+              "y": 284
+            }
+          ]
+        },
+        {
+          "id": "s8e11",
+          "type": "action",
+          "duration": 1.4,
+          "text": "Ils se heurtent de plein fouet — le prince manque de tomber à la renverse."
+        },
+        {
+          "id": "s8e12",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.6,
+          "text": "Excusez-moi."
+        },
+        {
+          "id": "s8e13",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.4,
+          "text": "Pardon."
+        },
+        {
+          "id": "s8e14",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 4.4,
+          "text": "C'est de ma faute, je regardais mes chaussures !"
+        },
+        {
+          "id": "s8e15",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.8,
+          "text": "J'ai rien senti, vous excusez pas."
+        },
+        {
+          "id": "s8e16",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.8,
+          "text": "Mes hommages chez vous."
+        },
+        {
+          "id": "s8e17",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.8,
+          "text": "Vous pareillement."
+        },
+        {
+          "id": "s8e18",
+          "type": "action",
+          "duration": 1.8,
+          "text": "Ils font quelques pas chacun dans la direction opposée, puis s'arrêtent simultanément, se retournent et s'approchent l'un de l'autre à nouveau. Tous deux sont visiblement embarrassés."
+        },
+        {
+          "id": "s8e19",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.8,
+          "text": "Vous vouliez me dire quelque chose ?"
+        },
+        {
+          "id": "s8e20",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.2,
+          "text": "Euh non… je croyais que c'était vous qui vouliez…"
+        },
+        {
+          "id": "s8e21",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 5.8,
+          "text": "Euh non ! Bon ben, c'est bien… Ben, au revoir alors… Il fait beau, vous trouvez pas ? C'est dommage qu'il n'y ait pas de soleil…"
+        },
+        {
+          "id": "s8e22",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 5.6,
+          "text": "Oui c'est vrai… Mais faut dire que la nuit c'est rare qu'il y ait du soleil en cette saison."
+        },
+        {
+          "id": "s8e23",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 4.8,
+          "text": "Oui c'est vrai ! Absolument. Bon ben, je vais rentrer…"
+        },
+        {
+          "id": "s8e24",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.4,
+          "text": "En tout cas, vous avez… de belles chaussures…"
+        },
+        {
+          "id": "s8e25",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 3.2,
+          "text": "Ah oui… surtout celle-là, non ?"
+        },
+        {
+          "id": "s8e26",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.6,
+          "text": "Ah oui c'est vrai, vous avez raison, c'est la mieux des deux."
+        },
+        {
+          "id": "s8e27",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.2,
+          "text": "Sa montre sonne soudainement, coupant court à cet instant qui venait à peine de commencer."
+        },
+        {
+          "id": "s8e28",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 5.2,
+          "text": "Mince je suis en train d'oublier l'heure moi, je dois rentrer… Et j'ai plein de trucs à penser. Faut pas que j'oublie…"
+        },
+        {
+          "id": "s8e29",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 6.2,
+          "text": "Moi aussi je dois y aller. J'attends un coup de fil de ma mère, elle doit me téléphoner ce soir."
+        },
+        {
+          "id": "s8e30",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.4,
+          "text": "Ah bon."
+        },
+        {
+          "id": "s8e31",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.4,
+          "text": "Ben oui."
+        },
+        {
+          "id": "s8e32",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.8,
+          "text": "Bon ben salut."
+        },
+        {
+          "id": "s8e33",
+          "type": "line",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.4,
+          "text": "Salut."
+        },
+        {
+          "id": "s8e34",
+          "type": "exit",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.9,
+          "toSide": "left"
+        },
+        {
+          "id": "s8e35",
+          "type": "action",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.6,
+          "text": "Le très jeune prince reste sur place, les yeux fixés sur elle qui s'éloigne, sans bien comprendre ce qui vient de se passer, et déjà incapable de laisser cet instant se terminer."
+        },
+        {
+          "id": "s8e36",
+          "type": "exit",
+          "actorId": "tres_jeune_prince",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s8e37",
+          "type": "exit",
+          "actorId": "fee",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s8e38",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     },
     {
       "id": "scene-9-maison-en-verre",
       "title": "SCÈNE 9",
       "subtitle": "Dans la maison en verre de la belle-mère de la très jeune fille.",
-      "setting": "大玻璃房中央是一张椅子，右侧是内厅，左上方是门口，右下方是清洁区。继母崩溃地坐着，大姐绕着她焦躁踱步，随后小妹、国王、卫兵与很年轻的女孩先后进入。",
+      "setting": "Au centre de la grande maison en verre, une chaise ; à droite la chambre intérieure, en haut à gauche la porte d'entrée, en bas à droite la zone de nettoyage. La belle-mère s'est effondrée sur sa chaise, la grande sœur fait les cent pas autour d'elle avec nervosité ; puis la petite sœur, le roi, les gardes et la très jeune fille entrent les uns après les autres.",
       "stage": {
         "width": 920,
         "height": 520,
@@ -458,43 +1973,43 @@
       "actors": [
         {
           "id": "belle_mere",
-          "name": "继母",
+          "name": "Belle-Mère",
           "color": "#f08c78",
           "shortLabel": "BM"
         },
         {
           "id": "soeur_grande",
-          "name": "大姐",
+          "name": "Grande Sœur",
           "color": "#ffcb6b",
           "shortLabel": "SG"
         },
         {
           "id": "soeur_petite",
-          "name": "小妹",
+          "name": "Petite Sœur",
           "color": "#7fd1b9",
           "shortLabel": "SP"
         },
         {
           "id": "roi",
-          "name": "国王",
+          "name": "Roi",
           "color": "#7ea6ff",
           "shortLabel": "ROI"
         },
         {
           "id": "garde_1",
-          "name": "卫兵一",
+          "name": "Garde 1",
           "color": "#95a0b8",
           "shortLabel": "G1"
         },
         {
           "id": "garde_2",
-          "name": "卫兵二",
+          "name": "Garde 2",
           "color": "#7b879f",
           "shortLabel": "G2"
         },
         {
           "id": "tres_jeune_fille",
-          "name": "很年轻的女孩",
+          "name": "Très Jeune Fille",
           "color": "#f3e2c7",
           "shortLabel": "TJF"
         }
@@ -509,7 +2024,7 @@
           "id": "e2",
           "type": "action",
           "duration": 2.2,
-          "text": "旁白：第二天，在未来继母那座巨大的玻璃房里，危机彻底爆发了。"
+          "text": "Narrateur : Le lendemain, dans la grande maison en verre de la future belle-mère, la crise éclate enfin."
         },
         {
           "id": "e3",
@@ -539,7 +2054,7 @@
           "type": "action",
           "actorId": "belle_mere",
           "duration": 1.8,
-          "text": "继母瘫坐在椅子上，神情恍惚；大姐围着她焦躁踱步。"
+          "text": "La belle-mère s'est effondrée sur la chaise, l'air hagard ; la grande sœur tourne autour d'elle avec nervosité."
         },
         {
           "id": "e7",
@@ -573,7 +2088,7 @@
           "type": "action",
           "actorId": "belle_mere",
           "duration": 1.2,
-          "text": "继母猛地从椅子上站起来，怒火骤然爆发。"
+          "text": "La belle-mère se lève brusquement de sa chaise, sa colère explose."
         },
         {
           "id": "e12",
@@ -684,7 +2199,7 @@
           "id": "e27",
           "type": "action",
           "duration": 1.6,
-          "text": "继母与大姐同时僵住，目光猛地转向门口；空气像被抽空了一样。"
+          "text": "La belle-mère et la grande sœur se figent simultanément, leurs regards se tournent vivement vers la porte ; un silence pesant s'installe."
         },
         {
           "id": "e28",
@@ -746,7 +2261,7 @@
           "id": "e34",
           "type": "action",
           "duration": 1.4,
-          "text": "国王带着两名卫兵直接穿过门口，步伐急促但仪态庄重。"
+          "text": "Le roi entre directement par la porte avec ses deux gardes, d'un pas vif mais d'une dignité irréprochable."
         },
         {
           "id": "e35",
@@ -801,7 +2316,7 @@
           "id": "e42",
           "type": "action",
           "duration": 1,
-          "text": "继母、大姐和小妹几乎同时前倾，呼吸一滞。"
+          "text": "La belle-mère, la grande sœur et la petite sœur se penchent toutes trois en avant au même instant, retenant leur souffle."
         },
         {
           "id": "e43",
@@ -845,7 +2360,7 @@
           "type": "action",
           "actorId": "tres_jeune_fille",
           "duration": 1.6,
-          "text": "很年轻的女孩抱着吸尘器从清洁区挤进来，神情疲惫却直率。"
+          "text": "La très jeune fille entre depuis la zone de nettoyage en portant l'aspirateur, l'air fatigué mais direct."
         },
         {
           "id": "e49",
@@ -962,7 +2477,7 @@
           "type": "action",
           "actorId": "belle_mere",
           "duration": 1.5,
-          "text": "继母坐回椅子里，忽然镇定下来，像抓住了某个危险而诱人的机会。"
+          "text": "La belle-mère se rassoit, soudainement calme, comme si elle venait de saisir une occasion dangereuse mais tentante."
         },
         {
           "id": "e66",
@@ -1129,7 +2644,7 @@
           "id": "e89",
           "type": "action",
           "duration": 1.2,
-          "text": "继母和两姐妹低头送别，卫兵同时转身准备离开。"
+          "text": "La belle-mère et les deux sœurs inclinent la tête pour prendre congé, tandis que les gardes se retournent pour partir."
         },
         {
           "id": "e90",
@@ -1171,7 +2686,7 @@
           "type": "action",
           "actorId": "belle_mere",
           "duration": 1.6,
-          "text": "继母什么也不回答，只带着神秘而危险的沉默起身离开。"
+          "text": "La belle-mère ne répond rien, se lève dans un silence mystérieux et dangereux, et s'en va."
         },
         {
           "id": "e96",
@@ -1223,7 +2738,7 @@
           "type": "action",
           "actorId": "tres_jeune_fille",
           "duration": 2,
-          "text": "所有人离开后，很年轻的女孩仍独自站着，手里握着吸尘器，像突然被世界遗忘。"
+          "text": "Une fois tout le monde parti, la très jeune fille reste seule debout, l'aspirateur à la main, comme soudainement oubliée par le monde entier."
         },
         {
           "id": "e103",
@@ -1236,7 +2751,7 @@
       "id": "scene-12-devant-palais",
       "title": "SCÈNE 12",
       "subtitle": "Quelques instants plus tard, devant le palais.",
-      "setting": "宫殿外的空地灯火未熄，宫门在上方偏右。国王与很年轻的王子在门前低声交谈，继母穿着夸张而现代的衣服站在几步之外；两名卫兵守在一旁。随后，很年轻的女孩来到宫外，与王子完成真正意义上的第一次对话。",
+      "setting": "Sur l'esplanade devant le palais, les lumières sont encore allumées, la porte est en haut à droite. Le roi et le très jeune prince discutent à voix basse devant les portes, la belle-mère se tient à quelques pas dans une tenue excentrique et moderne ; deux gardes montent la garde. Puis la très jeune fille arrive, et c'est là que se déroule leur première vraie conversation.",
       "stage": {
         "width": 920,
         "height": 520,
@@ -1246,37 +2761,37 @@
       "actors": [
         {
           "id": "belle_mere",
-          "name": "继母",
+          "name": "Belle-Mère",
           "color": "#f08c78",
           "shortLabel": "BM"
         },
         {
           "id": "roi",
-          "name": "国王",
+          "name": "Roi",
           "color": "#7ea6ff",
           "shortLabel": "ROI"
         },
         {
           "id": "garde_1",
-          "name": "卫兵一",
+          "name": "Garde 1",
           "color": "#95a0b8",
           "shortLabel": "G1"
         },
         {
           "id": "garde_2",
-          "name": "卫兵二",
+          "name": "Garde 2",
           "color": "#7b879f",
           "shortLabel": "G2"
         },
         {
           "id": "tres_jeune_prince",
-          "name": "很年轻的王子",
+          "name": "Très Jeune Prince",
           "color": "#dce7ff",
           "shortLabel": "TJP"
         },
         {
           "id": "tres_jeune_fille",
-          "name": "很年轻的女孩",
+          "name": "Très Jeune Fille",
           "color": "#f3e2c7",
           "shortLabel": "TJF"
         }
@@ -1291,7 +2806,7 @@
           "id": "s12e2",
           "type": "action",
           "duration": 3.2,
-          "text": "旁白：片刻之后，宫殿前的第二场夜会比第一场更离奇。国王迫不及待要让儿子再见到那位令他心神动摇的人，而继母则误以为自己就是那个人。"
+          "text": "Narrateur : Un peu plus tard, la deuxième rencontre nocturne devant le palais est encore plus rocambolesque. Le roi ne peut pas attendre de faire revoir à son fils la personne qui l'a bouleversé, tandis que la belle-mère est persuadée que cette personne, c'est elle."
         },
         {
           "id": "s12e3",
@@ -1347,7 +2862,7 @@
           "id": "s12e9",
           "type": "action",
           "duration": 1.8,
-          "text": "国王在儿子耳边低声鼓励，又远远指向几步之外的继母。继母衣着奇诡前卫，显然把今夜当成命运的回响。"
+          "text": "Le roi glisse quelques mots d'encouragement à l'oreille de son fils, puis désigne de loin la belle-mère à quelques pas. La belle-mère est habillée de façon excentrique et avant-gardiste, manifestement convaincue que cette nuit est l'écho du destin."
         },
         {
           "id": "s12e10",
@@ -1355,9 +2870,18 @@
           "actorId": "tres_jeune_prince",
           "duration": 1.6,
           "path": [
-            { "x": 430, "y": 240 },
-            { "x": 500, "y": 244 },
-            { "x": 552, "y": 246 }
+            {
+              "x": 430,
+              "y": 240
+            },
+            {
+              "x": 500,
+              "y": 244
+            },
+            {
+              "x": 552,
+              "y": 246
+            }
           ]
         },
         {
@@ -1440,7 +2964,7 @@
           "type": "action",
           "actorId": "tres_jeune_prince",
           "duration": 1.4,
-          "text": "王子像被钉在原地，神情越来越惊惧，嘴唇动了几次却插不上话。"
+          "text": "Le prince est comme cloué sur place, son expression de plus en plus incrédule, ses lèvres remuant plusieurs fois sans qu'il réussisse à placer un mot."
         },
         {
           "id": "s12e23",
@@ -1487,7 +3011,7 @@
           "type": "action",
           "actorId": "tres_jeune_prince",
           "duration": 1.4,
-          "text": "王子立刻抬手向父亲求救。国王快步靠近，卫兵也随之绷紧身体。"
+          "text": "Le prince lève aussitôt la main vers son père pour appeler à l'aide. Le roi s'approche rapidement, les gardes se raidissent."
         },
         {
           "id": "s12e30",
@@ -1607,7 +3131,7 @@
           "type": "action",
           "actorId": "belle_mere",
           "duration": 2,
-          "text": "继母像脚下地面突然塌陷一般环顾四周，完全不明白局势为何顷刻逆转。"
+          "text": "La belle-mère regarde autour d'elle comme si le sol venait de s'effondrer sous ses pieds, sans comprendre comment la situation a pu se retourner en un instant."
         },
         {
           "id": "s12e47",
@@ -1620,7 +3144,7 @@
           "id": "s12e48",
           "type": "action",
           "duration": 2.8,
-          "text": "国王朝卫兵示意。卫兵上前，继母惊叫着挣脱，朝宫门方向乱跑，引起宴会宾客一阵哄笑。混乱中，她掉下一只鞋。"
+          "text": "Le roi fait signe aux gardes. Ils s'avancent, la belle-mère pousse un cri et s'échappe en courant vers les portes du palais, déclenchant les rires des invités. Dans la confusion, elle perd une chaussure."
         },
         {
           "id": "s12e49",
@@ -1628,9 +3152,18 @@
           "actorId": "belle_mere",
           "duration": 1.8,
           "path": [
-            { "x": 670, "y": 238 },
-            { "x": 726, "y": 204 },
-            { "x": 792, "y": 170 }
+            {
+              "x": 670,
+              "y": 238
+            },
+            {
+              "x": 726,
+              "y": 204
+            },
+            {
+              "x": 792,
+              "y": 170
+            }
           ]
         },
         {
@@ -1645,7 +3178,7 @@
           "type": "action",
           "actorId": "garde_1",
           "duration": 1.4,
-          "text": "一名卫兵弯腰捡起那只鞋，另一名卫兵仍警惕地盯着宫门方向。"
+          "text": "Un garde se penche pour ramasser la chaussure, l'autre garde son regard fixé avec vigilance vers les portes du palais."
         },
         {
           "id": "s12e52",
@@ -1659,7 +3192,7 @@
           "id": "s12e53",
           "type": "action",
           "duration": 1.6,
-          "text": "国王陪着受惊的王子回到宫门内，宫殿前暂时只剩下夜色与散落的滑稽余波。"
+          "text": "Le roi raccompagne son fils troublé à l'intérieur du palais, laissant devant lui la nuit et les échos dérisoires de la scène qui vient de se jouer."
         },
         {
           "id": "s12e54",
@@ -1848,7 +3381,7 @@
           "type": "action",
           "actorId": "tres_jeune_prince",
           "duration": 1.6,
-          "text": "王子终于明白了那则被维持十年的谎言。他哭了起来，女孩走近，把他抱在怀里。"
+          "text": "Le prince comprend enfin le mensonge maintenu pendant dix ans. Il pleure, la fille s'approche et le prend dans ses bras."
         },
         {
           "id": "s12e81",
@@ -1896,7 +3429,7 @@
           "id": "s12e87",
           "type": "action",
           "duration": 1.8,
-          "text": "王子脱下一只鞋递给女孩。女孩像接住某种迟来的证词，小心把它捧在手里。"
+          "text": "Le prince retire une de ses chaussures et la tend à la fille. La fille la reçoit comme une pièce à conviction arrivée en retard, et la tient précautionneusement entre ses mains."
         },
         {
           "id": "s12e88",
@@ -1974,7 +3507,7 @@
           "type": "action",
           "actorId": "tres_jeune_prince",
           "duration": 2.4,
-          "text": "很年轻的王子站在宫殿前，目送她离开，像第一次真正看见通往未来的路。"
+          "text": "Le très jeune prince reste devant le palais, les yeux fixés sur elle qui s'éloigne, comme s'il voyait pour la première fois la route vers l'avenir."
         },
         {
           "id": "s12e99",
@@ -1987,7 +3520,7 @@
       "id": "scene-13-maison-en-verre",
       "title": "SCÈNE 13",
       "subtitle": "Dans la maison en verre.",
-      "setting": "第二天，玻璃房里弥漫着焦虑。大姐坐在椅子上神情沉重，小妹在房门附近来回张望；继母把自己关在房里，病态而虚弱。门口再次传来敲门声，国王与卫兵进入，而很年轻的女孩终于在这个家里公开说出真相。",
+      "setting": "Le lendemain, l'anxiété règne dans la maison en verre. La grande sœur est assise, l'air abattu, la petite sœur va et vient près de la porte ; la belle-mère s'est enfermée dans sa chambre, affaiblie. Des coups sont frappés à la porte, le roi et les gardes entrent, et la très jeune fille dit enfin la vérité à voix haute dans cette maison.",
       "stage": {
         "width": 920,
         "height": 520,
@@ -1996,248 +3529,1031 @@
         "chairX": 446,
         "chairY": 346,
         "props": [
-          { "id": "scene13-chair", "kind": "chair", "x": 446, "y": 346 },
-          { "id": "scene13-shoe", "kind": "shoe", "x": 690, "y": 414 }
+          {
+            "id": "scene13-chair",
+            "kind": "chair",
+            "x": 446,
+            "y": 346
+          },
+          {
+            "id": "scene13-shoe",
+            "kind": "shoe",
+            "x": 690,
+            "y": 414
+          }
         ]
       },
       "actors": [
         {
           "id": "belle_mere",
-          "name": "继母",
+          "name": "Belle-Mère",
           "color": "#f08c78",
           "shortLabel": "BM"
         },
         {
           "id": "soeur_grande",
-          "name": "大姐",
+          "name": "Grande Sœur",
           "color": "#ffcb6b",
           "shortLabel": "SG"
         },
         {
           "id": "soeur_petite",
-          "name": "小妹",
+          "name": "Petite Sœur",
           "color": "#7fd1b9",
           "shortLabel": "SP"
         },
         {
           "id": "roi",
-          "name": "国王",
+          "name": "Roi",
           "color": "#7ea6ff",
           "shortLabel": "ROI"
         },
         {
           "id": "garde_1",
-          "name": "卫兵一",
+          "name": "Garde 1",
           "color": "#95a0b8",
           "shortLabel": "G1"
         },
         {
           "id": "garde_2",
-          "name": "卫兵二",
+          "name": "Garde 2",
           "color": "#7b879f",
           "shortLabel": "G2"
         },
         {
           "id": "tres_jeune_fille",
-          "name": "很年轻的女孩",
+          "name": "Très Jeune Fille",
           "color": "#f3e2c7",
           "shortLabel": "TJF"
         }
       ],
       "events": [
-        { "id": "s13e1", "type": "blackout_start", "duration": 1.2 },
-        { "id": "s13e2", "type": "action", "duration": 3.2, "text": "旁白：第二天，在玻璃房里，每个人都被不安压得喘不过气。自从昨夜从宫廷晚会回来，未来的继母就把自己关在房间里，病情让人越来越担心。" },
-        { "id": "s13e3", "type": "blackout_end", "duration": 0.6 },
-        { "id": "s13e3a", "type": "prop_hide", "propId": "scene13-shoe", "propKind": "shoe", "duration": 0.1, "text": "王子的鞋暂时还没有出现在舞台上。" },
-        { "id": "s13e4", "type": "enter", "actorId": "soeur_grande", "duration": 1, "x": 446, "y": 346, "fromSide": "right" },
-        { "id": "s13e5", "type": "action", "actorId": "soeur_grande", "duration": 1.4, "text": "大姐坐在椅子上，神情萎顿，像被一夜之间抽空了力气。" },
-        { "id": "s13e6", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 720, "y": 392, "fromSide": "right" },
-        { "id": "s13e7", "type": "line", "actorId": "soeur_grande", "duration": 6.8, "text": "T'as pas mieux à faire que de traîner sans but comme ça comme une touriste, tu m'énerves, c'est pas possible ! Ce que tu es exaspérante, ma pauvre fille…" },
-        { "id": "s13e8", "type": "line", "actorId": "tres_jeune_fille", "duration": 4.4, "text": "J'ai plus tellement envie qu'on me donne des ordres ce matin. Je sais pas pourquoi." },
-        { "id": "s13e9", "type": "line", "actorId": "soeur_grande", "duration": 4.2, "text": "Qu'est-ce que tu racontes ? T'as même pas débarrassé la table j'ai vu." },
-        { "id": "s13e10", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.4, "text": "Oui je sais." },
-        { "id": "s13e11", "type": "enter", "actorId": "soeur_petite", "duration": 1, "x": 646, "y": 286, "fromSide": "right" },
-        { "id": "s13e12", "type": "line", "actorId": "soeur_petite", "duration": 3.6, "text": "Elle là-bas, ça va pas du tout." },
-        { "id": "s13e13", "type": "line", "actorId": "soeur_grande", "duration": 2.4, "text": "Et elle non plus ici on dirait." },
-        { "id": "s13e14", "type": "action", "duration": 1.2, "text": "门铃突然响起，三个人同时僵住。小妹警惕地看向门口。" },
-        { "id": "s13e15", "type": "line", "actorId": "soeur_petite", "duration": 1.8, "text": "C'est ta montre ?" },
-        { "id": "s13e16", "type": "line", "actorId": "tres_jeune_fille", "duration": 1.4, "text": "Non, c'est la porte." },
-        { "id": "s13e17", "type": "line", "actorId": "soeur_grande", "duration": 1.2, "text": "Ben vas-y." },
-        { "id": "s13e18", "type": "line", "actorId": "soeur_petite", "duration": 1.2, "text": "Ben vas-y." },
-        { "id": "s13e19", "type": "line", "actorId": "tres_jeune_fille", "duration": 3.8, "text": "Je préférerais ne pas y aller je crois." },
-        { "id": "s13e20", "type": "line", "actorId": "soeur_grande", "duration": 5.2, "text": "Mais ça va pas bien la tête ! Déjà que notre mère est tombée malade ce matin. T'es complètement irresponsable ou quoi ?" },
-        { "id": "s13e21", "type": "enter", "actorId": "roi", "duration": 1.1, "x": 236, "y": 204, "fromSide": "left" },
-        { "id": "s13e22", "type": "enter", "actorId": "garde_1", "duration": 0.9, "x": 152, "y": 236, "fromSide": "left" },
-        { "id": "s13e23", "type": "enter", "actorId": "garde_2", "duration": 0.9, "x": 250, "y": 228, "fromSide": "left" },
-        { "id": "s13e24", "type": "line", "actorId": "roi", "duration": 4.4, "text": "Excusez-moi, je me suis permis d'entrer, la porte était grande ouverte." },
-        { "id": "s13e25", "type": "line", "actorId": "soeur_grande", "duration": 2.6, "text": "Merde c'est vous Majesté ? On est pas coiffées." },
-        { "id": "s13e26", "type": "line", "actorId": "roi", "duration": 2.2, "text": "Vous êtes très bien comme vous êtes." },
-        { "id": "s13e27", "type": "line", "actorId": "soeur_petite", "duration": 2.8, "text": "Qu'est-ce qui vous amène Sire cette fois ?" },
-        { "id": "s13e28", "type": "line", "actorId": "roi", "duration": 8.8, "text": "Mon fils a revu hier cette jeune personne de l'autre jour que je recherchais déjà en vain il y a deux semaines. Mais mon fils est étourdi, ils ne se sont pas échangé leurs coordonnées en partant." },
-        { "id": "s13e29", "type": "line", "actorId": "soeur_grande", "duration": 3.4, "text": "Ben vous savez, nous on n'était pas à votre soirée." },
-        { "id": "s13e30", "type": "line", "actorId": "roi", "duration": 8.8, "text": "Ah bon ? Mon fils est complètement transformé, il me parle sans cesse de cette jeune femme. J'ai lancé une grande opération de recherche, j'y participe moi-même." },
-        { "id": "s13e31", "type": "line", "actorId": "roi", "duration": 8.8, "text": "Vous ne pensez pas que quelqu'un qui habiterait ici chez vous aurait pu se rendre à cette soirée. Je ne sais pas… par exemple, de façon anonyme ? Et ainsi rencontrer mon fils…" },
-        { "id": "s13e32", "type": "action", "duration": 1.6, "text": "国王抬手指向很年轻的女孩。两姐妹几乎同时露出夸张的不屑神情。" },
-        { "id": "s13e33", "type": "line", "actorId": "roi", "duration": 2.2, "text": "Cette jeune personne par exemple n'habite pas chez vous ?" },
-        { "id": "s13e34", "type": "line", "actorId": "soeur_grande", "duration": 2.2, "text": "Elle, vous avez vu l'allure ?" },
-        { "id": "s13e35", "type": "pause", "duration": 0.8 },
-        { "id": "s13e36", "type": "line", "actorId": "tres_jeune_fille", "duration": 7.8, "text": "Excusez-moi Monseigneur, je crois que c'est moi qui ai parlé avec votre fils hier soir, on s'est pas donné nos coordonnées c'est vrai, on y a pas pensé." },
-        { "id": "s13e37", "type": "line", "actorId": "roi", "duration": 2.2, "text": "Ah bon, c'est vous ?" },
-        { "id": "s13e38", "type": "line", "actorId": "soeur_grande", "duration": 2.4, "text": "Mais elle débloque ou quoi ?!" },
-        { "id": "s13e39", "type": "line", "actorId": "soeur_petite", "duration": 3.6, "text": "Et t'es allée habillée comme ça à la soirée ?" },
-        { "id": "s13e40", "type": "line", "actorId": "soeur_grande", "duration": 1.8, "text": "Habillée comme un chimpanzé ?" },
-        { "id": "s13e41", "type": "line", "actorId": "tres_jeune_fille", "duration": 5.2, "text": "Non, je me suis habillée autrement, avec une robe de ma mère." },
-        { "id": "s13e42", "type": "line", "actorId": "roi", "duration": 6.8, "text": "Vous savez, c'est très simple de vérifier ses propos. Mon fils m'a dit qu'il avait offert en souvenir à cette jeune personne une de ses chaussures." },
-        { "id": "s13e43", "type": "line", "actorId": "soeur_grande", "duration": 2, "text": "Une de ses chaussures ?" },
-        { "id": "s13e44", "type": "line", "actorId": "soeur_petite", "duration": 2, "text": "Une de ses chaussures ?" },
-        { "id": "s13e45", "type": "line", "actorId": "roi", "duration": 6.8, "text": "Oui ! Ça ce sont les jeunes ! Donc, il est très facile maintenant de demander à cette mademoiselle si elle est en possession de cette chaussure de mon fils." },
-        { "id": "s13e46", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.9, "toSide": "right" },
-        { "id": "s13e47", "type": "line", "actorId": "soeur_grande", "duration": 5.8, "text": "Là vous êtes en train de vous raconter une histoire dans votre tête Majesté." },
-        { "id": "s13e48", "type": "line", "actorId": "soeur_petite", "duration": 1.8, "text": "Complètement !" },
-        { "id": "s13e49", "type": "line", "actorId": "soeur_grande", "duration": 3.6, "text": "On vous aura prévenu." },
-        { "id": "s13e50", "type": "line", "actorId": "soeur_petite", "duration": 2.4, "text": "Vous vous faites du mal !" },
-        { "id": "s13e51", "type": "line", "actorId": "soeur_grande", "duration": 5.2, "text": "En plus, cette fille c'est pas un cadeau, à part si vous voulez monter une société de nettoyage." },
-        { "id": "s13e52", "type": "line", "actorId": "soeur_petite", "duration": 4.8, "text": "Et encore ! Elle-même, elle est pas hyper propre. Nous, c'est Cendrier qu'on connaît !" },
-        { "id": "s13e53", "type": "line", "actorId": "roi", "duration": 5.4, "text": "Mon fils m'avait évoqué le prénom de cette jeune fille : quelque chose comme Cendrillon." },
-        { "id": "s13e54", "type": "line", "actorId": "soeur_grande", "duration": 2.2, "text": "Nous, c'est Cendrier qu'on connaît !" },
-        { "id": "s13e55", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 704, "y": 370, "fromSide": "right" },
-        { "id": "s13e56", "type": "action", "actorId": "tres_jeune_fille", "duration": 1.6, "text": "很年轻的女孩回来了，手里握着王子的鞋，像拿着某种能让所有人闭嘴的证据。" },
-        { "id": "s13e56a", "type": "prop_show", "propId": "scene13-shoe", "propKind": "shoe", "duration": 0.5, "text": "鞋子作为证物出现在众人面前。" },
-        { "id": "s13e57", "type": "line", "actorId": "tres_jeune_fille", "duration": 2.8, "text": "C'est pas ça dont vous parlez ?" },
-        { "id": "s13e58", "type": "action", "actorId": "roi", "duration": 1.6, "text": "国王接过鞋子，认真翻看鞋底与内侧标记。两姐妹彻底呆住了。" },
-        { "id": "s13e59", "type": "line", "actorId": "roi", "duration": 6.4, "text": "Attendez voir… Ben si, c'est la chaussure de mon fils, c'est marqué le nom du fabricant à l'intérieur ! Et c'est sa pointure. Il chausse très petit pour son âge." },
-        { "id": "s13e60", "type": "line", "actorId": "soeur_grande", "duration": 1.4, "text": "Ah bon ?" },
-        { "id": "s13e61", "type": "line", "actorId": "soeur_petite", "duration": 1.4, "text": "Ah bon ?" },
-        { "id": "s13e62", "type": "line", "actorId": "roi", "duration": 6.6, "text": "Ben alors, c'est vous la princesse de mon fils ?! Je crois que vous êtes en train de transformer sa vie et la mienne par la même occasion." },
-        { "id": "s13e63", "type": "line", "actorId": "tres_jeune_fille", "duration": 3.6, "text": "Il me l'a donnée en souvenir, il m'a dit." },
-        { "id": "s13e64", "type": "line", "actorId": "roi", "duration": 8.6, "text": "Depuis dix ans, il ne faisait que parler de sa mère et aujourd'hui, il me parle plus que de vous. Je crois que je vais organiser une autre grande soirée très prochainement alors ! J'adore les soirées moi." },
-        { "id": "s13e65", "type": "line", "actorId": "tres_jeune_fille", "duration": 5.4, "text": "Ben oui, ça peut se faire si votre fils y est aussi, on boira un coup ensemble." },
-        { "id": "s13e66", "type": "line", "actorId": "roi", "duration": 6.8, "text": "Ça c'est formidable. J'adore m'amuser moi. Évidemment vous êtes invitées vous aussi. Je cours annoncer la bonne nouvelle à qui vous savez." },
-        { "id": "s13e67", "type": "exit", "actorId": "roi", "duration": 0.9, "toSide": "left" },
-        { "id": "s13e68", "type": "exit", "actorId": "garde_1", "duration": 0.8, "toSide": "left" },
-        { "id": "s13e69", "type": "exit", "actorId": "garde_2", "duration": 0.8, "toSide": "left" },
-        { "id": "s13e70", "type": "action", "duration": 2.2, "text": "国王一离开，房间里陷入一种更加可怕的寂静。两姐妹直直盯着很年轻的女孩，像第一次看见她。" },
-        { "id": "s13e71", "type": "pause", "duration": 1.2 },
-        { "id": "s13e72", "type": "enter", "actorId": "belle_mere", "duration": 1, "x": 624, "y": 202, "fromSide": "top" },
-        { "id": "s13e73", "type": "action", "actorId": "belle_mere", "duration": 1.6, "text": "继母摇摇晃晃地从房里走出来，脸色惨白，像被昨夜的失败掏空了魂。"},
-        { "id": "s13e74", "type": "line", "actorId": "belle_mere", "duration": 6.6, "text": "C'est quoi ce boucan ? Qu'est-ce qui se passe ? Vous avez des têtes de cimetière ! Il est arrivé quelque chose encore ?" },
-        { "id": "s13e75", "type": "line", "actorId": "soeur_grande", "duration": 2.2, "text": "Non, rien maman." },
-        { "id": "s13e76", "type": "line", "actorId": "soeur_petite", "duration": 1.6, "text": "Rien." },
-        { "id": "s13e77", "type": "line", "actorId": "soeur_grande", "duration": 2.6, "text": "Rien du tout, t'inquiète pas… Y est rien arrivé." },
-        { "id": "s13e78", "type": "line", "actorId": "soeur_petite", "duration": 2.2, "text": "Pas du tout." },
-        { "id": "s13e79", "type": "line", "actorId": "belle_mere", "duration": 2.2, "text": "C'est Cendrier ou quoi ?" },
-        { "id": "s13e80", "type": "line", "actorId": "soeur_grande", "duration": 2.2, "text": "Non non, pas du tout." },
-        { "id": "s13e81", "type": "line", "actorId": "soeur_petite", "duration": 4.2, "text": "Rien n'est arrivé avec Cendrier, rien du tout." },
-        { "id": "s13e82", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.9, "toSide": "right" },
-        { "id": "s13e83", "type": "line", "actorId": "soeur_petite", "duration": 2.8, "text": "Y s'est rien passé avec elle." },
-        { "id": "s13e84", "type": "line", "actorId": "soeur_grande", "duration": 1.8, "text": "Rien du tout." },
-        { "id": "s13e85", "type": "line", "actorId": "soeur_petite", "duration": 2.4, "text": "Rien du tout maman, t'inquiète pas." },
-        { "id": "s13e86", "type": "line", "actorId": "belle_mere", "duration": 2.2, "text": "J'aime mieux ça." },
-        { "id": "s13e87", "type": "line", "actorId": "soeur_grande", "duration": 1.8, "text": "Rien du tout." },
-        { "id": "s13e88", "type": "exit", "actorId": "belle_mere", "duration": 0.9, "toSide": "top" },
-        { "id": "s13e89", "type": "action", "duration": 4.2, "text": "旁白：从这一天起，很年轻的女孩与父亲离开了这座房子。后来，父亲再婚，娶了一个没那么糟糕的女人，还把烟也戒了。" },
-        { "id": "s13e90", "type": "action", "duration": 4.6, "text": "旁白：而在那位前未来继母的玻璃房里，又出现了一个古怪现象。鸟儿不再撞上看不见的玻璃，但撞击声却还持续了很久，搅得这家人久久不得安宁。" },
-        { "id": "s13e91", "type": "action", "duration": 2.8, "text": "旁白：幸好，总有一天，一切还是安静了下来。" },
-        { "id": "s13e92", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s13e1",
+          "type": "blackout_start",
+          "duration": 1.2
+        },
+        {
+          "id": "s13e2",
+          "type": "action",
+          "duration": 3.2,
+          "text": "Narrateur : Le lendemain, dans la maison en verre, tout le monde suffoque sous l'anxiété. Depuis son retour de la soirée royale la nuit précédente, la future belle-mère s'est enfermée dans sa chambre, et son état inspire une inquiétude croissante."
+        },
+        {
+          "id": "s13e3",
+          "type": "blackout_end",
+          "duration": 0.6
+        },
+        {
+          "id": "s13e3a",
+          "type": "prop_hide",
+          "propId": "scene13-shoe",
+          "propKind": "shoe",
+          "duration": 0.1,
+          "text": "La chaussure du prince n'est pas encore sur la scène."
+        },
+        {
+          "id": "s13e4",
+          "type": "enter",
+          "actorId": "soeur_grande",
+          "duration": 1,
+          "x": 446,
+          "y": 346,
+          "fromSide": "right"
+        },
+        {
+          "id": "s13e5",
+          "type": "action",
+          "actorId": "soeur_grande",
+          "duration": 1.4,
+          "text": "La grande sœur est assise sur la chaise, l'air abattu, comme si une nuit entière lui avait vidé toute son énergie."
+        },
+        {
+          "id": "s13e6",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 720,
+          "y": 392,
+          "fromSide": "right"
+        },
+        {
+          "id": "s13e7",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 6.8,
+          "text": "T'as pas mieux à faire que de traîner sans but comme ça comme une touriste, tu m'énerves, c'est pas possible ! Ce que tu es exaspérante, ma pauvre fille…"
+        },
+        {
+          "id": "s13e8",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 4.4,
+          "text": "J'ai plus tellement envie qu'on me donne des ordres ce matin. Je sais pas pourquoi."
+        },
+        {
+          "id": "s13e9",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 4.2,
+          "text": "Qu'est-ce que tu racontes ? T'as même pas débarrassé la table j'ai vu."
+        },
+        {
+          "id": "s13e10",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.4,
+          "text": "Oui je sais."
+        },
+        {
+          "id": "s13e11",
+          "type": "enter",
+          "actorId": "soeur_petite",
+          "duration": 1,
+          "x": 646,
+          "y": 286,
+          "fromSide": "right"
+        },
+        {
+          "id": "s13e12",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 3.6,
+          "text": "Elle là-bas, ça va pas du tout."
+        },
+        {
+          "id": "s13e13",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.4,
+          "text": "Et elle non plus ici on dirait."
+        },
+        {
+          "id": "s13e14",
+          "type": "action",
+          "duration": 1.2,
+          "text": "La sonnette retentit brusquement, les trois se figent en même temps. La petite sœur tourne un regard méfiant vers la porte."
+        },
+        {
+          "id": "s13e15",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1.8,
+          "text": "C'est ta montre ?"
+        },
+        {
+          "id": "s13e16",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.4,
+          "text": "Non, c'est la porte."
+        },
+        {
+          "id": "s13e17",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1.2,
+          "text": "Ben vas-y."
+        },
+        {
+          "id": "s13e18",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1.2,
+          "text": "Ben vas-y."
+        },
+        {
+          "id": "s13e19",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 3.8,
+          "text": "Je préférerais ne pas y aller je crois."
+        },
+        {
+          "id": "s13e20",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 5.2,
+          "text": "Mais ça va pas bien la tête ! Déjà que notre mère est tombée malade ce matin. T'es complètement irresponsable ou quoi ?"
+        },
+        {
+          "id": "s13e21",
+          "type": "enter",
+          "actorId": "roi",
+          "duration": 1.1,
+          "x": 236,
+          "y": 204,
+          "fromSide": "left"
+        },
+        {
+          "id": "s13e22",
+          "type": "enter",
+          "actorId": "garde_1",
+          "duration": 0.9,
+          "x": 152,
+          "y": 236,
+          "fromSide": "left"
+        },
+        {
+          "id": "s13e23",
+          "type": "enter",
+          "actorId": "garde_2",
+          "duration": 0.9,
+          "x": 250,
+          "y": 228,
+          "fromSide": "left"
+        },
+        {
+          "id": "s13e24",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 4.4,
+          "text": "Excusez-moi, je me suis permis d'entrer, la porte était grande ouverte."
+        },
+        {
+          "id": "s13e25",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.6,
+          "text": "Merde c'est vous Majesté ? On est pas coiffées."
+        },
+        {
+          "id": "s13e26",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 2.2,
+          "text": "Vous êtes très bien comme vous êtes."
+        },
+        {
+          "id": "s13e27",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2.8,
+          "text": "Qu'est-ce qui vous amène Sire cette fois ?"
+        },
+        {
+          "id": "s13e28",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 8.8,
+          "text": "Mon fils a revu hier cette jeune personne de l'autre jour que je recherchais déjà en vain il y a deux semaines. Mais mon fils est étourdi, ils ne se sont pas échangé leurs coordonnées en partant."
+        },
+        {
+          "id": "s13e29",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 3.4,
+          "text": "Ben vous savez, nous on n'était pas à votre soirée."
+        },
+        {
+          "id": "s13e30",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 8.8,
+          "text": "Ah bon ? Mon fils est complètement transformé, il me parle sans cesse de cette jeune femme. J'ai lancé une grande opération de recherche, j'y participe moi-même."
+        },
+        {
+          "id": "s13e31",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 8.8,
+          "text": "Vous ne pensez pas que quelqu'un qui habiterait ici chez vous aurait pu se rendre à cette soirée. Je ne sais pas… par exemple, de façon anonyme ? Et ainsi rencontrer mon fils…"
+        },
+        {
+          "id": "s13e32",
+          "type": "action",
+          "duration": 1.6,
+          "text": "Le roi lève la main et désigne la très jeune fille. Les deux sœurs arborent presque simultanément une expression de mépris exagérée."
+        },
+        {
+          "id": "s13e33",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 2.2,
+          "text": "Cette jeune personne par exemple n'habite pas chez vous ?"
+        },
+        {
+          "id": "s13e34",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.2,
+          "text": "Elle, vous avez vu l'allure ?"
+        },
+        {
+          "id": "s13e35",
+          "type": "pause",
+          "duration": 0.8
+        },
+        {
+          "id": "s13e36",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 7.8,
+          "text": "Excusez-moi Monseigneur, je crois que c'est moi qui ai parlé avec votre fils hier soir, on s'est pas donné nos coordonnées c'est vrai, on y a pas pensé."
+        },
+        {
+          "id": "s13e37",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 2.2,
+          "text": "Ah bon, c'est vous ?"
+        },
+        {
+          "id": "s13e38",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.4,
+          "text": "Mais elle débloque ou quoi ?!"
+        },
+        {
+          "id": "s13e39",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 3.6,
+          "text": "Et t'es allée habillée comme ça à la soirée ?"
+        },
+        {
+          "id": "s13e40",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1.8,
+          "text": "Habillée comme un chimpanzé ?"
+        },
+        {
+          "id": "s13e41",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 5.2,
+          "text": "Non, je me suis habillée autrement, avec une robe de ma mère."
+        },
+        {
+          "id": "s13e42",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 6.8,
+          "text": "Vous savez, c'est très simple de vérifier ses propos. Mon fils m'a dit qu'il avait offert en souvenir à cette jeune personne une de ses chaussures."
+        },
+        {
+          "id": "s13e43",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2,
+          "text": "Une de ses chaussures ?"
+        },
+        {
+          "id": "s13e44",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2,
+          "text": "Une de ses chaussures ?"
+        },
+        {
+          "id": "s13e45",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 6.8,
+          "text": "Oui ! Ça ce sont les jeunes ! Donc, il est très facile maintenant de demander à cette mademoiselle si elle est en possession de cette chaussure de mon fils."
+        },
+        {
+          "id": "s13e46",
+          "type": "exit",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.9,
+          "toSide": "right"
+        },
+        {
+          "id": "s13e47",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 5.8,
+          "text": "Là vous êtes en train de vous raconter une histoire dans votre tête Majesté."
+        },
+        {
+          "id": "s13e48",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1.8,
+          "text": "Complètement !"
+        },
+        {
+          "id": "s13e49",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 3.6,
+          "text": "On vous aura prévenu."
+        },
+        {
+          "id": "s13e50",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2.4,
+          "text": "Vous vous faites du mal !"
+        },
+        {
+          "id": "s13e51",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 5.2,
+          "text": "En plus, cette fille c'est pas un cadeau, à part si vous voulez monter une société de nettoyage."
+        },
+        {
+          "id": "s13e52",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 4.8,
+          "text": "Et encore ! Elle-même, elle est pas hyper propre. Nous, c'est Cendrier qu'on connaît !"
+        },
+        {
+          "id": "s13e53",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 5.4,
+          "text": "Mon fils m'avait évoqué le prénom de cette jeune fille : quelque chose comme Cendrillon."
+        },
+        {
+          "id": "s13e54",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.2,
+          "text": "Nous, c'est Cendrier qu'on connaît !"
+        },
+        {
+          "id": "s13e55",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 704,
+          "y": 370,
+          "fromSide": "right"
+        },
+        {
+          "id": "s13e56",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.6,
+          "text": "La très jeune fille revient, la chaussure du prince à la main, comme une preuve capable de faire taire tout le monde."
+        },
+        {
+          "id": "s13e56a",
+          "type": "prop_show",
+          "propId": "scene13-shoe",
+          "propKind": "shoe",
+          "duration": 0.5,
+          "text": "La chaussure apparaît devant tout le monde comme pièce à conviction."
+        },
+        {
+          "id": "s13e57",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.8,
+          "text": "C'est pas ça dont vous parlez ?"
+        },
+        {
+          "id": "s13e58",
+          "type": "action",
+          "actorId": "roi",
+          "duration": 1.6,
+          "text": "Le roi prend la chaussure, l'examine attentivement — semelle, marque intérieure. Les deux sœurs sont complètement pétrifiées."
+        },
+        {
+          "id": "s13e59",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 6.4,
+          "text": "Attendez voir… Ben si, c'est la chaussure de mon fils, c'est marqué le nom du fabricant à l'intérieur ! Et c'est sa pointure. Il chausse très petit pour son âge."
+        },
+        {
+          "id": "s13e60",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1.4,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "s13e61",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1.4,
+          "text": "Ah bon ?"
+        },
+        {
+          "id": "s13e62",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 6.6,
+          "text": "Ben alors, c'est vous la princesse de mon fils ?! Je crois que vous êtes en train de transformer sa vie et la mienne par la même occasion."
+        },
+        {
+          "id": "s13e63",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 3.6,
+          "text": "Il me l'a donnée en souvenir, il m'a dit."
+        },
+        {
+          "id": "s13e64",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 8.6,
+          "text": "Depuis dix ans, il ne faisait que parler de sa mère et aujourd'hui, il me parle plus que de vous. Je crois que je vais organiser une autre grande soirée très prochainement alors ! J'adore les soirées moi."
+        },
+        {
+          "id": "s13e65",
+          "type": "line",
+          "actorId": "tres_jeune_fille",
+          "duration": 5.4,
+          "text": "Ben oui, ça peut se faire si votre fils y est aussi, on boira un coup ensemble."
+        },
+        {
+          "id": "s13e66",
+          "type": "line",
+          "actorId": "roi",
+          "duration": 6.8,
+          "text": "Ça c'est formidable. J'adore m'amuser moi. Évidemment vous êtes invitées vous aussi. Je cours annoncer la bonne nouvelle à qui vous savez."
+        },
+        {
+          "id": "s13e67",
+          "type": "exit",
+          "actorId": "roi",
+          "duration": 0.9,
+          "toSide": "left"
+        },
+        {
+          "id": "s13e68",
+          "type": "exit",
+          "actorId": "garde_1",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s13e69",
+          "type": "exit",
+          "actorId": "garde_2",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s13e70",
+          "type": "action",
+          "duration": 2.2,
+          "text": "À peine le roi parti, un silence encore plus redoutable s'installe dans la pièce. Les deux sœurs fixent la très jeune fille comme si elles la voyaient pour la première fois."
+        },
+        {
+          "id": "s13e71",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s13e72",
+          "type": "enter",
+          "actorId": "belle_mere",
+          "duration": 1,
+          "x": 624,
+          "y": 202,
+          "fromSide": "top"
+        },
+        {
+          "id": "s13e73",
+          "type": "action",
+          "actorId": "belle_mere",
+          "duration": 1.6,
+          "text": "La belle-mère sort de sa chambre en vacillant, le teint blême, comme si l'échec de la nuit précédente l'avait vidée de toute substance."
+        },
+        {
+          "id": "s13e74",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 6.6,
+          "text": "C'est quoi ce boucan ? Qu'est-ce qui se passe ? Vous avez des têtes de cimetière ! Il est arrivé quelque chose encore ?"
+        },
+        {
+          "id": "s13e75",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.2,
+          "text": "Non, rien maman."
+        },
+        {
+          "id": "s13e76",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 1.6,
+          "text": "Rien."
+        },
+        {
+          "id": "s13e77",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.6,
+          "text": "Rien du tout, t'inquiète pas… Y est rien arrivé."
+        },
+        {
+          "id": "s13e78",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2.2,
+          "text": "Pas du tout."
+        },
+        {
+          "id": "s13e79",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.2,
+          "text": "C'est Cendrier ou quoi ?"
+        },
+        {
+          "id": "s13e80",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 2.2,
+          "text": "Non non, pas du tout."
+        },
+        {
+          "id": "s13e81",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 4.2,
+          "text": "Rien n'est arrivé avec Cendrier, rien du tout."
+        },
+        {
+          "id": "s13e82",
+          "type": "exit",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.9,
+          "toSide": "right"
+        },
+        {
+          "id": "s13e83",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2.8,
+          "text": "Y s'est rien passé avec elle."
+        },
+        {
+          "id": "s13e84",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1.8,
+          "text": "Rien du tout."
+        },
+        {
+          "id": "s13e85",
+          "type": "line",
+          "actorId": "soeur_petite",
+          "duration": 2.4,
+          "text": "Rien du tout maman, t'inquiète pas."
+        },
+        {
+          "id": "s13e86",
+          "type": "line",
+          "actorId": "belle_mere",
+          "duration": 2.2,
+          "text": "J'aime mieux ça."
+        },
+        {
+          "id": "s13e87",
+          "type": "line",
+          "actorId": "soeur_grande",
+          "duration": 1.8,
+          "text": "Rien du tout."
+        },
+        {
+          "id": "s13e88",
+          "type": "exit",
+          "actorId": "belle_mere",
+          "duration": 0.9,
+          "toSide": "top"
+        },
+        {
+          "id": "s13e89",
+          "type": "action",
+          "duration": 4.2,
+          "text": "Narrateur : À partir de ce jour-là, la très jeune fille et son père quittèrent cette maison. Le père se remaria ensuite, avec une femme pas aussi difficile, et arrêta de fumer."
+        },
+        {
+          "id": "s13e90",
+          "type": "action",
+          "duration": 4.6,
+          "text": "Narrateur : Dans la maison en verre de l'ex-future belle-mère, un phénomène étrange fit son apparition. Les oiseaux ne venaient plus percuter la vitre invisible, mais des bruits de chocs continuèrent de se faire entendre pendant longtemps, troublant cette famille sans répit."
+        },
+        {
+          "id": "s13e91",
+          "type": "action",
+          "duration": 2.8,
+          "text": "Narrateur : Heureusement, un jour, tout finit par se taire."
+        },
+        {
+          "id": "s13e92",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     },
     {
       "id": "scene-14-mere-mourante",
       "title": "SCÈNE 14",
       "subtitle": "La mémoire, la fée et la chambre de la mère mourante.",
-      "setting": "故事来到尾声。舞台上先只剩旁白的声音，随后空间退回到故事开头那间病床前的房间。病床重新出现在昏黄的记忆光里；很年轻的女孩在仙女陪伴下，重新看见母亲临终前的最后时刻，像在观看一场只属于自己的投影。",
+      "setting": "L'histoire touche à sa fin. La scène est d'abord portée par la seule voix du narrateur, puis l'espace revient à la chambre du début, celle du lit de mort. Le lit réapparaît dans la lumière ambrée du souvenir ; la très jeune fille, accompagnée de la fée, revoit les derniers instants de sa mère mourante, comme si elle regardait une projection qui lui appartient.",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 150,
         "doorY": 96,
         "props": [
-          { "id": "scene14-bed", "kind": "bed", "x": 472, "y": 392 }
+          {
+            "id": "scene14-bed",
+            "kind": "bed",
+            "x": 472,
+            "y": 392
+          }
         ]
       },
       "actors": [
         {
           "id": "tres_jeune_fille",
-          "name": "很年轻的女孩",
+          "name": "Très Jeune Fille",
           "color": "#f3e2c7",
           "shortLabel": "TJF"
         },
         {
           "id": "fee",
-          "name": "仙女",
+          "name": "Fée",
           "color": "#b9b6ff",
           "shortLabel": "FEE"
         },
         {
           "id": "mere",
-          "name": "母亲",
+          "name": "Mère",
           "color": "#f6c9d1",
           "shortLabel": "MERE"
         }
       ],
       "events": [
-        { "id": "s14e1", "type": "blackout_start", "duration": 1.2 },
-        { "id": "s14e2", "type": "action", "duration": 7.2, "text": "旁白：故事到了这里，几乎该结束了。至于这究竟是我自己的故事，还是别人的故事，其实已经不重要。记忆疲惫，身体与声音像住在了两个地方；可生命很长，也很幸福，我已心满意足。" },
-        { "id": "s14e3", "type": "action", "duration": 6.4, "text": "旁白：不过我知道，你们仍想知道关于很年轻的女孩的最后一个细节。于是我就告诉你们：有一天，她请求已经成为朋友的仙女，让她再听一遍母亲去世前说过的话。" },
-        { "id": "s14e4", "type": "blackout_end", "duration": 0.8 },
-        { "id": "s14e5", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 340, "y": 300, "fromSide": "left" },
-        { "id": "s14e6", "type": "enter", "actorId": "fee", "duration": 1, "x": 580, "y": 286, "fromSide": "right" },
-        { "id": "s14e7", "type": "action", "duration": 2.6, "text": "舞台像被记忆慢慢擦亮。很年轻的女孩与仙女站在微弱光里，面前是母亲临终前的房间，仿佛一段旧影像重新开始播放。" },
-        { "id": "s14e8", "type": "enter", "actorId": "mere", "duration": 1, "x": 472, "y": 350, "fromSide": "top" },
-        { "id": "s14e9", "type": "action", "actorId": "mere", "duration": 1.8, "text": "母亲静静躺在病床上，面容虚弱却温柔，仿佛时间从未真正流逝。" },
-        { "id": "s14e10", "type": "line", "actorId": "mere", "duration": 8.6, "text": "Ma chérie… Si tu es malheureuse, pour te donner du courage, pense à moi… Mais n'oublie jamais, si tu penses à moi fais-le toujours avec le sourire." },
-        { "id": "s14e11", "type": "pause", "duration": 1.2 },
-        { "id": "s14e12", "type": "action", "actorId": "tres_jeune_fille", "duration": 2.4, "text": "很年轻的女孩站在原地，像被这句迟来的叮嘱轻轻击中。她第一次明白，原来自己一直误解了母亲留下的话。" },
-        { "id": "s14e13", "type": "action", "duration": 5.2, "text": "旁白：当然，重新看到母亲仍会令人悲伤。但从这一天起，每当她再想起母亲，感到的已不再只是哀伤，而是一股能让她继续向前的力量。" },
-        { "id": "s14e14", "type": "exit", "actorId": "mere", "duration": 0.8, "toSide": "top" },
-        { "id": "s14e15", "type": "exit", "actorId": "fee", "duration": 0.8, "toSide": "right" },
-        { "id": "s14e16", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.8, "toSide": "left" },
-        { "id": "s14e17", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s14e1",
+          "type": "blackout_start",
+          "duration": 1.2
+        },
+        {
+          "id": "s14e2",
+          "type": "action",
+          "duration": 7.2,
+          "text": "Narrateur : L'histoire arrive ici presque à son terme. Que ce soit ma propre histoire ou celle de quelqu'un d'autre, cela n'a plus vraiment d'importance. La mémoire s'épuise, le corps et la voix semblent habiter deux endroits différents ; mais la vie est longue, et elle est heureuse, et je m'en contente."
+        },
+        {
+          "id": "s14e3",
+          "type": "action",
+          "duration": 6.4,
+          "text": "Narrateur : Mais je sais que vous voulez encore connaître un dernier détail concernant la très jeune fille. Alors je vous le dis : un jour, elle demanda à la fée, devenue son amie, de lui faire entendre une dernière fois les paroles que sa mère avait prononcées avant de mourir."
+        },
+        {
+          "id": "s14e4",
+          "type": "blackout_end",
+          "duration": 0.8
+        },
+        {
+          "id": "s14e5",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 340,
+          "y": 300,
+          "fromSide": "left"
+        },
+        {
+          "id": "s14e6",
+          "type": "enter",
+          "actorId": "fee",
+          "duration": 1,
+          "x": 580,
+          "y": 286,
+          "fromSide": "right"
+        },
+        {
+          "id": "s14e7",
+          "type": "action",
+          "duration": 2.6,
+          "text": "La scène s'éclaire lentement, comme illuminée par la mémoire. La très jeune fille et la fée se tiennent dans la faible lumière, face à la chambre de la mère mourante, comme si une vieille image recommençait à défiler."
+        },
+        {
+          "id": "s14e8",
+          "type": "enter",
+          "actorId": "mere",
+          "duration": 1,
+          "x": 472,
+          "y": 350,
+          "fromSide": "top"
+        },
+        {
+          "id": "s14e9",
+          "type": "action",
+          "actorId": "mere",
+          "duration": 1.8,
+          "text": "La mère est allongée en silence sur le lit de malade, le visage affaibli mais doux, comme si le temps ne s'était pas vraiment écoulé."
+        },
+        {
+          "id": "s14e10",
+          "type": "line",
+          "actorId": "mere",
+          "duration": 8.6,
+          "text": "Ma chérie… Si tu es malheureuse, pour te donner du courage, pense à moi… Mais n'oublie jamais, si tu penses à moi fais-le toujours avec le sourire."
+        },
+        {
+          "id": "s14e11",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s14e12",
+          "type": "action",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.4,
+          "text": "La très jeune fille reste sur place, comme touchée doucement par cette mise en garde arrivée en retard. Pour la première fois, elle comprend qu'elle avait mal interprété les paroles que sa mère lui avait laissées."
+        },
+        {
+          "id": "s14e13",
+          "type": "action",
+          "duration": 5.2,
+          "text": "Narrateur : Bien sûr, revoir sa mère fut quand même source de tristesse. Mais à partir de ce jour-là, chaque fois qu'elle penserait à sa mère, ce qu'elle ressentait n'était plus seulement du chagrin, mais une force capable de la faire avancer."
+        },
+        {
+          "id": "s14e14",
+          "type": "exit",
+          "actorId": "mere",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s14e15",
+          "type": "exit",
+          "actorId": "fee",
+          "duration": 0.8,
+          "toSide": "right"
+        },
+        {
+          "id": "s14e16",
+          "type": "exit",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s14e17",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     },
     {
       "id": "scene-15-nuit-de-fete",
       "title": "SCÈNE 15",
       "subtitle": "Plus tard. Une nuit de fête.",
-      "setting": "更晚一些的某个夜晚，音乐响起。舞台变成庆典般的空地，头顶悬着暖金色的舞会灯。王子与很年轻的女孩尽情舞动，旁白在这场跳舞的狂欢上方，为整部故事落下最后的尾声。",
+      "setting": "Plus tard dans la nuit, la musique s'élève. La scène devient une esplanade festive, des guirlandes lumineuses dorées suspendues en hauteur. Le prince et la très jeune fille dansent à perdre haleine, tandis que le narrateur pose les derniers mots de toute l'histoire sur cette euphorie dansante.",
       "stage": {
         "width": 920,
         "height": 520,
         "doorX": 150,
         "doorY": 96,
         "props": [
-          { "id": "scene15-light", "kind": "dance_light", "x": 460, "y": 32 }
+          {
+            "id": "scene15-light",
+            "kind": "dance_light",
+            "x": 460,
+            "y": 32
+          }
         ]
       },
       "actors": [
         {
           "id": "tres_jeune_prince",
-          "name": "很年轻的王子",
+          "name": "Très Jeune Prince",
           "color": "#dce7ff",
           "shortLabel": "TJP"
         },
         {
           "id": "tres_jeune_fille",
-          "name": "很年轻的女孩",
+          "name": "Très Jeune Fille",
           "color": "#f3e2c7",
           "shortLabel": "TJF"
         }
       ],
       "events": [
-        { "id": "s15e1", "type": "blackout_start", "duration": 1 },
-        { "id": "s15e2", "type": "action", "duration": 2.6, "text": "更久以后。节庆的夜晚。音乐响起，灯光像金色浪潮一样铺开。" },
-        { "id": "s15e3", "type": "blackout_end", "duration": 0.7 },
-        { "id": "s15e4", "type": "enter", "actorId": "tres_jeune_prince", "duration": 1, "x": 380, "y": 286, "fromSide": "left" },
-        { "id": "s15e5", "type": "enter", "actorId": "tres_jeune_fille", "duration": 1, "x": 560, "y": 286, "fromSide": "right" },
-        { "id": "s15e6", "type": "action", "duration": 2.8, "text": "很年轻的王子与很年轻的女孩跳起舞来，越跳越快，像要把先前所有误会、眼泪与伤口都甩出身体。" },
-        { "id": "s15e7", "type": "move_path", "actorId": "tres_jeune_prince", "duration": 1.6, "path": [ { "x": 420, "y": 270 }, { "x": 470, "y": 246 }, { "x": 518, "y": 274 } ] },
-        { "id": "s15e8", "type": "move_path", "actorId": "tres_jeune_fille", "duration": 1.6, "path": [ { "x": 528, "y": 300 }, { "x": 474, "y": 324 }, { "x": 430, "y": 292 } ] },
-        { "id": "s15e9", "type": "action", "duration": 6.6, "text": "旁白：这些时刻，她后来也从未忘记。即使生活最终把他们带往不同方向，王子与女孩仍彼此通信，从世界的另一端寄来字句，一直到他们生命结束。" },
-        { "id": "s15e10", "type": "pause", "duration": 1.2 },
-        { "id": "s15e11", "type": "action", "duration": 4.8, "text": "旁白：好了，故事真的结束了。幸好连错误也会有尽头。于是现在，我安静下来，然后离开。" },
-        { "id": "s15e12", "type": "exit", "actorId": "tres_jeune_prince", "duration": 0.8, "toSide": "right" },
-        { "id": "s15e13", "type": "exit", "actorId": "tres_jeune_fille", "duration": 0.8, "toSide": "left" },
-        { "id": "s15e14", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s15e1",
+          "type": "blackout_start",
+          "duration": 1
+        },
+        {
+          "id": "s15e2",
+          "type": "action",
+          "duration": 2.6,
+          "text": "Bien plus tard. Une nuit de fête. La musique s'élève, la lumière se déploie comme une vague dorée."
+        },
+        {
+          "id": "s15e3",
+          "type": "blackout_end",
+          "duration": 0.7
+        },
+        {
+          "id": "s15e4",
+          "type": "enter",
+          "actorId": "tres_jeune_prince",
+          "duration": 1,
+          "x": 380,
+          "y": 286,
+          "fromSide": "left"
+        },
+        {
+          "id": "s15e5",
+          "type": "enter",
+          "actorId": "tres_jeune_fille",
+          "duration": 1,
+          "x": 560,
+          "y": 286,
+          "fromSide": "right"
+        },
+        {
+          "id": "s15e6",
+          "type": "action",
+          "duration": 2.8,
+          "text": "Le très jeune prince et la très jeune fille se mettent à danser, de plus en plus vite, comme pour chasser de leur corps tous les malentendus, les larmes et les blessures d'avant."
+        },
+        {
+          "id": "s15e7",
+          "type": "move_path",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.6,
+          "path": [
+            {
+              "x": 420,
+              "y": 270
+            },
+            {
+              "x": 470,
+              "y": 246
+            },
+            {
+              "x": 518,
+              "y": 274
+            }
+          ]
+        },
+        {
+          "id": "s15e8",
+          "type": "move_path",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.6,
+          "path": [
+            {
+              "x": 528,
+              "y": 300
+            },
+            {
+              "x": 474,
+              "y": 324
+            },
+            {
+              "x": 430,
+              "y": 292
+            }
+          ]
+        },
+        {
+          "id": "s15e9",
+          "type": "action",
+          "duration": 6.6,
+          "text": "Narrateur : Ces moments-là, elle ne les oublia jamais non plus. Même si la vie les emmena finalement dans des directions différentes, le prince et la fille continuèrent à s'écrire, s'envoyant des mots de l'autre bout du monde, jusqu'à la fin de leurs vies."
+        },
+        {
+          "id": "s15e10",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s15e11",
+          "type": "action",
+          "duration": 4.8,
+          "text": "Narrateur : Voilà, l'histoire est vraiment terminée. Heureusement, même les erreurs ont une fin. Alors maintenant, je me tais, et je pars."
+        },
+        {
+          "id": "s15e12",
+          "type": "exit",
+          "actorId": "tres_jeune_prince",
+          "duration": 0.8,
+          "toSide": "right"
+        },
+        {
+          "id": "s15e13",
+          "type": "exit",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.8,
+          "toSide": "left"
+        },
+        {
+          "id": "s15e14",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     }
   ]

@@ -4,10 +4,90 @@
  * All components render at width="100%" height="100%".
  */
 
+// ── Generic lie / floor pose helpers ─────────────────────────
+
+function LiePose({ skin, hair, clothing, clothing2 }: {
+  skin: string; hair: string; clothing: string; clothing2?: string;
+}) {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Floor shadow */}
+      <ellipse cx="82" cy="284" rx="68" ry="7" fill="rgba(0,0,0,0.16)" />
+      {/* Hair — spread behind head */}
+      <ellipse cx="22" cy="234" rx="20" ry="13" fill={hair} />
+      <path d="M8 224 Q10 238 14 250" stroke={hair} strokeWidth="10" fill="none" strokeLinecap="round" opacity="0.75" />
+      {/* Head — lying on side, face toward viewer */}
+      <ellipse cx="28" cy="238" rx="20" ry="18" fill={skin} />
+      {/* Eyes — closed / resting */}
+      <path d="M18 230 Q22 227 26 230" stroke="#2a1a10" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <path d="M30 230 Q34 227 38 230" stroke="#2a1a10" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <ellipse cx="22" cy="231" rx="4" ry="1.5" fill="rgba(100,70,50,0.14)" />
+      <ellipse cx="36" cy="231" rx="4" ry="1.5" fill="rgba(100,70,50,0.14)" />
+      {/* Nose */}
+      <ellipse cx="34" cy="241" rx="3" ry="2.5" fill={skin} stroke="rgba(0,0,0,0.09)" strokeWidth="0.8" />
+      {/* Mouth — relaxed */}
+      <path d="M26 250 Q32 253 38 250" stroke="#c08070" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      {/* Neck */}
+      <ellipse cx="48" cy="248" rx="9" ry="6" fill={skin} />
+      {/* Body — horizontal */}
+      <path d="M42 241 Q90 236 150 246 L150 270 Q90 278 42 267 Z" fill={clothing} />
+      {clothing2 && <path d="M58 239 L100 238 L100 265 L58 266 Z" fill={clothing2} opacity="0.85" />}
+      {/* Near arm along body */}
+      <path d="M52 253 Q68 268 78 274" stroke={skin} strokeWidth="12" fill="none" strokeLinecap="round" />
+      <ellipse cx="80" cy="277" rx="7" ry="6" fill={skin} />
+      {/* Far arm, partially visible */}
+      <path d="M70 246 Q88 255 98 263" stroke={skin} strokeWidth="10" fill="none" strokeLinecap="round" opacity="0.5" />
+      {/* Feet at far right */}
+      <ellipse cx="152" cy="258" rx="10" ry="7" fill={skin} opacity="0.8" />
+    </svg>
+  );
+}
+
+function FloorPose({ skin, hair, clothing, clothing2 }: {
+  skin: string; hair: string; clothing: string; clothing2?: string;
+}) {
+  return (
+    <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+      {/* Shadow */}
+      <ellipse cx="80" cy="288" rx="60" ry="6" fill="rgba(0,0,0,0.2)" />
+      {/* Legs — splayed on ground */}
+      <path d="M58 222 Q44 252 40 272" stroke={clothing} strokeWidth="20" fill="none" strokeLinecap="round" />
+      <path d="M102 222 Q118 248 122 266" stroke={clothing} strokeWidth="20" fill="none" strokeLinecap="round" />
+      {/* Feet */}
+      <ellipse cx="38" cy="274" rx="14" ry="7" fill={skin} />
+      <ellipse cx="124" cy="268" rx="14" ry="7" fill={skin} />
+      {/* Body — slumped forward */}
+      <path d="M48 154 L112 154 L112 226 L48 226 Z" fill={clothing} />
+      {clothing2 && <path d="M62 154 Q80 150 98 154 L98 200 Q80 204 62 200 Z" fill={clothing2} />}
+      {/* Left arm — bracing on floor */}
+      <path d="M48 170 Q26 210 22 250" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="22" cy="253" rx="8" ry="6" fill={skin} />
+      {/* Right arm — catching fall */}
+      <path d="M112 170 Q134 208 136 246" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+      <ellipse cx="136" cy="249" rx="8" ry="6" fill={skin} />
+      {/* Head — tilted, drooping forward */}
+      <ellipse cx="80" cy="130" rx="22" ry="24" fill={skin} />
+      {/* Hair — disheveled */}
+      <ellipse cx="80" cy="110" rx="24" ry="14" fill={hair} />
+      <path d="M58 116 Q50 122 54 132" stroke={hair} strokeWidth="8" fill="none" strokeLinecap="round" opacity="0.7" />
+      <path d="M102 116 Q110 122 106 132" stroke={hair} strokeWidth="7" fill="none" strokeLinecap="round" opacity="0.55" />
+      {/* Eyes — closed / wincing */}
+      <path d="M66 124 Q70 120 74 124" stroke="#2a1a10" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M86 124 Q90 120 94 124" stroke="#2a1a10" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Nose */}
+      <ellipse cx="80" cy="134" rx="3" ry="2.5" fill={skin} stroke="rgba(0,0,0,0.09)" strokeWidth="0.8" />
+      {/* Pained expression */}
+      <path d="M74 143 Q80 140 86 143" stroke="#906060" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 // ── Belle Mère ───────────────────────────────────────────────
 export function BelleMereSvg({
   skin, hair, pose = "stand",
-}: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+}: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#7a2030" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#7a2030" />;
   if (pose === "sit") {
     return (
       <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
@@ -103,7 +183,9 @@ export function BelleMereSvg({
 }
 
 // ── Soeur Grande ─────────────────────────────────────────────
-export function SoeurGrandeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function SoeurGrandeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#b87820" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#b87820" />;
   if (pose === "sit") {
     return (
       <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
@@ -203,7 +285,9 @@ export function SoeurGrandeSvg({ skin, hair, pose = "stand" }: { skin: string; h
 }
 
 // ── Soeur Petite ─────────────────────────────────────────────
-export function SoeurPetiteSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function SoeurPetiteSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#3a9878" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#3a9878" />;
   if (pose === "sit") {
     return (
       <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
@@ -304,7 +388,9 @@ export function SoeurPetiteSvg({ skin, hair, pose = "stand" }: { skin: string; h
 }
 
 // ── Roi (King) ───────────────────────────────────────────────
-export function RoiSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function RoiSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#2040a0" clothing2="#182880" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#2040a0" clothing2="#182880" />;
   if (pose === "sit") {
     return (
       <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
@@ -421,7 +507,9 @@ export function RoiSvg({ skin, hair, pose = "stand" }: { skin: string; hair: str
 }
 
 // ── Fée (Fairy Godmother) ────────────────────────────────────
-export function FeeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function FeeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#b0a8d0" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#b0a8d0" />;
   return (
     <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
       {/* Wings — drawn first so body appears on top */}
@@ -493,7 +581,9 @@ export function FeeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: str
 }
 
 // ── Père (Father) ─────────────────────────────────────────────
-export function PereSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function PereSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#2a3040" clothing2="#202832" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#2a3040" clothing2="#202832" />;
   return (
     <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
       {/* Hair — short, thinning on top */}
@@ -549,7 +639,59 @@ export function PereSvg({ skin, hair, pose = "stand" }: { skin: string; hair: st
 }
 
 // ── Très Jeune Prince (Young Prince) ─────────────────────────
-export function TresJeunePrinceSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function TresJeunePrinceSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie") return <LiePose skin={skin} hair={hair} clothing="#2044a0" clothing2="#f0ece8" />;
+  if (pose === "floor") {
+    return (
+      <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+        {/* Shadow */}
+        <ellipse cx="80" cy="288" rx="60" ry="6" fill="rgba(0,0,0,0.2)" />
+        {/* Crown knocked to the side — lying on ground near head */}
+        <path d="M20 148 L20 136 L26 141 L30 130 L34 141 L40 136 L40 148 Z" fill="#d4a020" stroke="#a07810" strokeWidth="1" opacity="0.85" />
+        <circle cx="30" cy="133" r="3" fill="#e03040" opacity="0.8" />
+        <rect x="19" y="146" width="22" height="3" rx="1" fill="#c89018" opacity="0.75" />
+        {/* Legs — sprawled */}
+        <path d="M58 222 Q44 252 40 272" stroke="#2044a0" strokeWidth="20" fill="none" strokeLinecap="round" />
+        <path d="M102 222 Q118 248 122 266" stroke="#2044a0" strokeWidth="20" fill="none" strokeLinecap="round" />
+        {/* White trouser feet */}
+        <ellipse cx="38" cy="274" rx="14" ry="7" fill="#f0ece8" />
+        <ellipse cx="124" cy="268" rx="14" ry="7" fill="#f0ece8" />
+        {/* Black boots */}
+        <ellipse cx="38" cy="276" rx="12" ry="5" fill="#1a1008" />
+        <ellipse cx="124" cy="270" rx="12" ry="5" fill="#1a1008" />
+        {/* Jacket body */}
+        <path d="M48 154 L112 154 L112 226 L48 226 Z" fill="#2044a0" />
+        <line x1="80" y1="154" x2="80" y2="226" stroke="#1a3488" strokeWidth="8" />
+        {/* Gold epaulette — one visible */}
+        <path d="M112 156 Q120 148 126 156 Q126 166 120 170 Q114 166 112 156" fill="#c89020" />
+        {/* Red sash still visible */}
+        <path d="M112 156 Q90 190 80 210" stroke="#c83040" strokeWidth="6" strokeLinecap="round" opacity="0.7" />
+        {/* Left arm — hitting floor */}
+        <path d="M48 170 Q26 210 22 250" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+        <ellipse cx="22" cy="253" rx="8" ry="6" fill={skin} />
+        {/* Right arm — catching */}
+        <path d="M112 170 Q134 208 136 246" stroke={skin} strokeWidth="13" fill="none" strokeLinecap="round" />
+        <ellipse cx="136" cy="249" rx="8" ry="6" fill={skin} />
+        {/* Head — dazed, tilted */}
+        <ellipse cx="80" cy="130" rx="22" ry="24" fill={skin} />
+        {/* Hair — disheveled */}
+        <ellipse cx="80" cy="110" rx="24" ry="13" fill={hair} />
+        <path d="M64 112 Q60 118 60 126" stroke={hair} strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.75" />
+        <path d="M72 108 Q68 112 72 120" stroke={hair} strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.55" />
+        {/* Eyes — closed from impact */}
+        <path d="M66 124 Q70 120 74 124" stroke="#2a1a10" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M86 124 Q90 120 94 124" stroke="#2a1a10" strokeWidth="2" fill="none" strokeLinecap="round" />
+        {/* Stars from impact */}
+        <path d="M96 112 L98 106 L100 112" stroke="#f1c27d" strokeWidth="1.5" fill="none" opacity="0.7" />
+        <path d="M100 108 L104 108" stroke="#f1c27d" strokeWidth="1.5" opacity="0.7" />
+        <path d="M97 114 L103 108" stroke="#f1c27d" strokeWidth="1.2" opacity="0.55" />
+        {/* Nose */}
+        <ellipse cx="80" cy="134" rx="3" ry="2.5" fill={skin} stroke="rgba(0,0,0,0.09)" strokeWidth="0.8" />
+        {/* Dazed expression */}
+        <path d="M74 143 Q80 140 86 143" stroke="#906060" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      </svg>
+    );
+  }
   return (
     <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
       {/* Small crown */}
@@ -618,7 +760,9 @@ export function TresJeunePrinceSvg({ skin, hair, pose = "stand" }: { skin: strin
 }
 
 // ── Garde (Royal Guard) — shared by garde_1 and garde_2 ──────
-export function GardeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function GardeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#2a3448" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#2a3448" />;
   return (
     <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
       {/* Shako hat body */}
@@ -685,7 +829,9 @@ export function GardeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: s
 }
 
 // ── Mère (Dying Mother) ───────────────────────────────────────
-export function MereSvg({ skin, hair, pose = "sit" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function MereSvg({ skin, hair, pose = "sit" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#f0ece8" />;
+  // lie and sit both use the deathbed reclining rendering
   if (pose === "stand") {
     return (
       <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
@@ -770,7 +916,9 @@ export function MereSvg({ skin, hair, pose = "sit" }: { skin: string; hair: stri
 }
 
 // ── Yang Chengyue 杨成岳 ───────────────────────────────────────
-export function YangChengyueSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function YangChengyueSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#1a2838" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#1a2838" />;
   return (
     <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
       {/* Hair — short, neat */}
@@ -825,7 +973,9 @@ export function YangChengyueSvg({ skin, hair, pose = "stand" }: { skin: string; 
 }
 
 // ── Xue Er 雪儿 ───────────────────────────────────────────────
-export function XueErSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function XueErSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#8ab8c8" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#8ab8c8" />;
   return (
     <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
       {/* Elegant hair bun */}
@@ -890,7 +1040,9 @@ export function XueErSvg({ skin, hair, pose = "stand" }: { skin: string; hair: s
 }
 
 // ── Wang Chaojie 王超杰 ────────────────────────────────────────
-export function WangChaojeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function WangChaojeSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie")   return <LiePose   skin={skin} hair={hair} clothing="#c8c0b0" clothing2="#b8b0a0" />;
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#c8c0b0" clothing2="#b8b0a0" />;
   return (
     <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
       {/* White/silver hair — thinning, combed back */}
@@ -953,7 +1105,47 @@ export function WangChaojeSvg({ skin, hair, pose = "stand" }: { skin: string; ha
 }
 
 // ── Très Jeune Fille (Cinderella) ────────────────────────────
-export function TresJeuneFilleSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" }) {
+export function TresJeuneFilleSvg({ skin, hair, pose = "stand" }: { skin: string; hair: string; pose?: "stand" | "sit" | "lie" | "floor" }) {
+  if (pose === "lie") {
+    return (
+      <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
+        {/* Floor shadow */}
+        <ellipse cx="82" cy="284" rx="68" ry="7" fill="rgba(0,0,0,0.14)" />
+        {/* Hair — spread behind head, bun undone */}
+        <ellipse cx="20" cy="232" rx="22" ry="14" fill={hair} />
+        <path d="M6 222 Q8 236 12 248" stroke={hair} strokeWidth="10" fill="none" strokeLinecap="round" opacity="0.75" />
+        <path d="M10 226 Q14 240 18 250" stroke={hair} strokeWidth="7" fill="none" strokeLinecap="round" opacity="0.5" />
+        {/* Head — resting peacefully */}
+        <ellipse cx="28" cy="238" rx="20" ry="18" fill={skin} />
+        {/* Eyes — closed, serene */}
+        <path d="M18 230 Q22 227 26 230" stroke="#2a1a10" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        <path d="M30 230 Q34 227 38 230" stroke="#2a1a10" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        {/* Soft lashes */}
+        {[18,20,22,24,26].map((x,i) => (
+          <line key={i} x1={x} y1="230" x2={x-1} y2="226" stroke="#2a1a10" strokeWidth="0.9" strokeLinecap="round" opacity="0.6" />
+        ))}
+        {/* Nose */}
+        <ellipse cx="34" cy="241" rx="3" ry="2.5" fill={skin} stroke="rgba(0,0,0,0.09)" strokeWidth="0.8" />
+        {/* Mouth — relaxed, slight smile */}
+        <path d="M26 250 Q32 254 38 250" stroke="#c08070" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        {/* Neck */}
+        <ellipse cx="48" cy="248" rx="9" ry="6" fill={skin} />
+        {/* Dress body — horizontal, blue with white apron center */}
+        <path d="M42 241 Q90 236 150 246 L150 270 Q90 278 42 267 Z" fill="#7090a8" />
+        <path d="M58 239 L100 238 L100 265 L58 266 Z" fill="#e8e4dc" opacity="0.88" />
+        {/* Apron bow detail */}
+        <path d="M72 248 Q79 244 86 248 Q79 252 72 248" fill="#d8d4cc" opacity="0.7" />
+        {/* Near arm along body */}
+        <path d="M52 253 Q68 268 78 274" stroke={skin} strokeWidth="12" fill="none" strokeLinecap="round" />
+        <ellipse cx="80" cy="277" rx="7" ry="6" fill={skin} />
+        {/* Far arm, tucked */}
+        <path d="M70 246 Q88 255 98 263" stroke={skin} strokeWidth="10" fill="none" strokeLinecap="round" opacity="0.5" />
+        {/* Feet */}
+        <ellipse cx="152" cy="258" rx="10" ry="7" fill={skin} opacity="0.8" />
+      </svg>
+    );
+  }
+  if (pose === "floor") return <FloorPose skin={skin} hair={hair} clothing="#7090a8" clothing2="#e8e4dc" />;
   if (pose === "sit") {
     return (
       <svg viewBox="0 0 160 300" width="100%" height="100%" style={{ overflow: "visible" }}>
