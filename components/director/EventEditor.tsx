@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocale } from "@/components/locale/LocaleContext";
 import type { ScriptDefinition, ScriptEvent } from "@/types/script";
 import { eventColor, eventLabel } from "@/lib/eventMeta";
@@ -42,10 +42,45 @@ export default function EventEditor({
   const [showInsertAfter, setShowInsertAfter] = useState<number | null>(null);
   const [dragIdx, setDragIdx] = useState<number | null>(null);
   const [dropIdx, setDropIdx] = useState<number | null>(null);
-  const listRef = useRef<HTMLDivElement>(null);
 
   const { events, actors } = scene;
   const stageProps = getStageProps(scene.stage);
+
+  useEffect(() => {
+    if (dragIdx === null) return;
+
+    const handlePointerMove = (e: PointerEvent) => {
+      const idx = getIndexAtPoint(e.clientX, e.clientY);
+      if (idx !== null && idx !== dragIdx) setDropIdx(idx);
+    };
+
+    const handlePointerUp = () => {
+      setDragIdx((currentDragIdx) => {
+        if (currentDragIdx !== null) {
+          setDropIdx((currentDropIdx) => {
+            if (currentDropIdx !== null && currentDropIdx !== currentDragIdx) {
+              onMove(currentDragIdx, currentDropIdx);
+            }
+            return null;
+          });
+        }
+        return null;
+      });
+    };
+
+    const previousUserSelect = document.body.style.userSelect;
+    document.body.style.userSelect = "none";
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerup", handlePointerUp);
+    window.addEventListener("pointercancel", handlePointerUp);
+
+    return () => {
+      document.body.style.userSelect = previousUserSelect;
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("pointercancel", handlePointerUp);
+    };
+  }, [dragIdx, onMove]);
 
   function getIndexAtPoint(x: number, y: number): number | null {
     const els = document.elementsFromPoint(x, y);
@@ -59,22 +94,8 @@ export default function EventEditor({
   function startPointerDrag(e: React.PointerEvent, index: number) {
     e.preventDefault();
     e.stopPropagation();
-    listRef.current?.setPointerCapture(e.pointerId);
     setDragIdx(index);
-  }
-
-  function handleListPointerMove(e: React.PointerEvent) {
-    if (dragIdx === null) return;
-    const idx = getIndexAtPoint(e.clientX, e.clientY);
-    if (idx !== null && idx !== dragIdx) setDropIdx(idx);
-  }
-
-  function handleListPointerUp() {
-    if (dragIdx !== null && dropIdx !== null && dragIdx !== dropIdx) {
-      onMove(dragIdx, dropIdx);
-    }
-    setDragIdx(null);
-    setDropIdx(null);
+    setDropIdx(index);
   }
 
   return (
@@ -84,11 +105,8 @@ export default function EventEditor({
       </div>
 
       <div
-        ref={listRef}
         className="flex-1 overflow-y-auto px-2 py-2"
         style={{ touchAction: dragIdx !== null ? "none" : "auto" }}
-        onPointerMove={handleListPointerMove}
-        onPointerUp={handleListPointerUp}
         onPointerCancel={() => { setDragIdx(null); setDropIdx(null); }}
       >
         {events.map((event, index) => {
