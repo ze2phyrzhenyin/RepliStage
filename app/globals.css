@@ -25,6 +25,8 @@ body {
 body {
   font-family: var(--font-body);
   letter-spacing: 0.01em;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -36,6 +38,7 @@ button,
 select {
   font: inherit;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .scrollbar-thin::-webkit-scrollbar {

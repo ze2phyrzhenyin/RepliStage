@@ -25,7 +25,7 @@ export default function SceneList({ play, activeSceneId, onSelect, onAdd, onDupl
         <button
           onClick={onAdd}
           title={t("director.addScene")}
-          className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-base leading-none text-white/40 transition hover:border-[#f1c27d]/20 hover:text-[#f1c27d]"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-base leading-none text-white/40 transition hover:border-[#f1c27d]/20 hover:text-[#f1c27d]"
         >
           +
         </button>
@@ -59,7 +59,7 @@ export default function SceneList({ play, activeSceneId, onSelect, onAdd, onDupl
                 <button
                   onClick={() => onDuplicate(scene.id)}
                   title={t("director.duplicate")}
-                  className="flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-[#0c1020]/88 text-[10px] text-white/34 transition hover:text-white/70 hover:bg-white/10"
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-[#0c1020]/88 text-[10px] text-white/34 transition hover:text-white/70 hover:bg-white/10"
                 >
                   ⎘
                 </button>
@@ -67,7 +67,7 @@ export default function SceneList({ play, activeSceneId, onSelect, onAdd, onDupl
                   <button
                     onClick={() => onDelete(scene.id)}
                     title={t("director.delete")}
-                    className="flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-[#0c1020]/88 text-[10px] text-white/34 transition hover:text-red-400 hover:bg-red-400/10"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-[#0c1020]/88 text-[10px] text-white/34 transition hover:text-red-400 hover:bg-red-400/10"
                   >
                     ✕
                   </button>

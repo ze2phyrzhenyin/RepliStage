@@ -9,6 +9,7 @@ import type { Play, ScriptDefinition, ScriptEvent, Actor, StageConfig, PathPoint
 import { deriveStageState } from "@/lib/player";
 import { createDefaultStageProp, getStageProps, removeStageProp, STAGE_PROP_KINDS, syncStageLegacyFields, upsertStageProp } from "@/lib/stage-props";
 import SceneList from "@/components/director/SceneList";
+import { LanguageToggle } from "@/components/locale/LanguageToggle";
 import EventEditor from "@/components/director/EventEditor";
 import ActorManager from "@/components/director/ActorManager";
 import { eventLabel } from "@/lib/eventMeta";
@@ -453,7 +454,9 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
                 </div>
               </div>
 
-              <div className="relative shrink-0 md:hidden">
+              <div className="flex items-center gap-2 shrink-0">
+                <LanguageToggle compact />
+              <div className="relative md:hidden">
                 <button
                   onClick={() => setShowUtilityMenu((value) => !value)}
                   className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/62 transition hover:border-white/20 hover:text-white/84"
@@ -475,6 +478,7 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
                     </button>
                   </div>
                 )}
+              </div>
               </div>
             </div>
 
@@ -646,7 +650,7 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
           </div>
         </div>
 
-        <div className="flex flex-1 min-h-0">
+        <div className="flex flex-1 min-h-0 overflow-x-auto">
           <SceneList
             play={play}
             activeSceneId={activeSceneId}
@@ -658,7 +662,7 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
 
           <div
             className="flex flex-col shrink-0"
-            style={{ width: 480, borderRight: "1px solid rgba(255,255,255,0.07)", background: "linear-gradient(180deg, #05040d 0%, #080813 100%)" }}
+            style={{ minWidth: 320, width: 480, borderRight: "1px solid rgba(255,255,255,0.07)", background: "linear-gradient(180deg, #05040d 0%, #080813 100%)" }}
           >
             <div className="border-b border-white/[0.06] px-3 py-2">
               <p className="mb-2 text-[10px] uppercase tracking-[0.28em] text-white/24">{t("director.manageScene")}</p>

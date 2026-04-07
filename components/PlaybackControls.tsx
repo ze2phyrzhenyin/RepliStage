@@ -55,10 +55,14 @@ function Scrubber({
     <div
       ref={barRef}
       className="relative h-6 flex items-center cursor-pointer group"
+      style={{ touchAction: "none" }}
       onMouseDown={(e) => { dragging.current = true; seek(e.clientX); }}
       onMouseMove={(e) => { if (dragging.current) seek(e.clientX); }}
       onMouseUp={() => { dragging.current = false; }}
       onMouseLeave={() => { dragging.current = false; }}
+      onTouchStart={(e) => { dragging.current = true; e.preventDefault(); seek(e.touches[0].clientX); }}
+      onTouchMove={(e) => { if (dragging.current) { e.preventDefault(); seek(e.touches[0].clientX); } }}
+      onTouchEnd={() => { dragging.current = false; }}
     >
       {/* Track */}
       <div className="absolute inset-x-0 h-[3px] rounded-full bg-white/8">
@@ -126,12 +130,12 @@ export function PlaybackControls({
       </div>
 
       {/* Controls row */}
-      <div className="flex items-center justify-between px-4 py-2 gap-2">
+      <div className="flex flex-col sm:flex-row items-center justify-between px-4 py-2 gap-1">
         {/* Transport */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5">
           <button
             onClick={onReset}
-            className="p-2 rounded-lg text-white/30 transition hover:text-white/65 hover:bg-white/5"
+            className="p-2.5 rounded-lg text-white/30 transition hover:text-white/65 hover:bg-white/5"
             title={t("playback.reset")}
           >
             <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
@@ -140,7 +144,7 @@ export function PlaybackControls({
           </button>
           <button
             onClick={onPrev}
-            className="p-2 rounded-lg text-white/55 transition hover:text-white hover:bg-white/5"
+            className="p-2.5 rounded-lg text-white/55 transition hover:text-white hover:bg-white/5"
             title={`${t("playback.prev")} ←`}
           >
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
@@ -149,7 +153,7 @@ export function PlaybackControls({
           </button>
           <button
             onClick={onTogglePlay}
-            className="w-9 h-9 rounded-full flex items-center justify-center text-[#0a0c14] transition hover:scale-105 active:scale-95"
+            className="w-10 h-10 rounded-full flex items-center justify-center text-[#0a0c14] transition hover:scale-105 active:scale-95"
             style={{ backgroundColor: "#f1c27d" }}
             title={`${t("playback.playPause")} Space`}
           >
@@ -166,7 +170,7 @@ export function PlaybackControls({
           </button>
           <button
             onClick={onNext}
-            className="p-2 rounded-lg text-white/55 transition hover:text-white hover:bg-white/5"
+            className="p-2.5 rounded-lg text-white/55 transition hover:text-white hover:bg-white/5"
             title={`${t("playback.next")} →`}
           >
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
@@ -176,18 +180,18 @@ export function PlaybackControls({
         </div>
 
         {/* Counter */}
-        <span className="text-xs text-white/22 tabular-nums hidden sm:block">
-          {currentEventIndex + 1} <span className="text-white/15">/</span> {total + 1}
+        <span className="text-xs text-white/30 tabular-nums">
+          {currentEventIndex + 1} <span className="text-white/18">/</span> {total + 1}
         </span>
 
         {/* Options */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 flex-wrap justify-center sm:flex-nowrap sm:justify-end">
           {/* Speed */}
           {(SPEED_OPTIONS as readonly number[]).map((s) => (
             <button
               key={s}
               onClick={() => onSpeedChange(s)}
-              className="px-2 py-1 rounded text-xs transition"
+              className="px-2.5 py-1.5 rounded text-xs transition"
               style={{
                 color: speed === s ? "#f1c27d" : "rgba(255,255,255,0.28)",
                 background: speed === s ? "rgba(241,194,125,0.1)" : "transparent",

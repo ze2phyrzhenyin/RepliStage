@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "@/components/locale/LocaleContext";
 import { usePlayData } from "@/components/play/PlayContext";
 import { formatPlayImportError, parsePlay, summarizePlay } from "@/lib/play-schema";
+import { LanguageToggle } from "@/components/locale/LanguageToggle";
 import type { Play } from "@/types/script";
 
 type SetupMode = "rehearsal" | "director";
@@ -104,31 +105,22 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
             onChange={handleImportFile}
           />
 
-          <div className="mb-8 flex items-start justify-between gap-4">
-            <div>
+          <div className="mb-8">
+            <div className="flex items-center justify-between gap-3 mb-4">
               <Link
                 href="/"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs text-white/34 hover:text-white/70 transition mb-4"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs text-white/34 hover:text-white/70 transition"
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 {t("setup.backHome")}
               </Link>
-              <p className="page-kicker mb-2">{t("setup.kicker")}</p>
-              <h1 className="display-title text-4xl font-light text-white">{title}</h1>
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/42">{description}</p>
+              <LanguageToggle />
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                setSourceMode(playSource.type === "imported" ? "import" : "sample");
-                setSelectedSceneId(play.scenes[0]?.id ?? "");
-              }}
-              className="hidden rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/52 transition hover:bg-white/[0.08] hover:text-white/78 sm:inline-flex"
-            >
-              {t("setup.useCurrentPlay")}
-            </button>
+            <p className="page-kicker mb-2">{t("setup.kicker")}</p>
+            <h1 className="display-title text-4xl font-light text-white">{title}</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-white/42">{description}</p>
           </div>
 
           <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">

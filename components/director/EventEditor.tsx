@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useLocale } from "@/components/locale/LocaleContext";
 import type { ScriptDefinition, ScriptEvent } from "@/types/script";
 import { eventColor, eventLabel } from "@/lib/eventMeta";
@@ -41,13 +41,35 @@ export default function EventEditor({
   const [showInsertAfter, setShowInsertAfter] = useState<number | null>(null);
   const [dragIdx, setDragIdx] = useState<number | null>(null);
   const [dropIdx, setDropIdx] = useState<number | null>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   const { events, actors } = scene;
 
-  function handleDrop(toIndex: number) {
-    if (dragIdx !== null && dragIdx !== toIndex) {
-      onMove(dragIdx, toIndex);
-      setDropIdx(null);
+  function getIndexAtPoint(x: number, y: number): number | null {
+    const els = document.elementsFromPoint(x, y);
+    for (const el of els) {
+      const card = (el as HTMLElement).closest("[data-event-index]");
+      if (card) return parseInt((card as HTMLElement).dataset.eventIndex ?? "-1");
+    }
+    return null;
+  }
+
+  function startPointerDrag(e: React.PointerEvent, index: number) {
+    e.preventDefault();
+    e.stopPropagation();
+    listRef.current?.setPointerCapture(e.pointerId);
+    setDragIdx(index);
+  }
+
+  function handleListPointerMove(e: React.PointerEvent) {
+    if (dragIdx === null) return;
+    const idx = getIndexAtPoint(e.clientX, e.clientY);
+    if (idx !== null && idx !== dragIdx) setDropIdx(idx);
+  }
+
+  function handleListPointerUp() {
+    if (dragIdx !== null && dropIdx !== null && dragIdx !== dropIdx) {
+      onMove(dragIdx, dropIdx);
     }
     setDragIdx(null);
     setDropIdx(null);
@@ -59,7 +81,14 @@ export default function EventEditor({
         <SharedInsertBar afterIndex={-1} actors={actors} onInsert={onInsert} variant="panel" />
       </div>
 
-      <div className="flex-1 overflow-y-auto px-2 py-2">
+      <div
+        ref={listRef}
+        className="flex-1 overflow-y-auto px-2 py-2"
+        style={{ touchAction: dragIdx !== null ? "none" : "auto" }}
+        onPointerMove={handleListPointerMove}
+        onPointerUp={handleListPointerUp}
+        onPointerCancel={() => { setDragIdx(null); setDropIdx(null); }}
+      >
         {events.map((event, index) => {
           const isActive = index === currentEventIndex;
           const isSelected = index === selectedEventIndex;
@@ -73,11 +102,7 @@ export default function EventEditor({
           return (
             <div
               key={event.id}
-              draggable={draggable}
-              onDragStart={(e) => { e.stopPropagation(); setDragIdx(index); }}
-              onDragOver={(e) => { e.preventDefault(); setDropIdx(index); }}
-              onDrop={(e) => { e.preventDefault(); handleDrop(index); }}
-              onDragEnd={() => { setDragIdx(null); setDropIdx(null); }}
+              data-event-index={index}
               style={{ opacity: isDragging ? 0.35 : 1 }}
             >
               {isDropTarget && (
@@ -104,6 +129,7 @@ export default function EventEditor({
                   <span
                     className="shrink-0 text-white/15 group-hover:text-white/35 transition text-[11px] cursor-grab active:cursor-grabbing select-none"
                     style={{ lineHeight: 1, letterSpacing: "-1px" }}
+                    onPointerDown={(e) => startPointerDrag(e, index)}
                   >
                     ⠿
                   </span>

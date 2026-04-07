@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "motion/react";
 import { BlackoutOverlay } from "@/components/BlackoutOverlay";
+import { LanguageToggle } from "@/components/locale/LanguageToggle";
 import { useLocale } from "@/components/locale/LocaleContext";
 import { PlaybackControls } from "@/components/PlaybackControls";
 import { ScriptPanel } from "@/components/ScriptPanel";
@@ -301,7 +302,7 @@ export function RehearsalClient({
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-[#060912]">
-      <header className="flex items-center justify-between px-5 h-12 border-b border-white/[0.06] shrink-0 bg-[#06090f]/80 backdrop-blur-sm">
+      <header className="flex items-center justify-between px-3 sm:px-5 h-12 border-b border-white/[0.06] shrink-0 bg-[#06090f]/80 backdrop-blur-sm">
         <button
           onClick={() => router.push("/")}
           className="flex items-center gap-1.5 text-sm font-medium tracking-[0.18em] text-[#f1c27d]/70 hover:text-[#f1c27d] transition group"
@@ -322,7 +323,7 @@ export function RehearsalClient({
             <button
               key={item.id}
               onClick={() => setMode(item.id)}
-              className="px-3.5 py-1.5 rounded-md text-xs transition font-medium flex items-center gap-1.5"
+              className="px-2 sm:px-3.5 py-1.5 rounded-md text-[11px] sm:text-xs transition font-medium flex items-center gap-1.5"
               style={{
                 background: mode === item.id ? "rgba(255,255,255,0.1)" : "transparent",
                 color: mode === item.id ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.35)",
@@ -341,7 +342,7 @@ export function RehearsalClient({
             <select
               value={scene.id}
               onChange={(e) => handleSceneChange(e.target.value)}
-              className="rounded-lg border border-white/10 bg-white/[0.04] px-2 py-1 text-[11px] text-white/60 outline-none"
+              className="hidden sm:block rounded-lg border border-white/10 bg-white/[0.04] px-2 py-1 text-[11px] text-white/60 outline-none"
             >
               {play.scenes.map((item) => (
                 <option key={item.id} value={item.id}>
@@ -351,9 +352,9 @@ export function RehearsalClient({
             </select>
           )}
           {isObserver ? (
-            <span className="text-xs font-medium text-white/40">{t("rehearsal.observer")}</span>
+            <span className="hidden sm:inline text-xs font-medium text-white/40">{t("rehearsal.observer")}</span>
           ) : selectedActor ? (
-            <span className="text-xs font-medium" style={{ color: selectedActor.color }}>
+            <span className="hidden sm:inline text-xs font-medium" style={{ color: selectedActor.color }}>
               {selectedActor.name}
             </span>
           ) : null}
@@ -363,14 +364,15 @@ export function RehearsalClient({
           >
             {t("rehearsal.changeRole")}
           </button>
+          <LanguageToggle compact />
         </div>
       </header>
 
       <div className="flex-1 overflow-hidden min-h-0">
         <AnimatePresence mode="wait">
           {mode === "stage" && (
-            <motion.div key="stage" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="flex h-full">
-              <div className="flex-1 flex flex-col p-3 min-w-0">
+            <motion.div key="stage" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="flex flex-col sm:flex-row h-full">
+              <div className="flex-1 flex flex-col p-3 min-w-0 min-h-0">
                 <div className="relative flex-1 min-h-0">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="relative w-full">
@@ -403,7 +405,7 @@ export function RehearsalClient({
                   </div>
                 </div>
               </div>
-              <div className="w-64 xl:w-72 border-l border-white/[0.05] flex flex-col min-h-0 shrink-0">
+              <div className="h-44 sm:h-auto sm:w-64 xl:w-72 border-t sm:border-t-0 sm:border-l border-white/[0.05] flex flex-col min-h-0 shrink-0">
                 <div className="px-4 pt-3 pb-1 shrink-0">
                   <p className="text-[10px] uppercase tracking-[0.3em] text-white/20">{t("rehearsal.panelScript")}</p>
                 </div>
@@ -424,8 +426,8 @@ export function RehearsalClient({
           )}
 
           {mode === "script" && (
-            <motion.div key="script" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="flex h-full">
-              <div className="w-56 xl:w-64 border-r border-white/[0.05] flex flex-col p-3 gap-3 shrink-0">
+            <motion.div key="script" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="flex flex-col sm:flex-row h-full">
+              <div className="h-auto sm:w-56 xl:w-64 border-b sm:border-b-0 sm:border-r border-white/[0.05] flex flex-col p-3 gap-3 shrink-0">
                 <p className="text-[10px] uppercase tracking-[0.3em] text-white/20">{t("rehearsal.panelStage")}</p>
                 <div className="relative">
                   <StageCanvas
@@ -487,8 +489,8 @@ export function RehearsalClient({
           )}
 
           {mode === "director" && (
-            <motion.div key="director" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="flex h-full">
-              <div className="flex-1 flex flex-col p-3 min-w-0 gap-2">
+            <motion.div key="director" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} className="flex flex-col sm:flex-row h-full">
+              <div className="flex-1 flex flex-col p-3 min-w-0 min-h-0 gap-2">
                 {drawingPathFor ? (
                   <div className="flex items-center justify-between px-3 py-1.5 rounded-lg border shrink-0"
                     style={{ background: "rgba(224,164,248,0.07)", borderColor: "rgba(224,164,248,0.25)" }}>
@@ -528,7 +530,7 @@ export function RehearsalClient({
                 </div>
               </div>
 
-              <div className="w-72 xl:w-80 border-l border-white/[0.05] min-h-0">
+              <div className="h-64 sm:h-auto sm:w-72 xl:w-80 border-t sm:border-t-0 sm:border-l border-white/[0.05] min-h-0 overflow-y-auto">
                 <DirectorPanel
                   actors={scene.actors}
                   events={customEvents}
@@ -550,6 +552,22 @@ export function RehearsalClient({
           )}
         </AnimatePresence>
       </div>
+
+      {/* Mobile-only scene switcher — visible when there are multiple scenes and no room in header */}
+      {play.scenes.length > 1 && (
+        <div className="sm:hidden shrink-0 flex items-center gap-2 px-4 py-1.5 border-t border-white/[0.04] bg-[#060912]/90">
+          <span className="text-[10px] uppercase tracking-[0.28em] text-white/25 shrink-0">{t("rehearsal.scene")}</span>
+          <select
+            value={scene.id}
+            onChange={(e) => handleSceneChange(e.target.value)}
+            className="flex-1 rounded-lg border border-white/10 bg-white/[0.04] px-2 py-1 text-[11px] text-white/60 outline-none"
+          >
+            {play.scenes.map((item) => (
+              <option key={item.id} value={item.id}>{item.title}</option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <PlaybackControls
         currentEventIndex={currentEventIndex}

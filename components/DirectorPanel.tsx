@@ -131,8 +131,39 @@ export function DirectorPanel({
 }: DirectorPanelProps) {
   const { t } = useLocale();
   const currentRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const [dragIdx, setDragIdx] = useState<number | null>(null);
   const [dropIdx, setDropIdx] = useState<number | null>(null);
+
+  function getIndexAtPoint(x: number, y: number): number | null {
+    const els = document.elementsFromPoint(x, y);
+    for (const el of els) {
+      const card = (el as HTMLElement).closest("[data-event-index]");
+      if (card) return parseInt((card as HTMLElement).dataset.eventIndex ?? "-1");
+    }
+    return null;
+  }
+
+  function startPointerDrag(e: React.PointerEvent, index: number) {
+    e.preventDefault();
+    e.stopPropagation();
+    listRef.current?.setPointerCapture(e.pointerId);
+    setDragIdx(index);
+  }
+
+  function handleListPointerMove(e: React.PointerEvent) {
+    if (dragIdx === null) return;
+    const idx = getIndexAtPoint(e.clientX, e.clientY);
+    if (idx !== null && idx !== dragIdx) setDropIdx(idx);
+  }
+
+  function handleListPointerUp(e: React.PointerEvent) {
+    if (dragIdx !== null && dropIdx !== null && dragIdx !== dropIdx) {
+      onMoveEvent(dragIdx, dropIdx);
+    }
+    setDragIdx(null);
+    setDropIdx(null);
+  }
 
   useEffect(() => {
     currentRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -198,7 +229,14 @@ export function DirectorPanel({
         </div>
       )}
 
-      <div className="flex-1 overflow-y-auto scrollbar-thin px-3 py-2 space-y-1.5 min-h-0">
+      <div
+        ref={listRef}
+        className="flex-1 overflow-y-auto scrollbar-thin px-3 py-2 space-y-1.5 min-h-0"
+        style={{ touchAction: dragIdx !== null ? "none" : "auto" }}
+        onPointerMove={handleListPointerMove}
+        onPointerUp={handleListPointerUp}
+        onPointerCancel={() => { setDragIdx(null); setDropIdx(null); }}
+      >
         {windowStart > 0 && (
           <button
             onClick={() => onSeek(Math.max(0, windowStart - 1))}
@@ -218,32 +256,41 @@ export function DirectorPanel({
             <div
               ref={index === currentEventIndex ? currentRef : undefined}
               key={event.id}
-              draggable={draggable}
-              onDragStart={(e) => { e.stopPropagation(); setDragIdx(index); }}
-              onDragOver={(e) => { e.preventDefault(); setDropIdx(index); }}
-              onDrop={(e) => {
-                e.preventDefault();
-                if (dragIdx !== null && dragIdx !== index) onMoveEvent(dragIdx, index);
-                setDragIdx(null);
-                setDropIdx(null);
-              }}
-              onDragEnd={() => { setDragIdx(null); setDropIdx(null); }}
+              data-event-index={index}
               style={{ opacity: isDragging ? 0.35 : 1 }}
             >
               {isDropTarget && (
                 <div className="h-0.5 rounded-full mb-1" style={{ background: "#f1c27d66" }} />
               )}
-              <EventCard
-                event={event}
-                index={index}
-                isCurrent={index === currentEventIndex}
-                isPast={index < currentEventIndex}
-                actors={actors}
-                onSeek={() => onSeek(index)}
-                onUpdate={(updates) => onUpdateEvent(index, updates)}
-                onDelete={() => onDeleteEvent(index)}
-                onDrawPath={onDrawPath}
-              />
+              <div className="flex items-start gap-1">
+                {draggable && (
+                  <button
+                    className="mt-2 px-1 py-1 rounded text-white/20 hover:text-white/50 active:text-white/70 touch-manipulation shrink-0 cursor-grab active:cursor-grabbing"
+                    onPointerDown={(e) => startPointerDrag(e, index)}
+                    title="Reorder"
+                    tabIndex={-1}
+                  >
+                    <svg width="8" height="14" viewBox="0 0 8 14" fill="currentColor">
+                      <circle cx="2" cy="2" r="1.2"/><circle cx="6" cy="2" r="1.2"/>
+                      <circle cx="2" cy="7" r="1.2"/><circle cx="6" cy="7" r="1.2"/>
+                      <circle cx="2" cy="12" r="1.2"/><circle cx="6" cy="12" r="1.2"/>
+                    </svg>
+                  </button>
+                )}
+                <div className="flex-1 min-w-0">
+                  <EventCard
+                    event={event}
+                    index={index}
+                    isCurrent={index === currentEventIndex}
+                    isPast={index < currentEventIndex}
+                    actors={actors}
+                    onSeek={() => onSeek(index)}
+                    onUpdate={(updates) => onUpdateEvent(index, updates)}
+                    onDelete={() => onDeleteEvent(index)}
+                    onDrawPath={onDrawPath}
+                  />
+                </div>
+              </div>
             </div>
           );
         })}

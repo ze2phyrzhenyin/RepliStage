@@ -1,13 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { CostumeProvider } from "@/components/costumes/CostumeContext";
-import { LanguageToggle } from "@/components/locale/LanguageToggle";
 import { LocaleProvider } from "@/components/locale/LocaleContext";
 import { PlayProvider } from "@/components/play/PlayContext";
 
 export const metadata: Metadata = {
   title: "StageCue",
   description: "StageCue, visual rehearsal tool for stage scripts.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -17,7 +21,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LocaleProvider>
           <PlayProvider>
             <CostumeProvider>
-              <LanguageToggle />
               {children}
             </CostumeProvider>
           </PlayProvider>

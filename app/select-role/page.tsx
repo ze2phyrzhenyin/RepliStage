@@ -7,6 +7,7 @@ import { useLocale } from "@/components/locale/LocaleContext";
 import { RoleCard } from "@/components/RoleCard";
 import CostumeBar from "@/components/costumes/CostumeBar";
 import { usePlayData } from "@/components/play/PlayContext";
+import { LanguageToggle } from "@/components/locale/LanguageToggle";
 
 function SelectRolePageContent() {
   const { play } = usePlayData();
@@ -19,25 +20,24 @@ function SelectRolePageContent() {
     <main className="page-shell min-h-screen px-5 py-12 sm:px-6">
       <div className="max-w-4xl mx-auto">
         <div className="glass-panel fade-in-up mb-8 rounded-[30px] px-6 py-7 sm:px-8">
-          <div className="mb-8 flex items-center justify-between">
-            <div>
+          <div className="mb-8">
+            <div className="flex items-center justify-between gap-3 mb-4">
               <Link
                 href={`/?scene=${encodeURIComponent(scene.id)}`}
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs text-white/34 hover:text-white/70 transition mb-4"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs text-white/34 hover:text-white/70 transition"
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 {t("role.back")}
               </Link>
-              <p className="page-kicker mb-2">
-                {scene.title}
-              </p>
-              <h1 className="display-title text-4xl font-light text-white">{t("role.title")}</h1>
-              <p className="mt-3 max-w-lg text-sm leading-7 text-white/42">
-                {t("role.description")}
-              </p>
+              <LanguageToggle />
             </div>
+            <p className="page-kicker mb-2">{scene.title}</p>
+            <h1 className="display-title text-4xl font-light text-white">{t("role.title")}</h1>
+            <p className="mt-3 max-w-lg text-sm leading-7 text-white/42">
+              {t("role.description")}
+            </p>
           </div>
 
           {play.scenes.length > 1 && (

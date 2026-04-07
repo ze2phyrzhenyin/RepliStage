@@ -53,7 +53,7 @@ function DoorProp({
   doorY: number;
   stageH: number;
   editMode?: boolean;
-  onStartDrag?: (e: React.MouseEvent) => void;
+  onStartDrag?: (e: React.PointerEvent) => void;
 }) {
   const doorStageFloorY = Math.round(stageH * DOOR_FLOOR_RATIO);
   const w = DOOR_FRAME_W * scale;
@@ -64,7 +64,7 @@ function DoorProp({
 
   return (
     <div
-      onMouseDown={editMode ? onStartDrag : undefined}
+      onPointerDown={editMode ? onStartDrag : undefined}
       style={{
         position: "absolute",
         left: (doorX - DOOR_FRAME_W / 2) * scale,
@@ -207,12 +207,12 @@ function ChairBack({
   chairY: number;
   stageH: number;
   editMode?: boolean;
-  onStartDrag?: (e: React.MouseEvent) => void;
+  onStartDrag?: (e: React.PointerEvent) => void;
 }) {
   const { left, bottom, w, h } = chairPosition(scale, chairX, chairY, stageH);
   return (
     <div
-      onMouseDown={editMode ? onStartDrag : undefined}
+      onPointerDown={editMode ? onStartDrag : undefined}
       style={{
         position: "absolute", left, bottom, width: w, height: h,
         pointerEvents: editMode ? "auto" : "none",
@@ -302,7 +302,7 @@ function GenericProp({
   scale: number;
   stageH: number;
   editMode?: boolean;
-  onStartDrag?: (e: React.MouseEvent) => void;
+  onStartDrag?: (e: React.PointerEvent) => void;
 }) {
   const dims = PROP_DIMS[prop.kind];
   if (!dims) return null;
@@ -311,7 +311,7 @@ function GenericProp({
   const anchor = PROP_ANCHORS[prop.kind] ?? "floor";
   return (
     <div
-      onMouseDown={editMode ? onStartDrag : undefined}
+      onPointerDown={editMode ? onStartDrag : undefined}
       style={{
         position: "absolute",
         left: (prop.x - dims.w / 2) * scale,
@@ -523,10 +523,11 @@ export function StageCanvas({
 
   const PATH_POINT_DISTANCE = 12; // min stage-unit distance between recorded points
 
-  function handleStageMouseDown(e: React.MouseEvent) {
+  function handleStagePointerDown(e: React.PointerEvent) {
     if (!editMode) return;
     if (drawingPathFor) {
       e.stopPropagation();
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
       const pos = toStageCoords(e.clientX, e.clientY);
       // Start path from actor's current stage position so animation is seamless
       const actorState = stageState.actors[drawingPathFor];
@@ -535,7 +536,7 @@ export function StageCanvas({
     }
   }
 
-  function handleStageMouseMove(e: React.MouseEvent) {
+  function handleStagePointerMove(e: React.PointerEvent) {
     if (!editMode) return;
     const pos = toStageCoords(e.clientX, e.clientY);
     if (drawingPathFor && recordingPath) {
@@ -551,7 +552,7 @@ export function StageCanvas({
     if (propDrag) setPropDrag((prev) => prev ? { ...prev, stageX: pos.x, stageY: pos.y } : null);
   }
 
-  function handleStageMouseUp(e: React.MouseEvent) {
+  function handleStagePointerUp(e: React.PointerEvent) {
     if (!editMode) return;
     const pos = toStageCoords(e.clientX, e.clientY);
     if (drawingPathFor && recordingPath) {
@@ -571,9 +572,10 @@ export function StageCanvas({
   }
 
   function startPropDrag(prop: StageProp) {
-    return (e: React.MouseEvent) => {
+    return (e: React.PointerEvent) => {
       e.stopPropagation();
       e.preventDefault();
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
       const pos = toStageCoords(e.clientX, e.clientY);
       setPropDrag({ propId: prop.id, kind: prop.kind, stageX: pos.x, stageY: pos.y });
     };
@@ -591,9 +593,10 @@ export function StageCanvas({
             ? (recordingPath ? "crosshair" : "cell")
             : dragState ? "grabbing" : editMode ? "crosshair" : "default",
         }}
-        onMouseDown={handleStageMouseDown}
-        onMouseMove={handleStageMouseMove}
-        onMouseUp={handleStageMouseUp}
+        onPointerDown={handleStagePointerDown}
+        onPointerMove={handleStagePointerMove}
+        onPointerUp={handleStagePointerUp}
+        onPointerCancel={() => { setDragState(null); setPropDrag(null); if (recordingPath) { onPathDrawn?.(recordingPath); setRecordingPath(null); } }}
         onMouseLeave={() => { setDragState(null); setPropDrag(null); if (recordingPath) { onPathDrawn?.(recordingPath); setRecordingPath(null); } }}
       >
         <TheatricalBackground
@@ -803,10 +806,12 @@ export function StageCanvas({
                 cursor: editMode ? "grab" : "default",
                 zIndex: isDragging ? 50 : undefined,
               }}
-              onMouseDown={
+              onPointerDown={
                 editMode
                   ? (e) => {
                       e.preventDefault();
+                      e.stopPropagation();
+                      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
                       const pos = toStageCoords(e.clientX, e.clientY);
                       setDragState({ actorId: actor.actorId, stageX: pos.x, stageY: pos.y });
                     }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useLocale } from "@/components/locale/LocaleContext";
+import { LanguageToggle } from "@/components/locale/LanguageToggle";
 
 export default function HomePage() {
   const { t } = useLocale();
@@ -14,6 +15,9 @@ export default function HomePage() {
       </div>
 
       <div className="glass-panel fade-in-up relative z-10 w-full max-w-4xl rounded-[40px] px-6 py-9 sm:px-10 sm:py-10">
+        <div className="flex justify-end mb-4">
+          <LanguageToggle />
+        </div>
         <div className="mx-auto max-w-2xl text-center">
           <p className="page-kicker">{t("home.tool")}</p>
           <h1 className="display-title mt-4 text-6xl font-light text-white sm:text-7xl">StageCue</h1>
