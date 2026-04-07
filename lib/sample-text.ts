@@ -32,6 +32,57 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
           s4e2: {
             fr: "LA VOIX DE LA NARRATRICE. Enfin arriva le grand jour que tout le monde attendait.",
           },
+          s4e5: {
+            fr: "La très jeune fille est allongée seule près du lit, comme si elle avait volontairement choisi de rester en dehors de la fête de ce soir.",
+          },
+          s4e7: {
+            fr: "Le père porte un costume Louis XIV exagéré ; une cigarette à la main, il affiche une culpabilité évidente.",
+          },
+          s4e12: {
+            fr: "On entend la belle-mère crier de l’étage : « Alors, tu viens ? Tout le monde t’attend ! » Le père prend aussitôt peur.",
+          },
+          s4e14: {
+            fr: "Il tend précipitamment sa cigarette à sa fille et s’enfuit presque.",
+          },
+          s4e16: {
+            fr: "La très jeune fille écrase la cigarette de son père dans un petit cendrier.",
+          },
+          s4e28: {
+            fr: "Sa montre se met soudain à sonner.",
+          },
+          s4e36: {
+            fr: "La lumière s’éteint brusquement. Aussitôt, tonnerre, fracas et cris lointains s’abattent comme une tempête. La très jeune fille hurle de peur.",
+          },
+          s4e39: {
+            fr: "Quand la tempête cesse, la fée réapparaît et allume une cigarette comme si rien ne s’était passé.",
+          },
+          s4e46: {
+            fr: "Quand la lumière revient, une immense boîte magique occupe désormais une bonne moitié de la chambre.",
+          },
+          s4e53: {
+            fr: "Méfiante, elle finit tout de même par entrer dans la boîte magique.",
+          },
+          s4e55: {
+            fr: "Depuis l’intérieur, on entend les protestations de la jeune fille, pendant que la fée multiplie des gestes de prestidigitatrice outrés.",
+          },
+          s4e56: {
+            fr: "Un énorme bang éclate depuis la boîte ; une fumée blanche se répand et la jeune fille pousse un cri.",
+          },
+          s4e58: {
+            fr: "Quand la fumée se dissipe, la jeune fille ressort en toussant, affublée d’un costume de majorette.",
+          },
+          s4e62: {
+            fr: "En râlant, la jeune fille finit par retourner dans la boîte.",
+          },
+          s4e63: {
+            fr: "Après une seconde détonation encore plus forte, c’est un mouton qui semble surgir de la fumée.",
+          },
+          s4e64: {
+            fr: "La très jeune fille, désormais déguisée en mouton, est si effrayée qu’elle refuse presque de s’approcher à nouveau de la boîte.",
+          },
+          s4e67: {
+            fr: "La fée fait mine de fanfaronner, entre elle-même dans la boîte pour prouver que tout va bien… et s’y retrouve coincée.",
+          },
         },
       },
       "scene-5-abords-palais": {
@@ -46,6 +97,15 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
           s5e2: {
             fr: "LA VOIX DE LA NARRATRICE. Pour se rendre à la soirée du roi, la future belle-mère, le père et les deux futures sœurs avaient loué une voiture de luxe avec chauffeur. Puis ils décidèrent de faire à pied les cent derniers mètres pour que tous ceux qui ne pouvaient pas entrer puissent au moins les voir arriver.",
           },
+          s5e8: {
+            fr: "La robe de la belle-mère est particulièrement ostentatoire. Elle marche en tête, sûre d’être la grande apparition de la soirée.",
+          },
+          s5e13: {
+            fr: "Tout au long du trajet, elle s’était imaginé le roi et le prince comme dans un rêve. Mais à mesure qu’ils approchent du palais, les quatre personnages sentent un malaise grandissant, comme si la réalité glissait hors de leur scénario.",
+          },
+          s5e15: {
+            fr: "Finalement, ils s’arrêtent devant les portes du palais ; les sons qui viennent de l’intérieur suffisent à leur faire comprendre que quelque chose cloche.",
+          },
         },
       },
       "scene-6-devant-palais": {
@@ -56,6 +116,41 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
         setting: {
           fr: "Devant le palais résonne une musique incroyablement moderne. La belle-mère, les deux sœurs et le père arrivent avec leurs cartons d’invitation, mais découvrent aussitôt que le style de la soirée n’a rien à voir avec ce qu’ils imaginaient. Dans la confusion, la belle-mère percute d’abord le très jeune prince ; puis la très jeune fille arrive avec la fée et assiste à la scène où le roi pousse son fils à retourner au centre de la fête.",
         },
+        events: {
+          s6e2: {
+            fr: "Devant le palais, la foule se presse. De l’intérieur monte une musique terriblement moderne, presque agressive, à mille lieues du bal classique qu’ils avaient imaginé.",
+          },
+          s6e8: {
+            fr: "Les quatre personnages montrent leurs invitations à l’entrée. La petite et la grande sœur jettent un œil à l’intérieur et pâlissent aussitôt.",
+          },
+          s6e11: {
+            fr: "La belle-mère se penche à son tour vers l’intérieur, méfiante, et son visage se fige immédiatement.",
+          },
+          s6e20: {
+            fr: "D’un geste sec, elle désigne le père et lui fait porter toute la faute.",
+          },
+          s6e25: {
+            fr: "Elle se tourne ensuite vers le père et lui ordonne, à lui aussi, d’entrer.",
+          },
+          s6e30: {
+            fr: "Des sifflets, des moqueries et des rires fusent aussitôt de l’intérieur : le père est devenu la risée de la fête. Au bout d’un moment, la grande sœur ressort, humiliée.",
+          },
+          s6e35: {
+            fr: "Restée seule devant la porte, la belle-mère se cache le visage derrière son ombrelle, hésitant entre attendre le père ou s’enfuir à son tour.",
+          },
+          s6e38: {
+            fr: "En se retournant, la belle-mère percute le très jeune prince. Il tombe presque assis par terre.",
+          },
+          s6e51: {
+            fr: "La très jeune fille, vêtue de la robe de mariée de sa mère, arrive avec la fée devant le palais. Elle n’a pas le temps de tout observer que déjà le prince ressort, suivi de près par le roi.",
+          },
+          s6e63: {
+            fr: "La très jeune fille et la fée restent légèrement en retrait pour écouter l’échange entre le père et le fils. À la fin, sa curiosité l’emporte sur son hésitation.",
+          },
+          s6e67: {
+            fr: "Des acclamations reprennent de l’intérieur. Poussée par la curiosité, la très jeune fille finit elle aussi par entrer.",
+          },
+        },
       },
       "scene-7-interieur-palais": {
         subtitle: {
@@ -65,6 +160,23 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
         setting: {
           fr: "À l’intérieur du palais, la scène est noyée de lumière. Un pied de micro attend le prince au centre. La voix du présentateur, les cris du public et les applaudissements enveloppent toute la salle, tandis que la très jeune fille se glisse discrètement vers le fond de la scène à la fin de la chanson.",
         },
+        events: {
+          s7e2: {
+            fr: "Une voix de cérémonie s’élève du fond de la scène : Mesdames et messieurs, le prince de Wagram et de Normandie, que vous attendiez depuis si longtemps, va chanter ce soir pour vous, et en anglais, une chanson dédiée à sa famille, et tout particulièrement à son père.",
+          },
+          s7e3: {
+            fr: "La salle éclate en cris, en hourras et en applaudissements, comme une vague se ruant sur la scène.",
+          },
+          s7e6: {
+            fr: "Le très jeune prince avance vers le public en chantant une reprise de « Father and Son ». Sa voix enfantine est maladroite mais sincère, comme une lettre ouverte improvisée.",
+          },
+          s7e9: {
+            fr: "Juste avant la fin de la chanson, la très jeune fille se glisse derrière la scène pour se rapprocher du prince. Il la remarque sans interrompre son chant.",
+          },
+          s7e11: {
+            fr: "La chanson s’achève et les applaudissements redoublent. À quelques mètres l’un de l’autre, le prince et la jeune fille se regardent sans parvenir à parler tout de suite.",
+          },
+        },
       },
       "scene-8-devant-portes-palais": {
         subtitle: {
@@ -73,6 +185,29 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
         },
         setting: {
           fr: "À l’extérieur des portes du palais, les applaudissements et les bravo continuent de jaillir de l’intérieur. La très jeune fille sort la première, la fée l’attend dehors ; le prince surgit ensuite presque en courant. Ils se percutent devant l’entrée et échangent enfin quelques mots, pour la première fois vraiment.",
+        },
+        events: {
+          s8e2: {
+            fr: "Les applaudissements et les bravo résonnent encore à l’intérieur du palais. La très jeune fille, toute émue, jaillit dehors comme si elle venait d’échapper à un rêve trop vif.",
+          },
+          s8e6: {
+            fr: "La fée l’attend à l’extérieur et lui fait signe de revenir, comme pour lui dire : déjà ? Tu ne vas pas partir maintenant.",
+          },
+          s8e8: {
+            fr: "Au moment où la très jeune fille se décide à rentrer, les portes s’ouvrent brusquement. Le très jeune prince surgit presque en courant, comme s’il s’échappait de sa propre soirée.",
+          },
+          s8e11: {
+            fr: "Ils se heurtent de plein fouet et le prince manque de tomber à la renverse.",
+          },
+          s8e18: {
+            fr: "Ils repartent chacun dans une direction, puis s’arrêtent en même temps, se retournent et reviennent l’un vers l’autre. Tous deux sont visiblement gênés.",
+          },
+          s8e27: {
+            fr: "La montre de la très jeune fille se met soudain à sonner, tranchant net ce moment qui venait à peine de commencer.",
+          },
+          s8e35: {
+            fr: "Le très jeune prince reste là à la regarder partir, comme s’il ne comprenait pas encore ce qui venait de lui arriver, mais déjà incapable de vouloir que cela s’arrête.",
+          },
         },
       },
       "scene-9-maison-en-verre": {
@@ -166,11 +301,66 @@ const SAMPLE_TEXTS: Record<string, SampleTextOverrides> = {
         subtitle: {
           fr: "Un après-midi à Yiyuanzhai, un visiteur se présente.",
         },
+        setting: {
+          fr: "Dans l’antichambre de Yiyuanzhai, le décor est sobre et élégant : un comptoir pour recevoir les visiteurs et examiner les objets, une étagère d’antiquités au fond, l’enseigne suspendue au-dessus, la porte en haut à gauche et l’accès à l’arrière-boutique sur la droite. Yang Chengyue range des antiquités ; Xue’er l’aide ; Wang Chaojie arrive ensuite.",
+        },
+        events: {
+          s1e2: {
+            fr: "L’après-midi, à Yiyuanzhai, on n’entend presque que le bruit du chiffon sur la porcelaine. Yang Chengyue s’affaire derrière le comptoir ; Xue’er essaie de l’aider.",
+          },
+          s1e8: {
+            fr: "Yang Chengyue lève la main pour prendre une assiette placée en hauteur et l’examine dans sa paume.",
+          },
+          s1e21: {
+            fr: "Wang Chaojie tressaille légèrement et s’apprête à repartir.",
+          },
+          s1e28: {
+            fr: "Wang Chaojie tapote doucement sa valise, le visage traversé d’hésitation.",
+          },
+          s1e30: {
+            fr: "Yang Chengyue l’invite d’un geste à s’approcher du comptoir pour regarder la pièce de plus près.",
+          },
+          s1e44: {
+            fr: "Wang Chaojie pose sa valise contre le comptoir, l’ouvre avec précaution et en sort une grande assiette de porcelaine peinte.",
+          },
+          s1e46: {
+            fr: "Yang Chengyue tend la main pour retourner l’assiette et en voir la base, mais Wang Chaojie l’arrête d’un geste.",
+          },
+          s1e58: {
+            fr: "De l’arrière-boutique monte une mélodie de « Qin Qiong vend son cheval ». Wang Chaojie ferme un instant les yeux, l’expression trouble.",
+          },
+        },
       },
       "scene-2-yiyuanzhai-ye": {
         title: { fr: "Scène 2" },
         subtitle: {
           fr: "Nuit de négociation, la porcelaine se brise et la vérité éclate.",
+        },
+        setting: {
+          fr: "La nuit est tombée mais Yiyuanzhai reste éclairé. Sur le comptoir sont posés un service à thé et un support d’assiette ; l’étagère d’antiquités veille au fond. Yang Chengyue retient Wang Chaojie pour le repas, Xue’er reste à leurs côtés ; ils parlent d’opéra, discutent du prix, se quittent, puis la vérité éclate dans le fracas de la porcelaine brisée.",
+        },
+        events: {
+          s2e2: {
+            fr: "La nuit, la lumière éclaire encore la salle de devant de Yiyuanzhai. Au bord du comptoir, les plats et le thé attendent ; Wang Chaojie et Yang Chengyue parlent théâtre et prix, tandis que Xue’er se tient près d’eux.",
+          },
+          s2e31: {
+            fr: "Yang Chengyue sourit sans rien dire, mais son regard ne quitte jamais le bord de l’assiette.",
+          },
+          s2e41: {
+            fr: "Yang Chengyue pose les billets d’argent sur la table et les pousse devant Wang Chaojie.",
+          },
+          s2e48: {
+            fr: "Wang Chaojie se retourne ; au loin, l’air de « Qin Qiong vend son cheval » reprend, comme pour accompagner cette transaction.",
+          },
+          s2e53: {
+            fr: "D’un geste brusque, Yang Chengyue fait voler l’assiette : elle s’écrase au sol en mille morceaux.",
+          },
+          s2e56: {
+            fr: "Il rapporte alors de l’arrière-boutique la véritable vieille assiette et la pose à côté des tessons pour les comparer.",
+          },
+          s2e62: {
+            fr: "Sous la lampe, les éclats de porcelaine renvoient une lumière froide ; au loin, l’air de « Qin Qiong vend son cheval » s’élève à nouveau, comme un adieu pour Wang Chaojie et un soupir pour cette nuit.",
+          },
         },
       },
     },
