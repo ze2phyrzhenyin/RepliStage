@@ -14,7 +14,7 @@ export type DerivedStageState = {
   actors: Record<string, StageActorState>;
   props: StageProp[];
   blackoutVisible: boolean;
-  currentEvent: ScriptEvent;
+  currentEvent: ScriptEvent | undefined;
   currentLineText: string | null;
   currentActionText: string | null;
   sceneEnded: boolean;
@@ -396,6 +396,10 @@ export function deriveStageState(
   let currentActionText: string | null = null;
   let sceneEnded = false;
   let activeActorId: string | null = null;
+
+  if (events.length === 0) {
+    return { actors, props, blackoutVisible: false, currentEvent: undefined, currentLineText: null, currentActionText: null, sceneEnded: false, activeActorId: null };
+  }
 
   const boundedIndex = Math.max(0, Math.min(currentEventIndex, events.length - 1));
 
