@@ -2158,7 +2158,8 @@
           "duration": 1.1,
           "x": 460,
           "y": 348,
-          "fromSide": "left"
+          "fromSide": "left",
+          "pose": "sit"
         },
         {
           "id": "e5",
@@ -2601,11 +2602,20 @@
           "duration": 1
         },
         {
+          "id": "e64b",
+          "type": "move",
+          "actorId": "belle_mere",
+          "duration": 0.9,
+          "x": 460,
+          "y": 348
+        },
+        {
           "id": "e65",
           "type": "action",
           "actorId": "belle_mere",
           "duration": 1.5,
-          "text": "La belle-mère se rassoit, soudainement calme, comme si elle venait de saisir une occasion dangereuse mais tentante."
+          "text": "La belle-mère se rassoit, soudainement calme, comme si elle venait de saisir une occasion dangereuse mais tentante.",
+          "pose": "sit"
         },
         {
           "id": "e66",

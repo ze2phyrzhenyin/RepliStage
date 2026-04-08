@@ -302,7 +302,9 @@ function inferPoseFromText(currentPose: ActorPose, actorId: string | undefined, 
     normalized.includes("restez assise") ||
     normalized.includes("assise") ||
     normalized.includes("s'assoit") ||
+    normalized.includes("se rassoit") ||
     normalized.includes("s'asseoir") ||
+    normalized.includes("se rasseoir") ||
     normalized.includes("s'installe") ||
     normalized.includes("prend place")
   ) {
