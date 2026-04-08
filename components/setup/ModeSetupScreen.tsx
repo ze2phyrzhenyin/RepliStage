@@ -15,7 +15,7 @@ type SourceMode = "sample" | "import";
 
 export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
   const router = useRouter();
-  const { locale, t } = useLocale();
+  const { locale, setLocale, t } = useLocale();
   const {
     play,
     playSource,
@@ -53,6 +53,7 @@ export function ModeSetupScreen({ mode }: { mode: SetupMode }) {
     setSelectedSceneId(nextSample?.play.scenes[0]?.id ?? "");
     setImportPreview(null);
     setImportErrors([]);
+    if (nextSample?.localeTag) setLocale(nextSample.localeTag);
   }
 
   async function handleImportFile(event: ChangeEvent<HTMLInputElement>) {

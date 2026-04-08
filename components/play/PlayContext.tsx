@@ -92,6 +92,14 @@ function loadStoredPlay() {
       };
     }
     const parsed = migrateStoredPlay(JSON.parse(raw));
+    // If stored source is a sample, always use the current sample data
+    // so that updates to bundled samples (e.g. translated actor names) are reflected immediately.
+    if (parsed.source.type === "sample") {
+      const fresh = getSamplePlay(parsed.source.sampleId);
+      if (fresh) {
+        return { play: clonePlay(fresh.play), source: parsed.source };
+      }
+    }
     return {
       play: clonePlay(parsed.play),
       source: parsed.source,
