@@ -82,6 +82,14 @@
           "fromSide": "left"
         },
         {
+          "id": "s4e4b",
+          "type": "move",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.8,
+          "x": 284,
+          "y": 396
+        },
+        {
           "id": "s4e5",
           "type": "action",
           "actorId": "tres_jeune_fille",
@@ -508,6 +516,14 @@
           "text": "La très jeune fille, déguisée en mouton et encore sous le choc, refuse à présent d'approcher la boîte d'un seul pas."
         },
         {
+          "id": "s4e64b",
+          "type": "move",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.7,
+          "x": 342,
+          "y": 346
+        },
+        {
           "id": "s4e65",
           "type": "line",
           "actorId": "fee",
@@ -520,6 +536,26 @@
           "actorId": "tres_jeune_fille",
           "duration": 6.4,
           "text": "Moi, je retourne pas là-dedans, allez-y vous pour voir, ça fout la trouille ! En plus, si on peut plus sortir…"
+        },
+        {
+          "id": "s4e66b",
+          "type": "move_path",
+          "actorId": "fee",
+          "duration": 1.0,
+          "path": [
+            {
+              "x": 342,
+              "y": 290
+            },
+            {
+              "x": 458,
+              "y": 316
+            },
+            {
+              "x": 538,
+              "y": 342
+            }
+          ]
         },
         {
           "id": "s4e67",
@@ -852,6 +888,11 @@
           "type": "action",
           "duration": 2.4,
           "text": "Ils s'arrêtent enfin devant les portes du palais, mais les sons et l'atmosphère qui s'en dégagent laissent chacun avec la vague impression que quelque chose ne va pas."
+        },
+        {
+          "id": "s5e15b",
+          "type": "pause",
+          "duration": 0.8
         },
         {
           "id": "s5e16",
@@ -1231,6 +1272,14 @@
           "text": "La belle-mère reste seule devant la porte, l'ombrelle devant le visage, hésitant entre attendre le père et fuir à son tour."
         },
         {
+          "id": "s6e35b",
+          "type": "move",
+          "actorId": "belle_mere",
+          "duration": 0.9,
+          "x": 472,
+          "y": 310
+        },
+        {
           "id": "s6e36",
           "type": "enter",
           "actorId": "tres_jeune_prince",
@@ -1260,10 +1309,25 @@
           ]
         },
         {
+          "id": "s6e37b",
+          "type": "move",
+          "actorId": "belle_mere",
+          "duration": 0.5,
+          "x": 508,
+          "y": 292
+        },
+        {
           "id": "s6e38",
           "type": "action",
           "duration": 1.2,
           "text": "La belle-mère se retourne et percute de plein fouet le très jeune prince qui venait en sens inverse. Le prince tombe à terre."
+        },
+        {
+          "id": "s6e38b",
+          "type": "action",
+          "actorId": "tres_jeune_prince",
+          "duration": 0.8,
+          "text": "Le prince trébuche et s'effondre brièvement à terre avant de se relever."
         },
         {
           "id": "s6e39",
@@ -1462,6 +1526,14 @@
           "toSide": "top"
         },
         {
+          "id": "s6e65b",
+          "type": "move",
+          "actorId": "fee",
+          "duration": 0.8,
+          "x": 300,
+          "y": 294
+        },
+        {
           "id": "s6e66",
           "type": "move_path",
           "actorId": "tres_jeune_fille",
@@ -1596,16 +1668,16 @@
           "duration": 1.8,
           "path": [
             {
-              "x": 720,
-              "y": 388
+              "x": 716,
+              "y": 390
             },
             {
-              "x": 650,
-              "y": 356
+              "x": 632,
+              "y": 348
             },
             {
-              "x": 596,
-              "y": 318
+              "x": 524,
+              "y": 282
             }
           ]
         },
@@ -1812,6 +1884,46 @@
           "text": "Vous pareillement."
         },
         {
+          "id": "s8e17b",
+          "type": "move_path",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.4,
+          "path": [
+            {
+              "x": 548,
+              "y": 290
+            },
+            {
+              "x": 492,
+              "y": 306
+            },
+            {
+              "x": 558,
+              "y": 282
+            }
+          ]
+        },
+        {
+          "id": "s8e17c",
+          "type": "move_path",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.4,
+          "path": [
+            {
+              "x": 626,
+              "y": 270
+            },
+            {
+              "x": 668,
+              "y": 254
+            },
+            {
+              "x": 614,
+              "y": 278
+            }
+          ]
+        },
+        {
           "id": "s8e18",
           "type": "action",
           "duration": 1.8,
@@ -1935,6 +2047,14 @@
           "actorId": "tres_jeune_prince",
           "duration": 2.6,
           "text": "Le très jeune prince reste sur place, les yeux fixés sur elle qui s'éloigne, sans bien comprendre ce qui vient de se passer, et déjà incapable de laisser cet instant se terminer."
+        },
+        {
+          "id": "s8e35b",
+          "type": "move",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.0,
+          "x": 640,
+          "y": 214
         },
         {
           "id": "s8e36",
@@ -2089,6 +2209,14 @@
           "actorId": "belle_mere",
           "duration": 1.2,
           "text": "La belle-mère se lève brusquement de sa chaise, sa colère explose."
+        },
+        {
+          "id": "e11b",
+          "type": "move",
+          "actorId": "belle_mere",
+          "duration": 0.6,
+          "x": 368,
+          "y": 302
         },
         {
           "id": "e12",
@@ -3195,6 +3323,20 @@
           "text": "Le roi raccompagne son fils troublé à l'intérieur du palais, laissant devant lui la nuit et les échos dérisoires de la scène qui vient de se jouer."
         },
         {
+          "id": "s12e53b",
+          "type": "exit",
+          "actorId": "garde_1",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
+          "id": "s12e53c",
+          "type": "exit",
+          "actorId": "garde_2",
+          "duration": 0.8,
+          "toSide": "top"
+        },
+        {
           "id": "s12e54",
           "type": "exit",
           "actorId": "roi",
@@ -3230,6 +3372,14 @@
           "x": 498,
           "y": 236,
           "fromSide": "top"
+        },
+        {
+          "id": "s12e58b",
+          "type": "move",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.0,
+          "x": 350,
+          "y": 290
         },
         {
           "id": "s12e59",
@@ -3309,6 +3459,14 @@
           "text": "Pourquoi ce serait pas vrai ? Ma mère me fait dire qu'elle va me téléphoner alors j'ai pas de raison de croire qu'elle va pas le faire."
         },
         {
+          "id": "s12e69b",
+          "type": "move",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.8,
+          "x": 426,
+          "y": 264
+        },
+        {
           "id": "s12e70",
           "type": "line",
           "actorId": "tres_jeune_fille",
@@ -3375,6 +3533,22 @@
           "actorId": "tres_jeune_prince",
           "duration": 4.4,
           "text": "Ouais c'est vrai. Je me disais que c'était drôle qu'elle arrive pas à rentrer en dix ans quand même."
+        },
+        {
+          "id": "s12e79b",
+          "type": "move_path",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.9,
+          "path": [
+            {
+              "x": 456,
+              "y": 258
+            },
+            {
+              "x": 480,
+              "y": 250
+            }
+          ]
         },
         {
           "id": "s12e80",
@@ -3508,6 +3682,13 @@
           "actorId": "tres_jeune_prince",
           "duration": 2.4,
           "text": "Le très jeune prince reste devant le palais, les yeux fixés sur elle qui s'éloigne, comme s'il voyait pour la première fois la route vers l'avenir."
+        },
+        {
+          "id": "s12e98b",
+          "type": "exit",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.0,
+          "toSide": "top"
         },
         {
           "id": "s12e99",
@@ -3843,6 +4024,14 @@
           "id": "s13e35",
           "type": "pause",
           "duration": 0.8
+        },
+        {
+          "id": "s13e35b",
+          "type": "move",
+          "actorId": "tres_jeune_fille",
+          "duration": 0.9,
+          "x": 556,
+          "y": 358
         },
         {
           "id": "s13e36",
@@ -4243,6 +4432,20 @@
           "text": "Narrateur : Heureusement, un jour, tout finit par se taire."
         },
         {
+          "id": "s13e91b",
+          "type": "exit",
+          "actorId": "soeur_grande",
+          "duration": 0.8,
+          "toSide": "right"
+        },
+        {
+          "id": "s13e91c",
+          "type": "exit",
+          "actorId": "soeur_petite",
+          "duration": 0.8,
+          "toSide": "right"
+        },
+        {
           "id": "s13e92",
           "type": "scene_end",
           "duration": 0.8
@@ -4341,7 +4544,7 @@
           "actorId": "mere",
           "duration": 1,
           "x": 472,
-          "y": 350,
+          "y": 392,
           "fromSide": "top"
         },
         {
@@ -4519,6 +4722,62 @@
           ]
         },
         {
+          "id": "s15e8b",
+          "type": "move_path",
+          "actorId": "tres_jeune_prince",
+          "duration": 2.0,
+          "path": [
+            {
+              "x": 478,
+              "y": 258
+            },
+            {
+              "x": 524,
+              "y": 294
+            },
+            {
+              "x": 472,
+              "y": 320
+            },
+            {
+              "x": 422,
+              "y": 288
+            },
+            {
+              "x": 470,
+              "y": 262
+            }
+          ]
+        },
+        {
+          "id": "s15e8c",
+          "type": "move_path",
+          "actorId": "tres_jeune_fille",
+          "duration": 2.0,
+          "path": [
+            {
+              "x": 470,
+              "y": 318
+            },
+            {
+              "x": 422,
+              "y": 284
+            },
+            {
+              "x": 472,
+              "y": 258
+            },
+            {
+              "x": 524,
+              "y": 292
+            },
+            {
+              "x": 478,
+              "y": 316
+            }
+          ]
+        },
+        {
           "id": "s15e9",
           "type": "action",
           "duration": 6.6,
@@ -4528,6 +4787,22 @@
           "id": "s15e10",
           "type": "pause",
           "duration": 1.2
+        },
+        {
+          "id": "s15e10b",
+          "type": "move",
+          "actorId": "tres_jeune_prince",
+          "duration": 1.0,
+          "x": 580,
+          "y": 278
+        },
+        {
+          "id": "s15e10c",
+          "type": "move",
+          "actorId": "tres_jeune_fille",
+          "duration": 1.0,
+          "x": 352,
+          "y": 294
         },
         {
           "id": "s15e11",

@@ -13,10 +13,30 @@
         "doorX": 154,
         "doorY": 98,
         "props": [
-          { "id": "scene1-sign", "kind": "signboard_yiyuanzhai", "x": 462, "y": 26 },
-          { "id": "scene1-shelf", "kind": "display_shelf", "x": 756, "y": 286 },
-          { "id": "scene1-counter", "kind": "counter_table", "x": 464, "y": 354 },
-          { "id": "scene1-stand", "kind": "plate_stand", "x": 550, "y": 366 }
+          {
+            "id": "scene1-sign",
+            "kind": "signboard_yiyuanzhai",
+            "x": 462,
+            "y": 26
+          },
+          {
+            "id": "scene1-shelf",
+            "kind": "display_shelf",
+            "x": 756,
+            "y": 286
+          },
+          {
+            "id": "scene1-counter",
+            "kind": "counter_table",
+            "x": 464,
+            "y": 354
+          },
+          {
+            "id": "scene1-stand",
+            "kind": "plate_stand",
+            "x": 550,
+            "y": 366
+          }
         ]
       },
       "actors": [
@@ -40,66 +60,444 @@
         }
       ],
       "events": [
-        { "id": "s1e1", "type": "blackout_start", "duration": 1.2 },
-        { "id": "s1e2", "type": "action", "duration": 2.4, "text": "午后，艺园斋里安静得只剩下擦拭瓷器的声音。杨成岳在柜台前忙碌，雪儿想搭把手。" },
-        { "id": "s1e3", "type": "blackout_end", "duration": 0.6 },
-        { "id": "s1e4", "type": "enter", "actorId": "yang_chengyue", "duration": 1, "x": 472, "y": 312, "fromSide": "right" },
-        { "id": "s1e5", "type": "enter", "actorId": "xue_er", "duration": 1, "x": 346, "y": 306, "fromSide": "left" },
-        { "id": "s1e6", "type": "line", "actorId": "yang_chengyue", "duration": 3.8, "text": "雪儿，这些活儿我来就行，你多休息会儿。" },
-        { "id": "s1e7", "type": "line", "actorId": "xue_er", "duration": 3.4, "text": "你每天太辛苦了，我想帮你做点事儿。" },
-        { "id": "s1e8", "type": "action", "actorId": "yang_chengyue", "duration": 1.5, "text": "杨成岳抬手把高处的盘子取下来，放在掌心细看。" },
-        { "id": "s1e9", "type": "line", "actorId": "yang_chengyue", "duration": 2.4, "text": "这个怎么放在上面了。" },
-        { "id": "s1e10", "type": "line", "actorId": "xue_er", "duration": 3.4, "text": "这不是仿的吗，不是都放在上面吗？" },
-        { "id": "s1e11", "type": "line", "actorId": "yang_chengyue", "duration": 2.6, "text": "这可不是仿的。" },
-        { "id": "s1e12", "type": "pause", "duration": 0.8 },
-        { "id": "s1e13", "type": "enter", "actorId": "wang_chaojie", "duration": 1.2, "x": 180, "y": 248, "fromSide": "left" },
-        { "id": "s1e14", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "这里是艺园斋吗？" },
-        { "id": "s1e15", "type": "line", "actorId": "xue_er", "duration": 1.2, "text": "对。" },
-        { "id": "s1e16", "type": "line", "actorId": "wang_chaojie", "duration": 2.4, "text": "我想找一下老板。" },
-        { "id": "s1e17", "type": "move", "actorId": "yang_chengyue", "duration": 0.9, "x": 492, "y": 316 },
-        { "id": "s1e18", "type": "line", "actorId": "yang_chengyue", "duration": 4.4, "text": "在下便是艺园斋的老板杨成岳。" },
-        { "id": "s1e19", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "我找韩老板。" },
-        { "id": "s1e20", "type": "line", "actorId": "yang_chengyue", "duration": 3.8, "text": "先生，韩老板已经去世三年多了。" },
-        { "id": "s1e21", "type": "action", "actorId": "wang_chaojie", "duration": 1.2, "text": "王超杰微微一怔，转身便想离去。" },
-        { "id": "s1e22", "type": "move", "actorId": "wang_chaojie", "duration": 0.8, "x": 144, "y": 236 },
-        { "id": "s1e23", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "什么，那不打扰了。" },
-        { "id": "s1e24", "type": "line", "actorId": "xue_er", "duration": 3.8, "text": "先生留步，我是韩老板的女儿，你先进来吧。" },
-        { "id": "s1e25", "type": "move", "actorId": "wang_chaojie", "duration": 0.8, "x": 252, "y": 246 },
-        { "id": "s1e26", "type": "line", "actorId": "wang_chaojie", "duration": 3.8, "text": "故人之女都这么大了，那打扰了。" },
-        { "id": "s1e27", "type": "line", "actorId": "xue_er", "duration": 3.2, "text": "先生今日前来所为何事？" },
-        { "id": "s1e28", "type": "action", "actorId": "wang_chaojie", "duration": 1.4, "text": "王超杰轻拍手提箱，神色带着几分踌躇。" },
-        { "id": "s1e29", "type": "line", "actorId": "wang_chaojie", "duration": 4.8, "text": "我有一件雍正年间的盘子，想找老板看看。" },
-        { "id": "s1e30", "type": "action", "actorId": "yang_chengyue", "duration": 1.4, "text": "杨成岳抬手示意王超杰到柜台前细看盘子。" },
-        { "id": "s1e31", "type": "move_path", "actorId": "wang_chaojie", "duration": 1.6, "path": [ { "x": 310, "y": 258 }, { "x": 374, "y": 286 }, { "x": 420, "y": 312 } ] },
-        { "id": "s1e32", "type": "line", "actorId": "yang_chengyue", "duration": 4.4, "text": "先生，请近前来，还没有请教先生尊姓大名。" },
-        { "id": "s1e33", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "我是北京王超杰。" },
-        { "id": "s1e34", "type": "line", "actorId": "xue_er", "duration": 4.8, "text": "原来您就是王超杰先生，家父对您的唱功可是赞不绝口呢。" },
-        { "id": "s1e35", "type": "line", "actorId": "yang_chengyue", "duration": 8.2, "text": "王老板，幸会了，早就耳闻这北方铁嗓王超杰，专攻老生，成名已久，未曾有机会结识，没有想到今天竟然有机会见到真人，幸会幸会。" },
-        { "id": "s1e36", "type": "line", "actorId": "wang_chaojie", "duration": 3.2, "text": "这么说杨老板也是门里人了。" },
-        { "id": "s1e37", "type": "line", "actorId": "yang_chengyue", "duration": 5.8, "text": "不瞒王先生，杨某也曾是票友，只是判若云泥，不敢与王先生坐论其道。" },
-        { "id": "s1e38", "type": "line", "actorId": "wang_chaojie", "duration": 5.2, "text": "杨老板过谦了，超杰前两年不幸中风，这左脚啊，便不太利索，就不再登台，倒也清闲。" },
-        { "id": "s1e39", "type": "line", "actorId": "yang_chengyue", "duration": 2.2, "text": "先生实在豁达，佩服。" },
-        { "id": "s1e40", "type": "line", "actorId": "wang_chaojie", "duration": 7.2, "text": "这人生无常啊，比起韩老板，我也算幸运。韩老板是我早年相识的好友，突然听闻离世，超杰不胜悲痛啊。" },
-        { "id": "s1e41", "type": "line", "actorId": "yang_chengyue", "duration": 6.8, "text": "王先生真乃性情中人，这俗世万千，谁又能料到生死。不知王先生今天来此有何贵干？" },
-        { "id": "s1e42", "type": "line", "actorId": "wang_chaojie", "duration": 6.4, "text": "此来真有一件事情相烦，王某有几件古瓷，想让杨先生鉴赏，不知杨先生有无兴致。" },
-        { "id": "s1e43", "type": "line", "actorId": "yang_chengyue", "duration": 4, "text": "王先生手前方便否，可否让我一睹为快？" },
-        { "id": "s1e44", "type": "action", "actorId": "wang_chaojie", "duration": 1.8, "text": "王超杰把手提箱放在柜台边，小心打开，捧出一只粉彩大盘。" },
-        { "id": "s1e45", "type": "line", "actorId": "wang_chaojie", "duration": 10.4, "text": "说来惭愧，超杰平生最爱收藏官窑彩瓷，凡遇喜爱，不惜重金，必据为己有。这前些年与韩老板相交，从他这儿也收了不少，这雍正官窑粉彩过枝碧桃大盘正是其中之一。" },
-        { "id": "s1e46", "type": "action", "actorId": "yang_chengyue", "duration": 1.4, "text": "杨成岳伸手欲取盘看底，王超杰却抬手拦下。" },
-        { "id": "s1e47", "type": "line", "actorId": "wang_chaojie", "duration": 5.2, "text": "杨老板莫急，超杰想要考考你，如果不看底，先生能否掌眼？" },
-        { "id": "s1e48", "type": "line", "actorId": "yang_chengyue", "duration": 12.8, "text": "王先生这是想考考我啊。这杨某开店，自然有看家的本事。这瓷器鉴定啊，行里面都是分三步，首先是观色，无论是年代久远带锈的，还是时间不久没上锈的，包浆都有所不同。第二步就是听声，不同材质，声音会有细微差别。这第三步自然是上手掂一下，每个时代的瓷器手感都是不一样的，再加上历史的沉淀，手感是怎么都仿不来的。" },
-        { "id": "s1e49", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "先生果然是行家。" },
-        { "id": "s1e50", "type": "line", "actorId": "yang_chengyue", "duration": 3.6, "text": "此乃王先生心爱之物，何故出手呢？" },
-        { "id": "s1e51", "type": "line", "actorId": "wang_chaojie", "duration": 6.4, "text": "不好相瞒，此物是我心爱珍藏，无奈生计所迫，只好出手，还望杨老板成全。" },
-        { "id": "s1e52", "type": "line", "actorId": "yang_chengyue", "duration": 8.6, "text": "本店是小本生意，自我从韩老板手里盘下这店，还不曾多么赚过。王先生这只盘子十分珍贵，杨某有心无力，实在不好言价了。还请王先生体谅。" },
-        { "id": "s1e53", "type": "line", "actorId": "wang_chaojie", "duration": 4.8, "text": "这实在是几件珍品，若不是王某手面尴尬，是不会出手的。" },
-        { "id": "s1e54", "type": "line", "actorId": "yang_chengyue", "duration": 5.4, "text": "买卖不成仁义在，先不说价钱，容我再想想。今日王先生先住下，我让下人去找一家上等客栈。" },
-        { "id": "s1e55", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "不麻烦杨老板了。" },
-        { "id": "s1e56", "type": "line", "actorId": "yang_chengyue", "duration": 2.4, "text": "不麻烦，我去里间说一下。" },
-        { "id": "s1e57", "type": "exit", "actorId": "yang_chengyue", "duration": 0.9, "toSide": "right" },
-        { "id": "s1e58", "type": "action", "duration": 2.6, "text": "里间隐约传来一段《秦琼卖马》的唱腔，王超杰微闭双目，神情复杂。" },
-        { "id": "s1e59", "type": "blackout_start", "duration": 0.8 },
-        { "id": "s1e60", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s1e1",
+          "type": "blackout_start",
+          "duration": 1.2
+        },
+        {
+          "id": "s1e2",
+          "type": "action",
+          "duration": 2.4,
+          "text": "午后，艺园斋里安静得只剩下擦拭瓷器的声音。杨成岳在柜台前忙碌，雪儿想搭把手。"
+        },
+        {
+          "id": "s1e3",
+          "type": "blackout_end",
+          "duration": 0.6
+        },
+        {
+          "id": "s1e4",
+          "type": "enter",
+          "actorId": "yang_chengyue",
+          "duration": 1,
+          "x": 472,
+          "y": 312,
+          "fromSide": "right"
+        },
+        {
+          "id": "s1e5",
+          "type": "enter",
+          "actorId": "xue_er",
+          "duration": 1,
+          "x": 346,
+          "y": 306,
+          "fromSide": "left"
+        },
+        {
+          "id": "s1e6",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 3.8,
+          "text": "雪儿，这些活儿我来就行，你多休息会儿。"
+        },
+        {
+          "id": "s1e7",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 3.4,
+          "text": "你每天太辛苦了，我想帮你做点事儿。"
+        },
+        {
+          "id": "s1e8",
+          "type": "action",
+          "actorId": "yang_chengyue",
+          "duration": 1.5,
+          "text": "杨成岳抬手把高处的盘子取下来，放在掌心细看。"
+        },
+        {
+          "id": "s1e9",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 2.4,
+          "text": "这个怎么放在上面了。"
+        },
+        {
+          "id": "s1e10",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 3.4,
+          "text": "这不是仿的吗，不是都放在上面吗？"
+        },
+        {
+          "id": "s1e11",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 2.6,
+          "text": "这可不是仿的。"
+        },
+        {
+          "id": "s1e12",
+          "type": "pause",
+          "duration": 0.8
+        },
+        {
+          "id": "s1e13",
+          "type": "enter",
+          "actorId": "wang_chaojie",
+          "duration": 1.2,
+          "x": 180,
+          "y": 248,
+          "fromSide": "left"
+        },
+        {
+          "id": "s1e14",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 2.2,
+          "text": "这里是艺园斋吗？"
+        },
+        {
+          "id": "s1e15",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 1.2,
+          "text": "对。"
+        },
+        {
+          "id": "s1e16",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 2.4,
+          "text": "我想找一下老板。"
+        },
+        {
+          "id": "s1e17",
+          "type": "move",
+          "actorId": "yang_chengyue",
+          "duration": 0.9,
+          "x": 494,
+          "y": 334
+        },
+        {
+          "id": "s1e18",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 4.4,
+          "text": "在下便是艺园斋的老板杨成岳。"
+        },
+        {
+          "id": "s1e19",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 2.2,
+          "text": "我找韩老板。"
+        },
+        {
+          "id": "s1e20",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 3.8,
+          "text": "先生，韩老板已经去世三年多了。"
+        },
+        {
+          "id": "s1e21",
+          "type": "action",
+          "actorId": "wang_chaojie",
+          "duration": 1.2,
+          "text": "王超杰微微一怔，转身便想离去。"
+        },
+        {
+          "id": "s1e22",
+          "type": "move",
+          "actorId": "wang_chaojie",
+          "duration": 0.8,
+          "x": 144,
+          "y": 236
+        },
+        {
+          "id": "s1e23",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 2.2,
+          "text": "什么，那不打扰了。"
+        },
+        {
+          "id": "s1e24",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 3.8,
+          "text": "先生留步，我是韩老板的女儿，你先进来吧。"
+        },
+        {
+          "id": "s1e25",
+          "type": "move",
+          "actorId": "wang_chaojie",
+          "duration": 0.8,
+          "x": 252,
+          "y": 246
+        },
+        {
+          "id": "s1e26",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 3.8,
+          "text": "故人之女都这么大了，那打扰了。"
+        },
+        {
+          "id": "s1e27",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 3.2,
+          "text": "先生今日前来所为何事？"
+        },
+        {
+          "id": "s1e28",
+          "type": "action",
+          "actorId": "wang_chaojie",
+          "duration": 1.4,
+          "text": "王超杰轻拍手提箱，神色带着几分踌躇。"
+        },
+        {
+          "id": "s1e29",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 4.8,
+          "text": "我有一件雍正年间的盘子，想找老板看看。"
+        },
+        {
+          "id": "s1e30",
+          "type": "action",
+          "actorId": "yang_chengyue",
+          "duration": 1.4,
+          "text": "杨成岳抬手示意王超杰到柜台前细看盘子。"
+        },
+        {
+          "id": "s1e31",
+          "type": "move_path",
+          "actorId": "wang_chaojie",
+          "duration": 1.6,
+          "path": [
+            {
+              "x": 310,
+              "y": 258
+            },
+            {
+              "x": 374,
+              "y": 286
+            },
+            {
+              "x": 420,
+              "y": 312
+            }
+          ]
+        },
+        {
+          "id": "s1e32",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 4.4,
+          "text": "先生，请近前来，还没有请教先生尊姓大名。"
+        },
+        {
+          "id": "s1e33",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 2.2,
+          "text": "我是北京王超杰。"
+        },
+        {
+          "id": "s1e34",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 4.8,
+          "text": "原来您就是王超杰先生，家父对您的唱功可是赞不绝口呢。"
+        },
+        {
+          "id": "s1e35",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 8.2,
+          "text": "王老板，幸会了，早就耳闻这北方铁嗓王超杰，专攻老生，成名已久，未曾有机会结识，没有想到今天竟然有机会见到真人，幸会幸会。"
+        },
+        {
+          "id": "s1e36",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 3.2,
+          "text": "这么说杨老板也是门里人了。"
+        },
+        {
+          "id": "s1e37",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 5.8,
+          "text": "不瞒王先生，杨某也曾是票友，只是判若云泥，不敢与王先生坐论其道。"
+        },
+        {
+          "id": "s1e38",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 5.2,
+          "text": "杨老板过谦了，超杰前两年不幸中风，这左脚啊，便不太利索，就不再登台，倒也清闲。"
+        },
+        {
+          "id": "s1e39",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 2.2,
+          "text": "先生实在豁达，佩服。"
+        },
+        {
+          "id": "s1e40",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 7.2,
+          "text": "这人生无常啊，比起韩老板，我也算幸运。韩老板是我早年相识的好友，突然听闻离世，超杰不胜悲痛啊。"
+        },
+        {
+          "id": "s1e41",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 6.8,
+          "text": "王先生真乃性情中人，这俗世万千，谁又能料到生死。不知王先生今天来此有何贵干？"
+        },
+        {
+          "id": "s1e42",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 6.4,
+          "text": "此来真有一件事情相烦，王某有几件古瓷，想让杨先生鉴赏，不知杨先生有无兴致。"
+        },
+        {
+          "id": "s1e43",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 4,
+          "text": "王先生手前方便否，可否让我一睹为快？"
+        },
+        {
+          "id": "s1e44",
+          "type": "action",
+          "actorId": "wang_chaojie",
+          "duration": 1.8,
+          "text": "王超杰把手提箱放在柜台边，小心打开，捧出一只粉彩大盘。"
+        },
+        {
+          "id": "s1e45",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 10.4,
+          "text": "说来惭愧，超杰平生最爱收藏官窑彩瓷，凡遇喜爱，不惜重金，必据为己有。这前些年与韩老板相交，从他这儿也收了不少，这雍正官窑粉彩过枝碧桃大盘正是其中之一。"
+        },
+        {
+          "id": "s1e46",
+          "type": "action",
+          "actorId": "yang_chengyue",
+          "duration": 1.4,
+          "text": "杨成岳伸手欲取盘看底，王超杰却抬手拦下。"
+        },
+        {
+          "id": "s1e47",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 5.2,
+          "text": "杨老板莫急，超杰想要考考你，如果不看底，先生能否掌眼？"
+        },
+        {
+          "id": "s1e48",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 12.8,
+          "text": "王先生这是想考考我啊。这杨某开店，自然有看家的本事。这瓷器鉴定啊，行里面都是分三步，首先是观色，无论是年代久远带锈的，还是时间不久没上锈的，包浆都有所不同。第二步就是听声，不同材质，声音会有细微差别。这第三步自然是上手掂一下，每个时代的瓷器手感都是不一样的，再加上历史的沉淀，手感是怎么都仿不来的。"
+        },
+        {
+          "id": "s1e49",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 2.2,
+          "text": "先生果然是行家。"
+        },
+        {
+          "id": "s1e50",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 3.6,
+          "text": "此乃王先生心爱之物，何故出手呢？"
+        },
+        {
+          "id": "s1e51",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 6.4,
+          "text": "不好相瞒，此物是我心爱珍藏，无奈生计所迫，只好出手，还望杨老板成全。"
+        },
+        {
+          "id": "s1e52",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 8.6,
+          "text": "本店是小本生意，自我从韩老板手里盘下这店，还不曾多么赚过。王先生这只盘子十分珍贵，杨某有心无力，实在不好言价了。还请王先生体谅。"
+        },
+        {
+          "id": "s1e53",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 4.8,
+          "text": "这实在是几件珍品，若不是王某手面尴尬，是不会出手的。"
+        },
+        {
+          "id": "s1e54",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 5.4,
+          "text": "买卖不成仁义在，先不说价钱，容我再想想。今日王先生先住下，我让下人去找一家上等客栈。"
+        },
+        {
+          "id": "s1e55",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 2.2,
+          "text": "不麻烦杨老板了。"
+        },
+        {
+          "id": "s1e56",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 2.4,
+          "text": "不麻烦，我去里间说一下。"
+        },
+        {
+          "id": "s1e57",
+          "type": "exit",
+          "actorId": "yang_chengyue",
+          "duration": 0.9,
+          "toSide": "right"
+        },
+        {
+          "id": "s1e57b",
+          "type": "move",
+          "actorId": "xue_er",
+          "duration": 0.9,
+          "x": 300,
+          "y": 288
+        },
+        {
+          "id": "s1e58",
+          "type": "action",
+          "duration": 2.6,
+          "text": "里间隐约传来一段《秦琼卖马》的唱腔，王超杰微闭双目，神情复杂。"
+        },
+        {
+          "id": "s1e59",
+          "type": "blackout_start",
+          "duration": 0.8
+        },
+        {
+          "id": "s1e60",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     },
     {
@@ -113,12 +511,42 @@
         "doorX": 154,
         "doorY": 98,
         "props": [
-          { "id": "scene2-sign", "kind": "signboard_yiyuanzhai", "x": 462, "y": 26 },
-          { "id": "scene2-shelf", "kind": "display_shelf", "x": 756, "y": 286 },
-          { "id": "scene2-counter", "kind": "counter_table", "x": 464, "y": 354 },
-          { "id": "scene2-plate-stand", "kind": "plate_stand", "x": 540, "y": 366 },
-          { "id": "scene2-plate", "kind": "porcelain_plate", "x": 540, "y": 338 },
-          { "id": "scene2-tea", "kind": "tea_set", "x": 394, "y": 348 }
+          {
+            "id": "scene2-sign",
+            "kind": "signboard_yiyuanzhai",
+            "x": 462,
+            "y": 26
+          },
+          {
+            "id": "scene2-shelf",
+            "kind": "display_shelf",
+            "x": 756,
+            "y": 286
+          },
+          {
+            "id": "scene2-counter",
+            "kind": "counter_table",
+            "x": 464,
+            "y": 354
+          },
+          {
+            "id": "scene2-plate-stand",
+            "kind": "plate_stand",
+            "x": 540,
+            "y": 366
+          },
+          {
+            "id": "scene2-plate",
+            "kind": "porcelain_plate",
+            "x": 540,
+            "y": 338
+          },
+          {
+            "id": "scene2-tea",
+            "kind": "tea_set",
+            "x": 394,
+            "y": 348
+          }
         ]
       },
       "actors": [
@@ -142,71 +570,462 @@
         }
       ],
       "events": [
-        { "id": "s2e1", "type": "blackout_start", "duration": 1.2 },
-        { "id": "s2e2", "type": "action", "duration": 2.2, "text": "夜里，灯火照着艺园斋的前厅。桌案边摆着酒菜，王超杰与杨成岳谈戏议价，雪儿侍立一旁。" },
-        { "id": "s2e3", "type": "blackout_end", "duration": 0.6 },
-        { "id": "s2e4", "type": "enter", "actorId": "yang_chengyue", "duration": 1, "x": 488, "y": 314, "fromSide": "right" },
-        { "id": "s2e5", "type": "enter", "actorId": "wang_chaojie", "duration": 1, "x": 384, "y": 302, "fromSide": "left" },
-        { "id": "s2e6", "type": "enter", "actorId": "xue_er", "duration": 0.9, "x": 590, "y": 302, "fromSide": "right" },
-        { "id": "s2e7", "type": "line", "actorId": "yang_chengyue", "duration": 6.8, "text": "先生的《秦琼卖马》，谭派味道十足，胜过谭小培先生。" },
-        { "id": "s2e8", "type": "line", "actorId": "wang_chaojie", "duration": 3, "text": "取笑了取笑了，我那是邯郸学步。" },
-        { "id": "s2e9", "type": "line", "actorId": "yang_chengyue", "duration": 6.4, "text": "先生，客栈已经去找了，家妻准备了点菜肴，不如在这儿先用下吧。" },
-        { "id": "s2e10", "type": "line", "actorId": "wang_chaojie", "duration": 2.2, "text": "不必了不必了。" },
-        { "id": "s2e11", "type": "line", "actorId": "yang_chengyue", "duration": 2.8, "text": "已经备下了，先生不必客气。" },
-        { "id": "s2e12", "type": "line", "actorId": "yang_chengyue", "duration": 8.2, "text": "王先生，当年听您一出戏可真是不易，一张票要卖到三十块大洋。今天能面对面与您谈戏，想不到的事啊。" },
-        { "id": "s2e13", "type": "line", "actorId": "wang_chaojie", "duration": 8.8, "text": "过眼烟云。想我王超杰当年何曾拿钱当做事情，想不到今日也要靠典当家底过活了。真是此一时也彼一时，不堪回首啊。" },
-        { "id": "s2e14", "type": "line", "actorId": "yang_chengyue", "duration": 4.2, "text": "王先生，这是家妻，也是韩老板之女。" },
-        { "id": "s2e15", "type": "line", "actorId": "xue_er", "duration": 1.4, "text": "王先生。" },
-        { "id": "s2e16", "type": "line", "actorId": "wang_chaojie", "duration": 5.2, "text": "原来如此啊，真是光阴似箭，故人之女都已经成家了。" },
-        { "id": "s2e17", "type": "line", "actorId": "yang_chengyue", "duration": 3.2, "text": "先生现在还溜嗓子啊？" },
-        { "id": "s2e18", "type": "line", "actorId": "wang_chaojie", "duration": 6.4, "text": "无事时也唱唱，直是不似以前了，好汉不提当年啊，饮酒饮酒。" },
-        { "id": "s2e19", "type": "line", "actorId": "yang_chengyue", "duration": 9.2, "text": "先生，这盘子非是杨某不肯成交，只是是王先生心爱之物，一定索价不菲，杨某自然不敢盘价了。王先生还要原谅杨某小店利薄，接不下这批宝贝。" },
-        { "id": "s2e20", "type": "line", "actorId": "wang_chaojie", "duration": 5.2, "text": "今日超杰也恰似当年秦叔宝卖马啊，不知杨老板可否做一次单雄信？" },
-        { "id": "s2e21", "type": "pause", "duration": 0.8 },
-        { "id": "s2e22", "type": "line", "actorId": "yang_chengyue", "duration": 6.4, "text": "既然超杰兄话讲到这般地步，这样好不好，你将那东西拿来，我再看看。买卖这种事，我们都要过得去才好。" },
-        { "id": "s2e23", "type": "line", "actorId": "wang_chaojie", "duration": 1.2, "text": "正是。" },
-        { "id": "s2e24", "type": "line", "actorId": "xue_er", "duration": 8.8, "text": "我直是觉得好看，却不懂。俗话说，外行看热闹，我却是热闹也看不出了。这与饭店里吃饭的盘子何异呢？" },
-        { "id": "s2e25", "type": "line", "actorId": "yang_chengyue", "duration": 4.4, "text": "雪儿你莫要说笑，超杰这是雍正官窑粉彩过枝碧桃大盘。" },
-        { "id": "s2e26", "type": "line", "actorId": "xue_er", "duration": 7, "text": "真正是古董呢，家父当年教过我一种滴水法，只要将水滴在瓷器表面，真的清朝瓷器水滴会在上面凝聚不散，不知可否让我试试办法真假？" },
-        { "id": "s2e27", "type": "line", "actorId": "yang_chengyue", "duration": 4.4, "text": "雪儿，我已经掌过眼了，不必再试了。" },
-        { "id": "s2e28", "type": "line", "actorId": "xue_er", "duration": 1.4, "text": "可是……" },
-        { "id": "s2e29", "type": "line", "actorId": "yang_chengyue", "duration": 4.2, "text": "不必说了，你快去休息休息吧。王先生见笑了，可否给我介绍一二？" },
-        { "id": "s2e30", "type": "line", "actorId": "wang_chaojie", "duration": 9.2, "text": "哪里的话，这几只盘子尺码有一尺二寸，画工仔细，发色好，蓝色双圈楷书款，大清雍正御制，不会错的。我当年得来也的确不易，韩老板若不是急于用钱，是断然不会让与我的。" },
-        { "id": "s2e31", "type": "action", "actorId": "yang_chengyue", "duration": 1.2, "text": "杨成岳含笑不语，目光却始终没有离开盘沿。" },
-        { "id": "s2e32", "type": "line", "actorId": "yang_chengyue", "duration": 6.2, "text": "王先生既然一定要卖，杨某就请王先生说一句落底的话，您至少要卖多少钱？" },
-        { "id": "s2e33", "type": "line", "actorId": "wang_chaojie", "duration": 5.4, "text": "一只盘子五百块大洋总是值的吧。我不会再让价的。" },
-        { "id": "s2e34", "type": "line", "actorId": "yang_chengyue", "duration": 2.4, "text": "直是再便宜些才好。" },
-        { "id": "s2e35", "type": "line", "actorId": "wang_chaojie", "duration": 9.2, "text": "都道无奸不商，成岳兄，你果然是个精细到家了。我这些东西都是宝贝，不言二价。五百就是五百。若不是我手面一时窄了，一千大洋也是不肯卖的。" },
-        { "id": "s2e36", "type": "line", "actorId": "yang_chengyue", "duration": 4.4, "text": "那好，我去取银票来，我们当面钱货两讫。" },
-        { "id": "s2e37", "type": "line", "actorId": "wang_chaojie", "duration": 1.8, "text": "如此最好。" },
-        { "id": "s2e38", "type": "exit", "actorId": "yang_chengyue", "duration": 0.9, "toSide": "right" },
-        { "id": "s2e39", "type": "pause", "duration": 1.2 },
-        { "id": "s2e40", "type": "enter", "actorId": "yang_chengyue", "duration": 0.9, "x": 438, "y": 304, "fromSide": "right" },
-        { "id": "s2e41", "type": "action", "actorId": "yang_chengyue", "duration": 1.2, "text": "杨成岳把银票放在桌上，推到王超杰面前。" },
-        { "id": "s2e42", "type": "line", "actorId": "yang_chengyue", "duration": 3, "text": "超杰先生，清点一下。这是五百大洋。" },
-        { "id": "s2e43", "type": "line", "actorId": "wang_chaojie", "duration": 1.6, "text": "不必不必。" },
-        { "id": "s2e44", "type": "line", "actorId": "wang_chaojie", "duration": 6.8, "text": "事情已经办妥，那我今日就走了。我出来时间已经太久，怕是家里人惦记了。" },
-        { "id": "s2e45", "type": "line", "actorId": "yang_chengyue", "duration": 3.2, "text": "此一别，不知道王先生何时再来？" },
-        { "id": "s2e46", "type": "line", "actorId": "wang_chaojie", "duration": 2.8, "text": "若是吃不起饭，直是要来的。" },
-        { "id": "s2e47", "type": "line", "actorId": "yang_chengyue", "duration": 2.4, "text": "王先生一路平安。" },
-        { "id": "s2e48", "type": "action", "duration": 2.4, "text": "王超杰回头，台上又起《秦琼卖马》的唱腔，像是替这场买卖做注脚。" },
-        { "id": "s2e49", "type": "exit", "actorId": "wang_chaojie", "duration": 1, "toSide": "left" },
-        { "id": "s2e50", "type": "pause", "duration": 1.2 },
-        { "id": "s2e51", "type": "line", "actorId": "xue_er", "duration": 7.6, "text": "成岳，你为何不让我试试？家父就是因为晚年打眼损失惨重，才郁郁而终。虽然我知道你眼力好，但是难免走眼啊。" },
-        { "id": "s2e52", "type": "line", "actorId": "yang_chengyue", "duration": 3.6, "text": "哎，你知我为何不让你看吗？" },
-        { "id": "s2e53", "type": "action", "actorId": "yang_chengyue", "duration": 1.8, "text": "杨成岳猛一挥手，那只盘子应声坠地，碎片散了一地。" },
-        { "id": "s2e53a", "type": "prop_swap", "propId": "scene2-plate", "propKind": "porcelain_plate", "nextPropKind": "broken_plate", "duration": 0.6, "text": "柜台上的粉彩大盘在灯下化作一地碎瓷。" },
-        { "id": "s2e54", "type": "line", "actorId": "xue_er", "duration": 3.4, "text": "成岳，你这是为何……" },
-        { "id": "s2e55", "type": "line", "actorId": "yang_chengyue", "duration": 2.2, "text": "雪儿，请随我来。" },
-        { "id": "s2e56", "type": "action", "actorId": "yang_chengyue", "duration": 1.6, "text": "他从里间取出真正的旧盘，放到碎片旁边对照。" },
-        { "id": "s2e57", "type": "line", "actorId": "yang_chengyue", "duration": 2, "text": "这才是真的。" },
-        { "id": "s2e58", "type": "line", "actorId": "xue_er", "duration": 4.4, "text": "你是说，超杰先生带来的，是赝品……" },
-        { "id": "s2e59", "type": "line", "actorId": "yang_chengyue", "duration": 9.2, "text": "正是。可惜超杰先生收藏一世，竟被人欺哄。这件东西顶多值上几吊钱。我看出王先生心爱此物，便不好说破，谁知他一味强卖，我也只好装痴作呆了。" },
-        { "id": "s2e60", "type": "line", "actorId": "xue_er", "duration": 2.4, "text": "那五百大洋？" },
-        { "id": "s2e61", "type": "line", "actorId": "yang_chengyue", "duration": 9.2, "text": "我们听了超杰先生出戏，也就是值这个数了。钱这东西，生不带来，死不带走，送与王先生，也便是用在了去处。超杰先生收藏一世，竟是收藏了许多赝品，真是让人可惜可叹的事情啊。" },
-        { "id": "s2e62", "type": "action", "duration": 3, "text": "碎瓷在灯下泛着冷光，远处《秦琼卖马》的唱腔又缓缓响起，像替王超杰送行，也替这一夜落下叹息。" },
-        { "id": "s2e63", "type": "blackout_start", "duration": 1 },
-        { "id": "s2e64", "type": "scene_end", "duration": 0.8 }
+        {
+          "id": "s2e1",
+          "type": "blackout_start",
+          "duration": 1.2
+        },
+        {
+          "id": "s2e2",
+          "type": "action",
+          "duration": 2.2,
+          "text": "夜里，灯火照着艺园斋的前厅。桌案边摆着酒菜，王超杰与杨成岳谈戏议价，雪儿侍立一旁。"
+        },
+        {
+          "id": "s2e3",
+          "type": "blackout_end",
+          "duration": 0.6
+        },
+        {
+          "id": "s2e4",
+          "type": "enter",
+          "actorId": "yang_chengyue",
+          "duration": 1,
+          "x": 488,
+          "y": 314,
+          "fromSide": "right"
+        },
+        {
+          "id": "s2e5",
+          "type": "enter",
+          "actorId": "wang_chaojie",
+          "duration": 1,
+          "x": 384,
+          "y": 302,
+          "fromSide": "left"
+        },
+        {
+          "id": "s2e6",
+          "type": "enter",
+          "actorId": "xue_er",
+          "duration": 0.9,
+          "x": 590,
+          "y": 302,
+          "fromSide": "right"
+        },
+        {
+          "id": "s2e7",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 6.8,
+          "text": "先生的《秦琼卖马》，谭派味道十足，胜过谭小培先生。"
+        },
+        {
+          "id": "s2e8",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 3,
+          "text": "取笑了取笑了，我那是邯郸学步。"
+        },
+        {
+          "id": "s2e9",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 6.4,
+          "text": "先生，客栈已经去找了，家妻准备了点菜肴，不如在这儿先用下吧。"
+        },
+        {
+          "id": "s2e10",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 2.2,
+          "text": "不必了不必了。"
+        },
+        {
+          "id": "s2e11",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 2.8,
+          "text": "已经备下了，先生不必客气。"
+        },
+        {
+          "id": "s2e12",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 8.2,
+          "text": "王先生，当年听您一出戏可真是不易，一张票要卖到三十块大洋。今天能面对面与您谈戏，想不到的事啊。"
+        },
+        {
+          "id": "s2e13",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 8.8,
+          "text": "过眼烟云。想我王超杰当年何曾拿钱当做事情，想不到今日也要靠典当家底过活了。真是此一时也彼一时，不堪回首啊。"
+        },
+        {
+          "id": "s2e14",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 4.2,
+          "text": "王先生，这是家妻，也是韩老板之女。"
+        },
+        {
+          "id": "s2e15",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 1.4,
+          "text": "王先生。"
+        },
+        {
+          "id": "s2e16",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 5.2,
+          "text": "原来如此啊，真是光阴似箭，故人之女都已经成家了。"
+        },
+        {
+          "id": "s2e17",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 3.2,
+          "text": "先生现在还溜嗓子啊？"
+        },
+        {
+          "id": "s2e18",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 6.4,
+          "text": "无事时也唱唱，直是不似以前了，好汉不提当年啊，饮酒饮酒。"
+        },
+        {
+          "id": "s2e19",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 9.2,
+          "text": "先生，这盘子非是杨某不肯成交，只是是王先生心爱之物，一定索价不菲，杨某自然不敢盘价了。王先生还要原谅杨某小店利薄，接不下这批宝贝。"
+        },
+        {
+          "id": "s2e20",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 5.2,
+          "text": "今日超杰也恰似当年秦叔宝卖马啊，不知杨老板可否做一次单雄信？"
+        },
+        {
+          "id": "s2e21",
+          "type": "pause",
+          "duration": 0.8
+        },
+        {
+          "id": "s2e22",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 6.4,
+          "text": "既然超杰兄话讲到这般地步，这样好不好，你将那东西拿来，我再看看。买卖这种事，我们都要过得去才好。"
+        },
+        {
+          "id": "s2e23",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 1.2,
+          "text": "正是。"
+        },
+        {
+          "id": "s2e24",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 8.8,
+          "text": "我直是觉得好看，却不懂。俗话说，外行看热闹，我却是热闹也看不出了。这与饭店里吃饭的盘子何异呢？"
+        },
+        {
+          "id": "s2e25",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 4.4,
+          "text": "雪儿你莫要说笑，超杰这是雍正官窑粉彩过枝碧桃大盘。"
+        },
+        {
+          "id": "s2e26",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 7,
+          "text": "真正是古董呢，家父当年教过我一种滴水法，只要将水滴在瓷器表面，真的清朝瓷器水滴会在上面凝聚不散，不知可否让我试试办法真假？"
+        },
+        {
+          "id": "s2e27",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 4.4,
+          "text": "雪儿，我已经掌过眼了，不必再试了。"
+        },
+        {
+          "id": "s2e28",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 1.4,
+          "text": "可是……"
+        },
+        {
+          "id": "s2e29",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 4.2,
+          "text": "不必说了，你快去休息休息吧。王先生见笑了，可否给我介绍一二？"
+        },
+        {
+          "id": "s2e30",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 9.2,
+          "text": "哪里的话，这几只盘子尺码有一尺二寸，画工仔细，发色好，蓝色双圈楷书款，大清雍正御制，不会错的。我当年得来也的确不易，韩老板若不是急于用钱，是断然不会让与我的。"
+        },
+        {
+          "id": "s2e31",
+          "type": "action",
+          "actorId": "yang_chengyue",
+          "duration": 1.2,
+          "text": "杨成岳含笑不语，目光却始终没有离开盘沿。"
+        },
+        {
+          "id": "s2e32",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 6.2,
+          "text": "王先生既然一定要卖，杨某就请王先生说一句落底的话，您至少要卖多少钱？"
+        },
+        {
+          "id": "s2e33",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 5.4,
+          "text": "一只盘子五百块大洋总是值的吧。我不会再让价的。"
+        },
+        {
+          "id": "s2e34",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 2.4,
+          "text": "直是再便宜些才好。"
+        },
+        {
+          "id": "s2e35",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 9.2,
+          "text": "都道无奸不商，成岳兄，你果然是个精细到家了。我这些东西都是宝贝，不言二价。五百就是五百。若不是我手面一时窄了，一千大洋也是不肯卖的。"
+        },
+        {
+          "id": "s2e36",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 4.4,
+          "text": "那好，我去取银票来，我们当面钱货两讫。"
+        },
+        {
+          "id": "s2e37",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 1.8,
+          "text": "如此最好。"
+        },
+        {
+          "id": "s2e38",
+          "type": "exit",
+          "actorId": "yang_chengyue",
+          "duration": 0.9,
+          "toSide": "right"
+        },
+        {
+          "id": "s2e39",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s2e40",
+          "type": "enter",
+          "actorId": "yang_chengyue",
+          "duration": 0.9,
+          "x": 438,
+          "y": 304,
+          "fromSide": "right"
+        },
+        {
+          "id": "s2e41",
+          "type": "action",
+          "actorId": "yang_chengyue",
+          "duration": 1.2,
+          "text": "杨成岳把银票放在桌上，推到王超杰面前。"
+        },
+        {
+          "id": "s2e42",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 3,
+          "text": "超杰先生，清点一下。这是五百大洋。"
+        },
+        {
+          "id": "s2e43",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 1.6,
+          "text": "不必不必。"
+        },
+        {
+          "id": "s2e44",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 6.8,
+          "text": "事情已经办妥，那我今日就走了。我出来时间已经太久，怕是家里人惦记了。"
+        },
+        {
+          "id": "s2e45",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 3.2,
+          "text": "此一别，不知道王先生何时再来？"
+        },
+        {
+          "id": "s2e46",
+          "type": "line",
+          "actorId": "wang_chaojie",
+          "duration": 2.8,
+          "text": "若是吃不起饭，直是要来的。"
+        },
+        {
+          "id": "s2e47",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 2.4,
+          "text": "王先生一路平安。"
+        },
+        {
+          "id": "s2e48",
+          "type": "action",
+          "duration": 2.4,
+          "text": "王超杰回头，台上又起《秦琼卖马》的唱腔，像是替这场买卖做注脚。"
+        },
+        {
+          "id": "s2e49",
+          "type": "exit",
+          "actorId": "wang_chaojie",
+          "duration": 1,
+          "toSide": "left"
+        },
+        {
+          "id": "s2e50",
+          "type": "pause",
+          "duration": 1.2
+        },
+        {
+          "id": "s2e51",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 7.6,
+          "text": "成岳，你为何不让我试试？家父就是因为晚年打眼损失惨重，才郁郁而终。虽然我知道你眼力好，但是难免走眼啊。"
+        },
+        {
+          "id": "s2e52",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 3.6,
+          "text": "哎，你知我为何不让你看吗？"
+        },
+        {
+          "id": "s2e53",
+          "type": "action",
+          "actorId": "yang_chengyue",
+          "duration": 1.8,
+          "text": "杨成岳猛一挥手，那只盘子应声坠地，碎片散了一地。"
+        },
+        {
+          "id": "s2e53a",
+          "type": "prop_swap",
+          "propId": "scene2-plate",
+          "propKind": "porcelain_plate",
+          "nextPropKind": "broken_plate",
+          "duration": 0.6,
+          "text": "柜台上的粉彩大盘在灯下化作一地碎瓷。"
+        },
+        {
+          "id": "s2e54",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 3.4,
+          "text": "成岳，你这是为何……"
+        },
+        {
+          "id": "s2e55",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 2.2,
+          "text": "雪儿，请随我来。"
+        },
+        {
+          "id": "s2e56",
+          "type": "action",
+          "actorId": "yang_chengyue",
+          "duration": 1.6,
+          "text": "他从里间取出真正的旧盘，放到碎片旁边对照。"
+        },
+        {
+          "id": "s2e56b",
+          "type": "move",
+          "actorId": "yang_chengyue",
+          "duration": 0.7,
+          "x": 478,
+          "y": 342
+        },
+        {
+          "id": "s2e57",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 2,
+          "text": "这才是真的。"
+        },
+        {
+          "id": "s2e58",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 4.4,
+          "text": "你是说，超杰先生带来的，是赝品……"
+        },
+        {
+          "id": "s2e59",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 9.2,
+          "text": "正是。可惜超杰先生收藏一世，竟被人欺哄。这件东西顶多值上几吊钱。我看出王先生心爱此物，便不好说破，谁知他一味强卖，我也只好装痴作呆了。"
+        },
+        {
+          "id": "s2e60",
+          "type": "line",
+          "actorId": "xue_er",
+          "duration": 2.4,
+          "text": "那五百大洋？"
+        },
+        {
+          "id": "s2e61",
+          "type": "line",
+          "actorId": "yang_chengyue",
+          "duration": 9.2,
+          "text": "我们听了超杰先生出戏，也就是值这个数了。钱这东西，生不带来，死不带走，送与王先生，也便是用在了去处。超杰先生收藏一世，竟是收藏了许多赝品，真是让人可惜可叹的事情啊。"
+        },
+        {
+          "id": "s2e62",
+          "type": "action",
+          "duration": 3,
+          "text": "碎瓷在灯下泛着冷光，远处《秦琼卖马》的唱腔又缓缓响起，像替王超杰送行，也替这一夜落下叹息。"
+        },
+        {
+          "id": "s2e63",
+          "type": "blackout_start",
+          "duration": 1
+        },
+        {
+          "id": "s2e64",
+          "type": "scene_end",
+          "duration": 0.8
+        }
       ]
     }
   ]
