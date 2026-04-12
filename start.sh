@@ -4,7 +4,7 @@ set -e
 cd "$(dirname "$0")"
 
 echo ""
-echo "  StageCue — 话剧排练工具"
+echo "  RepliStage — 话剧排练工具"
 echo ""
 
 # 检查 node_modules

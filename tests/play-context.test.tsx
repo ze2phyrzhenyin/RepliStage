@@ -56,7 +56,7 @@ describe("PlayContext", () => {
     });
 
     expect(renderer!.root.findByProps({ id: "title" }).children.join("")).toBe("Legacy Title");
-    const persisted = JSON.parse(window.localStorage.getItem("stagecue_current_play_v1") ?? "{}");
+    const persisted = JSON.parse(window.localStorage.getItem("replistage_current_play_v1") ?? "{}");
     expect(persisted.version).toBe(3);
     expect(persisted.play.title).toBe("Legacy Title");
     expect(persisted.source.type).toBe("edited");
@@ -85,7 +85,7 @@ describe("PlayContext", () => {
 
     expect(renderer!.root.findByProps({ id: "title" }).children.join("")).toBe(defaultPlay.title);
     expect(renderer!.root.findByProps({ id: "using-default" }).children.join("")).toBe("true");
-    expect(window.localStorage.getItem("stagecue_current_play_v1")).not.toBeNull();
+    expect(window.localStorage.getItem("replistage_current_play_v1")).not.toBeNull();
   });
 
   it("exports the current play as JSON text", async () => {

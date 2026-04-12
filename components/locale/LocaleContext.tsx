@@ -4,7 +4,8 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import { translate } from "@/lib/i18n";
 
-const LOCALE_STORAGE_KEY = "stagecue_locale_v1";
+const LOCALE_STORAGE_KEY = "replistage_locale_v1";
+const LEGACY_LOCALE_STORAGE_KEY = "stagecue_locale_v1";
 
 type LocaleContextValue = {
   locale: Locale;
@@ -21,7 +22,9 @@ const LocaleContext = createContext<LocaleContextValue>({
 function detectInitialLocale(): Locale {
   if (typeof window === "undefined") return "zh";
 
-  const stored = window.localStorage.getItem(LOCALE_STORAGE_KEY);
+  const stored =
+    window.localStorage.getItem(LOCALE_STORAGE_KEY) ??
+    window.localStorage.getItem(LEGACY_LOCALE_STORAGE_KEY);
   if (stored === "zh" || stored === "fr") return stored;
 
   return window.navigator.language.toLowerCase().startsWith("fr") ? "fr" : "zh";

@@ -20,7 +20,7 @@ export default function HomePage() {
         </div>
         <div className="mx-auto max-w-2xl text-center">
           <p className="page-kicker">{t("home.tool")}</p>
-          <h1 className="display-title mt-4 text-6xl font-light text-white sm:text-7xl">StageCue</h1>
+          <h1 className="display-title mt-4 text-6xl font-light text-white sm:text-7xl">RepliStage</h1>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-white/40">
             {t("home.modeDescription")}
           </p>

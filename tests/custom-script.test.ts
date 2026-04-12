@@ -46,7 +46,7 @@ describe("customScript", () => {
 
     saveCustomEvents("scene-a", legacyEvents);
     expect(window.localStorage.getItem("stagecue_custom_events_v1")).toBeNull();
-    expect(window.localStorage.getItem("stagecue_custom_events_v1:scene-a")).not.toBeNull();
+    expect(window.localStorage.getItem("replistage_custom_events_v1:scene-a")).not.toBeNull();
   });
 
   it("resets only the targeted scene storage key", () => {

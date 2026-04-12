@@ -2,7 +2,7 @@
 
 ## 1. 总体结构
 
-StageCue 是一个“剧本 JSON 驱动 UI”的前端应用。
+RepliStage 是一个“剧本 JSON 驱动 UI”的前端应用。
 
 核心链路：
 
@@ -72,7 +72,7 @@ StageCue 是一个“剧本 JSON 驱动 UI”的前端应用。
 
 当前存储键：
 
-- `stagecue_current_play_v1`
+- `replistage_current_play_v1`
 
 ### 3.3 排练页局部草稿
 

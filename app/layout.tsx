@@ -5,8 +5,8 @@ import { LocaleProvider } from "@/components/locale/LocaleContext";
 import { PlayProvider } from "@/components/play/PlayContext";
 
 export const metadata: Metadata = {
-  title: "StageCue",
-  description: "StageCue, visual rehearsal tool for stage scripts.",
+  title: "RepliStage",
+  description: "RepliStage, visual rehearsal tool for stage scripts.",
 };
 
 export const viewport: Viewport = {

@@ -14,7 +14,8 @@ import {
   type SamplePlayDescriptor,
 } from "@/lib/sample-plays";
 
-const PLAY_STORAGE_KEY = "stagecue_current_play_v1";
+const PLAY_STORAGE_KEY = "replistage_current_play_v1";
+const LEGACY_PLAY_STORAGE_KEY = "stagecue_current_play_v1";
 const PLAY_STORAGE_VERSION = 3;
 
 type PersistedPlayState = {
@@ -84,7 +85,7 @@ function loadStoredPlay() {
     };
   }
   try {
-    const raw = localStorage.getItem(PLAY_STORAGE_KEY);
+    const raw = localStorage.getItem(PLAY_STORAGE_KEY) ?? localStorage.getItem(LEGACY_PLAY_STORAGE_KEY);
     if (!raw) {
       return {
         play: defaultPlayFromSamples(),
@@ -107,6 +108,7 @@ function loadStoredPlay() {
   } catch {
     try {
       localStorage.removeItem(PLAY_STORAGE_KEY);
+      localStorage.removeItem(LEGACY_PLAY_STORAGE_KEY);
     } catch {
       // ignore storage errors
     }
@@ -149,6 +151,7 @@ export function PlayProvider({ children }: { children: React.ReactNode }) {
       });
       try {
         localStorage.removeItem(PLAY_STORAGE_KEY);
+        localStorage.removeItem(LEGACY_PLAY_STORAGE_KEY);
       } catch {
         // ignore storage errors
       }

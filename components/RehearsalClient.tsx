@@ -319,7 +319,7 @@ export function RehearsalClient({
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="opacity-0 group-hover:opacity-100 transition -mr-0.5">
             <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          StageCue
+          RepliStage
         </button>
 
         <div className="flex items-center gap-0.5 rounded-lg bg-white/[0.05] p-0.5">

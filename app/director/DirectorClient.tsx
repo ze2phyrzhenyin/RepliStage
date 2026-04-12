@@ -338,7 +338,7 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = url;
-      anchor.download = `${play.id || "stagecue-play"}.json`;
+      anchor.download = `${play.id || "replistage-play"}.json`;
       anchor.click();
       URL.revokeObjectURL(url);
       setSaveMsg(t("director.exported"));
@@ -396,11 +396,13 @@ export default function DirectorClient({ initialSceneId = "" }: { initialSceneId
     if (!confirmed) return;
 
     try {
+      localStorage.removeItem("replistage_current_play_v1");
       localStorage.removeItem("stagecue_current_play_v1");
+      localStorage.removeItem("replistage_costumes_v1");
       localStorage.removeItem("stagecue_costumes_v1");
 
       for (const key of Object.keys(localStorage)) {
-        if (key.startsWith("stagecue_custom_events_v1")) {
+        if (key.startsWith("replistage_custom_events_v1") || key.startsWith("stagecue_custom_events_v1")) {
           localStorage.removeItem(key);
         }
       }

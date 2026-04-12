@@ -3,7 +3,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { CostumeVariant } from "@/types/script";
 
-const COSTUME_STORAGE_KEY = "stagecue_costumes_v1";
+const COSTUME_STORAGE_KEY = "replistage_costumes_v1";
+const LEGACY_COSTUME_STORAGE_KEY = "stagecue_costumes_v1";
 
 type CostumeMap = Record<string, CostumeVariant>;
 
@@ -22,7 +23,7 @@ const CostumeContext = createContext<CostumeContextValue>({
 function loadCostumes(): CostumeMap {
   if (typeof window === "undefined") return {};
   try {
-    const raw = localStorage.getItem(COSTUME_STORAGE_KEY);
+    const raw = localStorage.getItem(COSTUME_STORAGE_KEY) ?? localStorage.getItem(LEGACY_COSTUME_STORAGE_KEY);
     return raw ? (JSON.parse(raw) as CostumeMap) : {};
   } catch {
     return {};
