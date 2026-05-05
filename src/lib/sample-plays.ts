@@ -1,6 +1,6 @@
 import type { Play } from "@/types/script";
-import rawDefaultPlay from "./default-script.json";
-import rawQinqiongPlay from "./qinqiong-sample.json";
+import rawDefaultPlay from "@/data/plays/cendrillon.json";
+import rawQinqiongPlay from "@/data/plays/qinqiong-sells-horse.json";
 
 export type SamplePlayDescriptor = {
   id: string;

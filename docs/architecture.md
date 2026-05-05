@@ -27,7 +27,7 @@ RepliStage 是一个“剧本 JSON 驱动 UI”的前端应用。
 - `/director/setup`
   导演准备页
 
-这两个页面共用 `components/setup/ModeSetupScreen.tsx`。
+这两个页面共用 `src/components/setup/ModeSetupScreen.tsx`。
 
 ### 工作页
 
@@ -44,9 +44,9 @@ RepliStage 是一个“剧本 JSON 驱动 UI”的前端应用。
 
 文件：
 
-- `lib/default-script.json`
-- `lib/qinqiong-sample.json`
-- `lib/sample-plays.ts`
+- `src/data/plays/cendrillon.json`
+- `src/data/plays/qinqiong-sells-horse.json`
+- `src/lib/sample-plays.ts`
 
 职责：
 
@@ -58,7 +58,7 @@ RepliStage 是一个“剧本 JSON 驱动 UI”的前端应用。
 
 文件：
 
-- `components/play/PlayContext.tsx`
+- `src/components/play/PlayContext.tsx`
 
 职责：
 
@@ -78,7 +78,7 @@ RepliStage 是一个“剧本 JSON 驱动 UI”的前端应用。
 
 文件：
 
-- `lib/customScript.ts`
+- `src/lib/customScript.ts`
 
 职责：
 
@@ -90,7 +90,7 @@ RepliStage 是一个“剧本 JSON 驱动 UI”的前端应用。
 
 文件：
 
-- `components/costumes/CostumeContext.tsx`
+- `src/components/costumes/CostumeContext.tsx`
 
 职责：
 
@@ -101,7 +101,7 @@ RepliStage 是一个“剧本 JSON 驱动 UI”的前端应用。
 
 文件：
 
-- `lib/player.ts`
+- `src/lib/player.ts`
 
 播放器核心设计是“从头推导”，不是增量同步。
 
@@ -134,7 +134,7 @@ RepliStage 是一个“剧本 JSON 驱动 UI”的前端应用。
 
 文件：
 
-- `components/setup/ModeSetupScreen.tsx`
+- `src/components/setup/ModeSetupScreen.tsx`
 
 设计目标是把“模式选择”和“剧本来源选择”分离：
 
@@ -153,10 +153,10 @@ setup 页当前负责：
 
 文件：
 
-- `components/RehearsalClient.tsx`
-- `components/ScriptPanel.tsx`
-- `components/PlaybackControls.tsx`
-- `components/DirectorPanel.tsx`
+- `src/components/RehearsalClient.tsx`
+- `src/components/ScriptPanel.tsx`
+- `src/components/PlaybackControls.tsx`
+- `src/components/DirectorPanel.tsx`
 
 排练端支持三类工作状态：
 
@@ -170,10 +170,10 @@ setup 页当前负责：
 
 文件：
 
-- `app/director/DirectorClient.tsx`
-- `components/director/SceneList.tsx`
-- `components/director/EventEditor.tsx`
-- `components/director/ActorManager.tsx`
+- `src/app/director/DirectorClient.tsx`
+- `src/components/director/SceneList.tsx`
+- `src/components/director/EventEditor.tsx`
+- `src/components/director/ActorManager.tsx`
 
 导演模式负责：
 
@@ -194,9 +194,9 @@ setup 页当前负责：
 
 文件：
 
-- `lib/event-editor-core.ts`
-- `components/editor/SharedEventForm.tsx`
-- `components/editor/SharedInsertBar.tsx`
+- `src/lib/event-editor-core.ts`
+- `src/components/editor/SharedEventForm.tsx`
+- `src/components/editor/SharedInsertBar.tsx`
 
 排练页轻量编排与导演模式已经共享底层事件编辑规则：
 
@@ -211,9 +211,9 @@ setup 页当前负责：
 
 文件：
 
-- `components/StageCanvas.tsx`
-- `lib/stage-props.ts`
-- `types/script.ts`
+- `src/components/StageCanvas.tsx`
+- `src/lib/stage-props.ts`
+- `src/types/script.ts`
 
 当前舞台道具以 `StageProp` 为统一模型处理。
 
@@ -232,9 +232,9 @@ setup 页当前负责：
 
 文件：
 
-- `lib/i18n.ts`
-- `components/locale/LocaleContext.tsx`
-- `components/locale/LanguageToggle.tsx`
+- `src/lib/i18n.ts`
+- `src/components/locale/LocaleContext.tsx`
+- `src/components/locale/LanguageToggle.tsx`
 
 当前是中法双语界面，不再混杂显示。
 

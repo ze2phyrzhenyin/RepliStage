@@ -73,7 +73,7 @@ RepliStage 是一个通用的戏剧排练与导演工作台。
 RepliStage 能保持可维护，关键在于三点：
 
 - 同一份 `Play` 数据既能播放，也能编辑
-- 播放逻辑集中在 `lib/player.ts`
+- 播放逻辑集中在 `src/lib/player.ts`
 - 当前工作剧本集中由 `PlayContext` 管理
 
 所以：

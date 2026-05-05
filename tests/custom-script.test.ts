@@ -7,7 +7,7 @@ import {
   saveCustomEvents,
 } from "@/lib/customScript";
 import type { ScriptEvent } from "@/types/script";
-import { installWindowStorageMock } from "@/tests/helpers/storage-mock";
+import { installWindowStorageMock } from "./helpers/storage-mock";
 
 const baseEvents: ScriptEvent[] = [
   { id: "e1", type: "enter", actorId: "girl", x: 100, y: 120, fromSide: "left", duration: 1 },

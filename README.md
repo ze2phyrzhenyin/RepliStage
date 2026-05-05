@@ -87,13 +87,15 @@ http://localhost:3000
 可选脚本：
 
 ```bash
-./start.sh
+./scripts/dev.sh
 ```
 
 ## 常用命令
 
 ```bash
 npm run dev
+npm run dev:open
+npm run typecheck
 npm run build
 npm run start
 npm test
@@ -116,25 +118,27 @@ npm test
 ## 代码结构
 
 ```text
-app/                      路由、布局与页面
-components/               排练、导演、setup、舞台、造型与国际化组件
-lib/                      剧本数据、播放器、校验、示例剧本库与业务辅助逻辑
-types/                    核心领域类型
+src/app/                  路由、布局与页面
+src/components/           排练、导演、setup、舞台、造型与国际化组件
+src/lib/                  播放器、校验、示例剧本库与业务辅助逻辑
+src/data/plays/           内置示例剧本 JSON
+src/types/                核心领域类型
+public/                   静态资源
+scripts/                  本地辅助脚本
 tests/                    Vitest 逻辑测试
-doc/                      当前主文档目录
-docs/                     旧路径兼容入口
+docs/                     项目文档与展示资料
 ```
 
 ## 文档导航
 
-- [文档中心](./doc/README.md)
-- [项目概览](./doc/overview.md)
-- [架构说明](./doc/architecture.md)
-- [开发文档](./doc/development-guide.md)
-- [用户文档](./doc/user-guide.md)
-- [剧本数据规范](./doc/script-data-spec.md)
-- [代码模块索引](./doc/module-reference.md)
-- [审查与优化建议](./doc/review-notes.md)
+- [文档中心](./docs/README.md)
+- [项目概览](./docs/overview.md)
+- [架构说明](./docs/architecture.md)
+- [开发文档](./docs/development-guide.md)
+- [用户文档](./docs/user-guide.md)
+- [剧本数据规范](./docs/script-data-spec.md)
+- [代码模块索引](./docs/module-reference.md)
+- [审查与优化建议](./docs/review-notes.md)
 
 ## 当前边界
 

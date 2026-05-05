@@ -20,13 +20,15 @@ npm run dev
 可选：
 
 ```bash
-./start.sh
+./scripts/dev.sh
 ```
 
 ## 2. 常用命令
 
 ```bash
 npm run dev
+npm run dev:open
+npm run typecheck
 npm run build
 npm run start
 npm test
@@ -36,49 +38,51 @@ npm test
 
 ## 3. 目录职责
 
-- `app/`
+- `src/app/`
   路由、布局、页面入口
-- `components/`
+- `src/components/`
   页面 UI、导演子模块、setup、造型、国际化组件
-- `lib/`
-  剧本数据、示例剧本库、播放器、校验、事件编辑核心、道具辅助逻辑
-- `types/`
+- `src/lib/`
+  示例剧本库、播放器、校验、事件编辑核心、道具辅助逻辑
+- `src/data/plays/`
+  内置示例剧本 JSON
+- `src/types/`
   领域模型
 - `tests/`
   逻辑测试
-- `doc/`
+- `docs/`
   当前主文档目录
 
 ## 4. 关键入口
 
 应用入口：
 
-- `app/layout.tsx`
-- `app/page.tsx`
+- `src/app/layout.tsx`
+- `src/app/page.tsx`
 
 setup 流程：
 
-- `app/rehearsal/setup/page.tsx`
-- `app/director/setup/page.tsx`
-- `components/setup/ModeSetupScreen.tsx`
+- `src/app/rehearsal/setup/page.tsx`
+- `src/app/director/setup/page.tsx`
+- `src/components/setup/ModeSetupScreen.tsx`
 
 排练功能：
 
-- `app/rehearsal/page.tsx`
-- `components/RehearsalClient.tsx`
+- `src/app/rehearsal/page.tsx`
+- `src/components/RehearsalClient.tsx`
 
 导演功能：
 
-- `app/director/page.tsx`
-- `app/director/DirectorClient.tsx`
+- `src/app/director/page.tsx`
+- `src/app/director/DirectorClient.tsx`
 
 核心逻辑：
 
-- `types/script.ts`
-- `lib/sample-plays.ts`
-- `lib/play-schema.ts`
-- `lib/player.ts`
-- `components/play/PlayContext.tsx`
+- `src/types/script.ts`
+- `src/lib/sample-plays.ts`
+- `src/lib/play-schema.ts`
+- `src/lib/player.ts`
+- `src/components/play/PlayContext.tsx`
 
 ## 5. 修改剧本的方式
 
@@ -86,8 +90,8 @@ setup 流程：
 
 当前内置示例：
 
-- `lib/default-script.json`
-- `lib/qinqiong-sample.json`
+- `src/data/plays/cendrillon.json`
+- `src/data/plays/qinqiong-sells-horse.json`
 
 适合：
 
@@ -105,7 +109,7 @@ setup 流程：
 
 ## 6. 修改播放器时的原则
 
-播放器单一可信逻辑入口是 `lib/player.ts`。
+播放器单一可信逻辑入口是 `src/lib/player.ts`。
 
 建议：
 
@@ -118,7 +122,7 @@ setup 流程：
 
 文件：
 
-- `lib/play-schema.ts`
+- `src/lib/play-schema.ts`
 
 这里不仅负责结构校验，也负责业务校验。
 
@@ -135,8 +139,8 @@ setup 流程：
 
 文件：
 
-- `components/StageCanvas.tsx`
-- `lib/stage-props.ts`
+- `src/components/StageCanvas.tsx`
+- `src/lib/stage-props.ts`
 
 注意：
 
@@ -151,7 +155,7 @@ setup 流程：
 
 文件：
 
-- `components/setup/ModeSetupScreen.tsx`
+- `src/components/setup/ModeSetupScreen.tsx`
 
 当前 setup 页的设计前提是：
 

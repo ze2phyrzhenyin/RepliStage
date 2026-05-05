@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { act, create } from "react-test-renderer";
 import { PlayProvider, usePlayData } from "@/components/play/PlayContext";
 import { defaultPlay } from "@/lib/demo-script";
-import { installWindowStorageMock } from "@/tests/helpers/storage-mock";
+import { installWindowStorageMock } from "./helpers/storage-mock";
 
 function Harness() {
   const { play, setPlay, resetPlay, exportPlayToText, usingDefaultPlay } = usePlayData();
@@ -107,16 +107,19 @@ describe("PlayContext", () => {
     expect(exported).toContain(defaultPlay.scenes[0].id);
   });
 
-  it("falls back to default play when stored data is invalid", () => {
+  it("falls back to default play when stored data is invalid", async () => {
     window.localStorage.setItem("stagecue_current_play_v1", "{invalid-json");
 
-    const renderer = create(
-      <PlayProvider>
-        <Harness />
-      </PlayProvider>,
-    );
+    let renderer: ReturnType<typeof create>;
+    await act(async () => {
+      renderer = create(
+        <PlayProvider>
+          <Harness />
+        </PlayProvider>,
+      );
+    });
 
-    expect(renderer.root.findByProps({ id: "title" }).children.join("")).toBe(defaultPlay.title);
-    expect(renderer.root.findByProps({ id: "using-default" }).children.join("")).toBe("true");
+    expect(renderer!.root.findByProps({ id: "title" }).children.join("")).toBe(defaultPlay.title);
+    expect(renderer!.root.findByProps({ id: "using-default" }).children.join("")).toBe("true");
   });
 });

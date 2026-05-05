@@ -1,6 +1,6 @@
 # RepliStage 文档中心
 
-`doc/` 是当前仓库唯一主文档入口，所有说明均以这里为准。
+`docs/` 是当前仓库唯一主文档入口，所有说明均以这里为准。
 
 ## 推荐阅读顺序
 
@@ -36,7 +36,7 @@
   核心文件和目录职责索引
 - [review-notes.md](./review-notes.md)
   当前代码审查结论、风险与优化方向
-
-## 兼容说明
-
-旧入口 [docs/implementation-guide.md](/Users/zephyrsui/Downloads/theare/docs/implementation-guide.md) 仅保留跳转说明，避免两套文档长期漂移。
+- [presentation-script.md](./presentation-script.md)
+  面向戏剧学院的功能展示稿
+- [toulouse-video-script-zh-fr.md](./toulouse-video-script-zh-fr.md)
+  中法双语视频脚本资料

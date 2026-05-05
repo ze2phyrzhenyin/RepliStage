@@ -14,8 +14,8 @@ type Play = {
 
 当前内置示例剧本来自：
 
-- `lib/default-script.json`
-- `lib/qinqiong-sample.json`
+- `src/data/plays/cendrillon.json`
+- `src/data/plays/qinqiong-sells-horse.json`
 
 ## 2. 场次模型
 
